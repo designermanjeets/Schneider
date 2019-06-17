@@ -1,0 +1,79 @@
+﻿<!-- split the content of the inverter table into its own directive.
+     This way, the body of the table can be re-used in the Inverter Comparison
+     screen, without also getting the panel that surrounds the table -->
+
+<div ng-class="{'data-table-container': hasScrollBar, 'data-table-container--10-items': hasScrollBar}">
+  <table class="data-table" ng-if="inverters.length > 0">
+    <tr>
+      <th><!-- Index. This column is un-labeled --></th>
+      <th translate="devices.overview_tables.inverter_name"></th>
+      <th translate="devices.overview_tables.fga"
+        ng-show="screen==='device-table'"
+        >
+      </th>
+      <th translate="devices.overview_tables.build"
+        ng-show="screen==='device-table'"
+        >
+      </th>
+      <th translate="devices.overview_tables.serial"
+        ng-show="screen==='device-table'"
+        >
+      </th>
+      <th translate="devices.overview_tables.real_power" translate-value-units="{{units.RealPower}}W"></th>
+      <th translate="devices.overview_tables.ac_today" translate-value-units="{{units.ACEnergyToday}}Wh"></th>
+      <th translate="devices.overview_tables.ac_lifetime" translate-value-units="{{units.ACEnergyLifetime}}Wh"></th>
+      <th translate="devices.overview_tables.operating_hours"></th>
+      <th translate="devices.overview_tables.operating_state"></th>
+      <th translate="devices.overview_tables.alarms"></th>
+    </tr>
+    <!-- The entire row is clickable for selecting the inverter. If there is no checkbox shown for this inverter, then there will be no
+         visible effect.
+    -->
+    <tr ng-repeat="inverter in inverters"
+      ng-attr-ng-click="(screen==='inverter-comparison') ? onRowClick(inverter, $event) : undefined"
+      ng-if="inverter.modbus"
+      >
+      <td class="text-left">
+        <label>
+          <input type="checkbox"
+            ng-model="inverter.selected"
+            ng-show="screen === 'inverter-comparison'"
+            >
+          <span ng-bind="$index + 1"></span>
+        </label>
+      </td>
+      <td ng-bind="inverter.Name" class="text-left"></td>
+      <td ng-bind="inverter.FGA | makeDashIf: inverter.CommError" class="text-left"
+        ng-show="screen==='device-table'"
+        >
+      </td>
+      <td class="text-left" ng-show="screen==='device-table'">
+        {{inverter.SoftwareBuild | makeDashIf: inverter.CommError}}
+      </td>
+      <td ng-bind="inverter.SerialNumber | makeDashIf: inverter.CommError"
+        class="text-left"
+        ng-show="screen==='device-table'"
+        >
+      </td>
+      <td ng-bind="inverter.RealPower | unitFormatter : units.RealPower | makeDashIf: inverter.CommError "></td>
+      <td ng-bind="inverter.ACEnergyToday | unitFormatter : units.ACEnergyToday : true | makeDashIf: inverter.CommError"></td>
+      <td ng-bind="inverter.ACEnergyLifetime | unitFormatter : units.ACEnergyLifetime : true | makeDashIf: inverter.CommError"></td>
+      <td ng-bind="inverter.OperatingHoursLifetime | number | makeDashIf: inverter.CommError"></td>
+      <td ng-bind="inverter.OperatingState | operationMode : inverter.Name | makeDashIf: inverter.CommError" class="text-left"></td>
+      <td>
+        <alarm-icons has-alarms="{{inverter.hasAlarms}}"
+                     has-warnings="{{inverter.hasWarnings}}"
+                     device-is-present="{{!inverter.CommError}}">
+        </alarm-icons>
+      </td>
+    </tr>
+  </table>
+</div>
+<div ng-if="inverters.length == 0" ng-hide="screen === 'inverter-comparison'">
+  <span translate="devices.overview_tables.no_inverter_configured"></span>
+  <span csb-permissions translate="devices.overview_tables.no_inverter_configured_url" translate-value-href="#/devices/detection"></span>
+</div>
+<div class="alert alert-warning" ng-if="inverters.length == 0" ng-show="screen === 'inverter-comparison'">
+  <span translate="devices.overview_tables.no_inverter_configured"></span>
+  <span csb-permissions translate="devices.overview_tables.no_inverter_configured_url" translate-value-href="#/devices/detection"></span>
+</div>

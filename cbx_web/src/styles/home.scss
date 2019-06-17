@@ -1,0 +1,149 @@
+/*=============================================================================
+
+  \file   home.css
+
+  \brief
+  Conext Gateway index html custom style.
+
+  \code
+  CHANGE HISTORY
+  15-Dec-2015     Eddie Leung
+  - created
+
+
+==============================================================================*/
+@import "conext_gateway-variables";
+/* Hide page before redirect to login */
+.ng-cloak,
+[ng-cloak],
+[ng\:cloak] {
+  display: none !important;
+}
+/* Header containter */
+.home-header-container {
+  padding: 10px 0 5px;
+}
+/* Header logo image */
+.home-header-logo-container img {
+  vertical-align: top;
+}
+/* Header Conext Gateway text */
+.home-header-logo-container b {
+  color: #64b445;
+  margin-left: 5px;
+}
+/* Header beta text */
+.home-header-beta {
+  color: #ff9900;
+  margin: -10px 0 0 220px;
+}
+/* Header user name */
+.home-header-username {
+  //color: #64b445;
+}
+/* Header Conext Gateway info */
+.home-header-conext_gateway_info {
+  margin-top: 10px;
+  color: #4f5958;
+}
+/* Header Conext Gateway info spacing */
+.home-header-conext_gateway_info span {
+  margin: 0 0 0 20px;
+}
+/* Top menu */
+#homeTopMenu {
+  background-color: $top-navbar-bg;
+  padding: 5px 10px 1px;
+}
+/* Top menu border */
+#homeTopMenu ul {
+  border: none;
+}
+/* Top menu item */
+#homeTopMenu li > a {
+  background-color: #64B445;
+  color: white;
+  width: 130px;
+  border-radius: 10px 10px 0 0;
+}
+/* Top menu item active */
+#homeTopMenu li.active > a {
+  background: #FFF;
+  color: $top-navbar-bg;
+  outline: none;
+}
+
+#homeSideMenu > ul > li {
+  margin-bottom: 20px;
+
+  > a {
+    background: #E2E4E5;
+    color: #687276;
+    border: 1px solid transparent;
+
+    &:hover {
+      border: 1px solid black;
+    }
+  }
+
+  &.active > a {
+    background: #9ba3a2;
+    color: white;
+  }
+}
+
+#deviceSubMenu .navbar-nav li > a {
+  padding-bottom: 5px;
+  padding-top: 10px;
+  margin-bottom: -1.5px;
+  margin-right: 50px;
+  margin-left: 0;
+  border-bottom-width: 0;
+  padding-left: 0;
+  padding-right: 0;
+  font-size: 16px;
+  color: $se-medium-grey;
+
+  &:focus,
+  &:hover {
+    background-color: #fff;
+    color: $se-dark-grey;
+    border-width: 0;
+    border-style: solid;
+    border-bottom-width: 1.5px;
+    border-bottom-color: $se-dark-grey;
+  }
+}
+
+#deviceSubMenu .navbar-nav li {
+  border-width: 0;
+  border-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: $se-medium-grey;
+  padding-bottom: 1.5px;
+
+  &:focus,
+  &:hover {
+    background-color: #fff;
+    color: $se-medium-grey;
+    padding-bottom: 0;
+  }
+}
+
+#deviceSubMenu .navbar-nav li.active {
+  background-color: #fff;
+  padding-bottom: 0;
+}
+
+#deviceSubMenu {
+  background-color: #fff;
+}
+
+#deviceSubMenu .navbar-nav li.active > a {
+  background-color: #fff;
+  color: $se-dark-grey;
+  border-width: 0;
+  border-style: solid;
+  border-bottom-width: 1.5px;
+  border-bottom-color: $se-dark-grey;
+}

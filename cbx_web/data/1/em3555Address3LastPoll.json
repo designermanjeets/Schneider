@@ -1,0 +1,2 @@
+{ "values" : [{"name" : "/BUS1/MBM/DEVS","value" : [{"address":3,"type":"EM3555","isDead":"No"},{"address":5,"type":"ConextCL","isDead":"No"},{"address":8,"type":"IMTSOLAR","isDead":"No"}],"quality" : "G"},
+{"name" : "/BUS1_EM3555_3/LAST_POLL_TS","value" : "2018-01-08T11:16:16-0800","quality" : "G"}],"count" : 2,"responseTime" : 2}

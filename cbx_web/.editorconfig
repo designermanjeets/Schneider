@@ -1,0 +1,25 @@
+# http://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+[*.{js,css,scss,html,txt,json,hjson}]
+end_of_line = lf
+insert_final_newline = true
+
+indent_style = space
+indent_size = 2
+
+# Include a BOM to reduce the odds of Unicode characters
+# getting corrupted by Windows editors.
+charset = utf-8-bom
+
+trim_trailing_whitespace = true
+
+[{bower.json,package.json}]
+# Including a BOM in bower.json causes bower to fail,
+# due to unexpected token. So for that file, turn off
+# the BOM. Do it for package.json, too, just to be safe.
+# Note that this rule has to come *after* the general
+# *.json rule.
+charset = utf-8

@@ -1,0 +1,9 @@
+// Having this file in place causes Sublime to magically lint the files in place
+{
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	]
+}

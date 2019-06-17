@@ -1,0 +1,286 @@
+﻿<uib-tabset>
+  <uib-tab heading="{{'devices.details.summary_view' | translate}}">
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title" translate="devices.details.device_information"></h2>
+      </div>
+
+      <!-- no panel-body class, so the table goes full width -->
+      <table class="device-details table">
+        <tr>
+          <td translate="devices.details.model_number"></td>
+          <td ng-bind="device.MODEL"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.serial_number"></td>
+          <td ng-bind="device.SERIAL_NUM"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.device_name"></td>
+          <td ng-bind="device.NAME"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.firmware_version"></td>
+          <td ng-bind="device.FIRMWARE_ID"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.last_updated"></td>
+          <td ng-bind="device.lastUpdated"></td>
+        </tr>
+      </table>
+
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title" translate="devices.details.current_values"></h2>
+      </div>
+
+      <table class="device-details table"
+             ng-class="{'device-details--comm-error': device.commError}">
+
+        <tr>
+          <td translate="devices.details.net_real_energy"
+              translate-value-units="{{ 'Wh' | kiloUnits: details.ENERGY_REAL_NET }}"></td>
+          <td ng-bind="details.ENERGY_REAL_NET | kiloScale | makeDashIf: device.commError"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.imported_real_energy"
+              translate-value-units="{{ 'Wh' | kiloUnits: details.ENERGY_REAL_1_4 }}"></td>
+          <td ng-bind="details.ENERGY_REAL_1_4 | kiloScale | makeDashIf: device.commError"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.exported_real_energy"
+              translate-value-units="{{ 'Wh' | kiloUnits: details.ENERGY_REAL_2_3 }}"></td>
+          <td ng-bind="details.ENERGY_REAL_2_3 | kiloScale | makeDashIf: device.commError"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.net_reactive_energy"
+              translate-value-units="{{ 'VARh' | kiloUnits: details.NET_REACTIVE_LIFETIME }}"></td>
+          <td ng-bind="details.NET_REACTIVE_LIFETIME | kiloScale | makeDashIf: device.commError"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.imported_reactive_energy"
+              translate-value-units="{{ 'VARh' | kiloUnits: details.IMPORTED_REACTIVE_LIFETIME }}"></td>
+          <td ng-bind="details.IMPORTED_REACTIVE_LIFETIME | kiloScale | makeDashIf: device.commError"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.exported_reactive_energy"
+              translate-value-units="{{ 'VARh' | kiloUnits: details.EXPORTED_REACTIVE_LIFETIME }}"></td>
+          <td ng-bind="details.EXPORTED_REACTIVE_LIFETIME | kiloScale | makeDashIf: device.commError"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.net_apparent_energy"
+              translate-value-units="{{ 'VAh' | kiloUnits: details.NET_APPARENT_LIFETIME }}"></td>
+          <td ng-bind="details.NET_APPARENT_LIFETIME | kiloScale | makeDashIf: device.commError"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.imported_apparent_energy"
+              translate-value-units="{{ 'VAh' | kiloUnits: details.IMPORTED_APPARENT_LIFETIME }}"></td>
+          <td ng-bind="details.IMPORTED_APPARENT_LIFETIME | kiloScale | makeDashIf: device.commError"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.exported_apparent_energy"
+              translate-value-units="{{ 'VAh' | kiloUnits: details.EXPORTED_APPARENT_LIFETIME }}"></td>
+          <td ng-bind="details.EXPORTED_APPARENT_LIFETIME | kiloScale | makeDashIf: device.commError"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.net_real_power"
+              translate-value-units="{{ 'W' | kiloUnits: details.NET_REAL_POWER }}"></td>
+          <td ng-bind="details.NET_REAL_POWER | kiloScale | makeDashIf: device.commError"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.net_reactive_power"
+              translate-value-units="{{ 'VAR' | kiloUnits: details.NET_REACTIVE_POWER }}"></td>
+          <td ng-bind="details.NET_REACTIVE_POWER | kiloScale | makeDashIf: device.commError"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.net_apparent_power"
+              translate-value-units="{{ 'VA' | kiloUnits: details.NET_APPARENT_POWER }}"></td>
+          <td ng-bind="details.NET_APPARENT_POWER | kiloScale | makeDashIf: device.commError"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.total_power_factor"></td>
+          <td ng-bind="details.POWER_FACTOR | number: 1 | makeDashIf: device.commError"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.ac_frequency"></td>
+          <td ng-bind="details.FREQUENCY | number: 1 | makeDashIf: device.commError"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.phase_a"></td>
+          <td ng-bind="details.CURRENT_PHASE_A | number: 1 | makeDashIf: device.commError"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.phase_b"></td>
+          <td ng-bind="details.CURRENT_PHASE_B | number: 1 | makeDashIf: device.commError"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.phase_c"></td>
+          <td ng-bind="details.CURRENT_PHASE_C | number: 1 | makeDashIf: device.commError"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.voltage_an"></td>
+          <td ng-bind="details.VOLT_PHASE_A_N | number: 1 | makeDashIf: device.commError"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.voltage_bn"></td>
+          <td ng-bind="details.VOLT_PHASE_B_N | number: 1 | makeDashIf: device.commError"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.voltage_cn"></td>
+          <td ng-bind="details.VOLT_PHASE_C_N | number: 1 | makeDashIf: device.commError"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.voltage_ab"></td>
+          <td ng-bind="details.VOLT_PHASE_A_B | number: 1 | makeDashIf: device.commError"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.voltage_bc"></td>
+          <td ng-bind="details.VOLT_PHASE_B_C | number: 1 | makeDashIf: device.commError"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.voltage_ca"></td>
+          <td ng-bind="details.VOLT_PHASE_C_A | number: 1 | makeDashIf: device.commError"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.phase_a_pf"></td>
+          <td ng-bind="details.POWER_FCTOR_PHASE_A | number: 1 | makeDashIf: device.commError"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.phase_b_pf"></td>
+          <td ng-bind="details.POWER_FCTOR_PHASE_B | number: 1 | makeDashIf: device.commError"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.phase_c_pf"></td>
+          <td ng-bind="details.POWER_FCTOR_PHASE_C | number: 1 | makeDashIf: device.commError"></td>
+        </tr>
+      </table>
+
+    </div>
+  </uib-tab>
+
+  <uib-tab heading="{{'devices.details.settings' | translate}}" csb-permissions>
+    <form name="forms.meterSettings" novalidate ng-submit="apply()">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2 class="panel-title" translate="devices.details.meter_type"></h2>
+        </div>
+
+        <div class="panel-body">
+          <table class="settings-controls">
+            <tr>
+              <td translate="devices.details.meter_type"></td>
+              <td>
+                <select name="meterType" ng-model="settings.meterType" required
+                        ng-disabled="device.commError"
+                        ng-options="meterType.id as meterType.name for meterType in meterTypes"></select>
+              </td>
+            </tr>
+
+            <tr>
+              <td translate="devices.details.meter_model"></td>
+              <td>
+                <span ng-bind="details.MODEL"></span>
+              </td>
+            </tr>
+
+          </table>
+        </div>
+
+        <div class="panel-controls panel-footer">
+          <div class="panel-controls__message panel-controls__message--error">
+            <div ng-show="device.commError" class="alert alert-warning"
+                 translate="devices.details.meter_errors.comm">
+            </div>
+
+            <div ng-show="forms.meterSettings.$submitted">
+              <div ng-messages="forms.meterSettings.meterType.$error">
+                <div ng-message="required">
+                  <span translate="devices.details.meter_errors.type_required"></span>
+                </div>
+                <div ng-message="tooManyGeneration">
+                  <span translate="devices.details.meter_errors.too_many_generation"></span>
+                </div>
+                <div ng-message="tooManyExport">
+                  <span translate="devices.details.meter_errors.too_many_export"></span>
+                </div>
+              </div>
+              <div ng-messages="forms.meterSettings.meterModel.$error">
+                <div ng-message="required">
+                  <span translate="devices.details.meter_errors.model_required"></span>
+                </div>
+              </div>
+
+            </div>
+            <div class="panel-controls__message panel-controls__message--error">
+              <div class="alert alert-success"
+                   ng-show="successMessage.meterSettings"
+                   translate="devices.details.changes_saved">
+              </div>
+            </div>
+          </div>
+          <div class="panel-controls__buttons">
+            <input type="submit" class="btn btn-default"
+                   ng-disabled="device.commError"
+                   value="{{ 'devices.details.apply' | translate }}">
+            <input type="button" class="btn btn-default" ng-disabled="device.commError"
+                   ng-click="reset()"
+                   value="{{ 'devices.details.cancel' | translate }}">
+          </div>
+        </div>
+      </div>
+    </form>
+
+
+    <div class="panel panel-default" ng-show="settings.setupComplete">
+      <div class="panel-heading">
+        <h2 class="panel-title" translate="devices.details.meter_parameters"></h2>
+      </div>
+
+      <div class="panel-body">
+        <table class="device-details table">
+          <tr>
+            <td colspan="2" class="device-details__subhead" translate="devices.details.current_transducer"></td>
+          </tr>
+          <tr>
+            <td translate="devices.details.input_voltage"></td>
+            <td ng-bind="parameters.SEC_RATIO_CT | number: 1"></td>
+          </tr>
+          <tr>
+            <td translate="devices.details.size"></td>
+            <td ng-bind="parameters.RATIO_PRIM_CT | number: 1"></td>
+          </tr>
+
+          <tr>
+            <td colspan="2" class="device-details__subhead" translate="devices.details.system_config"></td>
+          </tr>
+          <tr>
+            <td translate="devices.details.system"></td>
+            <td ng-bind="parameters.THREE_PHASE_LOSS | threePhaseLoss"></td>
+          </tr>
+
+          <tr>
+            <td colspan="2" class="device-details__subhead" translate="devices.details.potential_ratio"></td>
+          </tr>
+          <tr>
+            <td translate="devices.details.potential_ratio"></td>
+            <td ng-bind="parameters.RATIO_PT"></td>
+          </tr>
+
+          <tr>
+            <td colspan="2" class="device-details__subhead" translate="devices.details.system_voltage"></td>
+          </tr>
+          <tr>
+            <td translate="devices.details.line_to_line"></td>
+            <td ng-bind="parameters.VOLT_SYSTEM | number: 1"></td>
+          </tr>
+        </table>
+
+      </div>
+    </div>
+
+
+  </uib-tab>
+</uib-tabset>

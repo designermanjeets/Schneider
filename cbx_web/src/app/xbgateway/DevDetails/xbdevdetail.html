@@ -1,0 +1,94 @@
+<div class="col-lg-3 col-sm-12 pull-right" style="padding-top: 65px;">
+  <xb-devinfo>
+  </xb-devinfo>
+</div>
+<div class="col-lg-9 col-sm-12">
+  <div class="col-md-12" style="padding-bottom: 10px;">
+    <div ng-if="$state.includes('**.inverters.**')">
+      <div class="col-md-12 no-padding">
+        <span>Inverter: {{devinfo.LPHD_CFG_DEVICE_NAME}} {{devinfo.LPHD_CFG_DEVICE_INSTANCE}}</span>&nbsp;
+        <a class="menuIcons onLink" ui-sref="xbgateway.xbdevlist({type:'inverter'})">Change Selection</a>
+      </div>
+    </div>
+    <div ng-if="$state.includes('**.invchg.**')">
+      <div class="col-md-12 no-padding">
+        <span>Inverter/Charger: {{devinfo.LPHD_CFG_DEVICE_NAME}} {{devinfo.LPHD_CFG_DEVICE_INSTANCE}}</span>&nbsp;
+        <a class="menuIcons onLink" ui-sref="xbgateway.xbdevlist({type:'invchg'})">Change Selection</a>
+      </div>
+    </div>
+    <div ng-if="$state.includes('**.chg.**')">
+      <div class="col-md-12 no-padding">
+        <span>Charger: {{devinfo.LPHD_CFG_DEVICE_NAME}} {{devinfo.LPHD_CFG_DEVICE_INSTANCE}}</span>&nbsp;
+        <a class="menuIcons onLink" ui-sref="xbgateway.xbdevlist({type:'chg'})">Change Selection</a>
+      </div>
+    </div>
+    <div ng-if="$state.includes('**.oth.**')">
+      <div class="col-md-12 no-padding">
+        <span>Other: {{devinfo.LPHD_CFG_DEVICE_NAME}} {{devinfo.LPHD_CFG_DEVICE_INSTANCE}}</span>&nbsp;
+        <a class="menuIcons onLink" ui-sref="xbgateway.xbdevlist({type:'oth'})">Change Selection</a>
+      </div>
+    </div>
+    <div ng-if="$state.includes('**.meters.**')">
+      <div class="col-md-12 no-padding">
+        <span>Meter: {{devinfo.LPHD_CFG_DEVICE_NAME}} {{devinfo.LPHD_CFG_DEVICE_INSTANCE}}</span>&nbsp;
+        <a class="menuIcons onLink" ui-sref="xbgateway.xbdevlist({type:'meters'})">Change Selection</a>
+      </div>
+    </div>
+    <div ng-if="$state.includes('**.sensors.**')">
+      <div class="col-md-12 no-padding">
+        <span>Sensors: {{devinfo.LPHD_CFG_DEVICE_NAME}} {{devinfo.LPHD_CFG_DEVICE_INSTANCE}}</span>&nbsp;
+        <a class="menuIcons onLink" ui-sref="xbgateway.xbdevlist({type:'sensors'})">Change Selection</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <nav class="navbar">
+      <div id="deviceSubMenu" class="container col-md-12 no-padding">
+        <ul class="nav navbar-nav">
+
+          <!-- DEVICE STATUS -->
+          <li ui-sref-active="active" class="active">
+            <a class="menuIcons onLink" ui-sref=".status" translate="xanbus.device_menu.status" ng-show="devinfo.DEV_ACTIVE">
+            </a>
+          </li>
+
+          <li ui-sref-active="active" class="active" ng-show="displayPerformance()">
+            <a class="menuIcons onLink" ui-sref=".performance" translate="xanbus.device_menu.performance">
+            </a>
+          </li>
+
+          <!-- DEVICE EVENTS -->
+          <li ui-sref-active="active" class="active" ng-show="isXanBus()">
+            <a class="menuIcons onLink" ui-sref=".events" translate="xanbus.device_menu.events">
+            </a>
+          </li>
+
+          <!-- DEVICE CONFIG -->
+          <li ui-sref-active="active" class="active" ng-show="devinfo.DEV_ACTIVE">
+            <a class="menuIcons onLink" ui-sref=".config" translate="xanbus.device_menu.config" csb-permissions>
+            </a>
+          </li>
+
+          <!-- DEVICE DIAG-->
+          <li ui-sref-active="active" class="active">
+            <a class="menuIcons onLink" ui-sref=".diag" translate="xanbus.device_menu.diag">
+            </a>
+          </li>
+
+          <!-- DEVICE FIRMWARE-->
+          <li ui-sref-active="active" class="active" ng-show="devinfo.DEV_ACTIVE && isXanBus()" >
+            <a class="menuIcons onLink" ui-sref=".firmware" translate="xanbus.device_menu.firmware">
+            </a>
+          </li>
+
+          <li ui-sref-active="active" class="active" ng-show='isGridCodesPresent()'>
+            <a class="menuIcons onLink" ui-sref=".gridcodes" translate="xanbus.device_menu.gridcodes">
+            </a>
+          </li>
+
+      </div>
+    </nav>
+  </div>
+  <div class="col-md-12" ui-view="xbdevdetail"></div>
+</div>
+<!-- Partial page view -->

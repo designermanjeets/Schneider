@@ -1,0 +1,160 @@
+<div ng-if="devinfo && !devinfo.DEV_ACTIVE">
+  <div class="col-md-12 devinfo-faults">
+    <div class="col-md-12" >
+      Device Offline
+    </div>
+  </div>
+</div>
+<div class="container-fluid" ng-if="devinfo.DEV_ACTIVE" ng-show="updateFirmware.uploader">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-12" nv-file-drop="" uploader="updateFirmware.uploader" over-class="schneider_fieldset_file_over">
+        <div class="row">
+          <div class="col-md-4">
+            <table class="firmware-table-right table">
+              <tr>
+                <td translate="xanbus.firmware_update.firmware_version" />
+                <td>{{ devinfo.LFWB_VERSION | firmwareVersionFormatter}}</td>
+              </tr>
+              <tr>
+                <td translate="xanbus.firmware_update.build_version" />
+                <td>{{ devinfo.LFWB_BUILDNUMBER }}</td>
+              </tr>
+            </table>
+          </div>
+          <div class="col-md-8">
+            <table class="firmware-table-left table" ng-show="info.state !== 'upgrading' && info.state !== '' && !info.upgrade_pending">
+              <tr>
+                <td translate="xanbus.firmware_update.info" />
+              </tr>
+              <tr>
+                <td>
+                  <span>
+                    <label for="firmwareUploadInput" class="btn btn-default btn-wide" translate="xanbus.firmware_update.upgrade_button"></label>
+                    <input type="file"
+                    class="install-package__file-input" id="firmwareUploadInput"
+                    nv-file-select="" uploader="updateFirmware.uploader"
+                    multiple />
+                  </span>
+                  <span style="padding-left: 20px;">
+                    <label for="firmwareUploadAllInput" class="btn btn-default btn-wide" translate="xanbus.firmware_update.upgrade_button_all" translate-value-devicetype="{{deviceType}}"></label>
+                    <input type="file"
+                    class="install-package__file-input" id="firmwareUploadAllInput"
+                    nv-file-select="" uploader="updateAllFirmware.uploader"
+                    multiple />
+                  </span>
+                </td>
+              </tr>
+            </table>
+            <table class="firmware-table-left table" ng-show="info.upgrade_pending && !info.filename">
+              <tr>
+                <td colspan="2" translate="xanbus.firmware_update.pending_upgrade" />
+              </tr>
+            </table>
+            <table class="firmware-table-progress table" ng-show="info.state === 'upgrading' && info.upgrade_pending && info.filename">
+              <tr>
+                <td translate="xanbus.firmware_update.filename">
+                </td>
+                <td ng-bind="info.filename">
+              </tr>
+              <tr>
+                <td translate="xanbus.firmware_update.progress">
+                </td>
+                <td>
+                  <div class="pull-left progress install-package__progress">
+                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': upgrade_info.SCB_DEVICES_FW_PROG_PERCENT + '%' }">
+                      &#8203;
+                    </div>
+                  </div>
+                  <div>
+                    {{ upgrade_info.SCB_DEVICES_FW_PROG_PERCENT + '%'}}
+                  </div>
+                </td>
+              </tr>
+            </table>
+            <div class="col-md-4 devinfo-warnings" style="color: black;" ng-hide="info.state !== 'upgrading' && info.state !== '' && !info.upgrade_pending">
+              <div class="col-md-12">
+                {{'setup.info.disconnect_warning' | translate}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" ng-show="(info.state === 'upgrading' || info.state === 'success' || info.state === 'error') && !info.upgrade_pending && upgrade_info.SCB_DEVICES_FW_PROG_DEV_INFO &&
+         ((upgrade_info.SCB_DEVICES_FW_PROG_DEV_INFO['1'].length + upgrade_info.SCB_DEVICES_FW_PROG_DEV_INFO['2'].length) > 1 || info.failedDevices.length > 0)">
+          <div class="col-md-12" style="padding-top: 30px; padding-bottom: 30px;">
+            <table class="firmware-table-progress table">
+              <tr ng-repeat="device in upgrade_info.SCB_DEVICES_FW_PROG_DEV_INFO['1']">
+                <td>
+                  {{device.Family}}[{{device.UID}}]
+                </td>
+                <td ng-if="device.Status === 'IN_PROGRESS'">
+                  <div class="pull-left progress install-package__progress">
+                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': device.Percent + '%' }">
+                      &#8203;
+                    </div>
+                  </div>
+                  <div>
+                    {{ device.Percent + '%'}}
+                  </div>
+                </td>
+                <td ng-if="device.Status === 'IDLE'">
+                  {{'xanbus.firmware_update.pending' | translate}}
+                </td>
+                <td ng-if="device.Status === 'FAILURE'">
+                  <span class="install-package__error-icon "></span> {{'xanbus.firmware_update.upgrade_failed' | translate}}
+                </td>
+                <td ng-if="device.Status === 'SUCCESS'">
+                  <span class="install-package__ok-icon"></span> {{'xanbus.firmware_update.upgrade_complete' | translate}}
+                </td>
+              </tr>
+              <tr ng-repeat="device in upgrade_info.SCB_DEVICES_FW_PROG_DEV_INFO['2']">
+                <td>
+                  {{device.Family}}[{{device.UID}}]
+                </td>
+                <td ng-if="device.Status === 'IN_PROGRESS'">
+                  <div class="pull-left progress install-package__progress">
+                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': device.Percent + '%' }">
+                      &#8203;
+                    </div>
+                  </div>
+                  <div>
+                    {{ device.Percent + '%'}}
+                  </div>
+                </td>
+                <td ng-if="device.Status === 'IDLE'">
+                  {{'xanbus.firmware_update.pending' | translate}}
+                </td>
+                <td ng-if="device.Status === 'FAILURE'">
+                  <span class="install-package__error-icon "></span> {{'xanbus.firmware_update.upgrade_failed' | translate}}
+                </td>
+                <td ng-if="device.Status === 'SUCCESS'">
+                  <span class="install-package__ok-icon"></span> {{'xanbus.firmware_update.upgrade_complete' | translate}}
+                </td>
+              </tr>
+              <tr ng-if="upgrade_info.SCB_DEVICES_FW_PROG_DEV_INFO"  ng-repeat="device in info.failedDevices">
+                <td>
+                  {{'xanbus.firmware_update.device_id' | translate}}: {{device}}
+                </td>
+                <td>
+                  <span class="install-package__error-icon "></span> {{'xanbus.firmware_update.firmware_invalid' | translate}}
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12" ng-show="info.state === 'error' || info.state === 'success'">
+            <p class="alert alert-danger" role="alert" ng-show="info.state === 'error'">
+              <span class="install-package__error-icon "></span>
+              <span ng-bind="info.errorMessage "></span>
+            </p>
+            <p class="alert alert-success " role="alert " ng-show="info.state ==='success'">
+              <span class="install-package__ok-icon"></span>
+              <span ng-bind="info.errorMessage"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

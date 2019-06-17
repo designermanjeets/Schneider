@@ -1,0 +1,30 @@
+<div ng-cloak>
+  <div class="modal-header">
+    <h3 class="modal-title" translate="devices.detection.device_detection"></h3>
+  </div>
+  <div class="modal-body">
+    <div><span translate="devices.detection.progress"></span> {{detectionProgressStatus}}%</div>
+    <div>
+      <!-- It would be nicer to put the percent complete in the bar. But there's no quick, out-of-the-box way to
+        avoid having white-on-white text when the percentage is small. So, instead, put the progress above. -->
+      <uib-progressbar value="detectionProgressStatus" animate="false"></uib-progressbar>
+    </div>
+
+    <div ng-if="detectionState !== 'running'">
+      <span ng-if="detectionState === 'finished'" translate="devices.detection.detection_finished"></span>
+      <span ng-if="detectionState === 'aborted'" translate="devices.detection.detection_aborted"></span>
+      <span ng-if="detectionResults !== undefined"> {{getTotalCount()}}</span>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" type="button"
+            ng-if="detectionState === 'running'"
+            ng-click="stopDeviceDetection()"
+            translate="devices.detection.stop"></button>
+
+    <button class="btn" type="button"
+            ng-if="detectionState !== 'running'"
+            ng-click="close()"
+            translate="devices.detection.close"></button>
+  </div>
+</div>

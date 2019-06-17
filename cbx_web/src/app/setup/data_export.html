@@ -1,0 +1,194 @@
+﻿<se-panel value="Data export language">
+  <form name="forms.language" novalidate ng-model-options="{ updateOn: 'submit' }" ng-submit="applyLanSettings()">
+    <table class="settings-controls">
+      <tr>
+        <td>Data export language</td>
+        <td>
+          <select id="ddlExportLanguage" ng-model="exportLanguage">
+            <option value="EN">EN</option>
+          </select>
+          <div class="inline-validation-messages"
+               ng-messages="forms.lan_settings.ipAddress.$error"
+               ng-show="forms.lan_settings.$submitted">
+            <span ng-message="required">
+              <span translate="setup.network.ip_required"></span>
+            </span>
+            <span ng-message="pattern">
+              <span translate="setup.network.valid_ip"></span>
+            </span>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <div class="panel-controls">
+      <div class="panel-controls__message panel-controls__message--error">
+        <div class="alert alert-success" ng-show="successMessage.lan_settings" translate="setup.network.changes_saved">
+        </div>
+      </div>
+
+      <div class="panel-controls__buttons">
+        <input type="submit" class="btn btn-default" value="{{'setup.network.apply' | translate}}">
+        <input type="button" class="btn btn-default" value="{{'setup.network.cancel' | translate}}" ng-click="resetLanSettings()">
+      </div>
+    </div>
+
+  </form>
+</se-panel>
+
+<!--<se-panel value="Configuration">
+  <form name="forms.language" novalidate ng-model-options="{ updateOn: 'submit' }" ng-submit="applyLanSettings()">
+    <table class="settings-controls">
+      <tr>
+        <td>Export Conext Gateway configuration</td>
+        <td>
+          <div class="panel-controls__buttons">
+            <a href="/download/usersettings.xml">
+              <input type="button" class="btn btn-default" value="Export">
+            </a>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </form>
+</se-panel>-->
+<se-panel value="Plant data">
+  <table class="settings-controls">
+    <tr>
+      <th></th>
+      <th>From date</th>
+      <th>To date</th>
+      <th></th>
+    </tr>
+    <tr>
+      <td>Energy yield data</td>
+      <td>
+          <p class="input-group">
+            <input type="text"
+              class="form-control settings-controls__input--no-min-width"
+              uib-datepicker-popup="yyyy/MM/dd" ng-model="dates.yieldFromDate"
+              is-open="datePicker.yieldFromDateOpen" ng-required="true"
+              close-text="Close"
+              min-date="dates.minDate" max-date="dates.maxDate"
+              />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="openYieldFromDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </p>
+      </td>
+      <td>
+        <p class="input-group">
+          <input type="text" class="form-control settings-controls__input--no-min-width"
+            uib-datepicker-popup="yyyy/MM/dd" ng-model="dates.yieldToDate"
+            is-open="datePicker.yieldToDateOpen" ng-required="true"
+            close-text="Close"
+            min-date="dates.minDate" max-date="dates.maxDate"
+            />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="openYieldToDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+      </td>
+      <td>
+        <div class="panel-controls__buttons">
+          <input type="button" class="btn btn-default" value="Export" ng-click="exportYieldData()">
+        </div>
+        <div class="inline-validation-messages" ng-messages="datePicker.yieldError">
+          <span ng-message="overlap">
+            <span>From date must be smaller than the To date</span>
+          </span>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Event log</td>
+      <td>
+        <p class="input-group">
+          <input type="text" class="form-control settings-controls__input--no-min-width" uib-datepicker-popup="yyyy/MM/dd" ng-model="dates.logFromDate"
+                 is-open="datePicker.logFromDateOpen" ng-required="true" close-text="Close"
+                 min-date="dates.minDate" max-date="dates.maxDate" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="openLogFromDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+      </td>
+      <td>
+        <p class="input-group">
+          <input type="text" class="form-control settings-controls__input--no-min-width" uib-datepicker-popup="yyyy/MM/dd" ng-model="dates.logToDate"
+                 is-open="datePicker.logToDateOpen" ng-required="true" close-text="Close"
+                 min-date="dates.minDate" max-date="dates.maxDate" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="openLogToDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+      </td>
+      <td>
+        <div class="panel-controls__buttons">
+          <input type="button" class="btn btn-default" value="Export" ng-click="exportLogData()">
+        </div>
+        <div class="inline-validation-messages" ng-messages="datePicker.logError">
+          <span ng-message="overlap">
+            <span>From date must be smaller than the To date</span>
+          </span>
+        </div>
+      </td>
+    </tr>
+
+  </table>
+</se-panel>
+<se-panel value="Perodic data export">
+  <form name="forms.language" novalidate ng-model-options="{ updateOn: 'submit' }" ng-submit="applyLanSettings()">
+    <table class="settings-controls">
+      <tr>
+        <th>SFTP</th>
+        <th>Frequency</th>
+      </tr>
+      <tr>
+        <td>Configuration</td>
+        <td>
+          <select id="ddlConfiguration" ng-model="configuration">
+            <option value="">Select frequency</option>
+            <option value="">Hourly</option>
+            <option value="">Monthly</option>
+            <option value="">Yearly</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Energy yield</td>
+        <td>
+          <select id="ddlEnergyYield" ng-model="energy_yield">
+            <option value="">Select frequency</option>
+            <option value="">Hourly</option>
+            <option value="">Monthly</option>
+            <option value="">Yearly</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Event log</td>
+        <td>
+          <select id="ddlEventLog" ng-model="event_log">
+            <option value="">Select frequency</option>
+            <option value="">Hourly</option>
+            <option value="">Monthly</option>
+            <option value="">Yearly</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+
+    <div class="panel-controls">
+      <div class="panel-controls__message panel-controls__message--error">
+        <div class="alert alert-success" ng-show="successMessage.lan_settings" translate="setup.network.changes_saved">
+        </div>
+      </div>
+
+      <div class="panel-controls__buttons">
+        <input type="submit" class="btn btn-default" value="{{'setup.network.apply' | translate}}">
+        <input type="button" class="btn btn-default" value="{{'setup.network.cancel' | translate}}" ng-click="resetLanSettings()">
+      </div>
+    </div>
+
+  </form>
+</se-panel>

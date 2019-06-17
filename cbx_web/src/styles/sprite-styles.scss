@@ -1,0 +1,88 @@
+@import "conext_gateway-variables";
+
+.cg-icon-error {
+  transform: scale(0.173);
+  margin: -71.5px;
+  display: inline-block;
+}
+
+.sidemenu-icon-error {
+  transform: scale(0.12);
+}
+
+.setup-icon-calendar {
+  transform: scale(0.6);
+  margin: -10px;
+  display: inline-block;
+  margin-bottom: -23px;
+  pointer: cursor;
+}
+
+.smartInstallBullet {
+  transform: scale(0.09);
+  margin: -178.5px;
+  display: inline-block;
+  margin-bottom: -190px;
+}
+
+.login-icon-face {
+  transform: scale(0.084);
+  margin: -1089.5px -842.5px;
+  display: inline-block;
+}
+
+.header-icon-face {
+  transform: scale(0.0084);
+  margin: -1179.5px -907.5px -1185px;
+  display: inline-block;
+}
+
+.setup-icon-calendar:hover {
+  cursor: pointer;
+}
+
+.cg-led {
+  transform: scale(0.3125);
+  margin: -22px;
+  display: inline-block;
+}
+
+.network-led {
+  margin-bottom: -28px;
+}
+
+.devinfo-led {
+  transform: scale(0.5);
+  margin: -16px;
+  display: inline-block;
+}
+
+.cg-key-icon {
+  transform: scale(0.0764);
+  margin: -1088px;
+  display: inline-block;
+}
+
+.cg-schneider-icon {
+  transform: scale(0.101);
+  margin: -232.5px -800.5px;
+  display: inline-block;
+  float: right;
+}
+
+.cg-life-is-on {
+  transform: scale(.295);
+  margin: -76px -250px -97px;
+  display: inline-block;
+}
+
+.cg-waring-grey-icon {
+  transform: scale(0.417);
+  margin: -21px;
+  display: inline-block;
+}
+
+.cg-solar-panel {
+  margin-bottom: -567px;
+  margin-right: -560px;
+}

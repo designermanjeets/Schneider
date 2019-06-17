@@ -1,0 +1,136 @@
+<div class="device-info col-md-12">
+  <!-- <div class="col-md-4 xbdev-online-container">
+    <div ng-if="devinfo.DEV_ACTIVE == 1" translate="xanbus.xbdev.online" class="xbdev-online"></div>
+    <div ng-if="devinfo.DEV_ACTIVE == 0" translate="xanbus.xbdev.offline" class="xbdev-offline"></div>
+    <div>
+      <div ng-if="devinfo.DEV_ACTIVE == 1" class="icon-greenled devinfo-led"></div>
+      <div ng-if="devinfo.DEV_ACTIVE == 0" class="icon-redled devinfo-led"></div>
+    </div>
+  </div> -->
+  <div class="col-md-6" style="font-size: 18px;">
+    {{devinfo.LPHD_CFG_DEVICE_NAME}} {{devinfo.LPHD_CFG_DEVICE_INSTANCE}}
+  </div>
+  <div class="col-md-12">
+    <div ng-if="state === 'Online'" translate="xanbus.xbdev.online" class="xbdev-online"></div>
+    <div ng-if="state !== 'Online'" translate="{{state}}" class="xbdev-offline"></div>
+  </div>
+  <div class="col-md-12" style="padding-bottom: 30px;" ng-switch on="device">
+    <div ng-switch-when="GT">
+      <gt-image height="155" device="deviceInfo" />
+    </div>
+    <div ng-switch-when="XW">
+      <xw-image height="155" device="deviceInfo" />
+    </div>
+    <div ng-switch-when="CSW">
+      <csw-image height="155" device="deviceInfo" />
+    </div>
+    <div ng-switch-when="AGS">
+      <ags-image width="180" height="155" device="deviceInfo" />
+    </div>
+    <div ng-switch-when="MPPT">
+      <mppt-image height="155" device="deviceInfo" />
+    </div>
+    <div ng-switch-when="HVMPPT">
+      <hvmppt-image height="155" device="deviceInfo" />
+    </div>
+    <div ng-switch-when="SCP">
+      <scp-image width="180" height="155" device="deviceInfo" />
+    </div>
+    <div ng-switch-when="SCP2">
+      <scp-image width="180" height="155" device="deviceInfo" />
+    </div>
+    <div ng-switch-when="BATTMON">
+      <battmon-image width="180" height="155" device="deviceInfo" />
+    </div>
+    <div ng-switch-when="EM3500">
+      <em3500-image width="180" height="155" device="deviceInfo" />
+    </div>
+    <div ng-switch-when="CL25">
+      <cl25-image height="155" device="deviceInfo" />
+    </div>
+    <div ng-switch-when="CL36">
+      <cl36-image height="155" device="deviceInfo" />
+    </div>
+    <div ng-switch-when="CL60">
+      <cl60-image height="155" device="deviceInfo" />
+    </div>
+    <div ng-switch-when="IEM32XX">
+      <iem3200-image width="180" height="155" device="deviceInfo" />
+    </div>
+    <div ng-switch-when="PM2XXX">
+      <pm5000-image height="155" device="deviceInfo" />
+    </div>
+    <div ng-switch-when="PM8XX">
+      <pm800-image height="155" device="deviceInfo" />
+    </div>
+    <div ng-switch-when="PM32XX">
+      <pm3250-image height="155" device="deviceInfo" />
+    </div>
+  </div>
+  <div ng-if="devinfo.XB_ADDR === undefined" class="col-md-12" style="padding-bottom: 20px" ng-if="devinfo.XB_ADDR !== undefined">
+    <div class="col-md-6  no-padding">
+      Modbus Address
+    </div>
+    <div class="col-md-6 devinfo-value no-padding">
+      {{devinfo.DEVICE_ADDRESS}}
+    </div>
+    <div class="col-md-12 devinfo-linebreak no-padding"></div>
+    <div class="col-md-6  no-padding">
+      Modbus Port
+    </div>
+    <div class="col-md-6 devinfo-value no-padding">
+      {{devinfo.DEVICE_BUSID}}
+    </div>
+  </div>
+  <div ng-if="devinfo.XB_ADDR === undefined && devinfo.ZREG_ISONLINE === 0">
+    <div class="panel-controls__buttons">
+      <input type="button" class="btn btn-danger" ng-click="deleteDevice()"
+             value="{{'devices.details.delete_device' | translate}}"
+             csb-permissions />
+    </div>
+  </div>
+  <div class="col-md-12" style="padding-bottom: 20px" ng-if="devinfo.XB_ADDR !== undefined">
+    <div class="col-md-6  no-padding">
+      FGA
+    </div>
+    <div class="col-md-6 devinfo-value no-padding">
+      {{devinfo.LPHD_FGA}}
+    </div>
+    <div class="col-md-12 devinfo-linebreak no-padding"></div>
+    <div class="col-md-6  no-padding">
+      Device Name
+    </div>
+    <div class="col-md-6 devinfo-value no-padding">
+      {{devinfo.LPHD_MODEL_NAME}}
+    </div>
+    <div class="col-md-12 devinfo-linebreak no-padding"></div>
+    <div class="col-md-6  no-padding">
+      Serial Number
+    </div>
+    <div class="col-md-6 devinfo-value no-padding">
+      {{devinfo.LPHD_SERIALNUM}}
+    </div>
+    <div class="col-md-12 devinfo-linebreak no-padding"></div>
+    <div class="col-md-6 no-padding">
+      Unique Identifier
+    </div>
+    <div class="col-md-6 devinfo-value no-padding">
+      {{devinfo.LPHD_UID}}
+    </div>
+    <div class="col-md-12 devinfo-linebreak no-padding"></div>
+    <div class="col-md-6 no-padding">
+      Xanbus Address
+    </div>
+    <div class="col-md-6 devinfo-value no-padding">
+      {{devinfo.XB_ADDR}}
+    </div>
+    <div class="col-md-12 devinfo-linebreak no-padding"></div>
+    <div class="col-md-6 no-padding">
+      Build Number
+    </div>
+    <div class="col-md-6 devinfo-value no-padding">
+      {{devinfo.FWB}}
+    </div>
+    <div class="col-md-12 devinfo-linebreak no-padding"></div>
+  </div>
+</div>

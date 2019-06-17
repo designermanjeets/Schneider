@@ -1,0 +1,8 @@
+{ "values" : [{"name" : "TIME/LOCAL_ISO_STR","value" : "2017/12/17 20:31:33","quality" : "G"},
+    {"name" : "TIMEZONE","value" : "America/Los_Angeles","quality" : "G"},
+    {"name" : "SW_VER","value" : "v0.16","quality" : "G"},
+    {"name" : "SW_BUILD_NUMBER","value" : "45","quality" : "G"},
+    {"name" : "FRIENDLYNAME","value" : "Trevor's Cool Combox Pro","quality" : "G"},
+    {"name" : "HMI/TEMPERATURE/UNIT","value" : "C","quality" : "G"}],"count" : 5,"responseTime" : 90
+}
+

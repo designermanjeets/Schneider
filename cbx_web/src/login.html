@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html data-ng-app="conext_gateway.login" data-ng-controller="loginController">
+
+<head>
+  <title>Login</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+  <!-- Style sheets and site icon -->
+  <link rel="stylesheet" type="text/css" href="css/gateway_login.min.css">
+  <link rel="shortcut icon" href="img/favicon.ico">
+
+  <!-- inject:js -->
+  <!-- endinject -->
+
+</head>
+
+<body ng-cloak style="background-color:#CBCBCB">
+  <div class="for-login-or-smart-install">
+    <!-- Fix size container -->
+    <div class="login-container">
+      <div style="width: 360px; height: 100%; float: left; text-align: center;" class="worker-banner">
+        <img src="/img/ci2_logo.png" style="width:150px; height:150px; margin-top: 162px"></img>
+        <div style="font-size: 28px; color: white;">Conext Gateway</div>
+        <div style="text-align: left; margin-left: 44px; margin-right: 28px;">
+          <div id="copyRightsLink" title="SESolar Conext Gateway website" style="padding-top: 159px; padding-bottom: 16px;">
+            <div class='icon-blue_icon home-information-icon'></div>
+            <a href="http://solar.schneider-electric.com/product/conext-gateway/" target="_blank" translate="login.learn_more" style="font-size: 15px; color: white; padding-left: 10px">
+            </a>
+          </div>
+          <div id="copyRightsMsg" translate="login.copyright" style="font-size: 9px; color: white;">
+          </div>
+        </div>
+      </div>
+      <div style="width: 16px;height: 100%;background-color: #009530;display: inline-block;"></div>
+      <div style="width: 16px;height: 100%;background-color: #3DCD58;display: inline-block;"></div>
+      <div style="width: 240px;margin-right: 52px;height: 100%;margin-left: 52px;float: right; font-size: 16px;">
+        <div style="margin-top: 150px;">
+          <div ng-if="isCloud">
+            <label>
+                <input type="radio" ng-model="logintype.name" value="username" ng-click="changeRadio('username')">
+                Username
+              </label>
+            <label>
+                <input type="radio" ng-model="logintype.name" value="session" ng-click="changeRadio('session')">
+                Session
+              </label>
+          </div>
+          <div>
+            <div ng-if="!isCloud || logintype.name === 'username'">
+              <div for="inputPassword" translate="login.username" style="padding-bottom: 8px;"></div>
+              <div>
+                <select class="login-form-control csb-select-arrow" id="inputUserName" data-ng-model="selectedUserName" data-ng-options="user as user for user in users"></select>
+              </div>
+              <div for="inputPassword" translate="login.password" style="padding-bottom: 8px;"></div>
+              <div>
+                <input type="password" class="login-form-control" style="padding: 0 5px" id="inputPassword" data-ng-keyup="$event.keyCode == 13 ? loginButtonClicked( selectedUserName, txtpasswordStr ) : null" data-ng-disabled="txtPasswordDisabled" data-ng-model="txtpasswordStr"
+                  required data-ng-minlength="6" data-ng-maxlength="12" width="20px" data-ng-class="passwordClass" placeholder="Password"></input>
+                <div ng-show="passwordClass === 'borderRedLogin'" class="login-error-icon icon-access_denied"> </div>
+              </div>
+              <div style="height: 32px;">
+                <button data-ng-click="loginButtonClicked( selectedUserName, txtpasswordStr )" type="button" class="csb-btn" name="btnLogin" data-ng-disabled="btnLoginDisabled" id="btnLogin" translate="login.login">
+                </button>
+              </div>
+            </div>
+            <div ng-if="isCloud && logintype.name === 'session'">
+              <div for="inputipaddr" translate="login.accesscode" style="padding-bottom: 8px;"></div>
+              <div>
+                <input type="text" class="login-form-control" style="padding: 0 5px" id="inputipaddr" data-ng-model="ipaddr" width="20px" placeholder="Diagnostic access code"></input>
+              </div>
+              <div for="inputSession" translate="login.diagID " style="padding-bottom: 8px;"></div>
+              <div>
+                <input type="text" class="login-form-control" style="padding: 0 5px" id="inputSession" data-ng-keyup="$event.keyCode == 13 ? loginButtonClicked( ipaddr, txtSession ) : null" data-ng-disabled="txtPasswordSession" data-ng-model="txtSession"
+                  required width="20px" data-ng-class="passwordClass" placeholder="Diagnostic Id"></input>
+                <div ng-show="passwordClass === 'borderRedLogin'" class="login-error-icon icon-access_denied"> </div>
+              </div>
+              <div style="height: 32px;">
+                <button data-ng-click="loginButtonClicked( ipaddr, txtSession )" type="button" class="csb-btn" name="btnLogin" data-ng-disabled="btnLoginDisabled" id="btnLogin" translate="login.login">
+                </button>
+              </div>
+            </div>
+            <div class="fieldRequired" translate="login.required_fields"></div>
+            <div class="csb-message" data-ng-switch="loginMessage" style="clear: both; padding-top: 10px;">
+
+              <!-- Loading -->
+              <div data-ng-switch-when="loading" class="alert alert-info">
+                <p class="csb-img-message">
+                  <img src="/img/imageloader.gif" style="display: inline" alt="" />
+                  <span translate="login.loading"></span>
+                </p>
+              </div>
+
+              <!-- Sending E-mail -->
+              <div data-ng-switch-when="sendingemail" class="alert alert-info">
+                <p class="csb-img-message">
+                  <img src="/img/schneiderloader.gif" alt="" />
+                  <span translate="login.email"></span>
+                </p>
+              </div>
+
+              <!-- Data loading error -->
+              <div data-ng-switch-when="dataloaderror" style="color: #DC0A0A">
+                <span translate="login.data_load_error"></span>
+              </div>
+
+              <!-- Incorrect password -->
+              <div data-ng-switch-when="invalidpassword" style="color: #DC0A0A">
+                <p translate="login.invalid_password"></p>
+                <p></p>
+              </div>
+              <div data-ng-switch-when="loginerror" style="color: #DC0A0A">
+                <p translate="login.login_error"></p>
+              </div>
+
+              <!-- Email sending error -->
+              <div data-ng-switch-when="emailsenderror" style="color: #DC0A0A">
+                <p translate="login.email_send_error"></p>
+              </div>
+
+              <!-- SMTP Diable, E-mail cannot be sent -->
+              <div data-ng-switch-when="smtpdisabled" style="color: #DC0A0A">
+                <p translate="login.smtp_disabled"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+
+</html>

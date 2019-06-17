@@ -1,0 +1,1 @@
+define({r:0.5,st:'Stem',n:1,t:[0,84],u:['../content/1_overview/compatible xanbus components.htm'],s:['+','configure','information','r201','voltage'],p:[['+',154],['a',154],['are',108],['caution',55],['content',148],['doors',132],['follow',157],['if',117],['its',113],['mode',171],['or',6],['protected',14],['see',2],['such',42],['these',114],['variable',154]]});

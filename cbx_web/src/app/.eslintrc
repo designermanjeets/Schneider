@@ -1,0 +1,63 @@
+// I followed the recipe on this page to get the angular
+// recommendations: https://www.npmjs.com/package/eslint-plugin-angular
+//
+// Configuration documentation:
+// http://eslint.org/docs/user-guide/configuring
+
+{
+  env: {
+    // Do not include the browser environment. This brings in a bunch of
+    // global variables that we don't want to use and can sometimes
+    // use by mistake (this was the root cause of CSBQNX-571).
+    browser: false,
+
+    // There's some old code kicking around that still uses
+    // jquery. Allow it, for now.
+    jquery: true,
+  },
+
+  globals: {
+    // Try not to use globals. Instead, make an angular constant and
+    // inject them with other dependencies.
+  },
+
+  extends: ['angular', 'eslint:recommended'],
+  rules: {
+    'no-console': 0, // duplicate of the angular/log rule
+    'strict': [2, 'global'],
+
+    // angular/di: Require the array form for dependency injection.
+    'angular/di': [2, "array"],
+
+    'angular/log': 2, // using console.log
+    'angular/json-functions': 0, // .toJson and .fromJson
+
+    'angular/controller-as': 0,
+    'angular/controller-as-route': 0,
+    'angular/definedundefined': 0, // use of undefined
+
+    'angular/controller-name': 0, // allow controllers to start with lower-case char
+
+    // Objects and arrays that span multiple lines are allowed to have trailing commas.
+    // Those that are on single lines are not (because why would you need the extra comma,
+    // if you're not adding extra lines).
+    'comma-dangle': [1, "only-multiline"],
+
+    // Allow unused variables to be passed in through arguments
+    'no-unused-vars': [2, {args: 'none'}],
+
+    'array-callback-return': 2,
+    'no-unmodified-loop-condition': 2,
+    'default-case': 2,
+    'guard-for-in': 2,
+    'no-implicit-coercion': 2,
+    'no-native-reassign': 2,
+    'no-shadow': 2,
+    'no-shadow-restricted-names': 2,
+    'eqeqeq': [2, 'allow-null'],
+
+    // DISALLOW: Using a regular variable before the var statement that defines it
+    // ALLOW: Calling functions before they're defined
+    'no-use-before-define': ['error', {functions: false, classes: true}],
+  }
+}

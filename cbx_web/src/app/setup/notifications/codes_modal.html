@@ -1,0 +1,30 @@
+﻿<div ng-cloak>
+  <div class="modal-header">
+    <h3 class="modal-title" translate="Alarm/Event Codes"></h3>
+  </div>
+  <div class="modal-body">
+    <div ng-class="{'data-table-container': true, 'data-table-container--10-items': true}">
+      <table class="data-table">
+        <tr>
+          <th>Select</th>
+          <th>Type</th>
+          <th>Alarm/Event Codes</th>
+          <th>Description</th>
+        </tr>
+        <tr ng-repeat="code in event.codes">
+          <td class="text-left">
+            <input type="checkbox" ng-model="code.selected">
+          </td>
+          <td ng-bind="code.type" class="text-left"></td>
+          <td ng-bind="code.code" class="text-left"></td>
+          <td ng-bind="code.description" class="text-left"></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  *Mouse over on Event Code-Description to know more details.
+  <div class="modal-footer">
+    <input type="button" class="btn btn-default" value="Apply" ng-click="apply()">
+    <input type="button" class="btn btn-default" value="Cancel" ng-click="cancel()">
+  </div>
+</div>

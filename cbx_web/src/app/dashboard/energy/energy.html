@@ -1,0 +1,660 @@
+<div class="col-md-12" style="padding-bottom:15px;">
+  <div class="col-md-1 device-list-description" translate='dashboard.select_interval'>
+  </div>
+  <div class="col-md-2">
+    <select class='xb-selector' ng-model='settings.interval' ng-change='changeInterval()'>
+      <option value='1' translate='dashboard.energy_summary.today'></option>
+      <option value='2' translate='dashboard.energy_summary.current_week'></option>
+      <option value='3' translate='dashboard.energy_summary.current_month'></option>
+      <option value='4' translate='dashboard.energy_summary.current_year'></option>
+      <option value='5' translate='dashboard.energy_summary.lifetime'></option>
+    </select>
+  </div>
+</div>
+<div class="col-md-12" style="font-size: 20px;">
+  <span>Energy Produced</span>
+</div>
+<div class="col-md-12">
+  <div class="col-md-2 energy-pie">
+    <div ng-if='produceChart' class="col-md-12 history-doughnut no-padding">
+      <chart value="produceChart"></chart>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <div class="row-eq">
+      <div class="col-md-6 col-xs-12" style="min-width: 500px;">
+        <div class="history-container-solar">
+          <div class="history-svg-container history-svg-container-solar">
+            <solar-panel-image width="85" height="85" stroke="white"></solar-panel-image>
+          </div>
+          <div style="padding-bottom: 10px; padding-top: 10px; overflow:hidden;">
+            <div class="col-md-7">
+              <div class="col-md-12 history-title" translate="dashboard.energy_summary.solar_produced">
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '1'">
+                <div class="history-description" translate="dashboard.energy_summary.today">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_PV_TOTAL_ENERGY_DAY | scaleValue }} {{'Wh' | scaleUnit : energyData.SYS_PV_TOTAL_ENERGY_DAY}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '2'">
+                <div class="history-description" translate="dashboard.energy_summary.current_week">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_PV_TOTAL_ENERGY_WEEK | scaleValue}} {{'Wh' | scaleUnit : energyData.SYS_PV_TOTAL_ENERGY_WEEK}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '3'">
+                <div class="history-description" translate="dashboard.energy_summary.current_month">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_PV_TOTAL_ENERGY_MONTH | scaleValue}} {{'Wh' | scaleUnit : energyData.SYS_PV_TOTAL_ENERGY_MONTH}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '4'">
+                <div class="history-description" translate="dashboard.energy_summary.current_year">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_PV_TOTAL_ENERGY_YEAR | scaleValue}} {{'Wh' | scaleUnit : energyData.SYS_PV_TOTAL_ENERGY_YEAR}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '5'">
+                <div class="history-description" translate="dashboard.energy_summary.lifetime">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_PV_TOTAL_ENERGY_LIFETIME | scaleValue}} {{'Wh' | scaleUnit : energyData.SYS_PV_TOTAL_ENERGY_LIFETIME}}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5 energy-selected-container">
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '1'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_PV_TOTAL_ENERGY_DAY | scaleValue }}</span> {{'Wh' | scaleUnit : energyData.SYS_PV_TOTAL_ENERGY_DAY}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.today">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '2'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_PV_TOTAL_ENERGY_WEEK | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_PV_TOTAL_ENERGY_WEEK}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.current_week">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '3'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_PV_TOTAL_ENERGY_MONTH | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_PV_TOTAL_ENERGY_MONTH}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.current_month">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '4'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_PV_TOTAL_ENERGY_YEAR | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_PV_TOTAL_ENERGY_YEAR}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.current_year">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '5'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_PV_TOTAL_ENERGY_LIFETIME | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_PV_TOTAL_ENERGY_LIFETIME}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.lifetime">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-xs-12" style="min-width: 500px;">
+        <div class="history-container-generator">
+          <div class="history-svg-container history-svg-container-generator">
+            <generator-image width="85" height="85" fill="white"></generator-image>
+          </div>
+          <div style="padding-bottom: 10px; padding-top: 10px; overflow:hidden;">
+            <div class="col-md-7">
+              <div class="col-md-12 history-title" translate="dashboard.energy_summary.generator_produced">
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '1'">
+                <div class="history-description" translate="dashboard.energy_summary.today">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_GEN_ENERGY_DAY | scaleValue}} {{'Wh' | scaleUnit : energyData.SYS_GEN_ENERGY_DAY}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '2'">
+                <div class="history-description" translate="dashboard.energy_summary.current_week">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_GEN_ENERGY_WEEK | scaleValue}} {{'Wh' | scaleUnit : energyData.SYS_GEN_ENERGY_WEEK}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '3'">
+                <div class="history-description" translate="dashboard.energy_summary.current_month">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_GEN_ENERGY_MONTH | scaleValue}} {{'Wh' | scaleUnit : energyData.SYS_GEN_ENERGY_MONTH}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '4'">
+                <div class="history-description" translate="dashboard.energy_summary.current_year">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_GEN_ENERGY_YEAR | scaleValue}} {{'Wh' | scaleUnit : energyData.SYS_GEN_ENERGY_YEAR}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '5'">
+                <div class="history-description" translate="dashboard.energy_summary.lifetime">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_GEN_ENERGY_LIFETIME | scaleValue}} {{'Wh' | scaleUnit : energyData.SYS_GEN_ENERGY_LIFETIME}}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5 energy-selected-container">
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '1'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_GEN_ENERGY_DAY | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_GEN_ENERGY_DAY}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.today">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '2'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_GEN_ENERGY_WEEK | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_GEN_ENERGY_WEEK}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.current_week">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '3'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_GEN_ENERGY_MONTH | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_GEN_ENERGY_MONTH}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.current_month">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '4'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_GEN_ENERGY_YEAR | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_GEN_ENERGY_YEAR}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.current_year">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '5'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_GEN_ENERGY_LIFETIME | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_GEN_ENERGY_LIFETIME}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.lifetime">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-xs-12" style="min-width: 500px;">
+        <div class="history-container-battery-inv">
+          <div class="history-svg-container history-svg-container-battery-inv">
+            <battery-image width="85" height="85" fill="white" stroke="white"></battery-image>
+          </div>
+          <div style="padding-bottom: 10px; padding-top: 10px; overflow:hidden;">
+            <div class="col-md-7">
+              <div class="col-md-12 history-title" translate="dashboard.energy_summary.battery_produced">
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '1'">
+                <div class="history-description" translate="dashboard.energy_summary.today">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_BATT_INV_ENERGY_DAY | scaleValue}} {{'Wh' | scaleUnit: energyData.SYS_BATT_INV_ENERGY_DAY}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '2'">
+                <div class="history-description" translate="dashboard.energy_summary.current_week">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_BATT_INV_ENERGY_WEEK | scaleValue}} {{'Wh' | scaleUnit: energyData.SYS_BATT_INV_ENERGY_WEEK}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '3'">
+                <div class="history-description" translate="dashboard.energy_summary.current_month">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_BATT_INV_ENERGY_MONTH | scaleValue}} {{'Wh' | scaleUnit: energyData.SYS_BATT_INV_ENERGY_MONTH}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '4'">
+                <div class="history-description" translate="dashboard.energy_summary.current_year">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_BATT_INV_ENERGY_YEAR | scaleValue}} {{'Wh' | scaleUnit: energyData.SYS_BATT_INV_ENERGY_YEAR}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '5'">
+                <div class="history-description" translate="dashboard.energy_summary.lifetime">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_BATT_INV_ENERGY_LIFETIME | scaleValue}} {{'Wh' | scaleUnit: energyData.SYS_BATT_INV_ENERGY_LIFETIME}}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5 energy-selected-container">
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '1'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_BATT_INV_ENERGY_DAY | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_BATT_INV_ENERGY_DAY}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.today">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '2'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_BATT_INV_ENERGY_WEEK | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_BATT_INV_ENERGY_WEEK}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.current_week">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '3'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_BATT_INV_ENERGY_MONTH | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_BATT_INV_ENERGY_MONTH}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.current_month">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '4'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_BATT_INV_ENERGY_YEAR | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_BATT_INV_ENERGY_YEAR}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.current_year">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '5'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_BATT_INV_ENERGY_LIFETIME | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_BATT_INV_ENERGY_LIFETIME}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.lifetime">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="col-md-12" style="padding-top: 55px; font-size: 20px">
+  <span>Energy Consumed</span>
+</div>
+<div class="col-md-12">
+  <div class="col-md-2 energy-pie">
+    <div ng-if='consumeChart' class="col-md-12 history-doughnut no-padding">
+      <chart value="consumeChart"></chart>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <div class="row-eq">
+      <div class="col-md-6 col-xs-12" style="min-width: 500px;">
+        <div class="history-container-load">
+          <div class="history-svg-container history-svg-container-load">
+            <load-image width="85" height="85" stroke="white"></load-image>
+          </div>
+          <div style="padding-bottom: 10px; padding-top: 10px; overflow:hidden;">
+            <div class="col-md-7">
+              <div class="col-md-12 history-title" translate="dashboard.energy_summary.load_consumed">
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '1'">
+                <div class="history-description" translate="dashboard.energy_summary.today">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_LOAD_ENERGY_DAY | scaleValue}} {{'Wh' | scaleUnit : energyData.SYS_LOAD_ENERGY_DAY}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '2'">
+                <div class="history-description" translate="dashboard.energy_summary.current_week">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_LOAD_ENERGY_WEEK | scaleValue}} {{'Wh' | scaleUnit : energyData.SYS_LOAD_ENERGY_WEEK}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '3'">
+                <div class="history-description" translate="dashboard.energy_summary.current_month">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_LOAD_ENERGY_MONTH | scaleValue}} {{'Wh' | scaleUnit : energyData.SYS_LOAD_ENERGY_MONTH}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '4'">
+                <div class="history-description" translate="dashboard.energy_summary.current_year">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_LOAD_ENERGY_YEAR | scaleValue}} {{'Wh' | scaleUnit : energyData.SYS_LOAD_ENERGY_YEAR}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '5'">
+                <div class="history-description" translate="dashboard.energy_summary.lifetime">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_LOAD_ENERGY_LIFETIME | scaleValue}} {{'Wh' | scaleUnit : energyData.SYS_LOAD_ENERGY_LIFETIME}}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5 energy-selected-container">
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '1'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_LOAD_ENERGY_DAY | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_LOAD_ENERGY_DAY}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.today">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '2'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_LOAD_ENERGY_WEEK | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_LOAD_ENERGY_WEEK}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.current_week">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '3'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_LOAD_ENERGY_MONTH | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_LOAD_ENERGY_MONTH}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.current_month">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '4'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_LOAD_ENERGY_YEAR | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_LOAD_ENERGY_YEAR}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.current_year">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '5'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_LOAD_ENERGY_LIFETIME | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_LOAD_ENERGY_LIFETIME}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.lifetime">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-xs-12" style="min-width: 500px;">
+        <div class="history-container-battery-chg">
+          <div class="history-svg-container history-svg-container-battery-chg">
+            <battery-image width="85" height="85" fill="white" stroke="white"></battery-image>
+          </div>
+          <div style="padding-bottom: 10px; padding-top: 10px; overflow:hidden;">
+            <div class="col-md-7">
+              <div class="col-md-12 history-title" translate="dashboard.energy_summary.battery_consumed">
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '1'">
+                <div class="history-description" translate="dashboard.energy_summary.today">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_BATT_CHG_ENERGY_DAY | scaleValue}} {{'Wh' | scaleUnit: energyData.SYS_BATT_CHG_ENERGY_DAY}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '2'">
+                <div class="history-description" translate="dashboard.energy_summary.current_week">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_BATT_CHG_ENERGY_WEEK | scaleValue}} {{'Wh' | scaleUnit: energyData.SYS_BATT_CHG_ENERGY_WEEK}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '3'">
+                <div class="history-description" translate="dashboard.energy_summary.current_month">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_BATT_CHG_ENERGY_MONTH | scaleValue}} {{'Wh' | scaleUnit: energyData.SYS_BATT_CHG_ENERGY_MONTH}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '4'">
+                <div class="history-description" translate="dashboard.energy_summary.current_year">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_BATT_CHG_ENERGY_YEAR | scaleValue}} {{'Wh' | scaleUnit: energyData.SYS_BATT_CHG_ENERGY_YEAR}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '5'">
+                <div class="history-description" translate="dashboard.energy_summary.lifetime">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_BATT_CHG_ENERGY_LIFETIME | scaleValue}} {{'Wh' | scaleUnit: energyData.SYS_BATT_CHG_ENERGY_LIFETIME}}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5 energy-selected-container">
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '1'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_BATT_CHG_ENERGY_DAY | scaleValue}}</span> {{'Wh' | scaleUnit: energyData.SYS_BATT_CHG_ENERGY_DAY}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.today">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '2'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_BATT_CHG_ENERGY_WEEK | scaleValue}}</span> {{'Wh' | scaleUnit: energyData.SYS_BATT_CHG_ENERGY_WEEK}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.current_week">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '3'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_BATT_CHG_ENERGY_MONTH | scaleValue}}</span> {{'Wh' | scaleUnit: energyData.SYS_BATT_CHG_ENERGY_MONTH}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.current_month">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '4'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_BATT_CHG_ENERGY_YEAR | scaleValue}}</span> {{'Wh' | scaleUnit: energyData.SYS_BATT_CHG_ENERGY_YEAR}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.current_year">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '5'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_BATT_CHG_ENERGY_LIFETIME | scaleValue}}</span> {{'Wh' | scaleUnit: energyData.SYS_BATT_CHG_ENERGY_LIFETIME}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.lifetime">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+<div class="col-md-12" style="padding-top: 55px; font-size: 20px">
+  <span>Grid Utilization</span>
+</div>
+<div class="col-md-12">
+  <div class="col-md-2 energy-pie">
+    <div ng-if='guChart' class="col-md-12 history-doughnut no-padding">
+      <chart value="guChart"></chart>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <div class="row-eq">
+
+      <div class="col-md-6 col-xs-12" style="min-width: 500px;">
+        <div class="history-container-grid-out">
+          <div class="history-svg-container history-svg-container-grid-out">
+            <grid-image width="85" height="85" stroke="white"></grid-image>
+          </div>
+          <div style="padding-bottom: 10px;  padding-top:10px; overflow:hidden;">
+            <div class="col-md-7">
+              <div class="col-md-12 history-title" translate="dashboard.energy_summary.grid_produced">
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '1'">
+                <div class="history-description" translate="dashboard.energy_summary.today">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_GRID_OUT_ENERGY_DAY | scaleValue}} {{'Wh' | scaleUnit : energyData.SYS_GRID_OUT_ENERGY_DAY}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '2'">
+                <div class="history-description" translate="dashboard.energy_summary.current_week">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_GRID_OUT_ENERGY_WEEK | scaleValue}} {{'Wh' | scaleUnit : energyData.SYS_GRID_OUT_ENERGY_WEEK}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '3'">
+                <div class="history-description" translate="dashboard.energy_summary.current_month">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_GRID_OUT_ENERGY_MONTH | scaleValue}} {{'Wh' | scaleUnit : energyData.SYS_GRID_OUT_ENERGY_MONTH}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '4'">
+                <div class="history-description" translate="dashboard.energy_summary.current_year">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_GRID_OUT_ENERGY_YEAR | scaleValue}} {{'Wh' | scaleUnit : energyData.SYS_GRID_OUT_ENERGY_YEAR}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '5'">
+                <div class="history-description" translate="dashboard.energy_summary.lifetime">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_GRID_OUT_ENERGY_LIFETIME | scaleValue}} {{'Wh' | scaleUnit : energyData.SYS_GRID_OUT_ENERGY_LIFETIME}}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5 energy-selected-container">
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '1'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_GRID_OUT_ENERGY_DAY | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_GRID_OUT_ENERGY_DAY}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.today">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '2'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_GRID_OUT_ENERGY_WEEK | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_GRID_OUT_ENERGY_WEEK}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.current_week">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '3'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_GRID_OUT_ENERGY_MONTH | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_GRID_OUT_ENERGY_MONTH}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.current_month">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '4'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_GRID_OUT_ENERGY_YEAR | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_GRID_OUT_ENERGY_YEAR}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.current_year">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '5'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_GRID_OUT_ENERGY_LIFETIME | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_GRID_OUT_ENERGY_LIFETIME}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.lifetime">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-xs-12" style="min-width: 500px;">
+        <div class="history-container-grid-in">
+          <div class="history-svg-container history-svg-container-grid-in">
+            <grid-image width="85" height="85" stroke="white"></grid-image>
+          </div>
+          <div style="padding-bottom: 10px; padding-top: 10px; overflow:hidden;">
+            <div class="col-md-7">
+              <div class="col-md-12 history-title" translate="dashboard.energy_summary.grid_consumed">
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '1'">
+                <div class="history-description" translate="dashboard.energy_summary.today">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_GRID_IN_ENERGY_DAY | scaleValue}} {{'Wh' | scaleUnit : energyData.SYS_GRID_IN_ENERGY_DAY}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '2'">
+                <div class="history-description" translate="dashboard.energy_summary.current_week">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_GRID_IN_ENERGY_WEEK | scaleValue}} {{'Wh' | scaleUnit : energyData.SYS_GRID_IN_ENERGY_WEEK}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '3'">
+                <div class="history-description" translate="dashboard.energy_summary.current_month">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_GRID_IN_ENERGY_MONTH | scaleValue}} {{'Wh' | scaleUnit : energyData.SYS_GRID_IN_ENERGY_MONTH}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '4'">
+                <div class="history-description" translate="dashboard.energy_summary.current_year">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_GRID_IN_ENERGY_YEAR | scaleValue}} {{'Wh' | scaleUnit : energyData.SYS_GRID_IN_ENERGY_YEAR}}
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-3 history-text" ng-if="settings.interval !== '5'">
+                <div class="history-description" translate="dashboard.energy_summary.lifetime">
+                </div>
+                <div class="history-value">
+                  {{energyData.SYS_GRID_IN_ENERGY_LIFETIME | scaleValue}} {{'Wh' | scaleUnit: energyData.SYS_GRID_IN_ENERGY_LIFETIME}}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5 energy-selected-container">
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '1'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_GRID_IN_ENERGY_DAY | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_GRID_IN_ENERGY_DAY}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.today">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '2'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_GRID_IN_ENERGY_WEEK | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_GRID_IN_ENERGY_WEEK}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.current_week">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '3'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_GRID_IN_ENERGY_MONTH | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_GRID_IN_ENERGY_MONTH}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.current_month">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '4'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_GRID_IN_ENERGY_YEAR | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_GRID_IN_ENERGY_YEAR}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.current_year">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-3 history-text" ng-if="settings.interval === '5'">
+                <div class="history-value">
+                  <span class="energy-selected">{{energyData.SYS_GRID_IN_ENERGY_LIFETIME | scaleValue}}</span> {{'Wh' | scaleUnit : energyData.SYS_GRID_IN_ENERGY_LIFETIME}}
+                </div>
+                <div class="history-description" translate="dashboard.energy_summary.lifetime">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,135 @@
+{
+  "values": [{
+      "name": "/SYS/GRID_IN/P",
+      "value": 100,
+      "quality": "G"
+    },
+    {
+      "name": "/SYS/GRID_OUT/P",
+      "value": 0,
+      "quality": "G"
+    },
+    {
+      "name": "/SYS/GRID/V",
+      "value": 0,
+      "quality": "G"
+    },
+    {
+      "name": "/SYS/GEN/P",
+      "value": 19,
+      "quality": "G"
+    },
+    {
+      "name": "/SYS/GEN/ACTIVE_LIFETIME",
+      "value": 0,
+      "quality": "G"
+    },
+    {
+      "name": "/SYS/LOAD/P",
+      "value": 13232,
+      "quality": "G"
+    },
+    {
+      "name": "/SYS/PV/P",
+      "value": 2300,
+      "quality": "G"
+    },
+    {
+      "name": "/SYS/BATT/P",
+      "value": 10,
+      "quality": "G"
+    },
+    {
+      "name": "/SYS/BATT1/V",
+      "value": 232,
+      "quality": "G"
+    },
+    {
+      "name": "/SYS/BATT1/P",
+      "value": 122,
+      "quality": "G"
+    },
+    {
+      "name": "/SYS/BATT1/SOC",
+      "value": 61,
+      "quality": "G"
+    },
+    {
+      "name": "/SYS/BATT2/V",
+      "value": 10,
+      "quality": "G"
+    },
+    {
+      "name": "/SYS/BATT2/P",
+      "value": 0,
+      "quality": "G"
+    },
+    {
+      "name": "/SYS/BATT2/SOC",
+      "value": 100,
+      "quality": "G"
+    },
+    {
+      "name": "/SYS/BATT3/V",
+      "value": 10,
+      "quality": "G"
+    },
+    {
+      "name": "/SYS/BATT3/P",
+      "value": 0,
+      "quality": "G"
+    },
+    {
+      "name": "/SYS/BATT3/SOC",
+      "value": 81,
+      "quality": "G"
+    },
+    {
+      "name": "/SYS/BATT4/V",
+      "value": 10,
+      "quality": "G"
+    },
+    {
+      "name": "/SYS/BATT4/P",
+      "value": 0,
+      "quality": "G"
+    },
+    {
+      "name": "/SYS/BATT4/SOC",
+      "value": 0,
+      "quality": "G"
+    },
+    {
+      "name": "/SYS/BATT5/V",
+      "value": 10,
+      "quality": "G"
+    },
+    {
+      "name": "/SYS/BATT5/P",
+      "value": 0,
+      "quality": "G"
+    },
+    {
+      "name": "/SYS/BATT5/SOC",
+      "value": 0,
+      "quality": "G"
+    },
+    {
+      "name": "/SYS/PV_AC/P",
+      "value": 232,
+      "quality": "G"
+    },
+    {
+      "name": "/SYS/CHG/P",
+      "value": 0,
+      "quality": "G"
+    },
+    {
+      "name": "/SYS/INV/P",
+      "value": 0,
+      "quality": "G"
+    }
+  ],
+  "count": 26,
+  "responseTime": 2
+}

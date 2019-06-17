@@ -1,0 +1,31 @@
+﻿<se-panel value="{{'xanbus.pgnsts.label' | translate}}" csb-permissions>
+    <table class="table table-striped table-bordered">
+        <tr>
+            <th translate="xanbus.pgnsts.name"></th>
+            <th translate="xanbus.pgnsts.pgn"></th>
+            <th translate="xanbus.pgnsts.receiveCount"></th>
+            <th translate="xanbus.pgnsts.state"/>
+            <th translate="xanbus.pgnsts.result"/>
+        </tr>
+        <tr ng-repeat="pgnsts in devinfo.XB_PGNSTS.PGNSts" ng-class="pgnStatusClass(pgnsts.result)">
+            <td>{{pgnsts.name}}</td>
+            <td>{{pgnsts.pgn}}</td>
+            <td>{{pgnsts.receiveCount}}</td>
+            <td>{{pgnsts.state}}</td>
+            <td>{{pgnsts.result}}</td>
+        </tr>
+    </table>
+</se-panel>
+
+<se-panel value="{{'xanbus.xbdev.info' | translate}}" csb-permissions>
+    <table class="settings-controls" style="word-wrap: break-word; word-break: break-all;">
+      <tr>
+        <td translate="xanbus.xbdevlist.fga"></td>
+        <td>{{id}}</td>
+      </tr>
+      <tr ng-repeat="(key,val) in devinfo">
+          <td>{{key}}</td>
+          <td>{{val}}</td>
+      </tr>
+    </table>
+</se-panel>

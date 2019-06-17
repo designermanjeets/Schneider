@@ -1,0 +1,215 @@
+.pfTextBackground {
+  fill: #32AD3C;
+  stroke: #32AD3C;
+  stroke-width: 15; }
+
+.svg-container {
+  display: block;
+  position: relative;
+  width: 100%;
+  /* this value is calculated by dividing the height by the width
+  exmple: 720 / 1920 * 100 */
+  padding-bottom: 37.5%;
+  vertical-align: middle; }
+
+.svg-container svg {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+.pf-green {
+  fill: #32AD3C;
+  stroke: #32AD3C; }
+
+.pf-blue {
+  fill: #42B4E6;
+  stroke: #42B4E6; }
+
+.pf-grey {
+  fill: #626469;
+  stroke: #626469; }
+
+.pf-no-bar {
+  fill: #CBCBCB;
+  stroke: #CBCBCB; }
+
+.pf-no-stroke {
+  stroke: none; }
+
+.pf-line-green line:nth-child(1) {
+  stroke-width: 10px;
+  stroke: #32AD3C;
+  stroke-dasharray: 10px 105px;
+  stroke-linecap: round;
+  stroke-dashoffset: 0;
+  fill: none; }
+
+.pf-line-green line:nth-child(2) {
+  stroke-width: 5px;
+  stroke: #32AD3C;
+  fill: none; }
+
+.pf-line-green line:nth-child(3) {
+  stroke-width: 2.5px;
+  stroke: #9FA0A4;
+  fill: none; }
+
+.pf-line-green polyline:nth-child(1) {
+  stroke-width: 10px;
+  stroke: #32AD3C;
+  stroke-dasharray: 10px 105px;
+  stroke-linecap: round;
+  stroke-dashoffset: 0;
+  fill: none; }
+
+.pf-line-green polyline:nth-child(2) {
+  stroke-width: 5px;
+  stroke: #32AD3C;
+  fill: none; }
+
+.pf-line-green polyline:nth-child(3) {
+  stroke-width: 2.5px;
+  stroke: #9FA0A4;
+  fill: none; }
+
+.pf-line-green path:nth-child(1) {
+  stroke-width: 10px;
+  stroke: #32AD3C;
+  stroke-dasharray: 10px 105px;
+  stroke-linecap: round;
+  stroke-dashoffset: 0;
+  fill: none; }
+
+.pf-line-green path:nth-child(2) {
+  stroke-width: 5px;
+  stroke: #32AD3C;
+  fill: none; }
+
+.pf-line-green path:nth-child(3) {
+  stroke-width: 2.5px;
+  stroke: #9FA0A4;
+  fill: none; }
+
+.pf-line-blue line:nth-child(1) {
+  stroke-width: 10px;
+  stroke: #42B4E6;
+  stroke-dasharray: 10px 105px;
+  stroke-linecap: round;
+  stroke-dashoffset: 0;
+  fill: none; }
+
+.pf-line-blue line:nth-child(2) {
+  stroke-width: 5px;
+  stroke: #42B4E6;
+  fill: none; }
+
+.pf-line-blue line:nth-child(3) {
+  stroke-width: 2.5px;
+  stroke: #9FA0A4;
+  fill: none; }
+
+.pf-line-blue polyline:nth-child(1) {
+  stroke-width: 10px;
+  stroke: #42B4E6;
+  stroke-dasharray: 10px 105px;
+  stroke-linecap: round;
+  stroke-dashoffset: 0;
+  fill: none; }
+
+.pf-line-blue polyline:nth-child(2) {
+  stroke-width: 5px;
+  stroke: #42B4E6;
+  fill: none; }
+
+.pf-line-blue polyline:nth-child(3) {
+  stroke-width: 2.5px;
+  stroke: #9FA0A4;
+  fill: none; }
+
+.pf-line-blue path:nth-child(1) {
+  stroke-width: 10px;
+  stroke: #42B4E6;
+  stroke-dasharray: 10px 105px;
+  stroke-linecap: round;
+  stroke-dashoffset: 0;
+  fill: none; }
+
+.pf-line-blue path:nth-child(2) {
+  stroke-width: 5px;
+  stroke: #42B4E6;
+  fill: none; }
+
+.pf-line-blue path:nth-child(3) {
+  stroke-width: 2.5px;
+  stroke: #9FA0A4;
+  fill: none; }
+
+.pf-line-grey line:nth-child(2) {
+  stroke-width: 5px;
+  stroke: #626469;
+  fill: none; }
+
+.pf-line-grey line:nth-child(3) {
+  stroke-width: 2.5px;
+  stroke: #9FA0A4;
+  fill: none; }
+
+.pf-line-grey polyline:nth-child(1) {
+  fill: none; }
+
+.pf-line-grey polyline:nth-child(2) {
+  stroke-width: 5px;
+  stroke: #626469;
+  fill: none;
+}
+
+.pf-line-grey polyline:nth-child(3) {
+  stroke-width: 2.5px;
+  stroke: #9FA0A4;
+  fill: none;
+}
+
+.pf-line-grey path:nth-child(1) {
+  fill: none; }
+
+.pf-line-grey path:nth-child(2) {
+  stroke-width: 0px;
+  stroke: #626469;
+  fill: none; }
+
+.pf-line-grey path:nth-child(3) {
+  stroke-width: 2.5px;
+  stroke: #9FA0A4;
+  fill: none; }
+
+#batteryImage:hover, #chargerImage:hover, #inverterChargerImage:hover, #inverterImage:hover, #inverterGTImage:hover {
+  cursor: pointer; }
+
+.pf-clickable {
+  cursor: pointer; }
+
+.pf-device-row:hover {
+  cursor: pointer; }
+
+.pf-device-modal-header {
+  background-color: #32AD3C; }
+
+.pf-device-modal-title {
+  color: #fff; }
+
+.pf-modal-device-count {
+  font-size: 18px;
+  padding-bottom: 10px; }
+
+.pf-text {
+  outline-style: none;
+  stroke-width: 1px;
+  stroke: none;
+  text-rendering: geometricPrecision;
+  font-family: Arial;
+  fill: #fff;
+  font-size: 16px; }
+
+.pf-hide {
+  display: none !important; }

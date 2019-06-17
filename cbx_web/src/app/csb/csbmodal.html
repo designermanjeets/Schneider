@@ -1,0 +1,36 @@
+
+<div class="modal-header">
+  <h3 class="modal-title">{{title}}</h3>
+</div>
+<div class="modal-body">
+  <h5>
+    <span data-ng-switch="message">
+      <!-- TODO: Can we remove this? Looks like we use lockTimeModal.html instead -->
+      <span data-ng-switch-when="invalidLogin" translate="csb.modal.invalid_login">
+      </span>
+      <span data-ng-switch-when="smartInstallSetup">
+        <div class="icon-warning_grey cg-waring-grey-icon"></div>
+        <span translate="csb.modal.smart_install_setup"></span>
+      </span>
+      <span data-ng-switch-when="passwordRecoveryMailRequired" translate="csb.modal.password_recovery_required">
+      </span>
+      <span data-ng-switch-when="passwordRecoveryMailSent" translate="csb.modal.password_recovery_sent">
+      </span>
+      <span data-ng-switch-when="defaultLoginPassword" translate="csb.modal.deafault_password">
+      </span>
+      <span data-ng-switch-when="changePasswordSuccess" translate="csb.modal.password_updated">
+      </span>
+      <span data-ng-switch-when="changePasswordFail" translate="csb.modal.password_failed">
+      </span>
+      <span data-ng-switch-when="insightConnectionCriticalError" translate="csb.modal.insight_error">
+      </span>
+      <span data-ng-switch-when="insightConnectionUnableToConnect" translate="csb.modal.insight_connection_error">
+      </span>
+      <span data-ng-switch-when="syncronization" translate="csb.modal.syncronization">
+      </span>
+    </span>
+  </h5>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" data-ng-click="ok()" translate="csb.modal.ok"></button>
+</div>

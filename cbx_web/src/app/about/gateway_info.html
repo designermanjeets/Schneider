@@ -1,0 +1,106 @@
+
+<div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="panel-title" translate="setup.info.conext_gateway_info"></h2>
+    </div>
+    <!-- no panel-body class, so the table goes full width -->
+    <table class="device-details table">
+      <tr>
+        <td class="text-left" translate="setup.info.conext_gateway_name"></td>
+        <td class="text-left" ng-bind="info.FRIENDLYNAME"></td>
+      </tr>
+      <tr>
+        <td class="text-left" translate="setup.info.model_designation"></td>
+        <td class="text-left" ng-bind="info.FGA"></td>
+      </tr>
+      <tr>
+        <td class="text-left" translate="setup.info.application_version"></td>
+        <td class="text-left" ng-bind="info.SW_VER"></td>
+      </tr>
+      <tr>
+        <td class="text-left" translate="setup.info.application_build_number"></td>
+        <td class="text-left" ng-bind="info.SW_BUILD_NUMBER"></td>
+      </tr>
+      <tr>
+        <td class="text-left" translate="setup.info.application_build_date"></td>
+        <td class="text-left" ng-bind="info.SW_BUILD_DATE"></td>
+      </tr>
+      <tr>
+        <td class="text-left" translate="setup.info.serial"></td>
+        <td class="text-left" ng-bind="info.SERIALNUM"></td>
+      </tr>
+      <tr>
+        <td class="text-left" translate="setup.info.hardware_revision"></td>
+        <td class="text-left" ng-bind="info.HWREV"></td>
+      </tr>
+      <tr>
+        <td class="text-left" translate="setup.info.ip_address"></td>
+        <td class="text-left" ng-bind="info.ETH0_TCPIP_DHCP_IP"></td>
+      </tr>
+      <tr>
+        <td class="text-left" translate="setup.info.hostname"></td>
+        <td class="text-left" ng-bind="info.HOSTNAME"></td>
+      </tr>
+      <tr>
+        <td class="text-left" translate="setup.info.mac_lan_1"></td>
+        <td class="text-left" ng-bind="info.ETH0_MAC"></td>
+      </tr>
+      <tr>
+        <td class="text-left" translate="setup.info.urn"></td>
+        <td class="text-left" ng-bind="info.SCB_LPHD_URN"></td>
+      </tr>
+      <tr>
+        <td class="text-left" translate="setup.info.system_local_time"></td>
+        <td class="text-left" ng-bind="info.TIME_LOCAL_ISO_STR"></td>
+      </tr>
+      <tr>
+        <td class="text-left" translate="setup.info.time_zone"></td>
+        <td class="text-left" ng-bind="info.TIMEZONE"></td>
+      </tr>
+      <tr>
+        <td class="text-left" translate="setup.info.uptime"></td>
+        <td class="text-left" ng-bind="info.SCB_LSYS_UPTIME | uptime"></td>
+      </tr>
+    </table>
+  </div>
+  <button type="button" class="btn btn-default" style="margin-right: 20px;" ng-click="getLog()">Debug Log</button>
+  <button type="button" class="btn btn-default" ng-click="getSystemInfo()">Device Config Log</button>
+
+  <!-- TODO unhide when working -->
+  <!-- <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="panel-title" translate="setup.info.data_logs"></h2>
+    </div>
+    <table class="device-details table">
+      <tr>
+        <td class="text-left" translate="setup.info.logging_status"></td>
+        <td class="text-left" ng-bind="info.loggingStatus"></td>
+      </tr>
+      <tr>
+        <td class="text-left" translate="setup.info.space_used"></td>
+        <td class="text-left">
+          <div ng-show="info.showSdGraph">
+            <p
+              translate="setup.info.space_used_value"
+              translate-value-used="{{info.SDCARD_USED | number:0}}"
+              translate-value-total="{{info.SDCARD_SIZE | number:0}}"
+              translate-value-percent="{{info.sdCardPercent | number:0}}"
+              >
+            </p>
+            <div class="sd-card-capacity-bar">
+              <uib-progressbar max="100" value="info.sdCardPercent">
+              </uib-progressbar>
+            </div>
+          </div>
+          <div ng-hide="info.showSdGraph">
+            <p>&ndash;</p>
+          </div>
+        </td>
+      </tr>
+
+    </table>
+  </div> -->
+
+</div>

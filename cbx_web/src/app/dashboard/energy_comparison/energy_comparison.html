@@ -1,0 +1,173 @@
+<div class="col-md-10">
+  <div class="col-md-4">
+    <div class="col-md-12 row device_list_row energy-comparison-selectors" style="margin: 0px;">
+      <div class="pull-left device-list-description" translate='dashboard.select_interval'>
+      </div>
+      <div class="pull-right device-list-value">
+        <div class="btn-group">
+          <label class="btn btn-default" ng-model="settings.interval" uib-btn-radio="'1'" translate='dashboard.hours'></label>
+          <label class="btn btn-default" ng-model="settings.interval" uib-btn-radio="'2'" translate='dashboard.days'></label>
+          <label class="btn btn-default" ng-model="settings.interval" uib-btn-radio="'3'" translate='dashboard.months'></label>
+          <label class="btn btn-default" ng-model="settings.interval" uib-btn-radio="'4'" translate='dashboard.years'></label>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 device_list_row energy-comparison-selectors">
+      <div class="col-md-5 device-list-description" translate='dashboard.chart_type'>
+      </div>
+      <div class="col-md-7 device-list-value">
+        <select class='xb-selector' ng-model='settings.chart_type' ng-change='changeType()'>
+          <option value='bar' translate='dashboard.bar'></option>
+          <option value='line' translate='dashboard.line'></option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="col-md-12 device_list_row energy-comparison-selectors">
+      {{'dashboard.comparator' | translate}} 1
+    </div>
+    <div class="col-md-12 device_list_row energy-comparison-selectors">
+      <div class="col-md-5 device-list-description" style="padding-top: 4px;">
+        <div style="background-color: #42B4E6; width: 60px; height:25px; float:left; margin-right: 20px; border: 1px solid #42B4E6;"></div>
+      </div>
+      <div class="col-md-7 device-list-value">
+        <select class='xb-selector' ng-model='settings.series1' ng-change='changeSeries()'>
+          <option value='-1' translate='dashboard.no_selection'></option>
+          <option value='0' translate='dashboard.grid_output'></option>
+          <option value='1' translate='dashboard.grid_input'></option>
+          <option value='2' translate='dashboard.generator_input'></option>
+          <option value='3' translate='dashboard.load_output'></option>
+          <option value='4' translate='dashboard.pv_input'></option>
+          <option value='5' translate='dashboard.system_dc_out'></option>
+          <option value='6' translate='dashboard.system_dc_in'></option>
+          <option value='7' translate='dashboard.pv_ac_output'></option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-12 device_list_row energy-comparison-selectors">
+      <div class="col-md-5 device-list-description" style="padding-top: 4px;">
+        <div style="background-color: #3DCD58; width: 60px; height:25px; float:left; margin-right: 20px; border: 1px solid #3DCD58;"></div>
+      </div>
+      <div class="col-md-7 device-list-value">
+        <select class='xb-selector' ng-model='settings.series2' ng-change='changeSeries()'>
+          <option value='-1' translate='dashboard.no_selection'></option>
+          <option value='0' translate='dashboard.grid_output'></option>
+          <option value='1' translate='dashboard.grid_input'></option>
+          <option value='2' translate='dashboard.generator_input'></option>
+          <option value='3' translate='dashboard.load_output'></option>
+          <option value='4' translate='dashboard.pv_input'></option>
+          <option value='5' translate='dashboard.system_dc_out'></option>
+          <option value='6' translate='dashboard.system_dc_in'></option>
+          <option value='7' translate='dashboard.pv_ac_output'></option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-12 device_list_row energy-comparison-selectors" ng-hide="settings.interval === '4'">
+      <div class="col-md-5 device-list-description" translate='dashboard.select_date'>
+      </div>
+      <div class="col-md-7 device-list-value">
+        <p class="input-group battery_calender">
+          <input type="text" class="form-control settings-controls__input--no-min-width" uib-datepicker-popup="{{dates.format}}" ng-model="settings.series1Date" is-open="dates.isSeries1Open" ng-required="true" close-text="Close" min-date="dates.minDate" max-date="dates.maxDate"
+            datepicker-mode="dates.mode" min-mode="dates.mode" show-button-bar="false" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="openSeries1Calender()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+      </div>
+      <div class=col-md-12 ng-show='dates.invalidSeries1Date'>
+        <div class="icon-Error_icon cg-icon-error" style="float: left; margin-right: -50px;"></div>
+        <div translate='dashboard.no_data' style="color:#DC0A0A; font-size: 14px;"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="col-md-12 device_list_row energy-comparison-selectors">
+      {{'dashboard.comparator' | translate}} 2
+    </div>
+    <div class="col-md-12 device_list_row energy-comparison-selectors">
+      <div class="col-md-5 device-list-description" style="padding-top: 4px;">
+        <div style="background-color: #E47F00; width: 60px; height:25px; float:left; margin-right: 20px; border: 1px solid #E47F00;"></div>
+      </div>
+      <div class="col-md-7 device-list-value">
+        <select class='xb-selector' ng-model='settings.series3' ng-change='changeSeries()'>
+          <option value='-1' translate='dashboard.no_selection'></option>
+          <option value='0' translate='dashboard.grid_output'></option>
+          <option value='1' translate='dashboard.grid_input'></option>
+          <option value='2' translate='dashboard.generator_input'></option>
+          <option value='3' translate='dashboard.load_output'></option>
+          <option value='4' translate='dashboard.pv_input'></option>
+          <option value='5' translate='dashboard.system_dc_out'></option>
+          <option value='6' translate='dashboard.system_dc_in'></option>
+          <option value='7' translate='dashboard.pv_ac_output'></option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-12 device_list_row energy-comparison-selectors">
+      <div class="col-md-5 device-list-description" style="padding-top: 4px;">
+        <div style="background-color: #FFD100; width: 60px; height:25px; float:left; margin-right: 20px; border: 1px solid #FFD100;"></div>
+      </div>
+      <div class="col-md-7 device-list-value">
+        <select class='xb-selector' ng-model='settings.series4' ng-change='changeSeries()'>
+          <option value='-1' translate='dashboard.no_selection'></option>
+          <option value='0' translate='dashboard.grid_output'></option>
+          <option value='1' translate='dashboard.grid_input'></option>
+          <option value='2' translate='dashboard.generator_input'></option>
+          <option value='3' translate='dashboard.load_output'></option>
+          <option value='4' translate='dashboard.pv_input'></option>
+          <option value='5' translate='dashboard.system_dc_out'></option>
+          <option value='6' translate='dashboard.system_dc_in'></option>
+          <option value='7' translate='dashboard.pv_ac_output'></option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-12 device_list_row energy-comparison-selectors" ng-hide="settings.interval === '4'">
+      <div class="col-md-5 device-list-description" translate='dashboard.select_date'>
+      </div>
+      <div class="col-md-7 device-list-value">
+        <p class="input-group battery_calender">
+          <input type="text" class="form-control settings-controls__input--no-min-width" uib-datepicker-popup="{{dates.format}}" ng-model="settings.series2Date" is-open="dates.isSeries2Open" ng-required="true" close-text="Close" min-date="dates.minDate" max-date="dates.maxDate"
+            datepicker-mode="dates.mode" min-mode="dates.mode" show-button-bar="false" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="openSeries2Calender()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+      </div>
+      <div class=col-md-12 ng-show='dates.invalidSeries2Date'>
+        <div class="icon-Error_icon cg-icon-error" style="float: left; margin-right: -50px;"></div>
+        <div translate='dashboard.no_data' style="color:#DC0A0A; font-size: 14px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-md-10">
+  <div ng-show="dates.invalidSeries1Date && dates.invalidSeries2Date" style="border: 2px solid #DC0A0A; background-color:rgba(220, 50, 18, .1); border-radius: 25px; padding:30px; margin: 100px auto; width: 50%">
+    <div class="icon-Error_icon cg-icon-error" style="float: left; margin-right: -50px;"></div>
+    <div translate='dashboard.battery.invalidDate' style="color:#DC0A0A; font-size: 18px;"></div>
+  </div>
+  <div ng-if='myChart && (!dates.invalidSeries1Date || !dates.invalidSeries2Date)' class="energy-comparison-container">
+    <chart value="myChart"></chart>
+  </div>
+</div>
+<div id="legend" class="col-md-2 no-padding" style="padding-right:15px; padding-left: 15px;">
+  <div class="col-md-12 no-padding se-legend-title">
+    <span style="font-weight: bold">{{'dashboard.battery.legend' | translate}}</span>&nbsp;
+  </div>
+  <div class="col-md-12 no-padding se-legend-enable" translate="dashboard.enable_diable"></div>
+  <div class="col-md-12 no-padding se-clickable" ng-hide="settings.series1 === '-1'" style="padding-top: 10px; padding-bottom: 10px;" ng-click="toggleHidden(0)">
+    <div style="background-color: #42B4E6; width: 60px; height:25px; float:left; margin-right: 20px; border: 1px solid #42B4E6;"></div>
+    <div class="device-list-description se-legend-text" ng-class="{ 'se-strikethrough' : isHidden(0) }" >{{valueToTitle(settings.series1)}}</div>
+  </div>
+  <div class="col-md-12 no-padding se-clickable" ng-hide="settings.series2 === '-1'" style="padding-top: 10px; padding-bottom: 10px;" ng-click="toggleHidden(1)">
+    <div style="background-color: #3DCD58; width: 60px; height:25px; float:left; margin-right: 20px; border: 1px solid #3DCD58;"></div>
+    <div class="device-list-description se-legend-text" ng-class="{ 'se-strikethrough' : isHidden(1) }" >{{valueToTitle(settings.series2)}}</div>
+  </div>
+  <div class="col-md-12 no-padding se-clickable" ng-hide="settings.series3 === '-1'" style="padding-top: 10px; padding-bottom: 10px;" ng-click="toggleHidden(2)">
+    <div style="background-color: #E47F00; width: 60px; height:25px; float:left; margin-right: 20px; border: 1px solid #E47F00;"></div>
+    <div class="device-list-description se-legend-text" ng-class="{ 'se-strikethrough' : isHidden(2) }" >{{valueToTitle(settings.series3)}}</div>
+  </div>
+  <div class="col-md-12 no-padding se-clickable" ng-hide="settings.series4 === '-1'" style="padding-top: 10px; padding-bottom: 10px;" ng-click="toggleHidden(3)">
+    <div style="background-color: #FFD100; width: 60px; height:25px; float:left; margin-right: 20px; border: 1px solid #FFD100;"></div>
+    <div class="device-list-description se-legend-text" ng-class="{ 'se-strikethrough' : isHidden(3) }" >{{valueToTitle(settings.series4)}}</div>
+  </div>
+</div>

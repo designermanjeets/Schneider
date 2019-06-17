@@ -1,0 +1,31 @@
+<div class="for-login-or-smart-install" ng-cloak>
+  <div class="smartInstallTable" data-ng-controller="csbIdleTimer">
+    <div class="smartInstallTableCell">
+      <div class="smartInstallBackground">
+        <div class="smartInstallDimensionDiv">
+          <!-- Header-->
+          <table style="width:92%">
+            <tr>
+              <td>
+                <h3 id="smartInstallHeader" translate="smart_install.heading.heading"></h3></td>
+            </tr>
+          </table>
+          <hr id="smartInstallAppgreenLine">
+          <div id="smartInstallContainerId">
+            {{device.instance}} <br /> {{device.name}} <br />
+            <div class="col-md-6" ng-repeat="assoc in device.associations">
+              {{assoc.name}}
+              <select ng-model="assoc.value">
+                <option ng-repeat="option in assoc.options" value="{{option.key}}">{{option.value}}</option>
+              </select>
+            </div>
+          </div>
+          <div id="smartInstallButtonContainer">
+            <button type="button" id="btnSmrtHomeNext" name="btnSmrtHomeNext" class="smartInstallNext" ng-click="nextClicked()" translate="smart_install.next"></button>
+            <button type="button" id="btnSmrtHomeSkip" name="btnSmrtHomeSkip" class="smartInstallSkip" ng-click="skipClicked()" translate="smart_install.skip"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

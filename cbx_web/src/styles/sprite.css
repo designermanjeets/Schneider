@@ -1,0 +1,252 @@
+/*
+Icon classes can be used entirely standalone. They are named after their original file names.
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
+*/
+.icon-AGS {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -11829px;
+  width: 1200px;
+  height: 1200px;
+}
+.icon-CSW {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -5315px;
+  width: 774px;
+  height: 851px;
+}
+.icon-Error_icon {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -889px;
+  width: 173px;
+  height: 173px;
+}
+.icon-Error_icon_StatusGrey {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -1414px;
+  width: 173px;
+  height: 173px;
+}
+.icon-Face {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -16590px;
+  width: 1835px;
+  height: 2379px;
+}
+.icon-GT {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -8223px;
+  width: 1200px;
+  height: 1200px;
+}
+.icon-HVMPPT {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -9425px;
+  width: 1200px;
+  height: 1200px;
+}
+.icon-MPPT {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -13031px;
+  width: 1200px;
+  height: 1200px;
+}
+.icon-SCP {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -10627px;
+  width: 1200px;
+  height: 1200px;
+}
+.icon-Sucess_icon {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -736px;
+  width: 151px;
+  height: 151px;
+}
+.icon-Sucess_icon_StatusGrey {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -583px;
+  width: 151px;
+  height: 151px;
+}
+.icon-XW {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -6168px;
+  width: 774px;
+  height: 851px;
+}
+.icon-arrow_up {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -100px;
+  width: 83px;
+  height: 50px;
+}
+.icon-blue_icon {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -1784px;
+  width: 208px;
+  height: 208px;
+}
+.icon-bullet_1 {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -4398px;
+  width: 392px;
+  height: 396px;
+}
+.icon-bullet_2 {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -3204px;
+  width: 392px;
+  height: 396px;
+}
+.icon-bullet_3 {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -4000px;
+  width: 392px;
+  height: 396px;
+}
+.icon-bullet_4 {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -3602px;
+  width: 392px;
+  height: 396px;
+}
+.icon-calendar {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -152px;
+  width: 66px;
+  height: 59px;
+}
+.icon-english_flag {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -44px;
+  width: 20px;
+  height: 20px;
+}
+.icon-french_flag {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -22px;
+  width: 20px;
+  height: 20px;
+}
+.icon-greenled {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -341px;
+  width: 64px;
+  height: 64px;
+}
+.icon-greenloader {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -213px;
+  width: 60px;
+  height: 60px;
+}
+.icon-imageloader {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -481px;
+  width: 100px;
+  height: 100px;
+}
+.icon-key {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -14233px;
+  width: 2356px;
+  height: 2355px;
+}
+.icon-login_dropdown {
+  background-image: url(/img/sprite.png);
+  background-position: 0px 0px;
+  width: 21px;
+  height: 20px;
+}
+.icon-redled {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -275px;
+  width: 64px;
+  height: 64px;
+}
+.icon-refresh {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -7021px;
+  width: 1200px;
+  height: 1200px;
+}
+.icon-schneider_LIO {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -1589px;
+  width: 700px;
+  height: 193px;
+}
+.icon-schneider_logo_Green {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -4796px;
+  width: 1778px;
+  height: 517px;
+}
+.icon-schneiderloader {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -66px;
+  width: 32px;
+  height: 32px;
+}
+.icon-ui-icons_222222_256x240 {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -2962px;
+  width: 256px;
+  height: 240px;
+}
+.icon-ui-icons_2e83ff_256x240 {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -1994px;
+  width: 256px;
+  height: 240px;
+}
+.icon-ui-icons_454545_256x240 {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -2236px;
+  width: 256px;
+  height: 240px;
+}
+.icon-ui-icons_888888_256x240 {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -2478px;
+  width: 256px;
+  height: 240px;
+}
+.icon-ui-icons_cd0a0a_256x240 {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -2720px;
+  width: 256px;
+  height: 240px;
+}
+.icon-warning_grey {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -407px;
+  width: 80px;
+  height: 72px;
+}
+.icon-warning_icon {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -1064px;
+  width: 173px;
+  height: 173px;
+}
+.icon-warning_icon_StatusGrey {
+  background-image: url(/img/sprite.png);
+  background-position: 0px -1239px;
+  width: 173px;
+  height: 173px;
+}

@@ -1,0 +1,14 @@
+﻿{
+  "titles": {
+    "main_title": "Schneider Electric - HMI Application",
+    "smart_install": "Smart Install",
+    "smart_install_plant_setup": "Smart Install | Plant Setup",
+    "smart_install_detect_devices": "Smart Install | Detect Devices",
+    "smart_install_conext_insight": "Smart Install | Test Conext Insight",
+    "smart_install_change_password": "Smart Install | Change Password",
+    "smart_install_summary": "Smart Install | Summary",
+    "disclaimer": "Disclaimer",
+    "change_password": "Change Password",
+    "reset_password": "Password Reset"
+  }
+}

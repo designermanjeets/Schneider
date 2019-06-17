@@ -1,0 +1,44 @@
+﻿<!-- detected sensors -->
+<uib-accordion close-others="oneAtATime">
+  <uib-accordion-group is-open="status.open" panel-class='accordion-panel'>
+    <uib-accordion-heading>
+      <span translate="devices.overview_tables.sensor_panel_title"></span>
+      <span ng-if="sensors.length > 0"> - {{sensors.length}}</span>
+      <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+    </uib-accordion-heading>
+
+    <div ng-class="{'data-table-container': hasScrollBar, 'data-table-container--10-items': hasScrollBar}">
+      <table class="data-table" ng-if="sensors.length > 0">
+        <tr>
+          <th><!-- Index. This column is un-labeled --></th>
+          <th translate="devices.overview_tables.sensor_name"></th>
+          <!--<th translate="devices.overview_tables.sensor_type"></th>-->
+          <th translate="devices.overview_tables.value"></th>
+          <th translate="devices.overview_tables.unit"></th>
+          <th translate="devices.overview_tables.alarms"></th>
+        </tr>
+
+        <tr ng-repeat="sensor in sensors">
+          <td ng-bind="$index + 1" class="text-left"></td>
+          <td ng-bind="sensor.Name" class="text-left"></td>
+          <!-- <td ng-bind="sensor.SensorType | makeDashIf: sensor.CommError" class="text-left"></td> -->
+          <td ng-bind="sensor.Value | number: 1 | makeDashIf: sensor.CommError"></td>
+          <td ng-bind="sensor.Unit | makeDashIf: sensor.CommError"></td>
+          <td>
+            <alarm-icons
+              has-alarms="{{sensor.hasAlarms}}"
+              has-warnings="{{sensor.hasWarnings}}"
+              device-is-present="{{!sensor.CommError}}">
+            </alarm-icons>
+          </td>
+        </tr>
+
+      </table>
+    </div>
+
+    <div ng-if="sensors.length == 0">
+      <span translate="devices.overview_tables.no_sensor_configured"></span>
+      <span csb-permissions translate="devices.overview_tables.no_sensor_configured_url" translate-value-href="#/devices/detection"></span>
+    </div>
+  </uib-accordion-group>
+</uib-accordion>

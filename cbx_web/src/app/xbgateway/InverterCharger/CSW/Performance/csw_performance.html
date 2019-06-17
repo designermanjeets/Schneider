@@ -1,0 +1,79 @@
+<div class="gauge-wrapper">
+  <div class="gauge-container">
+    <div class="gauge-title" translate="devices.performance.loads"></div>
+    <ng-gauge size="100" thick="8" min="0" max="6000" value="data.LOAD_P" cap="round" label="Load Power" foreground-color="#42B4E6" background-color="#fff" append="W">
+    </ng-gauge>
+    <div class="gauge-field-container">
+      <div ng-if="!splitPhase" class="gauge-field row">
+        <div class="gauge-field-description">
+          Load 1 Current
+        </div>
+        <div class="gauge-field-value">
+          {{data.LOAD_I}}A
+        </div>
+      </div>
+      <div ng-if="splitPhase" class="gauge-field row">
+        <div class="gauge-field-description">
+          Load 1 Current
+        </div>
+        <div class="gauge-field-value">
+          {{data.LOAD_I_LN1}}A
+        </div>
+      </div>
+      <div ng-if="splitPhase" class="gauge-field row">
+        <div class="gauge-field-description">
+          Load 2 Current
+        </div>
+        <div class="gauge-field-value">
+          {{data.LOAD_I_LN2}}A
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gauge-container" ng-show="data.ASSOC_CFG_AC_INPUT === 19 || data.ASSOC_CFG_AC_INPUT === 67">
+    <div class="gauge-title" translate="devices.performance.{{data.ASSOC_CFG_AC_INPUT === 19 ? 'generator' : 'grid'}}"></div>
+    <ng-gauge size="100" thick="8" min="0" max="6000" value="data.AC1_P" cap="round" label="Power" foreground-color="#42B4E6" background-color="#fff" append="W"></ng-gauge>
+    <div class="gauge-field-container">
+      <div class="gauge-field row">
+        <div class="gauge-field-description">
+          Line 1
+        </div>
+        <div class="gauge-field-value">
+          {{data.AC1_V_LN1}}V
+        </div>
+      </div>
+      <div class="gauge-field row">
+        <div class="gauge-field-description">
+          Line 2
+        </div>
+        <div class="gauge-field-value">
+          {{data.AC1_V_LN2}}V
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gauge-container">
+    <div class="gauge-title" translate="devices.performance.dc"></div>
+    <ng-gauge size="100" thick="8" min="0" max="10000" value="data.DC_P_ABS" cap="round" label="Power" foreground-color="#42B4E6" background-color="#fff" append="W"></ng-gauge>
+    <div class="gauge-field-container">
+      <div class="gauge-field row">
+        <div class="gauge-field-description">
+          Voltage
+        </div>
+        <div class="gauge-field-value">
+          {{data.DC_V}}V
+        </div>
+      </div>
+      <div class="gauge-field row">
+        <div class="gauge-field-description">
+          Current
+        </div>
+        <div class="gauge-field-value">
+          {{data.DC_I_ABS}}A
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

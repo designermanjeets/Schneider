@@ -1,0 +1,13 @@
+{
+  "name": "browser-detection",
+  "main": "src/browser-detection.js",
+  "homepage": "https://github.com/sub2home/browser-detection",
+  "_release": "10df33f9cb",
+  "_resolution": {
+    "type": "commit",
+    "commit": "10df33f9cbcd95bc8764ee03112dd222bf4622ec"
+  },
+  "_source": "https://github.com/sub2home/browser-detection.git",
+  "_target": "10df33f9cbcd95bc8764ee03112dd222bf4622ec",
+  "_originalSource": "https://github.com/sub2home/browser-detection.git"
+}

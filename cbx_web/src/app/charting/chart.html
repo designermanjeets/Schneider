@@ -1,0 +1,13 @@
+<div style='width:100%; padding-top:20px;'>
+  <button class='btn btn-default reset-button' ng-click="resetZoom()" ng-hide="isZoomHidden()" style="margin-left: 7px; margin-top: -10px;">
+    <span class="glyphicon glyphicon-search"></span> {{'dashboard.reset_zoom' | translate}}
+  </button>
+  <div ng-hide="hideExport">
+    <csv-image class="se-clickable" ng-click="exportCSV()" fill="#626469" ng-hide="type === 'doughnut' || gridCodes" height="46.3" width="40" style="float:right; margin-top: -15px; padding-right: 5px;"></csv-image>
+    <png-image class="se-clickable" ng-click="exportImage()" fill="#626469" ng-hide="type === 'doughnut'" height="46.3" width="40" style="float:right; margin-top: -15px; padding-right: 5px;"></png-image>
+    <pdf-image class="se-clickable" ng-click="exportPDF()" fill="#626469" ng-hide="type === 'doughnut'" height="46.3" width="40" style="float:right; margin-top: -15px; padding-right: 5px;"></pdf-image>
+  </div>
+  <a id="imageExportButton" style="display: hidden;"></a>
+  <canvas ng-hide="type !== 'doughnut'" width="100%" height="100%" id="{{chartId}}_doughnut"></canvas>
+  <canvas ng-hide="type === 'doughnut'" id="{{chartId}}"></canvas>
+</div>

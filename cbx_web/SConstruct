@@ -1,0 +1,39 @@
+###############################################################################
+# Top level SConstruct for building the Inverter Monitor module for the SE1 SCB
+###############################################################################
+
+###############################################################################
+#                           Included Modules                                  #
+###############################################################################
+from meta import meta
+from azure.storage import BlobService
+import azuretools
+import os
+import re
+import sys
+import XanTools
+
+
+# Command line option to increment the version and upload the file to the cloud
+# --upload_version=true to check of a new version and updating the cloud wi the new version
+AddOption('--upload_version',
+          dest='upload_version',
+          default='false',
+          help='--upload_version=true to check of a new version and updating the cloud wi the new version')
+upload_version = GetOption('upload_version')
+
+env = Environment()
+
+binary = env.SConscript('SConscript', exports='env')
+
+#set the version to be uploaded
+azuretools.meta = meta
+if upload_version == 'true':
+    print "Checking version"
+    #add a post action to upload the newly generated file
+    env.AddPostAction(www, azuretools.uploadNewVersionStagedWithMeta)
+if upload_version == 'forced':
+    print "Checking version"
+    #add a post action to upload the newly generated file
+    env.AddPostAction(www, azuretools.uploadVersionForcedWithMeta)
+

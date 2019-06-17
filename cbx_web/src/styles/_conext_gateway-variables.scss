@@ -1,0 +1,100 @@
+/////////////////////////////////////////////////////////////////////
+//
+// Schneider colours
+$se-dark-spruce-green: #007626;
+$se-dark-lady-fern-green: #408700;
+$se-spruce-green: #009530;
+$se-light-spruce-green: #32AD3C;
+$se-light-spruce-green-faded: rgba(50, 173, 60, .1);
+$se-lady-fern-green: #4FA600;
+$se-light-lady-fern-green: #59BA00;
+$se-super-light-spruce-green: #00C35E;
+$se-life-green: #3DCD58;
+$se-life-green-faded: rgba(61,205,88,.5);
+$se-seeding-green: #87D200;
+
+$se-dark-sky-blue: #0087CD;
+$se-medium-blue: #219BFD;
+$se-sky-blue: #42B4E6;
+$se-sky-blue-faded: rgba(66, 180, 230, .1);
+$se-sky-blue-senifaded: rgba(66, 180, 230, .5);
+
+$se-fuscia-red: #B10043;
+$se-red: #DC0A0A;
+$se-red-faded: rgba(220,10,10,.5);
+$se-red-faded-strong: rgba(220,10,10,.1);
+$se-warm-red: #DC3212;
+$se-warm-red-faded: rgba(220, 50, 18, .1);
+$se-honeysuckle-orange: #E47F00;
+$se-honeysuckle-orange-faded: rgba(228,127,0,.5);
+$se-sunflower-yellow: #FFD100;
+$se-sunflower-yellow-faded: rgba(255, 209, 0, .1);
+
+$se-sky-blue-10p: #ECF7FC;
+$se-red-10p: #FCEAE7;
+
+$se-true-black: #000000;
+$se-black: #0f0f0f;
+$se-anthracite-grey: #333;
+$se-ultra-dark-grey: #434343;
+$se-super-dark-grey: #505559;
+$se-dark-grey: #626469;
+$se-transparent-grey: rgba(0, 0, 0, 0.5);
+$se-medium-grey: #9FA0A4;
+$se-light-grey: #CBCBCB;
+$se-super-light-grey: #E6E6E6;
+$se-ultra-light-grey-1: #EDEDED;
+$se-ultra-light-grey-2: #F7F7F7;
+$se-white: #fff;
+
+// Colours that are used in the app, but no longer the standard SE colours
+$top-navbar-bg: #219545;
+$top-navbar-tab: #64B445;
+
+
+/////////////////////////////////////////////////////////////////////
+//
+// Override Bootstrap variables
+
+// Maintenance note: This should match FONT_FAMILY in constants.js
+$font-family-sans-serif: 'Nunito Regular', Arial, "Helvetica Neue", Helvetica, sans-serif;
+
+$brand-primary: $se-spruce-green;
+
+$padding-base-vertical: 4px;
+$padding-base-horizontal: 12px;
+//$padding-base-vertical:     6px !default;
+//$padding-base-horizontal:   12px !default;
+
+$border-radius-base:  2px;
+//$border-radius-base:        4px !default;
+//$border-radius-large:       6px !default;
+//$border-radius-small:       3px !default;
+
+$btn-default-color: #333;
+$btn-default-bg: #e8e8e8;
+$btn-default-border: #999;
+//$btn-default-color:              #333 !default;
+//$btn-default-bg:                 #fff !default;
+//$btn-default-border:             #ccc !default;
+
+//$progress-bar-bg: $se-spruce-green;
+//$progress-bar-bg:             $brand-primary !default;
+
+$link-hover-color: $se-dark-spruce-green;
+
+/*
+$pagination-color: $se-spruce-green;
+$pagination-hover-color: $se-dark-spruce-green;
+$pagination-active-bg:    $se-light-spruce-green;
+$pagination-active-border: $se-light-spruce-green;
+//$pagination-border: $se-spruce-green;
+*/
+
+$pagination-active-bg: $top-navbar-bg;
+$pagination-active-border: $top-navbar-bg;
+
+/////////////////////////////////////////////////////////////////////
+//
+// Misc. globals
+$accordion-panel-border-color: #c2c4c4;

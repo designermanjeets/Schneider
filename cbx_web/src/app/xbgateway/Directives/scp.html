@@ -1,0 +1,33 @@
+<div style="height:100%; width: 100%" ng-click="deviceClick(device)" class="devlist-click" ng-class="{'devlist-offline': state !== 'Online'}">
+  <div class="col-md-12 devlist-header row">
+    <div class="col-md-6 no-padding devlist-title pull-left">
+      <div>{{device.status[0].value}} {{device.status[1].value}}</div>
+    </div>
+    <div class="col-md-6 no-padding pull-right" style="position: absolute; bottom: 0; right: 0; padding-right: 15px; font-size: 20px;text-align: end;">
+      <div ng-if="state !== 'Online'" style="color:#DC0A0A; " translate='{{state}}'>
+      </div>
+      <div ng-if="state === 'Online'" style="color:#3DCD58; " translate='xanbus.xbdevlist.online'>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="col-md-4 col-xs-12 pull-right no-padding">
+      <div class="col-md-12 col-sm-6 col-sm-offset-3 no-padding col-md-offset-0">
+        <scp-image device="device"></scp-image>
+      </div>
+    </div>
+    <div class="col-md-8 no-padding" style="padding-right: 15px;">
+      <div class="col-md-12 no-padding devlist-row" ng-repeat="status in device.status.slice(2, device.status.length)">
+        <div class="col-md-6 no-padding devlist-description">
+          {{status.description | translate}}
+        </div>
+        <div ng-if="state === 'Online'" class="col-md-6 no-padding devlist-value">
+          {{status.value}} {{status.unit}}
+        </div>
+        <div ng-if="state !== 'Online'" class="col-md-6 no-padding devlist-value">
+          &ndash;&ndash;
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

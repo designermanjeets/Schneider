@@ -1,0 +1,11 @@
+
+<fieldset class="device-measurement">
+<legend class="device-measurement-legend">BATT</legend>
+<ng-gauge size="100" type="semi" thick="5" min="0" max="65" value=statusSysvars.BATT_V.value cap="round" label="Voltage"  foreground-color="#42B4E6" background-color="rgba(0,0,0, 0.1)" append="V"></ng-gauge>
+
+<ng-gauge size="100" type="semi" thick="5" min="0" max="200" value=statusSysvars.BATT_I.value cap="round" label="Current"  foreground-color="#42B4E6" background-color="rgba(0,0,0, 0.1)" append="A"></ng-gauge>
+
+<ng-gauge size="100" type="semi" thick="5" min="0" max="100" value=statusSysvars.BATT_TEMP.value cap="round" label="Temperature"  foreground-color="#42B4E6" background-color="rgba(0,0,0, 0.1)" append="{{tempUnit}}"></ng-gauge>
+
+<ng-gauge size="100" type="semi" thick="5" min="0" max="100" value=statusSysvars.BATT_SOC.value cap="round" label="SOC"  foreground-color="#42B4E6" background-color="rgba(0,0,0, 0.1)" append="%"></ng-gauge>
+</fieldset>

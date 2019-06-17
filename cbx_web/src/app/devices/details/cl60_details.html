@@ -1,0 +1,213 @@
+﻿
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title" translate="devices.details.device_information"></h2>
+  </div>
+
+  <!-- no panel-body class, so the table goes full width -->
+  <table class="device-details table">
+    <tr>
+      <td translate="devices.details.product_name"></td>
+      <td ng-bind="inverterDetails.productName"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.product_model_designation"></td>
+      <td ng-bind="inverterDetails.PRODUCT_TYPE_CODE"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.product_serial_number"></td>
+      <td ng-bind="inverterDetails.SERIAL_NUMBER"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.last_updated"></td>
+      <td ng-bind="deviceInfo.lastUpdated"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.output_type"></td>
+      <td ng-bind="inverterDetails.OUTPUT_TYPE | outputType | makeDashIf: device.commError"></td>
+    </tr>
+  </table>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title" translate="devices.details.current_values"></h2>
+  </div>
+
+  <!-- no panel-body class, so the table goes full width -->
+  <table class="device-details table"
+         ng-class="{'device-details--comm-error': device.commError}">
+    <tr>
+      <td translate="devices.details.rated_ac_power"
+          translate-value-units="{{ 'Wh' | kiloUnits: inverterDetails.RATED_AC_POWER }}"></td>
+      <td ng-bind="inverterDetails.RATED_AC_POWER | kiloScale | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.energy_today"
+          translate-value-units="{{ 'Wh' | kiloUnits: inverterDetails.ENERGY_TODAY }}"></td>
+      <td ng-bind="inverterDetails.ENERGY_TODAY | kiloScale | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.energy_produced"
+          translate-value-units="{{ 'Wh' | kiloUnits: inverterDetails.ENERGY_PRODUCED }}"></td>
+      <td ng-bind="inverterDetails.ENERGY_PRODUCED | kiloScale | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.operating_hours_lifetime"></td>
+      <td ng-bind="inverterDetails.OPERATING_HOURS | number: 0 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.internal_temp" translate-value-units="{{device.HMI_TEMPERATURE_UNIT}}"></td>
+      <td ng-bind="inverterDetails.TEMP_INTERNAL | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.dc_voltage_1"></td>
+      <td ng-bind="inverterDetails.VOLT_DC1 | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.dc_current_1"></td>
+      <td ng-bind="inverterDetails.CURRENT_DC1 | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.dc_power"
+          translate-value-units="{{ 'W' | kiloUnits: (inverterDetails.POWER_DC) }}"></td>
+      <td ng-bind="inverterDetails.POWER_DC | kiloScale | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.phase_a_voltage"></td>
+      <td ng-bind="inverterDetails.VOLT_AC_PHASE_A | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.phase_b_voltage"></td>
+      <td ng-bind="inverterDetails.VOLT_AC_PHASE_B | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.phase_c_voltage"></td>
+      <td ng-bind="inverterDetails.VOLT_AC_PHASE_C | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.phase_l1_current"></td>
+      <td ng-bind="inverterDetails.CURRENT_AC_PHASE_L1 | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.phase_l2_current"></td>
+      <td ng-bind="inverterDetails.CURRENT_AC_PHASE_L2 | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.phase_l3_current"></td>
+      <td ng-bind="inverterDetails.CURRENT_AC_PHASE_L3 | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.ac_active_power"
+          translate-value-units="{{ 'W' | kiloUnits: (inverterDetails.ACTIVE_POWER) }}"></td>
+      <td ng-bind="inverterDetails.ACTIVE_POWER | kiloScale | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.power_factor"></td>
+      <td ng-bind="inverterDetails.POWER_FACTOR | number: 3 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.ac_frequency"></td>
+      <td ng-bind="inverterDetails.FREQ_AC | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.operating_efficiency"></td>
+      <td ng-bind="inverterDetails.OPERATING_EFFICIENCY | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.operating_state"></td>
+      <td ng-bind="inverterDetails.OPERATING_STATE | operationMode : 'CL60' | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.fault_code"></td>
+      <td ng-bind="inverterDetails.FAULT_CODE | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.fault_description"></td>
+      <td ng-bind="inverterDetails.FAULT_DESCRIPTION | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.string_current"
+          translate-value-unit="1"></td>
+      <td ng-bind="inverterDetails.CURRENT_STRING_1 | number: 2 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.string_current"
+          translate-value-unit="2"></td>
+      <td ng-bind="inverterDetails.CURRENT_STRING_2 | number: 2 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.string_current"
+          translate-value-unit="3"></td>
+      <td ng-bind="inverterDetails.CURRENT_STRING_3 | number: 2 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.string_current"
+          translate-value-unit="4"></td>
+      <td ng-bind="inverterDetails.CURRENT_STRING_4 | number: 2 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.string_current"
+          translate-value-unit="5"></td>
+      <td ng-bind="inverterDetails.CURRENT_STRING_5 | number: 2 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.string_current"
+          translate-value-unit="6"></td>
+      <td ng-bind="inverterDetails.CURRENT_STRING_6 | number: 2 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.string_current"
+          translate-value-unit="7"></td>
+      <td ng-bind="inverterDetails.CURRENT_STRING_7 | number: 2 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.string_current"
+          translate-value-unit="8"></td>
+      <td ng-bind="inverterDetails.CURRENT_STRING_8 | number: 2 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.string_current"
+          translate-value-unit="9"></td>
+      <td ng-bind="inverterDetails.CURRENT_STRING_9 | number: 2 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.string_current"
+          translate-value-unit="10"></td>
+      <td ng-bind="inverterDetails.CURRENT_STRING_10 | number: 2 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.string_current"
+          translate-value-unit="11"></td>
+      <td ng-bind="inverterDetails.CURRENT_STRING_11 | number: 2 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.string_current"
+          translate-value-unit="12"></td>
+      <td ng-bind="inverterDetails.CURRENT_STRING_12 | number: 2 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.string_current"
+          translate-value-unit="13"></td>
+      <td ng-bind="inverterDetails.CURRENT_STRING_13 | number: 2 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.string_current"
+          translate-value-unit="14"></td>
+      <td ng-bind="inverterDetails.CURRENT_STRING_14 | number: 2 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.active_power_reduction"></td>
+      <td ng-bind="inverterDetails.POWER_ACTIVE_REDUCTION_ENABLE | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.active_power_reduction_setting"></td>
+      <td ng-bind="inverterDetails.POWER_ACTIVE_REDUCTION_SETTING | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.reactive_conrol_enable"></td>
+      <td ng-bind="inverterDetails.POWER_REACTIVE_ENABLE | makeDashIf: device.commError"></td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,31 @@
+<div id="dashboardSubMenu">
+  <ul class="nav nav-pills nav-stacked">
+
+    <!-- DEVICE STATUS -->
+    <li ui-sref-active="active" class="active">
+      <a class="menuIcons onLink" ui-sref=".powerflow" translate="dashboard.powerflow_title">
+            </a>
+    </li>
+
+    <li ui-sref-active="active" class="active">
+      <a class="menuIcons onLink" ui-sref=".battery_summary" translate="dashboard.battery_summary">
+            </a>
+    </li>
+
+    <li ui-sref-active="active" class="active">
+      <a class="menuIcons onLink" ui-sref=".battery_comparison" translate="dashboard.battery_comparison">
+            </a>
+    </li>
+
+    <li ui-sref-active="active" class="active">
+      <a class="menuIcons onLink" ui-sref=".energy" translate="dashboard.energy">
+            </a>
+    </li>
+
+    <li ui-sref-active="active" class="active">
+      <a class="menuIcons onLink" ui-sref=".energy_comparison" translate="dashboard.energy_comparison">
+            </a>
+    </li>
+
+</div>
+<div ui-view class="no-padding" style="width: calc(100% - 190px); float:left;"></div>

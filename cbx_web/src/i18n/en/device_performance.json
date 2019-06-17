@@ -1,0 +1,34 @@
+{
+  // XW
+  "XW/DC_IN/ENERGY": "DC Energy In",
+  "XW/DC_OUT/ENERGY": "DC Energy Out",
+  "XW/AC1_IN/ENERGY": "AC1 Energy In",
+  "XW/AC1_OUT/ENERGY": "AC1 Energy Out",
+  "XW/LOAD/ENERGY": "Load Energy",
+  "XW/AC2/ENERGY": "AC2 Energy",
+  "XW/GEN1/ENERGY": "Generator 1 Energy",
+  "XW/GEN2/ENERGY": "Generator 2 Energy",
+  // MPPT
+  "MPPT/DC_IN/ENERGY": "DC Energy In",
+  "MPPT/DC_OUT/ENERGY": "DC Energy Out",
+  //HVMPPT
+  "HVMPPT/DC_IN/ENERGY": "DC Energy In",
+  "HVMPPT/DC_OUT/ENERGY": "DC Energy Out",
+  //GT
+  "GT/DC_IN/ENERGY": "DC Energy In",
+  "GT/AC1_OUT/ENERGY": "AC1 Energy Out",
+  "GT/LOAD/ENERGY": "Load Energy",
+  "GT/GRID/ENERGY": "Grid Energy",
+  //CSW
+  "CSW/DC_IN/ENERGY": "DC Energy In",
+  "CSW/DC_OUT/ENERGY": "DC Energy Out",
+  "CSW/AC1_IN/ENERGY": "AC1 Energy In",
+  "CSW/AC1_OUT/ENERGY": "AC1 Energy Out",
+  "CSW/LOAD/ENERGY": "Load Energy",
+  //CL25
+  "CL25/AC/ENERGY": "AC Energy Out",
+  //CL36
+  "CL36/AC/ENERGY": "AC Energy Out",
+  //CL60
+  "CL70/AC/ENERGY": "AC Energy Out"
+}

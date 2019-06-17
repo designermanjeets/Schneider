@@ -1,0 +1,62 @@
+<!-- error & warning icons for the device table -->
+<span class="alarm-icons">
+
+<!--
+<pre>ok: {{ok | json}}</pre>
+<pre>alarms: {{ alarms | json }}</pre>
+<pre>warnings: {{ warnings | json}}</pre>
+-->
+  <span>
+    <span ng-show="hasAlarms !== 'true'
+          && hasWarnings !== 'true'
+          && deviceIsPresent === 'true'">
+          <!-- TODO replace image with sprite src="img/Sucess_icon.png"-->
+      <img height="20px" width="20px"
+        src="img"
+        title="{{'devices.alarms.no_alarms_warnings' | translate}}" />
+    </span>
+<span ng-hide="hasAlarms !== 'true'
+          && hasWarnings !== 'true'
+          && deviceIsPresent === 'true'">
+                <!-- TODO replace image with sprite src="img/Sucess_icon_StatusGrey.png"-->
+      <img height="20px" width="20px"
+        src="img"
+        title="{{(deviceIsPresent === 'true' ? 'devices.alarms.has_alarms_warning' : 'devices.alarms.device_missing') | translate}}" />
+    </span>
+</span>
+
+<span>
+    <span ng-show="hasAlarms === 'true'">
+      <a href="#/events/active_alarms">
+      <!-- TODO replace image with sprite src="img/Error_icon.png"-->
+        <img height="20px" width="20px"
+          src="img"
+          title="{{'devices.alarms.has_alarms' | translate}}" />
+      </a>
+    </span>
+<span ng-hide="hasAlarms === 'true'">
+      <!-- TODO replace image with sprite src="img/Error_icon_StatusGrey.png"-->
+      <img height="20px" width="20px"
+      src="img"
+        title="{{'devices.alarms.no_alarms' | translate}}" />
+    </span>
+</span>
+
+<span>
+    <span ng-show="hasWarnings === 'true'">
+      <a href="#/events/active_warnings">
+        <!-- TODO replace image with sprite src="img/warning_icon.png"-->
+        <img height="20px" width="20px"
+          src="img"
+          title="{{'devices.alarms.has_warnings' | translate}}" />
+      </a>
+    </span>
+<span ng-hide="hasWarnings === 'true'">
+      <!-- TODO replace image with sprite   src="img/warning_icon_StatusGrey.png"-->
+      <img height="20px" width="20px"
+        src="img"
+        title="{{'devices.alarms.no_warnings' | translate}}" />
+    </span>
+</span>
+
+</span>

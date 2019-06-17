@@ -1,0 +1,115 @@
+﻿These were Evan's notes when he was porting csbQuery to queryService.
+They may or may not be useful in the future.
+
+// safeApply:
+// * Used when calling API on the login page
+// * Called from Jquery code when there was no digest happening
+
+
+// TODO: Tests to write
+// setSyvars:
+// * apply fails
+// * response check fails
+//   - Add more response checks
+
+
+
+// TODO: Plan for the following:
+// - Retry
+// - Integration with lost connection service
+// - Re-do set when connection comes back online
+
+// Things to try to unify:
+// * csbQuery
+// * queryFormatterService
+// * objectFormatterService
+
+// Refactor, but keep tightly coupled
+// * httpInterceptorService
+// * connectionCheckService
+
+// TBD:
+// * Interval manager
+// * Response error checker
+//   - TODO: Comment in file may be wrong. May not be about form submit message
+
+
+
+
+// Retry notes:
+// retryRequest
+// - getFromScript
+//   - getObjFromScript: retry = 0
+// - getByNameList
+//   - getUsers: retry = 5
+//   - getMatch: retry = 0
+//   - get: retry = arg
+//     - PUBLIC
+//     - Cannot find any calls to this function
+//   - getObjByNameList: retry = arg
+//     - getObj: retry = 0
+//     - nsGetObj: retry = arg
+//       - getLoginAttemptsTime: retry = 0
+//       - getSerialNum: retry = 0
+//       - getLoginAttempts: retry = 0
+//       - getMailerInfo: retry = 0
+//
+// Cannot find any references to retry of set queries, just of get queries
+
+// getObjFromScript vs getObj
+//
+// getObjFromScript:
+// * Used by getDeviceOverviewItems
+// * Currently used to get sysvars by tag
+//   - Does not directly handle name mangling and quality bits
+//   - But always followed by calls to formatter services
+//     + objectFormatterService or deviceObjectFormatterService
+//     + deviceObjectFormatterService is a superset of objectFormatterService
+//       - Adds PRODUCT_NAME
+//       - Also, unused in our new code
+//   - So seems safe to always do some kind of object formatting in
+//     queryService.getSysvarsByTags
+
+
+// Formatting & stuff:
+// * csbQuery.getObjFromScript
+//   - Name mangling:    No
+//   - Quality bits:     No
+//
+// * csbQuery.getObjByNameList
+//   - Name mangling:    Yes
+//   - Quality bits:     Yes
+//
+// * queryFormatterService.createObjectFromQuery
+//   - Name mangling:    Yes
+//   - Quality bits:     No
+//   - Nested responses: Yes
+//   - Called after:     csbQuery.getObjFromScript
+//
+// * objectFormatterService.formatObject
+//   - Name mangling:    Yes
+//   - Quality bis:      No
+//   - Nested responses: No
+//   - Called after:     csbQuery.getObjFromScript
+//
+// In summary:
+// * getSysvars and getSysvarsByTag can both do quality bits and name mangling
+// * Will need to omit calls to createObjectFromQuery and formatObject,
+//   but that's just simplification.
+
+
+
+// Retry
+var isDone = false;
+queryService.setSysvars(valuesToSet, queryVars, options).then(function() {
+  isDone = true;
+});
+
+// TODO: Respond with HTTP code -1.
+// Internally, promise isn't resolved. Set query is queued up to be resolved later.
+expect(isDone).toBe(false);
+
+// TODO: Respond with HTTP code 200
+expect(isDone).toBe(true);
+
+

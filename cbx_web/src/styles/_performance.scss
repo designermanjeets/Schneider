@@ -1,0 +1,385 @@
+﻿/////////////////////////////////////////////////////////////////////
+//
+// Dashboard
+
+.widget-container {
+  padding-bottom: 16px;
+}
+.widget-container__title {
+  font-size: 20px;
+  color: $se-dark-lady-fern-green;
+
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #eee;
+}
+.widget-container__widget {
+  display: flex;
+  flex-direction: row;
+
+  > div:not(:last-child) {
+    padding-right: 20px;
+  }
+}
+.widget-container__widget--column {
+  flex-direction: column;
+  width: 100%;
+}
+
+// We want the first row of the dashboard to be arrangd
+// in a two-column grid (for large screens). But using the
+// Bootstrap grid columns forces the columns to be weird sizes for
+// the content. So, instead, use table layout. The columns will be
+// as wide as they need to, and there's nothing else on the page the
+// columns need to align with.
+//
+// CSBQNX-647: So the reason we used display: table and not 
+// display: flex was because IE had an issue with display: flex.
+// But then it turned out that Safari for Mac has bugs with display:
+// table, and needs display: flex. So that's why there is special
+// case code for Safari.
+.dashboard-first-row {
+  @media (min-width: $screen-lg-min) {
+    display: table;
+    .safari & {
+      display: flex;
+    }
+    width: 100%;
+    > div {
+      display: table-cell;
+      .safari & {
+        display: block;
+        flex-grow: 1;
+      }
+    }
+    > div:not(:last-child) {
+      margin-right: 30px;
+    }
+  }
+}
+
+.set-installed-year-message {
+  // top margin equal to a <p> tag's bottom margin
+  margin-top: $line-height-computed / 2;
+}
+
+/////////////////////////////////////////////////////////////////////
+//
+// Dashboard > PV generation
+.pv-generation {
+  width: 400px;
+}
+
+.pv-generation__set-capacity-message {
+  margin-bottom: 16px;
+}
+
+.pv-generation__gauge {
+  // Position children within this div
+  position: relative;
+
+  // Take the gauge itself out of the layout
+  gauge {
+    position: absolute;
+  }
+}
+.pv-generation__gauge-readout-area {
+  // Cause this element to participate in z-index,
+  // so it appears agove the gauge.
+  position: relative;
+
+  // Position this to be in the lower-right
+  // quadrant of the gauge. Use padding so that
+  // it affects the layout of the HTML.
+  padding-top: 163px;
+  padding-left: 146px;
+  padding-bottom: 12px;
+
+
+  font-weight: bold;
+  color: #777;
+
+  font-size: 12px;
+
+  td {
+    padding-bottom: 4px;
+    padding-right: 24px;
+    white-space: nowrap;
+  }
+}
+.pv-generation__gauge-readout-value-and-units {
+  font-size: 22px;
+  line-height: 18px;
+}
+.pv-generation__percent-capacity {
+  font-weight: bold;
+  text-align: center;
+
+  margin-top: 16px;
+}
+
+.pv-generation__label {
+  color: #64B445;
+}
+.pv-generation__value {
+  color: #F90;
+}
+.pv-generation__units {
+  color: #46494A;
+}
+
+
+/////////////////////////////////////////////////////////////////////
+//
+// Dashboard > PV energy widget
+
+// temporary fix to center the PV energy widget, until we can do a better
+// job of laying out the dashboard.
+.pv-energy-widget__wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.pv-energy-widget {
+  display: flex;
+  flex-direction: row;
+
+  color: $se-true-black;
+
+  border: 1px #bbb solid;
+  border-radius: 5px;
+
+  background: linear-gradient(to bottom, #fff, #ddd);
+  box-shadow: 0px 1px 3px #AAA;
+
+  //height: 260px;
+  //width: 280px;
+
+  padding-top: 42px;
+  padding-bottom: 42px;
+  padding-right: 10px;
+  padding-left: 0px;
+}
+
+.pv-energy-widget__icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0 10px;
+
+  width: 30%;
+  max-width: 80px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.pv-energy-widget__readouts {
+  border-left: 1px solid $se-white;
+  padding-left: 15px;
+}
+
+.pv-energy-widget__title {
+  font-weight: bold;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.pv-energy-widget__values {
+  td {
+    padding-right: 12px;
+    padding-bottom: 8px;
+  }
+
+  td:nth-child(1) {
+    text-align: right;
+  }
+}
+
+/////////////////////////////////////////////////////////////////////
+//
+// Dashboard > Weather widget
+
+.weather-widget-area {
+  // medium screens: arrange horizontally
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  // large screens: arrange vertically
+  @media (min-width: $screen-lg-min) {
+    flex-direction: column;
+
+    max-width: 350px;
+  }
+}
+
+
+.weather-widget {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+
+  border-radius: 5px;
+
+  color: $se-white;
+
+  padding: 5px;
+  padding-left: 0px; // keep image centred
+  padding-right: 8px;
+
+  // medium screens: arranged horizontally
+  margin-right: 20px;
+  margin-bottom: 0px;
+  @media (min-width: $screen-lg-min) {
+    // large screens: arranged vertically
+    margin-right: 0px;
+    margin-bottom: 10px;
+  }
+}
+.weather-widget--irradiance {
+  background-color: #00BDF2;
+}
+.weather-widget--ambient-temperature {
+  background-color: #46A600;
+}
+.weather-widget--module-temperature {
+  background-color: #009530;
+}
+
+.weather-widget__icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.weather-widget__readouts {
+  border-left: 1px solid $se-white;
+  padding-left: 5px;
+}
+
+.weather-widget__primary {
+  font-weight: bold;
+  font-size: 15px;
+
+  margin-bottom: 5px;
+}
+
+.weather-widget__secondary {
+  // medium screens: arrange vertically
+  display: flex;
+  flex-direction: column;
+  > div:not(:last-child) {
+    margin-bottom: 10px;
+    margin-right: 0;
+  }
+
+  // large screens: arrange horizontaly
+  @media (min-width: $screen-lg-min) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    > div:not(:last-child) {
+      margin-right: 10px;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.weather-widget__value {
+  color: #FD0;
+}
+
+/////////////////////////////////////////////////////////////////////
+//
+// Charts
+.chart-controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.chart-controls__date-picker {
+  // top & bottom margins are same as <p>
+  margin: ($line-height-computed / 2) 0;
+  text-align: center;
+}
+
+
+// .highchart is a reserved class name
+.se-highchart {
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+
+
+.highcharts-background {
+  fill: none;
+}
+
+/////////////////////////////////////////////////////////////////////
+//
+// PV performance
+.parameter-selection {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  // TODO: De-dupe this from .settings-controls in
+  // app.scss.
+  label {
+    font-weight: normal;
+    margin-bottom: 0;
+  }
+}
+
+.parameter-selection__parameter {
+  $border-color: #DDD;
+  $padding: 8px;
+
+  @mixin parameter-selection-rows($parameters-per-row) {
+    $percentage: percentage(1 / $parameters-per-row);
+
+    flex: 0 0 $percentage;
+    .ie & {
+      // IE9, IE10, and IE11 include padding in flex-basis, even though
+      // the box sizing is set to border-box. So specify the basis
+      // without the padding.
+      flex-basis: calc(#{$percentage} - #{2 * $padding})
+    }
+
+    // Give a top border for items on the first row
+    @for $idx from 1 through $parameters-per-row {
+      &:nth-child(#{$idx}) {
+        border-top: 1px solid $border-color;
+      }
+    }
+  }
+  @include parameter-selection-rows(2);
+  @media (min-width: $screen-lg-min) {
+    @include parameter-selection-rows(3);
+  }
+
+  &:last-child {
+    // Last child fills the remaining space, so that
+    // borders stretch all the way.
+    flex-grow: 1;
+  }
+
+  padding: $padding;
+  border-bottom: 1px solid $border-color;
+}
+
+.chart-container {
+  border: 1px solid $accordion-panel-border-color;
+  border-radius: 2px;
+  padding: 8px;
+  background-color: #F9FAFB; // todo: get from variable
+}
+

@@ -1,0 +1,109 @@
+﻿/*=============================================================================
+
+  \file   login.css
+
+  \brief
+  Conext gateway Server login html page style definitions
+
+  \code
+  CHANGE HISTORY
+  07-Dec-2015     Eddie Leung
+  - Refactored from loginStyle.css
+
+
+==============================================================================*/
+
+
+/*==============================================================================
+  Log in page layout
+ ==============================================================================*/
+html, body {
+  height: 100%;
+}
+
+
+/* Container */
+.dis-container-outer {
+  margin: 0 auto;
+  display: table;
+  height: 100%;
+}
+
+.dis-container-inner {
+  display: table-cell;
+  vertical-align: middle;
+  height: 100%;
+
+}
+
+.dis-container{
+   /*width: 864px;*/
+  border-radius: 14px;
+  background-color: #FFFFFF;
+  overflow: auto;
+}
+
+.dis-header {
+  margin: 15px 0;
+  padding: 0;
+  height: 70px;
+}
+
+.dis-section-box {
+  border: 1px solid #000000;
+  margin: 5px 15px;
+  padding: 5px;
+}
+
+.dis-section-bottom {
+  margin: 15px 15px;
+}
+
+.dis-warning {
+  background-color: #E87020;
+  color: #000000;
+  text-align: center;
+}
+
+.dis-section-box h3 {
+  margin: 10px 0;
+}
+
+.dis-section-box h4 {
+  text-align: center;
+}
+
+.dis-section-box h5 {
+  text-align: justify;
+}
+
+.dis-checkbox {
+  text-align: center;
+}
+
+.dis-btn-accept {
+  text-align: center;
+  width: 30%;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+
+
+/*==============================================================================
+  Schneider logo
+ ==============================================================================*/
+.schneider-logo {
+  height: 52px;
+  width: 177px;
+}
+
+
+.timeout {
+  background: white;
+  color: #222;
+  border: 1px solid #333;
+  border-radius: 3px;
+  padding: 5px;
+  margin: 5px;
+}

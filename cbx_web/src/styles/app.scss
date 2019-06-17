@@ -1,0 +1,767 @@
+@import "conext_gateway-variables";
+@import "bootstrap"; // Bootstrap, in _responsive-utilities.scss, sets this to device-width.
+// It's a fix for IE10 on Windows 8. We run on IE11 and better, so
+// it's OK to undo that fix.
+//
+// The symptom we're fixing is that in IE11, the scroll bar will cover
+// content on the right-hand side of the page (the top of the header and
+// the bottom of the footer).
+@-ms-viewport {
+  width: auto!important;
+}
+@import "data-table";
+@import "devices";
+@import "event-log";
+@import "performance";
+@import "setup"; /////////////////////////////////////////////////////////////////////
+//
+// General controls
+
+a[ng-click],
+a[ng-csv] {
+  cursor: pointer;
+}
+@font-face {
+  font-family: "Nunito Regular";
+  font-style: normal;
+  font-weight: 400;
+  src: local('Nunito Regular'), local('Nunito-Regular'), url("/fonts/Nunito.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+html {
+  font-family: 'Nunito Regular', Arial, sans-serif;
+}
+// How we style the bootstrap-ui accordions
+
+.accordion-panel {
+  border: 1px solid $accordion-panel-border-color;
+  border-radius: 8px;
+
+  .panel-heading {
+    border-bottom: 1px solid $accordion-panel-border-color;
+
+    &:not(:first-child) {
+      border-top: 1px solid $accordion-panel-border-color;
+      border-radius: 0;
+    }
+  }
+
+  .panel-title {
+    // @@@ Need to work out the default font sizing. Do we need to
+    // set font size here?
+    font-size: 13px;
+    font-weight: bold;
+    color: #119747;
+  }
+
+  .panel-body {
+    background: #F9FAFB;
+  }
+
+  hr {
+    border-color: $panel-default-border;
+    margin-top: 12px;
+  }
+}
+
+.tab-content {
+  padding-top: $line-height-computed;
+}
+/////////////////////////////////////////////////////////////////////
+//
+// Form stuff
+
+.btn-wide {
+  min-width: 180px;
+
+  & + * > .btn-wide:first-child,
+  & + .btn-wide {
+    margin-left: 32px;
+  }
+}
+// Select a tag that is the nth child out of m elements total
+@function nth-child-of-m($n, $m) {
+  $nth-last: $m - $n + 1;
+  // Don't include a leading colon, so that we can call
+  // this with a colon. E.g. tagname:#{nth-of-m(1, 2)}
+  @return "nth-child(#{$n}):nth-last-child(#{$nth-last})";
+}
+$settings-control-width: 200px;
+
+.settings-controls {
+  width: 100%;
+
+  th {
+    padding: 0 $table-cell-padding;
+  }
+
+  tr:not(:first-child) th {
+    padding-top: 2 * $table-cell-padding;
+  }
+
+  td {
+    padding: $table-cell-padding;
+    vertical-align: middle;
+  }
+  // Label
+  td:first-child,
+  th:first-child {
+    text-align: right;
+    color: $gray;
+  }
+
+  .settings-control__label--emphasized {
+    // Very similar to td, but without the reduced margins.
+    font-weight: bold;
+  }
+
+  .settings-control__label--for-many-controls {
+    // If labelling one control, the default vertical align
+    // of center is good. If labelling many controls,
+    // want vertical align top.
+    vertical-align: top;
+  }
+  $center-column-padding-right: 15px;
+
+  td:#{nth-child-of-m(1, 2)},
+  th:#{nth-child-of-m(1, 2)} {
+    width: 50%;
+    padding-right: $center-column-padding-right;
+  }
+  // Value
+  td:#{nth-child-of-m(2, 2)},
+  th:#{nth-child-of-m(2, 2)} {
+    width: 50%;
+    text-align: left;
+  }
+
+  td:#{nth-child-of-m(1, 4)},
+  td:#{nth-child-of-m(2, 4)},
+  td:#{nth-child-of-m(3, 4)},
+  td:#{nth-child-of-m(4, 4)} {
+    width: 25%;
+  }
+
+  td:#{nth-child-of-m(2, 4)} {
+    padding-right: 15px;
+  }
+
+  input[type=email],
+  input[type=number],
+  input[type=password],
+  input[type=text],
+  select {
+    // harmonize the widths
+    min-width: $settings-control-width;
+
+    &.settings-controls__input--no-min-width {
+      min-width: auto;
+    }
+  }
+
+  label {
+    font-weight: normal;
+    margin-bottom: 0;
+  }
+}
+
+.settings-controls--notification-setup {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+// Event codes can have a lot of text, give them extra
+// wide widths.
+
+.notification-setup__event-codes {
+  @media (min-width: $screen-md-min) {
+    min-width: 300px !important;
+  }
+  @media (min-width: $screen-lg-min) {
+    min-width: 500px !important;
+  }
+}
+// TODO: Harmonize this with the select controls on the login screen
+
+select {
+  padding: 5px;
+  border-radius: 2px;
+  background-color: $se-ultra-light-grey-1;
+  border: 1px solid $se-light-grey;
+  // Default down-arrow on IE is *so ugly*
+  // Fix that.
+  &::ms-expand {
+    background-color: transparent;
+    border: 1px solid $se-light-grey;
+    color: $se-dark-grey;
+  }
+}
+// Input control for small numbers
+// @@@ rename to input--numeric
+
+.numeric-input {
+  max-width: 60px;
+}
+
+[ng-messages] {
+  // Style the ng-messages as alerts by default.
+  // If it's just a warning, add class='alert alert-warning'
+  [ng-message-exp]:not(.alert),
+  [ng-message]:not(.alert) {
+    @extend .alert;
+    @extend .alert-danger;
+  }
+}
+
+[ng-messages].inline-validation-messages {
+  margin-top: 8px;
+  // medium screens: show below the input control
+  [ng-message] {
+    padding: 4px 8px !important;
+    margin-bottom: 0 !important;
+    display: inline-block;
+    min-width: $settings-control-width;
+  }
+  // large screens: show to the right of the input control
+  @media (min-width: $screen-lg-min) {
+    margin-top: 0 !important;
+    margin-left: 8px !important;
+    display: inline-block;
+  }
+}
+// We don't use Bootstrap's .has-error class, but we don't use it
+// because that brings in a bunch of other Bootstrap assumptions
+// that aren't valid here.
+// For most forms, we use Angular's built-in validation...
+form.ng-submitted:not(.suppress-ng-validation) select.ng-invalid, form.ng-submitted:not(.suppress-ng-validation) input[type=text].ng-invalid, form.ng-submitted:not(.suppress-ng-validation) input[type=password].ng-invalid, form.ng-submitted:not(.suppress-ng-validation) input[type=number].ng-invalid,// ...but sometimes, we want to use ng-class to have better control
+// over when a field becomes flagged as invalid.
+
+.input--invalid {
+  border: 1px solid #85463D !important;
+  box-shadow: 0 0 5px #b4665b;
+}
+/////////////////////////////////////////////////////////////////////
+//
+// Panel controls: Row of controls that go at the bottom of a panel
+
+.panel-controls {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.panel-controls__message {
+  flex-grow: 1; // fill available space
+  margin-right: 10px;
+}
+
+.panel-controls__message--update-time {
+  text-align: right;
+  color: $gray-light;
+}
+
+.panel-controls__buttons {
+  .btn {
+    min-width: 120px;
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}
+/////////////////////////////////////////////////////////////////////
+//
+// Page footer
+
+.body-container {
+  min-width: 768px;
+  position: relative;
+  //margin-bottom: $page-footer-height;
+  min-height: 100vh;
+}
+$page-footer-height:14px +// font size
+2 * 6px +// padding
+1px +// border-top
+// margin-top
+8px;
+
+.page-footer {
+  background-color: $se-super-light-grey;
+  border-top: 1px solid $se-light-grey;
+  text-align: right;
+  line-height: 1;
+  font-size: 14px;
+  padding: 6px;
+  margin-top: 8px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  // Use darker colors for the links
+  a {
+    color: $se-dark-lady-fern-green;
+  }
+
+  a:hover {
+    color: $se-dark-spruce-green;
+  }
+}
+// Sibling of .page-footer
+
+.page-content {
+  // Allow space for the footer
+  padding-bottom: $page-footer-height;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.heading-padding {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  white-space: nowrap;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+#cg-header {
+  background-color: $se-life-green;
+}
+
+#cg-header .navbar-nav li > a {
+  padding: 15px 0 2px;
+  margin-bottom: 10px;
+  margin-left: 50px;
+  margin-right: 50px;
+  border-bottom-width: 0;
+  font-size: 18px;
+
+  &:focus,
+  &:hover {
+    background-color: $se-life-green;
+    color: #fff;
+    border-width: 0;
+    border-style: solid;
+    border-bottom-width: 3px;
+    border-bottom-color: white;
+  }
+}
+
+#cg-header .navbar-nav li {
+  &:focus,
+  &:hover {
+    background-color: $se-life-green;
+    color: #fff;
+  }
+}
+
+#cg-header .navbar-nav li.active {
+  background-color: $se-life-green;
+}
+
+#cg-header .navbar-nav li.active > a {
+  background-color: $se-life-green;
+  color: #fff;
+  border-width: 0;
+  border-style: solid;
+  border-bottom-width: 3px;
+  border-bottom-color: white;
+}
+
+#cg-header-cloud {
+  background-color: $se-sky-blue;
+}
+
+#cg-header-cloud .navbar-nav li > a {
+  padding: 15px 0 2px;
+  margin-bottom: 10px;
+  margin-left: 50px;
+  margin-right: 50px;
+  border-bottom-width: 0;
+  font-size: 18px;
+
+  &:focus,
+  &:hover {
+    background-color: $se-sky-blue;
+    color: #fff;
+    border-width: 0;
+    border-style: solid;
+    border-bottom-width: 3px;
+    border-bottom-color: white;
+  }
+}
+
+#cg-header-cloud .navbar-nav li {
+  &:focus,
+  &:hover {
+    background-color: $se-sky-blue;
+    color: #fff;
+  }
+}
+
+#cg-header-cloud .navbar-nav li.active {
+  background-color: $se-sky-blue;
+}
+
+#cg-header-cloud .navbar-nav li.active > a {
+  background-color: $se-sky-blue;
+  color: #fff;
+  border-width: 0;
+  border-style: solid;
+  border-bottom-width: 3px;
+  border-bottom-color: white;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.header-margin {
+  margin-bottom: 5px;
+  margin-top: 12px;
+}
+
+.header-text {
+  font-size: 14px;
+}
+
+.gateway-title {
+  margin: 0;
+  color: $se-life-green;
+  white-space: nowrap;
+  font-size: 28px;
+}
+
+.se-legend-title {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid $se-anthracite-grey;
+}
+
+.se-legend-enable {
+  font-style: italic;
+  padding-top: 10px;
+}
+
+.se-legend-titile {
+  float: left;
+  word-wrap: break-word;
+  width: calc(100% - 80px);
+  word-break: break-word;
+  overflow: hidden;
+}
+
+.support-bar label {
+  color: #fff;
+  border: 0;
+  height: 100%;
+  display: inline-block;
+  overflow: hidden;
+  padding: 18px 0;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  position: relative;
+  width: 29px;
+  line-height: 28px;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.support-bar.contactSide label {
+  background-color: #42b4e6;
+}
+
+.support-bar > * {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.support-bar label > span {
+  -webkit-transform: translate(0,100%) rotate(-90deg);
+  -moz-transform: translate(0,100%) rotate(-90deg);
+  -ms-transform: translate(0,100%) rotate(-90deg);
+  -o-transform: translate(0,100%) rotate(-90deg);
+  transform: translate(0,100%) rotate(-90deg);
+  -webkit-transform-origin: 0 0;
+  -moz-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  -o-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -ms-transform: ratate(-90deg);
+  color: #fff;
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.support-bar.contactSide {
+  top: 360px;
+  left: 100%;
+}
+
+.support-bar {
+  display: table;
+  overflow: hidden;
+  position: fixed;
+  margin-left: -28px;
+  z-index: 50;
+  background: #f1f1f1;
+  -webkit-transition: 0.2s all ease;
+  -moz-transition: 0.2s all ease;
+  -ms-transition: 0.2s all ease;
+  -o-transition: 0.2s all ease;
+  transition: 0.2s all ease;
+}
+
+.support-bar label > span:after {
+  content: "";
+  float: left;
+  margin-top: 100%;
+}
+
+.support-bar .support-bar-icons ul {
+  width: 350px;
+  display: table;
+}
+
+.support-bar .support-bar-icons ul li {
+  display: table-cell;
+  width: 25%;
+  text-align: center;
+  text-transform: uppercase;
+  color: #9fa0a4;
+}
+
+.support-bar .support-bar-icons ul li a {
+  color: #626469;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.support-bar.active {
+  margin-left: -370px;;
+}
+
+.support-bar .support-bar-icons ul li a span {
+  display: block;
+}
+
+.help-menu-icon {
+  font-size: 40px;
+  color: $se-sky-blue;
+}
+
+.support-bar-icons {
+  padding-top: 10px;
+}
+
+#legend {
+  background-color: #fff;
+}
+
+.no-text-wrap {
+  white-space: nowrap;
+}
+
+
+
+.container{
+  max-width: 1100px; margin: auto;
+}
+.wifiSetting{
+  width: 600px;
+  border:1px solid #ccc; float: left;
+}
+.paneltitle{
+  background: #ededed; padding: 10px; font-size: 16px
+}
+.connectioncontainer{
+  max-height: 200px; border-radius: 3px; overflow: auto;
+  float: left; width: 60%; border: 1px solid #ccc; margin: 10px
+}
+.listconnection{
+  background: #fff; color: #000;padding: 15px;
+  margin: 5px; border-bottom: 1px solid #ededed; position: relative;
+}
+.listconnection:hover{
+  background: #188CD3; color: #fff;
+}
+
+.listconnection a{
+  display: none;
+  position: absolute;right: 20px; top: 8px;
+  background: #0FC1E4; color: #fff; padding: 5px 20px; border-radius: 3px
+}
+
+.listconnection:hover a{
+  display: block;
+}
+.disconnectcon{
+  float: right
+}
+.disconnectcon a{
+  background: #188CD3;padding: 10px 30px; display: inline-block; color: #fff; border-radius: 3px; margin: 10px
+}
+h6{ margin: 10px; font-size: 14px
+}
+.manualwifi input,.manualwifi table{
+width: 100%
+}
+.manualwifi{
+width: 100%;
+max-width: 400px;
+margin:30px 10px;
+float: left;
+}
+
+.manualwifi button{
+background: #188CD3;
+padding: 10px 20px;
+border-radius: 3px;
+color: #fff;
+border: 0;
+display: block;
+/* width: 100%; */
+margin: 20px 0;
+float: right;
+}
+.manualwifi input{
+padding: 10px
+}
+.onoffswitch {
+position: relative;
+width: 85px;
+display: inline-block;
+font-size: 80%;
+}
+.onoffswitch .onoffswitch-label {
+display: block;
+overflow: hidden;
+cursor: pointer;
+border: 1px solid hsl(0, 0%, 90%);
+-moz-border-radius: 20px;
+-webkit-border-radius: 20px;
+border-radius: 20px;
+margin: 0;
+}
+.onoffswitch .onoffswitch-inner {
+width: 200%;
+margin-left: -100%;
+-webkit-transition: margin 0.15s ease-in-out;
+-o-transition: margin 0.15s ease-in-out;
+-moz-transition: margin 0.15s ease-in-out;
+transition: margin 0.15s ease-in-out;
+}
+.onoffswitch .onoffswitch-inner:before,
+.onoffswitch .onoffswitch-inner:after {
+float: left;
+width: 50%;
+height: 24px;
+padding: 0;
+line-height: 24px;
+font-size: 80%;
+color: hsl(0, 0%, 100%);
+font-weight: normal;
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+}
+.onoffswitch .onoffswitch-inner:before {
+content: "Enable";
+padding-left: 10px;
+background-color: hsl(203, 100%, 39.1569%);
+color: hsl(0, 0%, 100%);
+}
+.onoffswitch .onoffswitch-inner:after {
+content: "Disable";
+padding-right: 10px;
+background-color: hsl(0, 0%, 98%);
+color: hsl(0, 0%, 24%);
+text-align: center;
+}
+.onoffswitch .onoffswitch-switch {
+width: 22px;
+height: 22px;
+margin: 0;
+background: hsl(0, 0%, 100%);
+box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+-moz-border-radius: 50%;
+-webkit-border-radius: 50%;
+border-radius: 50%;
+position: absolute;
+top: 2px;
+bottom: 0;
+right: 0px;
+-webkit-transition: right 0.15s ease-in-out;
+-o-transition: right 0.15s ease-in-out;
+-moz-transition: right 0.15s ease-in-out;
+transition: right 0.15s ease-in-out;
+}
+.toggle-group {
+position: relative;
+height: 27px;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+top: 50%;
+left: 20px;
+margin-top: -13.5px;
+}
+.toggle-group input[type=checkbox] {
+position: absolute;
+left: 10px;
+}
+.toggle-group input[type=checkbox]:checked ~ .onoffswitch .onoffswitch-label .onoffswitch-inner {
+margin-left: 0;
+}
+.toggle-group input[type=checkbox]:checked ~ .onoffswitch .onoffswitch-label .onoffswitch-switch {
+right: 1px;
+box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+.toggle-group input[type=checkbox]:focus ~ .onoffswitch {
+outline: thin dotted #333;
+outline: 0;
+}
+.toggle-group label {
+position: absolute;
+cursor: pointer;
+padding-left: 65px;
+display: inline-block;
+text-align: left;
+line-height: 24px;
+width: 100%;
+z-index: 1;
+height: 24px;
+font-weight: 200;
+}
+/* ==== Accessibility ===== */
+.aural {
+clip: rect(1px, 1px, 1px, 1px);
+height: 1px;
+overflow: hidden;
+position: absolute;
+width: 1px;
+}
+.aural:focus {
+clip: rect(0, 0, 0, 0);
+font-size: 1em;
+height: auto;
+outline: thin dotted;
+position: static !important;
+width: auto;
+overflow: visible;
+}
+.selectnetwork input,.selectnetwork select{ width: 100% ; padding: 10px; margin: 5px}
+.selectnetwork button{  background: #188CD3; padding: 10px; width: 100%; color: #fff; border: 0}
+.selectnetwork a{ font-size: 12px; margin: 10px; color: blue; display: block; }
+.selectnetwork{
+float: left;
+width: 250px; margin: 50px;
+border: 1px solid #ccc; text-align: center;
+padding: 20px
+}

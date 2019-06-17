@@ -1,0 +1,53 @@
+<div class="col-md-12">
+  <div class="col-md-1" translate='dashboard.selection'>
+  </div>
+  <div class="col-md-2">
+    <select class='xb-selector' ng-model='settings.type' ng-change='changeBattery()'>
+              <option value='' hidden translate='xanbus.config.option_select'></option>
+              <option value='1' translate='dashboard.battery.battery1'></option>
+              <option value='2' translate='dashboard.battery.battery2'></option>
+              <option value='3' translate='dashboard.battery.battery3'></option>
+              <option value='4' translate='dashboard.battery.battery4'></option>
+              <option value='5' translate='dashboard.battery.battery5'></option>
+            </select>
+  </div>
+  <div class="col-md-3">
+    <p class="input-group battery_calender">
+      <input type="text" class="form-control settings-controls__input--no-min-width" uib-datepicker-popup="yyyy/MM/dd" ng-model="settings.date" is-open="dates.isOpen" ng-required="true" close-text="Close" min-date="dates.minDate" max-date="dates.maxDate" />
+      <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="openCalender()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+    </p>
+  </div>
+</div>
+<div class="col-md-10 no-padding">
+  <div ng-show="dates.invalidDate && !myChart" style="border: 2px solid #DC0A0A; background-color:rgba(220, 50, 18, .1); border-radius: 25px; padding:30px; margin: 100px auto; width: 50%">
+    <div class="icon-Error_icon cg-icon-error" style="float: left; margin-right: -50px;"></div>
+    <div translate='dashboard.battery.invalidDate' style="color:#DC0A0A; font-size: 18px;"></div>
+  </div>
+  <div ng-show="!dates.invalidDate && myChart" class="col-md-12">
+    <chart value="myChart"></chart>
+  </div>
+</div>
+<div id="legend" class="col-md-2 no-padding" style="padding-right:15px; padding-left: 15px;">
+  <div class="col-md-12 no-padding se-legend-title">
+    <span style="font-weight: bold">{{'dashboard.battery.legend' | translate}}</span>&nbsp;
+  </div>
+  <div class="col-md-12 no-padding se-legend-enable" translate="dashboard.enable_diable"></div>
+  <div class="col-md-12 no-padding se-clickable" style="padding-top: 10px; padding-bottom: 10px;" ng-click="toggleHidden(0)">
+    <div style="background-color: #42B4E6; width: 60px; height:25px; float:left; margin-right: 20px; border: 1px solid #42B4E6;"></div>
+    <div class="device-list-description se-legend-text" ng-class="{ 'se-strikethrough' : myChart.data.datasets[0].hidden }" translate='dashboard.battery.volts'></div>
+  </div>
+  <div class="col-md-12 no-padding se-clickable" style="padding-top: 10px; padding-bottom: 10px;" ng-click="toggleHidden(1)">
+    <div style="background-color: #3DCD58; width: 60px; height:25px; float:left; margin-right: 20px; border: 1px solid #3DCD58;"></div>
+    <div class="device-list-description se-legend-text" ng-class="{ 'se-strikethrough' : myChart.data.datasets[1].hidden }" translate='dashboard.battery.current'></div>
+  </div>
+  <div class="col-md-12 no-padding se-clickable" style="padding-top: 10px; padding-bottom: 10px;" ng-click="toggleHidden(2)">
+    <div style="background-color: #E47F00; width: 60px; height:25px; float:left; margin-right: 20px; border: 1px solid #E47F00;"></div>
+    <div class="device-list-description se-legend-text" ng-class="{ 'se-strikethrough' : myChart.data.datasets[2].hidden }" translate='dashboard.battery.temperature'></div>
+  </div>
+  <div class="col-md-12 no-padding se-clickable" style="padding-top: 10px; padding-bottom: 10px;" ng-click="toggleHidden(3)">
+    <div style="background-color: #FFD100; width: 60px; height:25px; float:left; margin-right: 20px; border: 1px solid #FFD100;"></div>
+    <div class="device-list-description se-legend-text"ng-class="{ 'se-strikethrough' : myChart.data.datasets[3].hidden }"  translate='dashboard.battery.stateOfCharge'></div>
+  </div>
+</div>

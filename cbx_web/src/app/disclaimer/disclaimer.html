@@ -1,0 +1,65 @@
+﻿<!-- Outer division for vertical center -->
+<div class="dis-main" data-ng-controller="csbIdleTimer">
+  <div class="dis-container-outer">
+    <!-- Inner division for vertical cneter -->
+    <div class="dis-container-inner">
+      <!-- Content container -->
+      <div class="dis-container" style="width: 864px;">
+        <!-- Header section -->
+        <div class="dis-header">
+          <!-- Logo on right column -->
+          <div class="col-xs-6">
+            <div class="icon-schneider_logo_Green cg-schneider-icon"></div>
+          </div>
+          <!-- Device name and product ID on the left half -->
+          <div class="col-xs-6"
+             style="margin-top: 15px; text-align: right;">
+            <!-- device name and Product ID -->
+            <div style="text-align: right">
+              <b>{{deviceName}}</b> <b style="margin-left: 200px">{{productId}}</b>
+            </div>
+          </div>
+        </div>
+        <!-- Box section with border, Harzad Warning -->
+        <div class="dis-section-box">
+          <div class="dis-warning">
+            <h3>
+              <b translate="disclaimer.warning"></b>
+            </h3>
+          </div>
+          <div>
+            <h4>
+              <b translate="disclaimer.hazard">
+              </b>
+            </h4>
+            <h5 translate="disclaimer.owners_guide">
+            </h5>
+            <h4>
+              <b translate="disclaimer.failure">
+              </b>
+            </h4>
+          </div>
+        </div>
+        <!-- Remote monitoring disclaimer -->
+        <div class="dis-section-box" data-ng-if="remoteMonitoring">
+          <h5>
+            <span translate="disclaimer.remote_monitoring"></span>
+            <b translate="disclaimer.monitoring_warranty">
+            </b>
+          </h5>
+          <!-- Remote monitoring checkbox -->
+          <div class="dis-checkbox">
+            <input type="checkbox" id="chkDisclaimer" data-ng-model="remoteMonitorChecked" />
+            <label for="chkDisclaimer" translate="disclaimer.agree_monitoring">
+            </label>
+          </div>
+        </div>
+        <!-- User acceptance button -->
+        <div class="dis-btn-accept">
+          <input type="button" id="btnDiscAcceptance"
+               value="{{'disclaimer.accept' | translate}}" data-ng-click="disclaimerAcceptClicked()">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

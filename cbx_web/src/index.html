@@ -1,0 +1,22 @@
+<!Doctype html>
+<html ng-app="conext_gateway">
+
+<head>
+  <!-- IE can be configured to run pages on a local network in compatability mode.
+       That messes up our app. X-UA-Compatible removes those problems.
+   -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="UTF-8">
+  <!--<title>Schneider Electric - HMI Application</title>-->
+  <title update-title></title>
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <link rel="stylesheet" type="text/css" href="/css/gateway.min.css" />
+</head>
+
+<body>
+  <div ui-view="homeview"></div>
+  <!-- inject:js -->
+  <!-- endinject -->
+</body>
+
+</html>

@@ -1,0 +1,814 @@
+﻿{
+  "events": {
+    "export": "Export",
+    "logged_date": "Logged Date",
+    "logged_time": "Logged Time",
+    "device_type": "Device Type",
+    "all": "All",
+    "inverter": "Inverter",
+    "meter": "Meter",
+    "sensor": "Sensor",
+    "system": "System",
+    "device_name": "Device Name",
+    "event_code_description": "Event Code Description",
+    "foot_note": "<sup>*</sup>Mouse over the Event Code Description to know more details.",
+    "closed_date": "Closed Date",
+    "closed_time": "Closed Time",
+    "alarms_error": "Log cannot be displayed.<br/>An internal error has prevented the display of the historical alarms.",
+    "warnings_error": "Log cannot be displayed.<br/>An internal error has prevented the display of the historical warnings.",
+    "refresh": "Refresh",
+    "refresh_message_active_alarm": "The active alarms have changed.",
+    "refresh_message_active_warnings": "The active warnings have changed.",
+    "refresh_message_historical_alarms": "The historical alarms have changed.",
+    "refresh_message_historical_warnings": "The historical warnings have changed.",
+
+    "side_menu": {
+      "active": "Active",
+      "historical": "Historical"
+    },
+
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "first": "First",
+      "last": "Last"
+    },
+
+    "error_code": {
+      "CL60": {
+        "0": {
+          "short_desc": "No active alarm",
+          "long_desc": "No active alarm"
+        },
+        "2": {
+          "short_desc": "Grid over voltage",
+          "long_desc": "The grid voltage exceeds the inverter allowable range. Protection time and protection threshold vary as per different country requirements."
+        },
+        "3": {
+          "short_desc": "Grid over voltage",
+          "long_desc": "Grid transient voltage exceeds the permissible range."
+        },
+        "4": {
+          "short_desc": "Grid under voltage",
+          "long_desc": "The grid voltage is below inverter allowable lower limit. Protection time and protection threshold vary as per different country requirements."
+        },
+        "5": {
+          "short_desc": "Grid under voltage",
+          "long_desc": "The grid voltage is too low."
+        },
+        "6": {
+          "short_desc": "Hardware fault",
+          "long_desc": "Hardware fault"
+        },
+        "7": {
+          "short_desc": "Transient AC over current",
+          "long_desc": "The AC output current exceeds the inverter protection limit."
+        },
+        "8": {
+          "short_desc": "Grid over frequency",
+          "long_desc": "The grid frequency exceeds the inverter allowable upper limit."
+        },
+        "9": {
+          "short_desc": "Grid under frequency",
+          "long_desc": "The grid frequency exceeds the inverter allowable lower limit."
+        },
+        "10": {
+          "short_desc": "Islanding",
+          "long_desc": "Islanding"
+        },
+        "11": {
+          "short_desc": "DC current over",
+          "long_desc": "The DC component of AC current exceeds the inverter limit."
+        },
+        "12": {
+          "short_desc": "Leakage current over",
+          "long_desc": "Fault current leakage is detected."
+        },
+        "13": {
+          "short_desc": "Grid abnormal",
+          "long_desc": "Abnormal grid condition is detected."
+        },
+        "14": {
+          "short_desc": "Grid over voltage",
+          "long_desc": "The average grid voltage keeps exceeding the allowable range for over 10 minutes."
+        },
+        "15": {
+          "short_desc": "Grid over voltage",
+          "long_desc": "Grid impedance exceeds inverter limit."
+        },
+        "16": {
+          "short_desc": "PV power module overload",
+          "long_desc": "PV power module overload"
+        },
+        "17": {
+          "short_desc": "Grid voltage unbalance",
+          "long_desc": "Grid voltage is not balanced"
+        },
+        "19": {
+          "short_desc": "DC bus over voltage",
+          "long_desc": "DC Bus voltage is high"
+        },
+        "20": {
+          "short_desc": "DC bus over voltage",
+          "long_desc": "DC Bus voltage is high"
+        },
+        "21": {
+          "short_desc": "Over current protection",
+          "long_desc": "Over current protection"
+        },
+        "22": {
+          "short_desc": "Over current protection",
+          "long_desc": "Over current protection"
+        },
+        "23": {
+          "short_desc": "PV configuration changed",
+          "long_desc": "PV configuration mode has changed during normal operation."
+        },
+        "24": {
+          "short_desc": "DC bus volatege unbalance",
+          "long_desc": "Neutral point deviation is detected."
+        },
+        "25": {
+          "short_desc": "DC bus volatege unbalance",
+          "long_desc": "Transient unbalance of voltage neutral point."
+        },
+        "26": {
+          "short_desc": "DC bus volatege unbalance",
+          "long_desc": "Bus voltage is fluctuating."
+        },
+        "36": {
+          "short_desc": "Power module over temperature",
+          "long_desc": "Module temperature is too high."
+        },
+        "37": {
+          "short_desc": "Ambient over temperature",
+          "long_desc": "Ambient temperature is too high."
+        },
+        "38": {
+          "short_desc": "AC relay fault",
+          "long_desc": "A fault is detected in the relay."
+        },
+        "39": {
+          "short_desc": "Low insulation resistance",
+          "long_desc": "Inverter insulation resistance fault (ISO-flt)"
+        },
+        "40": {
+          "short_desc": "Over current protection",
+          "long_desc": "IGBT saturation fault"
+        },
+        "41": {
+          "short_desc": "Hardware fault",
+          "long_desc": "Hardware fault"
+        },
+        "42": {
+          "short_desc": "Hardware fault",
+          "long_desc": "Hardware fault"
+        },
+        "43": {
+          "short_desc": "Low temperature",
+          "long_desc": "The ambient temperature falls below -25C (-13F)."
+        },
+        "44": {
+          "short_desc": "AC/DC invertion circuit fault",
+          "long_desc": "AC/DC invertion circuit fault"
+        },
+        "45": {
+          "short_desc": "PV boost circuit fault",
+          "long_desc": "PV boost circuit fault"
+        },
+        "47": {
+          "short_desc": "PV input settings not matching",
+          "long_desc": "PV input settings do not match the actual connecion."
+        },
+        "48": {
+          "short_desc": "Hardware fault",
+          "long_desc": "Phase-R current sampling channel fault."
+        },
+        "49": {
+          "short_desc": "Hardware fault",
+          "long_desc": "Phase-S current sampling channel fault."
+        },
+        "50": {
+          "short_desc": "Hardware fault",
+          "long_desc": "Phase-T current sampling channel fault."
+        },
+        "51": {
+          "short_desc": "Hardware overvoltage/overcurrent protection",
+          "long_desc": "Hardware overvoltage/overcurrent protection."
+        },
+        "70": {
+          "short_desc": "Fan fault",
+          "long_desc": "Fan fault."
+        },
+        "71": {
+          "short_desc": "AC SPD alarm",
+          "long_desc": "AC side SPD fault."
+        },
+        "72": {
+          "short_desc": "DC SPD alarm",
+          "long_desc": "DC side SPD fault."
+        },
+        "73": {
+          "short_desc": "Fuse blown out",
+          "long_desc": "Fuse has blown out."
+        },
+        "74": {
+          "short_desc": "Communicaton fault",
+          "long_desc": "LCD communication fault."
+        },
+        "75": {
+          "short_desc": "Low irradiance",
+          "long_desc": "Solar irradiation is not sufficient for inverter operation."
+        },
+        "76": {
+          "short_desc": "PV overload",
+          "long_desc": "PV overload condition."
+        },
+        "78": {
+          "short_desc": "PV1 abnormal alarm",
+          "long_desc": "PV power abnormal warning."
+        },
+        "87": {
+          "short_desc": "AFD power module alarm",
+          "long_desc": "AFD power module abnormal alarm."
+        },
+        "88": {
+          "short_desc": "Arc fault",
+          "long_desc": "Arc fault warning."
+        },
+        "89": {
+          "short_desc": "AFD stop alarm",
+          "long_desc": "ADF failure warning."
+        },
+        "532": {
+          "short_desc": "String 1 reverse connection alarm",
+          "long_desc": "String 1 reverse connection alarm"
+        },
+        "533": {
+          "short_desc": "String 2 reverse connection alarm",
+          "long_desc": "String 2 reverse connection alarm"
+        },
+        "534": {
+          "short_desc": "String 3 reverse connection alarm",
+          "long_desc": "String 3 reverse connection alarm"
+        },
+        "535": {
+          "short_desc": "String 4 reverse connection alarm",
+          "long_desc": "String 4 reverse connection alarm"
+        },
+        "536": {
+          "short_desc": "String 5 reverse connection alarm",
+          "long_desc": "String 5 reverse connection alarm"
+        },
+        "537": {
+          "short_desc": "String 6 reverse connection alarm",
+          "long_desc": "String 6 reverse connection alarm"
+        },
+        "538": {
+          "short_desc": "String 7 reverse connection alarm",
+          "long_desc": "String 7 reverse connection alarm"
+        },
+        "539": {
+          "short_desc": "String 8 reverse connection alarm",
+          "long_desc": "String 8 reverse connection alarm"
+        },
+        "540": {
+          "short_desc": "String 9 reverse connection alarm",
+          "long_desc": "String 9 reverse connection alarm"
+        },
+        "541": {
+          "short_desc": "String 10 reverse connection alarm",
+          "long_desc": "String 10 reverse connection alarm"
+        },
+        "542": {
+          "short_desc": "String 11 reverse connection alarm",
+          "long_desc": "String 11 reverse connection alarm"
+        },
+        "543": {
+          "short_desc": "String 12 reverse connection alarm",
+          "long_desc": "String 12 reverse connection alarm"
+        },
+        "544": {
+          "short_desc": "String 13 reverse connection alarm",
+          "long_desc": "String 13 reverse connection alarm"
+        },
+        "545": {
+          "short_desc": "String 14 reverse connection alarm",
+          "long_desc": "String 14 reverse connection alarm"
+        },
+        "548": {
+          "short_desc": "String 1 power module abnormal alarm",
+          "long_desc": "String 1 power module output current abnormal"
+        },
+        "549": {
+          "short_desc": "String 2 power module abnormal alarm",
+          "long_desc": "String 2 power module output current abnormal"
+        },
+        "550": {
+          "short_desc": "String 3 power module abnormal alarm",
+          "long_desc": "String 3 power module output current abnormal"
+        },
+        "551": {
+          "short_desc": "String 4 power module abnormal alarm",
+          "long_desc": "String 4 power module output current abnormal"
+        },
+        "552": {
+          "short_desc": "String 5 power module abnormal alarm",
+          "long_desc": "String 5 power module output current abnormal"
+        },
+        "553": {
+          "short_desc": "String 6 power module abnormal alarm",
+          "long_desc": "String 6 power module output current abnormal"
+        },
+        "554": {
+          "short_desc": "String 7 power module abnormal alarm",
+          "long_desc": "String 7 power module output current abnormal"
+        },
+        "555": {
+          "short_desc": "String 8 power module abnormal alarm",
+          "long_desc": "String 8 power module output current abnormal"
+        },
+        "556": {
+          "short_desc": "String 9 power module abnormal alarm",
+          "long_desc": "String 9 power module output current abnormal"
+        },
+        "557": {
+          "short_desc": "String 10 power module abnormal alarm",
+          "long_desc": "String 10 power module output current abnormal"
+        },
+        "558": {
+          "short_desc": "String 11 power module abnormal alarm",
+          "long_desc": "String 11 power module output current abnormal"
+        },
+        "559": {
+          "short_desc": "String 12 power module abnormal alarm",
+          "long_desc": "String 12 power module output current abnormal"
+        },
+        "560": {
+          "short_desc": "String 13 power module abnormal alarm",
+          "long_desc": "String 13 power module output current abnormal"
+        },
+        "561": {
+          "short_desc": "String 14 power module abnormal alarm",
+          "long_desc": "String 14 power module output current abnormal"
+        }
+      },
+      "PM2XXX": {
+        "1": {
+          "short_desc": "Over current, phase",
+          "long_desc": "Over current, phase"
+        },
+        "2": {
+          "short_desc": "Under current, phase",
+          "long_desc": "Under current, phase"
+        },
+        "3": {
+          "short_desc": "Over current, neutral",
+          "long_desc": "Over current, neutral"
+        },
+        "4": {
+          "short_desc": "Over current, ground",
+          "long_desc": "Over current, ground"
+        },
+        "5": {
+          "short_desc": "Over voltage, L-L",
+          "long_desc": "Over voltage, L-L"
+        },
+        "6": {
+          "short_desc": "Under voltage, L-L",
+          "long_desc": "Under voltage, L-L"
+        },
+        "7": {
+          "short_desc": "Over voltage, L-N",
+          "long_desc": "Over voltage, L-N"
+        },
+        "8": {
+          "short_desc": "Under voltage, L-N",
+          "long_desc": "Under voltage, L-N"
+        },
+        "9": {
+          "short_desc": "Over power, active",
+          "long_desc": "Over power, active"
+        },
+        "10": {
+          "short_desc": "Over power, reactive",
+          "long_desc": "Over power, reactive"
+        },
+        "11": {
+          "short_desc": "Over power, apparent",
+          "long_desc": "Over power, apparent"
+        },
+        "12": {
+          "short_desc": "Leading power factor, true",
+          "long_desc": "Leading power factor, true"
+        },
+        "13": {
+          "short_desc": "Lagging power factor, true",
+          "long_desc": "Lagging power factor, true"
+        },
+        "25": {
+          "short_desc": "Over frequency",
+          "long_desc": "Over frequency"
+        },
+        "26": {
+          "short_desc": "Under frequency",
+          "long_desc": "Under frequency"
+        },
+        "28": {
+          "short_desc": "Over voltage total harmonic distortion",
+          "long_desc": "Over voltage total harmonic distortion"
+        },
+        "29": {
+          "short_desc": "Phase loss",
+          "long_desc": "Phase loss"
+        },
+        "33": {
+          "short_desc": "Meter power up (control power loss)",
+          "long_desc": "Meter power up (control power loss)"
+        },
+        "34": {
+          "short_desc": "Meter reset",
+          "long_desc": "Meter reset"
+        },
+        "35": {
+          "short_desc": "Meter diagnostic",
+          "long_desc": "Meter diagnostic"
+        },
+        "36": {
+          "short_desc": "Phase reversal",
+          "long_desc": "Phase reversal"
+        }
+      },
+      "Inverter": {
+        "0": {
+          "short_desc": "No active alarms",
+          "long_desc": "No active alarms"
+        },
+        "710": {
+          "short_desc": "Sys cfg init fault",
+          "long_desc": "The System configuration done by the user/ installer is incorrect. Check and select proper configuration. If the event persists, contact Schneider Electric customer service"
+        },
+        "711": {
+          "short_desc": "Share sys cfg fault",
+          "long_desc": "The internal configuration shared between processors is incorrect. Disconnect both the AC and DC and restart the inverter. If the event persists contact Schneider Electric customer service"
+        },
+        "205": {
+          "short_desc": "AC init fault",
+          "long_desc": "Initialization of Control Processor fails. If the event persists, contact Schneider Electric customer service"
+        },
+        "203": {
+          "short_desc": "DC init fault",
+          "long_desc": "Initialization of Control Processor fails.  If the event persists, contact Schneider Electric customer service"
+        },
+        "705": {
+          "short_desc": "PV I/P reversed",
+          "long_desc": "PV input wiring reversed. Have a qualified installer check PV input wiring, correct the wiring connections and restart the unit"
+        },
+        "206": {
+          "short_desc": "AC BIST fault",
+          "long_desc": "Built in Self Test of Control Processor fails. If the event persists, contact Schneider Electric customer service"
+        },
+        "204": {
+          "short_desc": "DC BIST fault",
+          "long_desc": "Built in Self Test of Control Processor fails. If the event persists, contact Schneider Electric customer service"
+        },
+        "712": {
+          "short_desc": "AC int cfg fault",
+          "long_desc": "The internal configuration is incorrect on the Control Processors. Restart the unit. If the event persists contact Schneider Electric customer service"
+        },
+        "713": {
+          "short_desc": "DC int cfg fault",
+          "long_desc": "The internal configuration is incorrect on the Control Processors. Restart the unit. If the event persists contact Schneider Electric customer service"
+        },
+        "32": {
+          "short_desc": "AC temp snsr fault",
+          "long_desc": "The AC Module temperature is either very high or low. If the event persists, contact Schneider Electric customer service"
+        },
+        "33": {
+          "short_desc": "DC temp snsr fault",
+          "long_desc": "The DC Module temperature is either very high or low. If the event persists, contact Schneider Electric customer service"
+        },
+        "709": {
+          "short_desc": "Arc fault",
+          "long_desc": "The unit has detected an Arc Fault condition. An Arc Fault can be reset only manually. For more details, refer the ?Arc Fault Detection? section in the manual. If the event occurs frequently, contact Schneider Electric customer service"
+        },
+        "704": {
+          "short_desc": "AFD selftest fail",
+          "long_desc": "Arc fault detection module failure detected. If the event persists, contact Schneider Electric customer service"
+        },
+        "714": {
+          "short_desc": "RPO power mod error",
+          "long_desc": "The RPO power module has failed. Contact Schneider Electric customer service"
+        },
+        "10": {
+          "short_desc": "AC relay fault",
+          "long_desc": "Line Tie relay is either welded or opened. If the event persists, contact Schneider Electric customer service"
+        },
+        "47": {
+          "short_desc": "AC volt snsr fault",
+          "long_desc": "The Grid voltage sensor fails to measure the voltage accurately. Reset the unit by turning off the DC disconnect. If the event persists, contact Schneider Electric customer service"
+        },
+        "702": {
+          "short_desc": "RCMU fault",
+          "long_desc": "The Earth Leakage current is repeatedly detected to be greater than limited value. Check whether the insulation between the PV to ground is higher than the specified value. If the event persists, contact Schneider Electric customer service"
+        },
+        "708": {
+          "short_desc": "RCMU fault red",
+          "long_desc": "The Earth Leakage current is greater than the limited value. It is checked for repeated occurrence. If the repetition occurs more than four times, then this fault occurs. Check whether the insulation between the PV to ground is higher than the specified value. If the event persists, contact Schneider Electric customer service"
+        },
+        "31": {
+          "short_desc": "AC curr snsr fault",
+          "long_desc": "The Grid Current Sensor is not measuring the grid current accurately. If the event persists, contact Schneider Electric customer service"
+        },
+        "131": {
+          "short_desc": "Low Eff fault",
+          "long_desc": "The losses in the unit are higher than normal and hence the efficiency is Low. If the event persists, contact Schneider Electric customer service"
+        },
+        "2616": {
+          "short_desc": "PV insulation error",
+          "long_desc": "The PV insulation measured between any PV input to earth is lesser than the specified limit. Have a qualified installer to check for PV resistance"
+        },
+        "2647": {
+          "short_desc": "RCMU error red",
+          "long_desc": "RCMU error detected. Excessive steady state residual current or sudden change in residual current. The inverter resumes normal operation after sometime. Wait for the inverter to resume power production"
+        },
+        "2646": {
+          "short_desc": "RCMU error red",
+          "long_desc": "RCMU error detected. Excessive steady state residual current or sudden change in residual current. The inverter resumes normal operation after sometime. Wait for the inverter to resume power production"
+        },
+        "701": {
+          "short_desc": "DC injection error",
+          "long_desc": "The DC content in the AC output current is higher than rated value. If the event persists, contact Schneider Electric customer service"
+        },
+        "706": {
+          "short_desc": "DC injection inst",
+          "long_desc": "The instantaneous value of DC content in the AC output current is higher than rated value. If the event persists, contact Schneider Electric customer service"
+        },
+        "2061": {
+          "short_desc": "AC modules OT",
+          "long_desc": "The inverter ambient or AC module temperature is beyond the safe operating limits of the inverter. Switch off the power to the unit, for it to cool. If the event persists, contact Schneider Electric customer service"
+        },
+        "2062": {
+          "short_desc": "DC mod12 OT",
+          "long_desc": "The temperature on DC Power modules is beyond the limits. The ambient is beyond the operating limits. Switch off the power to the unit for it to cool. If the event persists, contact Schneider Electric customer service"
+        },
+        "2624": {
+          "short_desc": "PV12 OC error",
+          "long_desc": "The current measured on both the PV channels is higher than the rated values. If the event persists, contact Schneider Electric customer service"
+        },
+        "2450": {
+          "short_desc": "No-Grid error",
+          "long_desc": "Grid is not available"
+        },
+        "2406": {
+          "short_desc": "AC UV fast error",
+          "long_desc": "The Grid Voltage is below the set limits. The fall in the grid voltage is rapid. Check the voltage, if it is within the operating limits and the problem persists, contact Schneider Electric customer service"
+        },
+        "2407": {
+          "short_desc": "AC OV fast error",
+          "long_desc": "The Grid Voltage is above the set limits. The rise in the grid voltage is rapid. Check the voltage, if it is within the operating limits and the problem persists, contact Schneider Electric customer service"
+        },
+        "2401": {
+          "short_desc": "AC UF fast error",
+          "long_desc": "The Grid Frequency is below the set limits. The fall in the grid frequency is rapid. Check the frequency, if it is within the operating limits and the problem persists, contact Schneider Electric customer service"
+        },
+        "2402": {
+          "short_desc": "AC OF fast error",
+          "long_desc": "The Grid Frequency is above the set limits. The rise in the grid frequency is rapid. Check the frequency, if it is within the operating limits and the problem persists, contact Schneider Electric customer service"
+        },
+        "2418": {
+          "short_desc": "AC UV slow error",
+          "long_desc": "The Grid Voltage is below the set limits. Check the voltage, if it is within the operating limits and the problem persists, contact Schneider Electric customer service"
+        },
+        "2419": {
+          "short_desc": "AC OV slow error",
+          "long_desc": "The Grid Voltage is above the set limits. Check the voltage, if it is within the operating limits and the problem persists, contact Schneider Electric customer service"
+        },
+        "2416": {
+          "short_desc": "AC UF slow error",
+          "long_desc": "The Grid Frequency is below the set limits. Check the frequency, if it is within the operating limits and the problem persists, contact Schneider Electric customer service"
+        },
+        "2417": {
+          "short_desc": "AC OF slow error",
+          "long_desc": "The Grid Frequency is above the set limits. Check the frequency, if it is within the operating limits and the problem persists, contact Schneider Electric customer service"
+        },
+        "2415": {
+          "short_desc": "AC OV avg error",
+          "long_desc": "The Grid Voltage is above the limits over a set period of time. Restart the inverter. If the event persists, contact Schneider Electric customer service"
+        },
+        "2410": {
+          "short_desc": "AC OV inst",
+          "long_desc": "The Grid Voltage is below the set limits instantaneously. Check the voltage, if it is within the operating limits and the problem persists, contact Schneider Electric customer service"
+        },
+        "2408": {
+          "short_desc": "AC UV inst",
+          "long_desc": "The Grid Voltage is above the set limits instantaneously. Check the voltage, if it is within the operating limits and the problem persists, contact Schneider Electric customer service"
+        },
+        "2460": {
+          "short_desc": "AC OC error",
+          "long_desc": "The current measured in any one phase is beyond the specified limits. Restart the inverter. If the event persists, then contact Schneider Electric customer service"
+        },
+        "2648": {
+          "short_desc": "Low Eff error",
+          "long_desc": "The losses in the unit are higher than normal. So efficiency is low. Contact Schneider Electric customer service"
+        },
+        "2060": {
+          "short_desc": "AC low temp",
+          "long_desc": "The temperature on the AC power modules is lower than the limits. The unit does not start. Wait till the temperature rises to a value greater than the normal temperature"
+        },
+        "2411": {
+          "short_desc": "AC OC inst ",
+          "long_desc": "The Grid Current is above the set limits instantaneously. Restart the inverter. If the event persists, contact Schneider Electric customer service"
+        },
+        "2605": {
+          "short_desc": "PV 1 OV error",
+          "long_desc": "The voltage measured at PV1 input terminal is greater than the specified limit. (>950 V). Check for PV configuration and voltage"
+        },
+        "2606": {
+          "short_desc": "PV 2 OV error",
+          "long_desc": "The voltage measured at the PV2 input terminal is greater than the specified limit (>950 V). Check for PV configuration and voltage"
+        },
+        "2631": {
+          "short_desc": "PV UV error",
+          "long_desc": "PV voltages on both the channels are lesser than the specified value (<200 V)"
+        },
+        "2018": {
+          "short_desc": "AC inter-comm error",
+          "long_desc": "This error occurs, when the internal communication between processors in the control board fails after time out. Reset the unit by turning OFF both the DC disconnect and AC breaker (external). If the event persists, contact Schneider Electric customer service"
+        },
+        "2101": {
+          "short_desc": "DC inter-comm error",
+          "long_desc": "This error occurs, when the internal communication between processors in the control board fails after time out. Reset the unit by turning OFF both the DC disconnect and AC breaker (external). If the event persists then contact Schneider Electric customer service"
+        },
+        "4680": {
+          "short_desc": "Invalid Date and Time settings detected",
+          "long_desc": "Invalid Date and Time settings detected"
+        },
+        "4661": {
+          "short_desc": "PV1 SPD service",
+          "long_desc": "The SPD module connected on the PV1 input channel reached EOL and needs replacement. Contact Schneider Electric customer service"
+        },
+        "4662": {
+          "short_desc": "PV2 SPD service",
+          "long_desc": "The SPD module connected on the PV2 input channel reached EOL and needs replacement. Contact Schneider Electric customer service"
+        },
+        "4663": {
+          "short_desc": "AC SPD warning",
+          "long_desc": "The SPD module connected on the AC output channel reached EOL and needs replacement. Contact Schneider Electric customer service"
+        },
+        "4003": {
+          "short_desc": "Replace fan",
+          "long_desc": "Fault or FAN EOL detected and needs FAN replacement. Contact Schneider Electric customer service"
+        },
+        "4004": {
+          "short_desc": "Loss of cooling",
+          "long_desc": "Fan Control circuit hardware failure has been detected. Contact Schneider Electric customer service"
+        },
+        "4068": {
+          "short_desc": "DC mod1 OT trip",
+          "long_desc": "The DC Module1 over temperature is detected and the power output from PV1 channel is stopped. The PV1 channel resumes power production once the temperature reduces to a value less than the threshold value"
+        },
+        "4069": {
+          "short_desc": "DC mod2 OT trip",
+          "long_desc": "The DC Module2 Over temperature detected and power output from PV2 channel is stopped. The PV2 channel resumes the power production once the temperature reduces to a value less than the threshold value"
+        },
+        "2633": {
+          "short_desc": "PV1 OC warning",
+          "long_desc": "PV1 Over current detected, hence the power output from PV1 is stopped. If the event persists, contact Schneider Electric customer service"
+        },
+        "2634": {
+          "short_desc": "PV2 OC warning",
+          "long_desc": "PV2 Over current detected, hence the power output from PV2 is stopped. If the event persists, contact Schneider Electric customer service"
+        },
+        "4061": {
+          "short_desc": "Ambient OT warning",
+          "long_desc": "The ambient temperature has crossed the nominal operating range and the unit starts to derate"
+        },
+        "4660": {
+          "short_desc": "AC mod OT warning",
+          "long_desc": "The temperature on the AC module has crossed the normal operating limit and the unit starts to derate"
+        },
+        "4065": {
+          "short_desc": "DC mod1 OT warning",
+          "long_desc": "The DC module1 temperature crossed the nominal operating limits and the unit starts to derate"
+        },
+        "4066": {
+          "short_desc": "DC mod2 OT warning",
+          "long_desc": "The DC module2 temperature crossed the nominal operating limits. The unit may start to derate and recover once the temperature reduces to a value less than the threshold value"
+        },
+        "4656": {
+          "short_desc": "PV1 UV warning",
+          "long_desc": "The input PV voltage is lower than the nominal operating limits at the PV1 input terminal"
+        },
+        "4657": {
+          "short_desc": "PV2 UV warning",
+          "long_desc": "The input PV voltage is lower than the nominal operating limits at the PV2 input terminal"
+        },
+        "4700": {
+          "short_desc": "Low power wrn",
+          "long_desc": "The input PV power is low. The unit does not go online and recovers when sufficient input power is available"
+        },
+        "8000": {
+          "short_desc": "AC internal error",
+          "long_desc": "Internal error reported by the processor. If the event persists, contact Schneider Electric customer service with the inverter LCD display details"
+        },
+        "9000": {
+          "short_desc": "DC internal error",
+          "long_desc": "Internal error reported by the processor. If the event persists, contact Schneider Electric customer service with the inverter LCD display details"
+        },
+        "703": {
+          "short_desc": "AFCI fault",
+          "long_desc": "Comm MCU detected Arc fault condition. Contact Schneider Electric customer service"
+        },
+        "2102": {
+          "short_desc": "DCAC comm error",
+          "long_desc": "Communication error in the Control processor detected by Comm processor. Restart the inverter. If the event persists, contact Schneider Electric customer service"
+        },
+        "7000": {
+          "short_desc": "Comm Internal error",
+          "long_desc": "Internal error reported by Communication Processor. If the event persists, contact Schneider Electric customer service with the inverter LCD display details"
+        }
+      },
+      "Meter": {
+        "1": {
+          "short_desc": "Phase A Voltage out of range",
+          "long_desc": "Phase A Voltage out of range"
+        },
+        "2": {
+          "short_desc": "Phase B Voltage out of range",
+          "long_desc": "Phase B Voltage out of range"
+        },
+        "3": {
+          "short_desc": "Phase C Voltage out of range",
+          "long_desc": "Phase C Voltage out of range"
+        },
+        "4": {
+          "short_desc": "Phase A Current out of range",
+          "long_desc": "Phase A Current out of range"
+        },
+        "5": {
+          "short_desc": "Phase B Current out of range",
+          "long_desc": "Phase B Current out of range"
+        },
+        "6": {
+          "short_desc": "Phase C Current out of range",
+          "long_desc": "Phase C Current out of range"
+        },
+        "7": {
+          "short_desc": "Frequency out of range of 45 to 65Hz",
+          "long_desc": "Frequency out of range of 45 to 65Hz"
+        },
+        "8": {
+          "short_desc": "Reserved for future use",
+          "long_desc": "Reserved for future use"
+        },
+        "9": {
+          "short_desc": "Phase Loss A",
+          "long_desc": "Phase Loss A"
+        },
+        "10": {
+          "short_desc": "Phase Loss B",
+          "long_desc": "Phase Loss B"
+        },
+        "11": {
+          "short_desc": "Phase Loss C",
+          "long_desc": "Phase Loss C"
+        },
+        "12": {
+          "short_desc": "Low Power Factor On A",
+          "long_desc": "Low Power Factor On A"
+        },
+        "13": {
+          "short_desc": "Low Power Factor On B",
+          "long_desc": "Low Power Factor On B"
+        },
+        "14": {
+          "short_desc": "Low Power Factor On C",
+          "long_desc": "Low Power Factor On C"
+        },
+        "15": {
+          "short_desc": "Energy pulse output overrun error",
+          "long_desc": "Energy pulse output overrun error"
+        },
+        "16": {
+          "short_desc": "Energy pulse output configuration error",
+          "long_desc": "Energy pulse output configuration error"
+        }
+      },
+      "System": {
+        "10001": {
+          "short_desc": "Device communication error",
+          "long_desc": "Device communication error"
+        },
+        "10002": {
+          "short_desc": "Device type not defined",
+          "long_desc": "Device type not defined"
+        },
+        "10003": {
+          "short_desc": "Installed AC capacity percentage over 100",
+          "long_desc": "Installed AC capacity percentage over 100"
+        }
+      }
+    }
+  }
+}

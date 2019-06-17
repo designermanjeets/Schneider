@@ -1,0 +1,41 @@
+<div ng-show="devinfo.FLT_LIST.length > 0">
+  <div class="col-md-12 devinfo-faults">
+    <div class="col-md-12" ng-repeat="flt in devinfo.FLT_LIST">
+      {{flt.timestamp * 1000 | date:'yyyy-MM-dd HH:mm:ss' }} {{flt.id}} - {{flt.name}}: {{flt.description | degFormatter}}
+    </div>
+  </div>
+</div>
+
+<div ng-show="devinfo.WRN_LIST.length > 0">
+  <div class="col-md-12 devinfo-warnings">
+    <div class="col-md-12" ng-repeat="wrn in devinfo.WRN_LIST">
+      {{wrn.timestamp * 1000 | date:'yyyy-MM-dd HH:mm:ss' }} {{wrn.id}} - {{wrn.name}}: {{wrn.description | degFormatter}}
+    </div>
+  </div>
+</div>
+
+<div translate='xanbus.evtlog.historical' style="font-size: 20px;margin-bottom: 20px;">
+</div>
+<div>
+  <table class="evtlog table table-striped table-bordered">
+    <tr>
+      <th/>
+      <th translate="xanbus.evtlog.timestamp"></th>
+      <th translate="xanbus.evtlog.id"></th>
+      <th translate="xanbus.evtlog.name"></th>
+      <th translate="xanbus.evtlog.description" />
+    </tr>
+    <tr ng-repeat="evt in devinfo.EVT_LOG">
+      <td style="width:52px;">
+        <div class="icon-warning_icon cg-icon-error" style="margin-top: -76px;" ng-show="evt.type == 'Warn'"></div>
+        <div class="icon-Error_icon cg-icon-error" style="margin-top: -76px;" ng-show="evt.type == 'Fault'"></div>
+      </td>
+      <td>{{ time(evt.timestamp) }}</td>
+      <td>{{evt.id}}</td>
+      <td>{{evt.name}}</td>
+      <td>
+        {{evt.description | degFormatter}}
+      </td>
+    </tr>
+  </table>
+</div>

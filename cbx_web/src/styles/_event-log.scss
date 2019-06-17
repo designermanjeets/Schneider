@@ -1,0 +1,25 @@
+﻿/////////////////////////////////////////////////////////////////////
+//
+// Event log screen
+
+.event-log__device-type {
+  select {
+    font-weight: normal;
+    margin-left: 10px;
+  }
+}
+
+.event-log__controls {
+  display: flex;
+  margin: $line-height-computed 0 $line-height-computed/2 0;
+
+  .event-log__pagination {
+    flex-grow: 1;
+  }
+
+  .pagination {
+    margin: 0;
+  }
+}
+
+

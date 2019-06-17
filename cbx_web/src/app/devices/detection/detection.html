@@ -1,0 +1,99 @@
+﻿<div ng-cloak>
+  <!-- Device modbus ID range definition -->
+  <se-panel value="{{'devices.detection.detect_devices' | translate}}">
+    <form name="forms.detectDevices" novalidate>
+      <input type="hidden" ng-model="dummyValue" name="dummyField"><!-- to let Angular mark form as invalid, w/o highlighting one field -->
+      <table class="device-detection__inputs">
+        <thead>
+          <tr>
+            <th translate="devices.detection.port"></th>
+            <th translate="devices.detection.range"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td translate="devices.detection.bus1"></td>
+            <td>
+              <input name="portAStart"
+                     type="number" class="numeric-input"
+                     ng-class="{'input--invalid': forms.detectDevices.portAStart.$invalid}"
+                     ng-maxlength="3" ng-pattern="/^\d+$/"
+                     min="1" max="246"
+                     ng-model="detectionRanges.BUS1_AUTODETECT_ADDR_START" />
+              <span translate="devices.detection.to" class="device-detection__range-to"></span>
+              <input name="portAEnd"
+                     ng-class="{'input--invalid': forms.detectDevices.portAEnd.$invalid}"
+                     type="number" class="numeric-input"
+                     ng-maxlength="3" ng-pattern="/^\d+$/"
+                     min="2" max="247"
+                     ng-model="detectionRanges.BUS1_AUTODETECT_ADDR_END" />
+            </td>
+          </tr>
+          <tr>
+            <td translate="devices.detection.bus2"></td>
+            <td>
+              <input name="portBStart"
+                     type="number" class="numeric-input"
+                     ng-class="{'input--invalid': forms.detectDevices.portBStart.$invalid}"
+                     ng-maxlength="3" ng-pattern="/^\d+$/"
+                     min="1" max="246"
+                     ng-model="detectionRanges.BUS2_AUTODETECT_ADDR_START" />
+              <span translate="devices.detection.to" class="device-detection__range-to"></span>
+              <input name="portBEnd"
+                     type="number" class="numeric-input"
+                     ng-class="{'input--invalid': forms.detectDevices.portBEnd.$invalid}"
+                     ng-maxlength="3" ng-pattern="/^\d+$/"
+                     min="2" max="247"
+                     ng-model="detectionRanges.BUS2_AUTODETECT_ADDR_END" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="panel-controls">
+        <div class="panel-controls__message panel-controls__message--error">
+          <div ng-messages="forms.detectDevices.portAStart.$error">
+            <p ng-message="startEnd"><span translate="devices.detection.port_a_detection_start"></span></p>
+            <p ng-message="bothValues"><span translate="devices.detection.port_a_detection_start_required"></span></p>
+            <p ng-message="pattern"><span translate="devices.detection.detection_pattern"></span></p>
+            <p ng-message="number"><span translate="devices.detection.detection_pattern"></span></p>
+            <p ng-message="min"><span translate="devices.detection.min_max"></span></p>
+            <p ng-message="max"><span translate="devices.detection.min_max"></span></p>
+          </div>
+          <div ng-messages="forms.detectDevices.portAEnd.$error">
+            <!-- startEnd is handled by the start port -->
+            <p ng-message="bothValues"><span translate="devices.detection.port_a_detection_end_required"></span></p>
+            <p ng-message="pattern"><span translate="devices.detection.detection_pattern"></span></p>
+            <p ng-message="number"><span translate="devices.detection.detection_pattern"></span></p>
+            <p ng-message="min"><span translate="devices.detection.min_max"></span></p>
+            <p ng-message="max"><span translate="devices.detection.min_max"></span></p>
+          </div>
+
+          <div ng-messages="forms.detectDevices.portBStart.$error">
+            <p ng-message="startEnd"><span translate="devices.detection.port_b_detection_start"></span></p>
+            <p ng-message="bothValues"><span translate="devices.detection.port_b_detection_start_required"></span></p>
+            <p ng-message="pattern"><span translate="devices.detection.detection_pattern"></span></p>
+            <p ng-message="number"><span translate="devices.detection.detection_pattern"></span></p>
+            <p ng-message="min"><span translate="devices.detection.min_max"></span></p>
+            <p ng-message="max"><span translate="devices.detection.min_max"></span></p>
+          </div>
+          <div ng-messages="forms.detectDevices.portBEnd.$error">
+            <!-- startEnd is handled by the start port -->
+            <p ng-message="bothValues"><span translate="devices.detection.port_b_detection_end_required"></span></p>
+            <p ng-message="pattern"><span translate="devices.detection.detection_pattern"></span></p>
+            <p ng-message="number"><span translate="devices.detection.detection_pattern"></span></p>
+            <p ng-message="min"><span translate="devices.detection.min_max"></span></p>
+            <p ng-message="max"><span translate="devices.detection.min_max"></span></p>
+          </div>
+          <div ng-messages="forms.detectDevices.dummyField.$error">
+            <p ng-message="enterSomething"><span translate="devices.detection.detection_ranges_required"></span></p>
+          </div>
+        </div>
+        <div class="panel-controls__buttons">
+          <input type="button" class="btn btn-default" value="{{'devices.detection.detect' | translate}}" ng-click="launchDeviceDetection()">
+        </div>
+      </div>
+    </form>
+  </se-panel>
+
+</div>

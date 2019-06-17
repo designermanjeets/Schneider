@@ -1,0 +1,26 @@
+﻿{
+  "layout": {
+    "header": {
+      "disclaimer": "Disclaimer",
+      "logout": "Logout",
+      "version": "Version:",
+      "build_number": "Build number:",
+      "conext_gateway": "Conext Gateway",
+      "beta": "Beta",
+    },
+    "footer": {
+      "privacy_policy": "Privacy Policy",
+      "user_agreement": "User License Agreement"
+    },
+    "main_content": {
+      "dashboard": "Dashboard",
+      "xbgateway": "Xanbus",
+      "devices": "Devices",
+      "events": "Events",
+      "conext_gateway": "Conext Gateway",
+      "setup": "Setup",
+      "smart_install": "Smart Install",
+      "about": "About"
+    }
+  }
+}

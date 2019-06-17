@@ -1,0 +1,308 @@
+﻿{
+  "performance": {
+    "chart": {
+      // Lookup table used by pv_plant.html and the other chart screens.
+      // Indexes are series IDs.
+      "legend": {
+        "pv"                   : "PV generation",
+        "poa-irradiance"       : "POA irradiance",
+        "gh-irradiance"        : "GH irradiance",
+        "tmod-temperature"     : "Module temperature",
+        "tamb-temperature"     : "Ambient temperature",
+
+        "export-power"         : "Export energy",
+        "consumption-power"    : "Consumption energy",
+        "other-power"          : "Other energy",
+
+        "wind"                 : "Wind speed",
+
+        real-energy-net        : "Net real energy"
+        real-energy-import     : "Imported real energy"
+        real-energy-export     : "Exported real energy"
+        reactive-energy-net    : "Net reactive energy"
+        reactive-energy-import : "Imported reactive energy"
+        reactive-energy-export : "Exported reactive energy"
+        apparent-energy-net    : "Net apparent energy"
+        apparent-energy-import : "Imported apparent energy"
+        apparent-energy-export : "Exported apparent energy"
+        real-power-net         : "Net real power"
+        reactive-power-net     : "Net reactive power"
+        apparent-power-net     : "Net apparent power"
+
+        total-power-factor     : "Total power factor"
+        frequency              : "AC frequency"
+        current-a              : "Phase A current"
+        current-b              : "Phase B current"
+        current-c              : "Phase C current"
+        voltage-an             : "Voltage AN"
+        voltage-bn             : "Voltage BN"
+        voltage-cn             : "Voltage CN"
+        voltage-ab             : "Voltage AB"
+        voltage-bc             : "Voltage BC"
+        voltage-ac             : "Voltage CA"
+        power-factor-a         : "Phase A power factor"
+        power-factor-b         : "Phase B power factor"
+        power-factor-c         : "Phase C power factor"
+
+        ac-energy              : "AC energy"
+        real-power             : "Real power"
+        apparent-power         : "Apparent power"
+        reactive-power         : "Reactive power"
+        voltage-pv1            : "PV1 voltage"
+        voltage-pv2            : "PV2 voltage"
+        power-pv1              : "PV1 power"
+        power-pv2              : "PV2 power"
+
+      },
+      // Same entries as legend, but with units.
+      // Lookup table used by performance_chart.controller.js
+      "legend_units": {
+        "pv"                   : "PV generation ({{units}})",
+        "poa-irradiance"       : "POA irradiance ({{units}})",
+        "gh-irradiance"        : "GH irradiance ({{units}})",
+        "tmod-temperature"     : "Module temperature ({{units}})",
+        "tamb-temperature"     : "Ambient temperature ({{units}})",
+
+        "export-power"         : "Export energy ({{units}})",
+        "consumption-power"    : "Consumption energy ({{units}})",
+        "other-power"          : "Other energy ({{units}})",
+
+        "wind"                 : "Wind speed ({{units}})"
+
+        real-energy-net        : "Net real energy ({{units}})"
+        real-energy-import     : "Imported real energy ({{units}})"
+        real-energy-export     : "Exported real energy ({{units}})"
+        reactive-energy-net    : "Net reactive energy ({{units}})"
+        reactive-energy-import : "Imported reactive energy ({{units}})"
+        reactive-energy-export : "Exported reactive energy ({{units}})"
+        apparent-energy-net    : "Net apparent energy ({{units}})"
+        apparent-energy-import : "Imported apparent energy ({{units}})"
+        apparent-energy-export : "Exported apparent energy ({{units}})"
+        real-power-net         : "Net real power ({{units}})"
+        reactive-power-net     : "Net reactive power ({{units}})"
+        apparent-power-net     : "Net apparent power ({{units}})"
+
+        total-power-factor     : "Total power factor ({{units}})"
+        frequency              : "AC frequency ({{units}})"
+        current-a              : "Phase A current ({{units}})"
+        current-b              : "Phase B current ({{units}})"
+        current-c              : "Phase C current ({{units}})"
+        voltage-an             : "Voltage AN ({{units}})"
+        voltage-bn             : "Voltage BN ({{units}})"
+        voltage-cn             : "Voltage CN ({{units}})"
+        voltage-ab             : "Voltage AB ({{units}})"
+        voltage-bc             : "Voltage BC ({{units}})"
+        voltage-ac             : "Voltage CA ({{units}})"
+        power-factor-a         : "Phase A power factor ({{units}})"
+        power-factor-b         : "Phase B power factor ({{units}})"
+        power-factor-c         : "Phase C power factor ({{units}})"
+
+        ac-energy              : "AC energy ({{units}})"
+        real-power             : "Real power ({{units}})"
+        apparent-power         : "Apparent power ({{units}})"
+        reactive-power         : "Reactive power ({{units}})"
+        voltage-pv1            : "PV1 voltage ({{units}})"
+        voltage-pv2            : "PV2 voltage ({{units}})"
+        power-pv1              : "PV1 power ({{units}})"
+        power-pv2              : "PV2 power ({{units}})"
+      },
+
+      // Include the device name in the legend. We only do this on the
+      // Inverter Comparison screen, so there are fewere items in the
+      // legend.
+      //
+      // \u2013 = &ndash;
+      "legend_with_device": {
+        voltage-an             : "Voltage AN ({{units}}) \u2013 {{deviceName}}"
+        voltage-bn             : "Voltage BN ({{units}}) \u2013 {{deviceName}}"
+        voltage-cn             : "Voltage CN ({{units}}) \u2013 {{deviceName}}"
+
+        ac-energy              : "AC energy ({{units}}) \u2013 {{deviceName}}"
+        real-power             : "Real power ({{units}}) \u2013 {{deviceName}}"
+        apparent-power         : "Apparent power ({{units}}) \u2013 {{deviceName}}"
+        reactive-power         : "Reactive power ({{units}}) \u2013 {{deviceName}}"
+        voltage-pv1            : "PV1 voltage ({{units}}) \u2013 {{deviceName}}"
+        voltage-pv2            : "PV2 voltage ({{units}}) \u2013 {{deviceName}}"
+        power-pv1              : "PV1 power ({{units}}) \u2013 {{deviceName}}"
+        power-pv2              : "PV2 power ({{units}}) \u2013 {{deviceName}}"
+      },
+
+      // Strings used in exported CSV files
+      "csv": {
+        "time": "Date and time",
+      },
+
+      "menu": {
+        "save-csv": "Save as CSV",
+        "save-jpeg": "Save as JPEG",
+        "save-png": "Save as PNG",
+        "save-pdf": "Save as PDF",
+        "save-svg": "Save as SVG",
+      },
+      // Lookup table used by performance_chart.controller.js
+      months: {
+        1: "January"
+        2: "February"
+        3: "March"
+        4: "April"
+        5: "May"
+        6: "June"
+        7: "July"
+        8: "August"
+        9: "September"
+        10: "October"
+        11: "November"
+        12: "December"
+      },
+      // Lookup table used by performance_chart.controller.js
+      short_months: {
+        1: "Jan"
+        2: "Feb"
+        3: "Mar"
+        4: "Apr"
+        5: "May"
+        6: "Jun"
+        7: "Jul"
+        8: "Aug"
+        9: "Sept"
+        10: "Oct"
+        11: "Nov"
+        12: "Dec"
+      },
+      // Lookup table used by performance_chart.controller.js
+      weekdays: {
+        1: "Sunday",
+        2: "Monday",
+        3: "Tuesday",
+        4: "Wednesday",
+        5: "Thursday",
+        6: "Friday",
+        7: "Saturday",
+      },
+      // Lookup table used by performance_chart.controller.js
+      short_weekdays: {
+        1: "Sun",
+        2: "Mon",
+        3: "Tues",
+        4: "Wed",
+        5: "Thurs",
+        6: "Fri",
+        7: "Sat",
+      },
+      no_data: "No data to display",
+      reset_zoom: "Reset zoom",
+      reset_zoom_title: "Reset zoom level 1:1",
+    },
+    "date-picker": {
+      "day": "Day",
+      "month": "Month",
+      "year": "Year",
+      "to-date": "To date",
+
+      "today": "Today",
+      "last30d": "Last 30 days",
+      "last365d": "Last 365 days",
+
+      buttons: {
+        today : "Today"
+        done  : "Done"
+        time  : "Time"
+        date  : "Date"
+        now   : "Now"
+      }
+    },
+    "dashboard": {
+      pv-generation: "PV Generation",
+      weather: "Weather",
+      yield-history: "Yield History",
+      site_status: "Site Status",
+
+      set_installed_capacity: '''
+        <p>
+          Set the installed AC capacity:
+          <a href='{{href}}'>
+            Conext Gateway → Configuration → Plant setup.
+          </a>
+        </p>
+        <p>
+          This will show you the PV power generation as percent of capacity.
+        </p>
+      '''
+
+      pv_power: "PV power",
+      export: "Export",
+      max_power_today: "Max PV power today",
+      consumption: "Consumption",
+
+      percent_capacity: "% of installed AC capacity:",
+
+      set_installed_year: '''
+        Set the year the PV plant was installed:
+        <a href='{{href}}'>
+          Conext Gateway → Configuration → Plant setup
+        </a>
+      ''',
+
+      // pv energy
+      pv_energy: "PV Energy",
+
+      // weather
+      max_today: "Max. today",
+      min_today: "Min. today",
+
+      // Site status table
+      alarms-warnings: "Alarms &amp; Warnings",
+      communication: "Communication",
+      inverters: "Inverters",
+      batteryBank: "Battery bank",
+      chargeControllers: "Charge controllers",
+      generator: "Generator",
+      meters: "Meters",
+      sensors: "Sensors",
+      devices: "Devices",
+      insight: "Conext Insight",
+
+      status: {
+        ok: "OK",
+        error: "Error",
+        disabled: "Disabled",
+      },
+      errors: "Errors",
+    },
+    "pv-plant": {
+      "time-period": "Time period",
+      "parameters": "Parameters",
+      "max-parameters": "Maximum {{n}}",
+
+      "no_devices": '''
+        <p>
+          No devices configured.
+        </p>
+      ''',
+      "no_devices_admin" : '''
+        <small>
+          Please visit the <a href='{{href}}'>
+          Devices → Detection</a> section to detect any
+          connected devices. Once the devices are configured,
+          you will be able to plot their performance here.
+        </small>
+      ''',
+      "choose-one-parameter": "Please select at least one parameter",
+      "choose-one-inverter": "Please select at least one inverter",
+      "submit": "Submit"
+    },
+    inverter: {
+      select_inverters: "Select inverters",
+    }
+    meter: {
+      select_meter: "Select meter",
+      meter: "Meter",
+    },
+    "side-menu": {
+      "dashboard": "Dashboard",
+      "pv": "PV Plant Performance",
+      "inverter": "Inverter Comparison",
+      "meter": "Meter Analysis",
+    }
+  }
+}

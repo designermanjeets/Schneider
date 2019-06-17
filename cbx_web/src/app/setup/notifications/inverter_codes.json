@@ -1,0 +1,357 @@
+﻿[
+  {
+    "type": "fault",
+    "code": 0,
+    "description": "No active alarms"
+  },
+  {
+     "type":"fault"
+    ,"code":10
+    ,"description":"AC relay fault"
+  },
+  {
+    "type": "fault",
+    "code": 31,
+    "description": "AC curr snsr fault"
+  },
+  {
+    "type": "fault",
+    "code": 32,
+    "description": "AC temp snsr fault"
+  },
+  {
+    "type": "fault",
+    "code": 33,
+    "description": "DC temp snsr fault"
+  },
+  {
+    "type": "fault",
+    "code": 47,
+    "description": "AC volt snsr fault"
+  },
+  {
+    "type": "fault",
+    "code": 131,
+    "description": "Low Eff fault"
+  },
+  {
+    "type": "fault",
+    "code": 203,
+    "description": "DC init fault"
+  },
+  {
+    "type": "fault",
+    "code": 204,
+    "description": "DC BIST fault"
+  },
+  {
+    "type": "fault",
+    "code": 205,
+    "description": "AC init fault"
+  },
+  {
+    "type": "fault",
+    "code": 206,
+    "description": "AC BIST fault"
+  },
+  {
+    "type": "error",
+    "code": 701,
+    "description": "DC injection error"
+  },
+  {
+    "type": "fault",
+    "code": 702,
+    "description": "RCMU fault"
+  },
+  {
+    "type": "fault",
+    "code": 703,
+    "description": "AFCI fault"
+  },
+  {
+    "type": "fault",
+    "code": 704,
+    "description": "AFD selftest fail"
+  },
+  {
+    "type": "fault",
+    "code": 705,
+    "description": "PV IP reversed"
+  },
+  {
+    "type": "error",
+    "code": 706,
+    "description": "DC injection inst"
+  },
+  {
+    "type": "fault",
+    "code": 708,
+    "description": "RCMU fault red"
+  },
+  {
+    "type": "fault",
+    "code": 709,
+    "description": "Arc fault"
+  },
+  {
+    "type": "fault",
+    "code": 710,
+    "description": "Sys cfg init fault"
+  },
+  {
+    "type": "fault",
+    "code": 711,
+    "description": "Share sys cfg fault"
+  },
+  {
+    "type": "fault",
+    "code": 712,
+    "description": "AC int cfg fault"
+  },
+  {
+    "type": "fault",
+    "code": 713,
+    "description": "DC int cfg fault"
+  },
+  {
+    "type": "error",
+    "code": 714,
+    "description": "RPO power mod error"
+  },
+  {
+    "type": "error",
+    "code": 2018,
+    "description": "AC intercomm error"
+  },
+  {
+    "type": "error",
+    "code": 2060,
+    "description": "AC low temp"
+  },
+  {
+    "type": "error",
+    "code": 2061,
+    "description": "AC modules OT"
+  },
+  {
+    "type": "error",
+    "code": 2062,
+    "description": "DC mod12 OT"
+  },
+  {
+    "type": "error",
+    "code": 2101,
+    "description": "DC intercomm error"
+  },
+  {
+    "type": "error",
+    "code": 2102,
+    "description": "DCAC comm error"
+  },
+  {
+    "type": "error",
+    "code": 2401,
+    "description": "AC UF fast error"
+  },
+  {
+    "type": "error",
+    "code": 2402,
+    "description": "AC OF fast error"
+  },
+  {
+    "type": "error",
+    "code": 2406,
+    "description": "AC UV fast error"
+  },
+  {
+    "type": "error",
+    "code": 2407,
+    "description": "AC OV fast error"
+  },
+  {
+    "type": "error",
+    "code": 2408,
+    "description": "AC UV inst"
+  },
+  {
+    "type": "error",
+    "code": 2410,
+    "description": "AC OV inst"
+  },
+  {
+    "type": "error",
+    "code": 2411,
+    "description": "AC OC inst"
+  },
+  {
+    "type": "error",
+    "code": 2415,
+    "description": "AC OV avg error"
+  },
+  {
+    "type": "error",
+    "code": 2416,
+    "description": "AC UF slow error"
+  },
+  {
+    "type": "error",
+    "code": 2417,
+    "description": "AC OF slow error"
+  },
+  {
+    "type": "error",
+    "code": 2418,
+    "description": "AC UV slow error"
+  },
+  {
+    "type": "error",
+    "code": 2419,
+    "description": "AC OV slow error"
+  },
+  {
+    "type": "error",
+    "code": 2450,
+    "description": "NoGrid error"
+  },
+  {
+    "type": "error",
+    "code": 2460,
+    "description": "AC OC error"
+  },
+  {
+    "type": "error",
+    "code": 2605,
+    "description": "PV 1 OV error"
+  },
+  {
+    "type": "error",
+    "code": 2606,
+    "description": "PV 2 OV error"
+  },
+  {
+    "type": "error",
+    "code": 2616,
+    "description": "PV insulation error"
+  },
+  {
+    "type": "error",
+    "code": 2624,
+    "description": "PV12 OC error"
+  },
+  {
+    "type": "error",
+    "code": 2631,
+    "description": "PV UV error"
+  },
+  {
+    "type": "error",
+    "code": 2633,
+    "description": "PV1 OC warning"
+  },
+  {
+    "type": "error",
+    "code": 2634,
+    "description": "PV2 OC warning"
+  },
+  {
+    "type": "error",
+    "code": 2646,
+    "description": "RCMU error red"
+  },
+  {
+    "type": "error",
+    "code": 2647,
+    "description": "RCMU error red"
+  },
+  {
+    "type": "error",
+    "code": 2648,
+    "description": "Low Eff error"
+  },
+  {
+    "type": "warning",
+    "code": 4003,
+    "description": "Replace fan"
+  },
+  {
+    "type": "warning",
+    "code": 4004,
+    "description": "Loss of cooling"
+  },
+  {
+    "type": "warning",
+    "code": 4061,
+    "description": "Ambient OT warning"
+  },
+  {
+    "type": "warning",
+    "code": 4065,
+    "description": "DC mod1 OT warning"
+  },
+  {
+    "type": "warning",
+    "code": 4066,
+    "description": "DC mod2 OT warning"
+  },
+  {
+    "type": "warning",
+    "code": 4068,
+    "description": "DC mod1 OT trip"
+  },
+  {
+    "type": "warning",
+    "code": 4069,
+    "description": "DC mod2 OT trip"
+  },
+  {
+    "type": "warning",
+    "code": 4656,
+    "description": "PV1 UV warning"
+  },
+  {
+    "type": "warning",
+    "code": 4657,
+    "description": "PV2 UV warning"
+  },
+  {
+    "type": "warning",
+    "code": 4660,
+    "description": "AC mod OT warning"
+  },
+  {
+    "type": "warning",
+    "code": 4661,
+    "description": "PV1 SPD service"
+  },
+  {
+    "type": "warning",
+    "code": 4662,
+    "description": "PV2 SPD service"
+  },
+  {
+    "type": "warning",
+    "code": 4663,
+    "description": "AC SPD warning"
+  },
+  {
+    "type": "warning",
+    "code": 4700,
+    "description": "Low power wrn"
+  },
+  {
+    "type": "error",
+    "code": 7000,
+    "description": "Comm Internal error"
+  },
+  {
+    "type": "error",
+    "code": 8000,
+    "description": "AC internal error"
+  },
+  {
+    "type": "error",
+    "code": 9000,
+    "description": "DC internal error"
+  }
+]

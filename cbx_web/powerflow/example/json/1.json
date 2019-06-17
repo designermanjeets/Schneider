@@ -1,0 +1,171 @@
+{
+  "DEVLIST": [{
+      "name": "XW",
+      "isActive": "true",
+      "isUpgrading": "false",
+      "instance": 262217,
+      "attributes": {
+        "warnings": "0",
+        "alarms": "0",
+        "opMode": "Standyby",
+        "inBootloader": "0",
+        "interface": "xanbus"
+      }
+    },
+    {
+      "name": "MPPT",
+      "isActive": "true",
+      "instance": 248853,
+      "isUpgrading": "false",
+      "attributes": {
+        "warnings": "0",
+        "alarms": "0",
+        "opMode": "Operating",
+        "inBootloader": "0",
+        "interface": "xanbus"
+      }
+    },
+    {
+      "name": "CSW",
+      "isActive": "true",
+      "instance": 288585,
+      "isUpgrading": "false",
+      "attributes": {
+        "warnings": "0",
+        "alarms": "0",
+        "opMode": "Operating",
+        "inBootloader": "0",
+        "interface": "xanbus"
+      }
+    },
+    {
+      "name": "SCP2",
+      "isActive": "true",
+      "instance": 179669,
+      "isUpgrading": "false",
+      "attributes": {
+        "warnings": "0",
+        "alarms": "0",
+        "opMode": "Operating",
+        "inBootloader": "0",
+        "interface": "xanbus"
+      }
+    },
+    {
+      "name": "AGS",
+      "isActive": "true",
+      "instance": 204622,
+      "isUpgrading": "false",
+      "attributes": {
+        "warnings": "0",
+        "alarms": "0",
+        "opMode": "Operating",
+        "inBootloader": "0",
+        "interface": "xanbus"
+      }
+    },
+    {
+      "name": "BATTMON",
+      "isActive": "true",
+      "instance": 384868,
+      "isUpgrading": "false",
+      "attributes": {
+        "warnings": "0",
+        "alarms": "0",
+        "opMode": "Operating",
+        "inBootloader": "0",
+        "interface": "xanbus"
+      }
+    },
+    {
+      "name": "CL25",
+      "isActive": "true",
+      "instance": 468513,
+      "isUpgrading": "false",
+      "attributes": {
+        "warnings": "0",
+        "alarms": "0",
+        "opMode": "Operating",
+        "inBootloader": "0",
+        "interface": "modbus"
+      }
+    },
+    {
+      "name": "CL25",
+      "isActive": "true",
+      "instance": 468512,
+      "isUpgrading": "false",
+      "attributes": {
+        "warnings": "0",
+        "alarms": "0",
+        "opMode": "Operating",
+        "inBootloader": "0",
+        "interface": "modbus"
+      }
+    },
+    {
+      "name": "HVMPPT",
+      "isActive": "false",
+      "instance": 1205422,
+      "isUpgrading": "false",
+      "attributes": {
+        "warnings": "1",
+        "alarms": "1",
+        "opMode": "Operating",
+        "inBootloader": "0",
+        "interface": "xanbus"
+      }
+    },
+    {
+      "name": "AGS",
+      "isActive": "false",
+      "instance": 144629,
+      "isUpgrading": "false",
+      "attributes": {
+        "warnings": "1",
+        "alarms": "0",
+        "opMode": "Operating",
+        "inBootloader": "0",
+        "interface": "xanbus"
+      }
+    }
+  ],
+  "sysvars": {
+    "SYS_GRID_NET_P": 100,
+    "SYS_GRID_V": 0,
+    "SYS_GRID_IN_ACTIVE_LIFETIME": 1025075,
+    "SYS_GRID_OUT_ACTIVE_LIFETIME": 75813,
+    "SYS_GEN_P": 100,
+    "SYS_GEN_ACTIVE_LIFETIME": 10,
+    "SYS_INV_GRID_P": 222,
+    "SYS_INVCHG_GRID_P": 100,
+    "SYS_INVCHG_BATT_P": -518,
+    "SYS_INVCHG_LOAD_P": 443,
+    "SYS_LOAD_P": 443,
+    "SYS_LOAD_ACTIVE_LIFETIME": 1221667,
+    "SYS_LOAD_P_MIN": 0,
+    "SYS_INV_LOAD_P": 111,
+    "SYS_BATT_P": 9,
+    "SYS_BATT1_V": 53770,
+    "SYS_BATT1_P": 0,
+    "SYS_BATT1_SOC": 0,
+    "SYS_BATT2_V": 0,
+    "SYS_BATT2_P": 0,
+    "SYS_BATT2_SOC": 0,
+    "SYS_BATT3_V": 0,
+    "SYS_BATT3_P": 0,
+    "SYS_BATT3_SOC": 0,
+    "SYS_BATT4_V": 0,
+    "SYS_BATT4_P": 0,
+    "SYS_BATT4_SOC": 0,
+    "SYS_BATT5_V": 0,
+    "SYS_BATT5_P": 0,
+    "SYS_BATT5_SOC": 0,
+    "SYS_PV_P": 565,
+    "SYS_PV_V": 80810,
+    "SCB_DEVSERVER_COUNTER": 786,
+    "384868_BATTMON_ASSOC_CFG_DC_INPUT_OUTPUT": 3,
+    "468513_CL25_ASSOC_CFG_AC_OUTPUT": 2,
+    "468512_CL25_ASSOC_CFG_AC_OUTPUT": 1
+  }
+}

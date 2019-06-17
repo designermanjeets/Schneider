@@ -1,0 +1,210 @@
+﻿
+<!-- take out the tabs, since there's nothing (yet) in the settings
+<uib-tabset>
+  <uib-tab heading="Summary View">
+-->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title" translate="devices.details.device_information"></h2>
+  </div>
+
+  <!-- no panel-body class, so the table goes full width -->
+  <table class="device-details table">
+    <tr>
+      <td translate="devices.details.product_name"></td>
+      <td ng-bind="device.productName"></td>
+    </tr>
+    <!--<tr>
+      <td translate="devices.details.rated_power"
+          translate-value-units="{{ 'VA' | kiloUnits: device.ratedPower }}"></td>
+      <td ng-bind="device.ratedPower | kiloScale | replace0xFFFF"></td>
+    </tr>-->
+    <tr>
+      <td translate="devices.details.product_model_designation"></td>
+      <td ng-bind="device.productDesignation"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.product_serial_number"></td>
+      <td ng-bind="device.serialNumber"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.software_version_processor_a"></td>
+      <td>{{device.processorAVersion}}&nbsp;{{ device.provessorABuild}}</td>
+    </tr>
+    <tr>
+      <td translate="devices.details.software_version_processor_b"></td>
+      <td>{{device.processorBVersion}}&nbsp;{{ device.provessorBBuild}}</td>
+    </tr>
+    <tr>
+      <td translate="devices.details.software_version_processor_c"></td>
+      <td>{{device.processorCVersion}}&nbsp;{{ device.provessorCBuild}}</td>
+    </tr>
+    <tr>
+      <td translate="devices.details.ip_address"></td>
+      <td ng-bind="device.ipAddress"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.last_updated"></td>
+      <td ng-bind="device.lastUpdated"></td>
+    </tr>
+  </table>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title" translate="devices.details.current_values"></h2>
+  </div>
+
+  <!-- no panel-body class, so the table goes full width -->
+  <table class="device-details table"
+         ng-class="{'device-details--comm-error': device.commError}">
+    <tr>
+      <td translate="devices.details.real_power"
+          translate-value-units="{{ 'W' | kiloUnits: details.realPower }}"></td>
+      <td ng-bind="details.realPower | kiloScale | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.reactive_power"
+          translate-value-units="{{ 'VAR' | kiloUnits: details.reactivePower }}"></td>
+      <td ng-bind="details.reactivePower | kiloScale | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.apparent_power"
+          translate-value-units="{{ 'VA' | kiloUnits: details.apparentPower }}"></td>
+      <td ng-bind="details.apparentPower | kiloScale | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.ac_energy_today"
+          translate-value-units="{{ 'Wh' | kiloUnits: details.acEnergyToday }}"></td>
+      <td ng-bind="details.acEnergyToday | kiloScale | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.ac_energy_lifetime"
+          translate-value-units="{{'Wh' | kiloUnits: details.acEnergyLifetime}}"></td>
+      <td ng-bind="details.acEnergyLifetime | kiloScale | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.operating_hours_lifetime"></td>
+      <td ng-bind="details.operatingHoursLifetime | number: 0 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.phase_a"></td>
+      <td ng-bind="details.phaseACurrent | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.phase_b"></td>
+      <td ng-bind="details.phaseBCurrent | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.phase_c"></td>
+      <td ng-bind="details.phaseCCurrent | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.voltage_ab"></td>
+      <td ng-bind="details.voltageAB | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.voltage_bc"></td>
+      <td ng-bind="details.voltageBC | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.voltage_ca"></td>
+      <td ng-bind="details.voltageCA | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.voltage_an"></td>
+      <td ng-bind="details.voltageAN | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.voltage_bn"></td>
+      <td ng-bind="details.voltageBN | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.voltage_cn"></td>
+      <td ng-bind="details.voltageCN | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.ac_frequency"></td>
+      <td ng-bind="details.acFrequency | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.pv1_voltage"></td>
+      <td ng-bind="details.VOLT_PV1 | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.pv1_current"></td>
+      <td ng-bind="details.CURRENT_PV1 | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.pv1_power"
+          translate-value-units="{{ 'W' | kiloUnits: details.POWER_PV1 }}"></td>
+      <td ng-bind="details.POWER_PV1 | kiloScale | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.pv2_voltage"></td>
+      <td ng-bind="details.VOLT_PV2 | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.pv2_current"></td>
+      <td ng-bind="details.CURRENT_PV2 | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.pv2_power"
+          translate-value-units="{{ 'W' | kiloUnits: details.POWER_PV2 }}"></td>
+      <td ng-bind="details.POWER_PV2 | kiloScale | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.temperature_control_board" translate-value-units="{{details.HMI_TEMPERATURE_UNIT}}"></td>
+      <td ng-bind="details.TEMP_CONTROL_BOARD | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.temperature_boost_1_2" translate-value-units="{{details.HMI_TEMPERATURE_UNIT}}"></td>
+      <td ng-bind="details.TEMP_BOOST_1_2 | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.temperature_boost_3_4" translate-value-units="{{details.HMI_TEMPERATURE_UNIT}}"></td>
+      <td ng-bind="details.TEMP_BOOST_3_4 | number: 1 | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.operating_state"></td>
+      <td ng-bind="details.OPERATIONAL_MODE_STATE | operationMode | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.alarm_code"></td>
+      <td ng-bind="details.ALARMS | makeDashIf: device.commError"></td>
+    </tr>
+    <tr>
+      <td translate="devices.details.alarm_description"></td>
+      <td ng-bind="details.FAULT_DESCRIPTION | makeDashIf: device.commError"></td>
+    </tr>
+  </table>
+</div>
+
+<!--
+  </uib-tab>
+
+  <uib-tab heading="Settings">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title">Inverter type</h2>
+      </div>
+
+      <div class="panel-body">
+        <table class="settings-controls">
+          <tr>
+            <td>
+              Inverter model
+            </td>
+            <td ng-switch="settings.inverterModel">
+              <! - - TODO: Evan copied this enum from the Linux code.
+                   Need to see what the actual API provides - - >
+              <span ng-switch-when="1">Conext CL</span>
+              <span ng-switch-when="2">Conext TL</span>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </uib-tab>
+</uib-tabset>
+-->

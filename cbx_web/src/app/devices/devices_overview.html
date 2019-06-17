@@ -1,0 +1,25 @@
+﻿<div ng-cloak>
+  <div ng-controller="InverterTableController">
+    <inverter-table inverters="devices.inverters"
+                    has-scroll-bar="true"
+                    units="units.inverter">
+    </inverter-table>
+  </div>
+
+  <div ng-controller="MeterTableController">
+    <meter-table
+      meters="devices.meters"
+      has-scroll-bar="true"
+      units="units.meter"
+      >
+    </meter-table>
+  </div>
+
+  <div ng-controller="SensorTableController">
+    <sensor-table
+      sensors="devices.sensors"
+      has-scroll-bar="true"
+      >
+    </sensor-table>
+  </div>
+</div>

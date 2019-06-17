@@ -1,0 +1,46 @@
+<div>
+  <ul class="nav navbar-nav">
+    <li style="padding-right:10px;padding-top: 5px;" class="heading-padding">
+      <h3 class="gateway-title">
+        <span translate="layout.header.conext_gateway"></span>
+      </h3>
+    </li>
+    <li class="heading-padding header-text">
+      <span><span translate="layout.header.version"></span> {{softwareVerion}}</span>&nbsp;|&nbsp;
+    </li>
+    <li class="heading-padding header-text">
+      <span><span translate="layout.header.build_number"></span> {{buildNumber}}</span>&nbsp;|&nbsp;
+    </li>
+    <li id="header_device_name" class="heading-padding header-text">
+      <span>{{deviceName}}</span>
+    </li>
+  </ul>
+  <ul class="nav navbar-nav navbar-right" style="margin-right: 0px;">
+    <li class="heading-padding header-text">
+      <span>{{dateTime}}</span>&nbsp;|&nbsp;
+    </li>
+    <li class="heading-padding">
+      <div style="display:inline-block;overflow: hidden;height: 20px;margin-bottom: -5px;">
+        <div class="icon-Face header-icon-face" style="display:block;"></div>
+      </div>
+    </li>
+    <li class="heading-padding header-text">
+      <span class="home-header-username">{{userName}}</span>&nbsp;|&nbsp;
+    </li>
+    <li class="heading-padding" ng-if="disclaimer">
+      <span>
+        <a href="" ng-click="openDisclaimer()" translate="layout.header.disclaimer"></a>&nbsp;|&nbsp;
+      </span>
+    </li>
+    <li class="heading-padding header-text">
+      <span>
+        <a href="" ng-click="logout()" translate="layout.header.logout"></a>
+      </span>
+    </li>
+    <li>
+      <div style="display:inline-block;overflow: hidden;height: 40px;margin-bottom: -5px; padding-left: 20px;">
+        <div id="lioLogo" class="icon-schneider_LIO cg-life-is-on"></div>
+      </div>
+    </li>
+  </ul>
+</div>

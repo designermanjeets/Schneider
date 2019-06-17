@@ -1,0 +1,22 @@
+<div class="col-md-12 no-padding">
+  <!-- Left side menu -->
+  <div id="dashboardSubMenu" style="width:200px">
+    <ul class="nav nav-pills nav-stacked">
+      <li ui-sref-active="active" class="active" csb-permissions="User">
+        <a class="menuIcons onLink" ui-sref="about.gateway_info" translate="setup.side_menu.conext_gateway_info">
+        </a>
+      </li>
+      <li ui-sref-active="active" class="active" csb-permissions="User">
+        <a class="menuIcons onLink" ui-sref="about.gateway_manifest" translate="setup.side_menu.manifest">
+        </a>
+      </li>
+      <!-- TODO unhide when fixed -->
+      <!-- <li ui-sref-active="active" class="active">
+        <a class="menuIcons onLink" ui-sref="gateway.detection" translate="setup.side_menu.detection" csb-permissions>
+        </a>
+      </li> -->
+    </ul>
+  </div>
+  <!-- Partial page view -->
+  <div style="width: calc(100% - 210px); float:left; padding:5px 20px 0px 20px;" ui-view></div>
+</div>

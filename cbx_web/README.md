@@ -1,0 +1,1 @@
+This is the HMI (web) code for Conext Gateway. Instructions for building and developing the code are on Confluence: https://sesolar-confluence.atlassian.net/wiki/display/SMAR/Building+and+developing+the+HMI

@@ -1,0 +1,173 @@
+﻿<se-panel value="E-mail addresses of notification recipients">
+  <form name="forms.email_addresses" novalidate ng-submit="applyEmails()">
+    <table class="settings-controls">
+      <tr>
+        <td>E-mail recipient 1</td>
+        <td>
+          <input type="email" name="address1" ng-model="email_addresses.address1">
+          <div class="inline-validation-messages"
+               ng-messages="forms.email_addresses.address1.$error"
+               ng-show="forms.email_addresses.$submitted">
+            <span ng-message="email">
+              <span translate="Must enter a valid email"></span>
+            </span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>E-mail recipient 2</td>
+        <td>
+          <input type="email" name="address2" ng-model="email_addresses.address2">
+          <div class="inline-validation-messages"
+               ng-messages="forms.email_addresses.address2.$error"
+               ng-show="forms.email_addresses.$submitted">
+            <span ng-message="email">
+              <span translate="Must enter a valid email"></span>
+            </span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>E-mail recipient 3</td>
+        <td>
+          <input type="email" name="address3" ng-model="email_addresses.address3">
+          <div class="inline-validation-messages"
+               ng-messages="forms.email_addresses.address3.$error"
+               ng-show="forms.email_addresses.$submitted">
+            <span ng-message="email">
+              <span translate="Must enter a valid email"></span>
+            </span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>E-mail recipient 4</td>
+        <td>
+          <input type="email" name="address4" ng-model="email_addresses.address4">
+          <div class="inline-validation-messages"
+               ng-messages="forms.email_addresses.address4.$error"
+               ng-show="forms.email_addresses.$submitted">
+            <span ng-message="email">
+              <span translate="Must enter a valid email"></span>
+            </span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>E-mail recipient 5</td>
+        <td>
+          <input type="email" name="address5" ng-model="email_addresses.address5">
+          <div class="inline-validation-messages"
+               ng-messages="forms.email_addresses.address5.$error"
+               ng-show="forms.email_addresses.$submitted">
+            <span ng-message="email">
+              <span translate="Must enter a valid email"></span>
+            </span>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <div class="panel-controls">
+      <div class="panel-controls__message panel-controls__message--error">
+        <div class="alert alert-success" ng-show="successMessage.email_addresses" translate="Changes saved">
+        </div>
+      </div>
+
+      <div class="panel-controls__buttons">
+        <input type="submit" class="btn btn-default" value="Apply">
+        <input type="button" class="btn btn-default" value="Cancel" ng-click="resetEmails()">
+      </div>
+    </div>
+
+  </form>
+</se-panel>
+
+<se-panel value="Notification setup">
+  <form name="forms.notification_setup" novalidate ng-submit="applyNotificationSettings()">
+    <table class="settings-controls settings-controls--notification-setup">
+      <tr>
+        <th>Device type</th>
+        <th>Event codes</th>
+        <th>Notification after X occurences</th>
+      </tr>
+      <tr>
+        <td>Inverter</td>
+        <td>
+          <input type="text" name="inverter_codes"
+            class="notification-setup__event-codes settings-controls__input--no-min-width"
+            ng-model="notification_setup.inverter_codes"
+            >
+          <input type="button" class="btn btn-default" value="..." ng-click="openInverterCodes()">
+        </td>
+        <td>
+          <input type="number" name="inverter_occurances"
+            class="settings-controls__input--no-min-width"
+            ng-model="notification_setup.inverter_occurances"
+            >
+          <div ng-messages="forms.notification_setup.inverter_codes.$error" class="inline-validation-messages"
+               ng-show="forms.notification_setup.$submitted">
+            <span ng-message="format">
+              <span>Event codes must be numbers seperated by commas</span>
+            </span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Meter</td>
+        <td>
+          <input type="text" name="meter_codes"
+            class="notification-setup__event-codes settings-controls__input--no-min-width"
+            ng-model="notification_setup.meter_codes"
+            >
+          <input type="button" class="btn btn-default" value="..." ng-click="openMeterCodes()">
+        </td>
+        <td>
+          <input type="number" name="meter_occurances"
+            class="settings-controls__input--no-min-width"
+            ng-model="notification_setup.meter_occurances"
+            >
+
+          <div ng-show="forms.notification_setup.$submitted" ng-messages="forms.notification_setup.meter_codes.$error" class="inline-validation-messages">
+            <span ng-message="format">
+              <span>Event codes must be numbers seperated by commas</span>
+            </span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>System</td>
+        <td>
+          <input type="text" name="system_codes"
+            class="notification-setup__event-codes settings-controls__input--no-min-width"
+            ng-model="notification_setup.system_codes"
+            >
+          <input type="button" class="btn btn-default" value="..." ng-click="openSystemCodes()">
+        </td>
+        <td>
+          <input type="number" name="system_occurances"
+            class="settings-controls__input--no-min-width"
+            ng-model="notification_setup.system_occurances"
+            >
+          <div ng-show="forms.notification_setup.$submitted" ng-messages="forms.notification_setup.system_codes.$error" class="inline-validation-messages">
+            <span ng-message="format">
+              <span>Event codes must be numbers seperated by commas</span>
+            </span>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <div class="panel-controls">
+      <div class="panel-controls__message panel-controls__message--error">
+        <div class="alert alert-success" ng-show="successMessage.notification_setup" translate="Changes Saved">
+        </div>
+      </div>
+
+      <div class="panel-controls__buttons">
+        <input type="submit" class="btn btn-default" value="Apply">
+        <input type="button" class="btn btn-default" value="Cancel" ng-click="resetNotificationSetup()">
+      </div>
+    </div>
+  </form>
+</se-panel>

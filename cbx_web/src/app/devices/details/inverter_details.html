@@ -1,0 +1,4 @@
+<h2 class="device-details-page-title" ng-bind="device.name"></h2>
+<delete-device device-info="deviceInfo" ng-show="device.commError"></delete-device>
+<div ng-show="inverterType === 'CL25'" ng-include="'/app/devices/details/cl25_details.html'"></div>
+<div ng-show="inverterType === 'CL60'" ng-include="'/app/devices/details/cl60_details.html'"></div>

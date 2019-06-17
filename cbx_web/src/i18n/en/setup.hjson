@@ -1,0 +1,352 @@
+﻿{
+  "setup": {
+    "side_menu": {
+      "conext_gateway_info": "Conext Gateway Info",
+      "configuration": "Configuration",
+      "network": "Network",
+      "data_export": "Data Export",
+      "notifications": "Notifications",
+      "manage_passwords": "Manage Passwords",
+      "manifest" : "Software Manifest",
+      "detection": "Device Detection",
+    },
+    "info": {
+      "disconnect_warning": "Do not turn off the gateway until the firmware upgrade is complete!",
+      "conext_gateway_info": "Conext Gateway information",
+      "conext_gateway_name": "Conext Gateway name",
+      "model_designation": "Model designation",
+      "application_version": "Application version",
+      "application_build_number": "Application build number",
+      "application_build_date": "Application build date",
+      "serial": "Serial number",
+      "hardware_revision": "Hardware revision",
+      "ip_address": "IP address",
+      "hostname": "Hostname",
+      "mac_lan_1": "MAC address",
+      "system_local_time": "System local time",
+      "time_zone": "Time zone",
+      "urn": "Uniform Resource Name",
+      "uuid": "UUID",
+      "uptime": "Uptime",
+
+      //Used by conext_gateway_info.service
+      "no_space": "No Free Space on SD Card",
+      "less_than_month": "Less than one month",
+      "months": "{{months}} months",
+      "more_than_ten_years": "More than 10 years",
+      "years_months": "{{years}} years and {{months}} months",
+
+      // Data log status table
+      "data_logs": "Log file storage",
+      "logging_status": "Logging status",
+      "space_used": "Space used",
+      "space_used_value": "{{used}} MB of {{total}} MB ({{percent}}%)",
+
+      // Logging status values
+      "logging_stopped": "Logging stopped",
+      "logging_in_progress": "Logging in progress",
+      "no_sd_card": "No SD card",
+      "no_items": "No items to log",
+      "logging_error": "Logging error",
+      "logging_disabled": "Logging eisabled"
+
+    },
+    "configuration": {
+      //Configuration > Plant Setup
+      "remote_disclaimer": "Before Cloud can be enabled, you need to agree to the remote firmware service. ",
+      "show_agreement": "Show agreement.",
+      "plant_setup": "Plant setup",
+      "installed_year_required": "Please enter installed year",
+      "friendly_name": "Friendly name",
+      "ac_capacity": "Installed AC capacity (kW)",
+      "required": "Required",
+      "min_capacity": "Capacity must be greater than 0",
+      "max_capacity": "Capacity must be less than {{max}} kW",
+      "capacity_pattern": "Enter a number, with no more than one decimal point",
+      "installed_year": "Installed year",
+      "min_installed_year": "Year must be after 1900",
+      "max_installed_year": "Year cannot be in the future",
+      "installed_year_pattern": "Please enter a 4-digit year",
+      "inverter_type": "Inverter type",
+      "select_type": "Select type",
+      "changes_saved": "Changes saved",
+      "save_failed": "Failed to save changes",
+      "apply": "Apply",
+      "cancel": "Cancel",
+      "refresh_page": "If the page fails to automatically refresh in a reasonable duration, please manually reload the page.",
+
+      //Import Configuration
+      "import_configuration": "Import & export settings",
+      "import_settings": "Import settings to this Conext Gateway",
+      "upload": " Upload",
+      "export_settings": "Export settings from this Conext Gateway",
+      "download": "Download",
+
+
+      //Configuration > Quick Setup
+      "quick_setup": "Time setup",
+      "time_zone": "Time zone",
+      "set_time": "Set time",
+      "automatically": "Automatically<small> Use network time (SNTP) synchronization</small>",
+      "manually": "Manually",
+      "date_time": "Date &amp; time",
+      "sntp_server": "SNTP server",
+      "dhcp_ensure_enabled": "<small>Ensure that the Conext Gateway is connected to the Internet.</small>",
+
+      //Configuration > units
+      "units": "Units",
+      "irradiance": "Irradiance",
+      "temperature": "Temperature",
+      "wind_speed": "Wind speed",
+
+      //Configuration > Modbus settings
+      "modbus_settings": "Modbus settings",
+      "port_a": "Serial Port A",
+      "port_b": "Serial Port B",
+      "baud_rate": "Baud rate",
+      "parity": "Parity",
+      "stop_bits": "Stop bits",
+
+      //Configuration > Restart Coenxt Gateway
+      "shutdown_conext_gateway": "Shutdown Conext Gateway",
+      "restart_conext_gateway": "Restart Conext Gateway",
+      "reset_configuration": "Reset configuration",
+      "reset_configuration_message": "Resets the Conext Gateway settings, including passwords, network configuration, and plant setup. Does not affect the configuration of attatched devices.",
+      "reset_factory": "Reset to factory settings",
+      "reset_factory_message": "Forgets all detected devices, removes data logs and resets configuration.",
+
+      // Configuration > Install Package
+      "install_package": "Install Package",
+      "installed_firmware": "Installed firmware",
+      "manual_update": "Manual update",
+      "automatic_update": "Automatic update",
+      "version": "Version",
+      "build_number": "Build number",
+      "cancel_upload": "Cancel upload",
+      "processing": "Processing",
+      "processing_message": "This may take a few minutes",
+      "upload_successful": "Upload successful",
+      "restart_message": "The Conext Gateway needs to restart to finish installation.",
+      "restart_now": "Restart now",
+      "upload_failed": "Upload failed",
+      "get_package": "Get package",
+      "upload_package": "Upload package",
+
+      // Configuration > Install Package > Messages
+      "extracting": "Extracting package content",
+      "copying": "Copying data",
+      "extracting_failed": "Failed to extract package",
+      "validating": "Validating Package",
+      "missing_checksum": "Missing file checksum",
+      "checksum_nomatch": "Checksum is not correct",
+      "firmware_missing": "Cannot find firmware",
+      "upload_failed": "Package upload failed",
+      "invalid_file": "Package file is not valid",
+      "import_failed": "Import upload failed",
+      "invalid_import_file": "Import file is not valid",
+
+      // reboot_in_progress.html (modal)
+      "restarting": "Restarting",
+      "please_wait": "Please wait.",
+      "shuttingdown": "Shutting down Conext Gateway",
+      "shutdown_in_progress": "Shutdown is in progress",
+      "shutdown": "Shutdown",
+      //Configuration > reboot
+      "confirm_restart_title": "Confirm restart",
+      "confirm_restart_message": "Are you sure you want to restart the Conext Gateway?",
+
+      "confirm_shutdown_title": "Confirm shutdown",
+      "confirm_shutdown_message": "Are you sure you want to shutdown the Conext Gateway? Once shutdown, the conext gateway may not be started remotely!",
+
+      "confirm_config_title": "Confirm reset configuration",
+      "confirm_config_message": '''
+        <p>Are you sure you want to reset the Conext Gateway configuration?</p>
+        <p>
+          Settings will be reset to default values.
+        </p>
+      '''
+
+      "confirm_factory_title": "Confirm reset to factory settings",
+      "confirm_factory_message": '''
+        <p>Are you sure you want to reset the Conext Gateway to factory settings?</p>
+        <p>
+          All logs will be lost. Settings will be reset to default values.
+        </p>
+      '''
+      "restart": "Restart",
+      "sntp_failed": "Unable to communicate with the SNTP server.  Please check network settings"
+    },
+    "network": {
+      "cloud_disconnet": "Cloud Disconnection Events",
+      "no_active_session": "No active diagnostic session",
+      "save_failed": "Failed to save changes",
+      "remote_diagnostics": "Remote diagnostics",
+      "enable_remote_diagnostics": "Remote diagnostics",
+      "diagnostics_disclaimer_message": "Before remote diagnostics can be enabled, you need to agree to the remote monitoring service. ",
+      "connected": "Connected",
+      "lan_settings": "LAN settings",
+      "last_connection_date": "Last successful connection",
+      "dhcp": "DHCP",
+      "enable": "Enable",
+      "disable": "Disable",
+      "ip_address": "IP Address",
+      "ip_required": "Please enter IP Address",
+      "valid_ip": "Please enter valid IP Address",
+      "subnet_mask": "Subnet mask",
+      "subnet_mask_required": "Please enter subnet mask information.",
+      "valid_subnet_mask": "Please enter valid subnet mask information.",
+      "gateway": "Gateway",
+      "gateway_required": "Please enter gateway information",
+      "valid_gateway": "Please enter valid gateway information",
+      "dns_server": "DNS server",
+      "dns_server_required": "Please enter DNS server information",
+      "dns_server_valid": "Please enter valid DNS server information",
+      "hostname": "Host name",
+      "hostname_required": "Please enter host name",
+      "hostname_length": "Host name length cannot exceeded 32 characters",
+      "hostname_valid": "Host name must contain alpha numeric characters and &ldquo;.&rdquo;,&ldquo;-&rdquo; is allowed",
+      "username": "User name",
+      "password": "Password",
+      "changes_saved": "Changes saved",
+      "apply": "Apply",
+      "cancel": "Cancel",
+      "show_agreement": "Show agreement.",
+      "disclaimer_message": "Before data push can be enabled, you need to agree to the remote monitoring service. ",
+      "synchronization": "Synchronization",
+      "sync_message": "If your site has more than one Conext Gateway, use synchronization to ensure that the data is consistent. ",
+      "learn_more": "Learn more.",
+      "connection": "Connection",
+      "network_mode": "Network Mode",
+
+      //Network ? Email settings
+      "email_settings": "E-mail settings",
+      "email_enable": "Send e-mail",
+      "smtp_server": "SMTP server",
+      "smtp_server_required": "Please enter SMTP server address",
+      "smtp_server_valid": "Please enter a valid SMTP server address",
+      "smtp_port": "SMTP port",
+      "smtp_port_required": "Please enter SMTP port",
+      "smtp_port_number": "SMTP port must be numeric",
+      "smtp_port_range": "Please enter SMTP server port between 1 to 10000",
+      "smtp_username_required": "Please eneter SMTP username",
+      "smtp_password_required": "Please enter SMTP password",
+      "recover_email_required": "Please enter a recovery e-mail",
+      "smtp_recover_email_required": "Please enter a recovery e-mail",
+      "valid_email": "Please enter a valid recovery e-mail",
+      "recovery_email": "Recovery e-mail",
+      "successful_email": "E-mail has successfully been sent",
+      "failed_email": "Failed to send e-mail",
+      "send_test_email": "Send test e-mail",
+
+      //Network > diagnostics
+      "diag_access_code": "Diagnostic access code",
+      "diag_access_code_required": "Diagnostic access code is required. You can obtain one from Schneider Solar Support.",
+      "diag_access_code_valid": "The diagnostic access code is not valid",
+      "diag_id": "Diagnostic ID",
+      "session_diag_active": "Diagnostic Session Status",
+      "session_diag_cancel": "Cancel Diagnostic session",
+      "session_diag_cancel_btn": "Cancel Diagnostic",
+
+      //Network > cloud_settings
+      "urn": "Uniform Resource Name",
+      "cloud_settings": "Cloud settings",
+      "cloud_enable": "Cloud enable",
+      "proxy_enable": "Proxy enable",
+      "proxy_url": "Proxy URL",
+      "proxy_url_required": "Proxy URL is required"
+      "proxy_url_valid": "Proxy URL provided is invalid",
+      "proxy_port": "Proxy port",
+      "prox_port_required": "Proxy port is required",
+      "proxy_port_range": "Please enter proxy port between 1 to 10000",
+      "proxy_port_number": "Proxy port must be numeric",
+      "proxy_user": "Proxy user name",
+      "proxy_username_required": "Proxy user name is required",
+      "proxy_password": "Proxy password",
+      "proxy_password_required": "Proxy password is required",
+      "cloud_allow_upgrade": "Allow remote firmware upgrade",
+      "cloud_connection_sts": "Cloud connection status",
+      "last_transfer_time": "Last data transfer time from cloud",
+      "tx_count": "Number of transmitted messages",
+      "rx_count": "Number of received messages",
+      "tx_err_count": "Number of messages failed to send",
+
+      //Network > SFTP
+      "sftp_logging": "SFTP logging",
+      "sftp_server_name": "SFTP Server Name",
+      "sftp_server_required": "Please enter SFTP Log server Address",
+      "destination_directory": "Destination Directory",
+      "sftp_username_required": "Please enter SFTP username",
+      "sftp_password_required": "Please enter SFTP password",
+
+      //Network > FTP
+      "anonymous_ftp": "FTP server",
+      "enable_ftp": "FTP server",
+      "ftp_description": '''
+        Use FTP to retrieve data log files from the Conext Gateway.
+      '''
+      "ftp_settings": "FTP settings"
+      "ftp_server": "IP address"
+      "ftp_username": "User name"
+      "ftp_password": "Password"
+      "ftp_password_value": "No password"
+
+
+      //Network > Conext Insight
+      "conext_insight": "Conext Insight",
+      "enable_data_push": "Push data to Conext Insight",
+      "test_connection": "Test connection to Conext Insight",
+      "test": "Test",
+      "connect": "Connect",
+      "connection_status": "Connection status",
+      "last_successful_date": "Last date of successful transfer",
+      "sync": "Synchronization ID",
+      "unsent_packets": "Number of unsent packets",
+      "not_connected": "Not connected",
+      "connected": "Connected",
+      "enable_sync": "Enable synchronization",
+      "processing": "Processing",
+      "failed_connection": "Failed",
+      "success_connection": "Succeeded",
+
+      "ssid": "SSID",
+      "ssid_password": "Password",
+      "ap_title": "Wifi Access Point Settings",
+      "ssid_required": "SSID is required",
+      "access_point": "Access Point",
+      "password_length": "Password must be at least 10 characters"
+    },
+    "manage_passwords": {
+      "change_password": "Change password",
+      "username": "User name",
+      "select_user": "Select user",
+      "old_password": "Old password",
+      "new_password": "New password",
+      "confirm_password": "Confirm password",
+      "password_length": "6 &ndash; 12 characters",
+      "password_capital": "At least one capital letter",
+      "password_number": "At least one number",
+      "apply": "Apply",
+      "cancel": "Cancel",
+      "username_required": "Please enter the user name",
+      "old_password_required": "Please enter the old password.",
+      "new_password_required": "Please enter a new password.",
+      "password_match": "Passwords do not match.",
+      "default_password": "Please choose a password other than the default password, to ensure security.",
+      "same_as_old": "The new password must be different than the old password.",
+      "password_valid": "The new password is not a valid password."
+    },
+    "manifest" : {
+        "manifest_info" : "Conext Gateway Software Manifest",
+        "id" : "ID",
+        "name" : "Name",
+        "version" : "Version",
+        "date" : "Date",
+        "buildid" : "Build ID"
+    },
+    parity: {
+      none: "None",
+      odd: "Odd",
+      even: "Even",
+    },
+  },
+}

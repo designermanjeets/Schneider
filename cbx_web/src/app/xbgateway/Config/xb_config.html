@@ -1,0 +1,45 @@
+<div ng-if="devinfo && !devinfo.DEV_ACTIVE">
+  <div class="col-md-12 devinfo-faults">
+    <div class="col-md-12">
+      Device Offline
+    </div>
+  </div>
+</div>
+<div ng-if='configData && devinfo.DEV_ACTIVE'>
+
+  <xbconfig>
+    <div class="container-fluid" ng-show="rendered">
+      <div class="row">
+
+        <div class="refresh_button_container">
+          <span ng-if="refreshProgress && refreshProgress.status === 'inprogress'" style="color: #E47F00">
+            <img src="img/schneiderloader.gif" class="install-package__spinner" />
+            {{ 'xanbus.config.refresh_message' | translate }}
+          </span>
+          <span ng-if="refreshProgress && refreshProgress.status === 'inprogress'" class="col-md-3 col-sm-4">
+            <div class="pull-left progress install-package__progress" style="margin-bottom: 0px">
+              <div class="progress-bar" role="progressbar" ng-style="{ 'width': refreshProgress.progress + '%' }">
+                &#8203;
+              </div>
+            </div>
+            <div>
+              {{ refreshProgress.progress + '%'}}
+            </div>
+          </span>
+          <span ng-if="refreshProgress && refreshProgress.status === 'complete'" style="color: #3DCD58">
+            {{ 'xanbus.config.refresh_complete' | translate }}
+          </span>
+          <span ng-if="refreshProgress && refreshProgress.status === 'failed'" style="color: #DC0A0A">
+            {{ 'xanbus.config.refresh_failed' | translate }}
+          </span>
+          <div ng-hide="devinfo.hasOwnProperty('ZREG_ISONLINE')" class="icon-refresh refresh_button {{formDisabled.all ? '':'refresh_button_hover'}}" ng-click='!formDisabled.all && refreshDevice()'></div>
+          <div class="btn-group">
+            <label class="btn btn-default" ng-model="settingLevel" uib-btn-radio="'basic'" ng-change="settingLevelChanged()">Basic</label>
+            <label class="btn btn-default" ng-model="settingLevel" uib-btn-radio="'advanced'" ng-change="settingLevelChanged()">Advanced</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+  </xbconfig>
+</div>

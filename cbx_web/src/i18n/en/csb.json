@@ -1,0 +1,26 @@
+﻿{
+  "csb": {
+    "modal": {
+      "invalid_login": "You attempted to Login with wrong password 3 times and currently Login is disabled and this will be enabled after 1 minute.",
+      "smart_install_setup": "Conext Gateway set-up not finished by admin. Login with admin rights to complete the first time setup.",
+      "password_recovery_required": "Password Recovery e-mail has not been provided during Smart Install setup process. Please login with Admin user and setup the Password Recovery e-mail.",
+      "password_recovery_sent": "You should receive an email within the next few minutes.<br/><br/>If you don't receive the recovery email:<br/><br/><ol><li>Check your junk and spam folders</li><li>Contact <a href='http://www2.schneider-electric.com/sites/corporate/en/support/contact/customer-care-center.page'>customer service</a></li></ol>",
+      "deafault_password": "You are currently logged in with the default password.  Change the password to ensure security of your plant data.",
+      "password_updated": "Password updated successfully.",
+      "password_failed": "Password updated failed, please try again!",
+      "insight_error": "Critical system error occurred while trying to connect to Insight Portal. Please restart your Conext Gateway and try again.",
+      "insight_connection_error": "Connection error occurred while trying to connect to Insight Portal. Please try again.",
+      "syncronization": "If your site has more than one Conext Gateway, use synchronization to ensure that the data is consistent.<br/><br/>Each Conext Gateway at a site should have the same synchronization ID. It is OK for two different sites to use the same ID.  Use any text you want for the ID (such as your e-mail address).",
+      "ok": "OK",
+      "message": "Message"
+
+    },
+    "idle_timer": {
+      "timeout": "Session Timeout",
+      "expire": "Your session is about to expire...!",
+      "login_page": "login page...",
+      "return_login": "Return to the",
+      "conext_gateway": "Conext Gateway"
+    }
+  }
+}

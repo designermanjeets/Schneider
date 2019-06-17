@@ -1,0 +1,1093 @@
+﻿body {
+  width: 100%;
+  height: 100%;
+}
+
+html {
+  height: 100%;
+  overflow-y: scroll;
+}
+/* green color for hr */
+
+
+// Many of the CSS rules in here apply to, e.g., all <select> elements,
+// but they are only applicable on the login screen and/or the smart install
+// screens. The rightthing to do would be to thoughtfully refactor the CSS and
+// the HTML. The *fast* thing to do is to wrap all the styles in a class that
+// we only use on the smart install screens.
+.for-login-or-smart-install {
+  #smartInstallAppgreenLine {
+    display: block;
+    height: 4px;
+    border-color: 1px solid green;
+    margin: 0.7% 0%;
+    padding: 0;
+    background-color: #2BA449;
+  }
+
+  #container {
+    width: 80%;
+    height: 80%;
+  }
+
+  #loginImageId {
+    margin-left: 56px;
+    margin-top: 128px;
+    float: left;
+  }
+
+  /*#loginHeader,*/
+  #licenseHeader{
+    margin-left: 100px;
+    margin-top: 3%;
+    color: #2BA449;
+  }
+
+  #smartInstallSummaryIdApp {
+    color: #2BA449;
+  }
+
+  /* Serial number in login page */
+  #serialNumber {
+    width: 100%;
+    color: #2BA449;
+    margin-top: 12%;
+  }
+
+  #loginId {
+    height: 100%;
+    float: left;
+    width: 80%;
+    margin-left: 50%;
+    margin-top: -55.5%;
+    padding-left: 1%;
+    font-size: 18px;
+    color: #46494A;
+  }
+
+  /* Error messgage Div */
+  #errorMessage ,#smartInstallSetuperrorMessage{
+    border: 1px solid #85463D;
+    border-radius: 5px;
+    background-color: #FCECEA;
+    background-repeat: no-repeat;
+    background-size: 25px 25px;
+    background-position: 10px;
+    color: #B65242;
+    width: 50%;
+    text-align: center;
+    font-size: 14px;
+    padding-left: 45px;
+    padding-right: 18px;
+    padding-bottom: 5px;
+  }
+
+  /* Error messgage Div in licence agreemet page*/
+  #licAgreeErrorMessage {
+    border: 1px solid #85463D;
+    color: #B65242;
+    border-radius: 5px;
+    background-color: #FCECEA;
+    width: 50%;
+    text-align: center;
+    font-size: 14px;
+    margin-left: 40%;
+    margin-top: 2%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  /* Error messgage Div in licence agreemet page*/
+  #discAgreeErrorMessage {
+    border: 1px solid #85463D;
+    color: #B65242;
+    border-radius: 5px;
+    background-color: #FCECEA;
+    width: 50%;
+    text-align: center;
+    font-size: 14px;
+    margin-left: 30%;
+    margin-top: 2%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  /* Error messgage Div in licence agreemet page*/
+  #chngPwdErrorMessage {
+    border: 1px solid #85463D;
+    color: #B65242;
+    border-radius: 5px;
+    background-color: #FCECEA;
+    background-repeat: no-repeat;
+    background-size: 25px 25px;
+    background-position: 10px;
+    width: 50%;
+    text-align: center;
+    font-size: 14px;
+    padding-left: 45px;
+    padding-right: 18px;
+    padding-bottom: 5px;
+  }
+
+  /* Error messgage Div in licence agreemet page*/
+  #devcDtctErrMsg,#testConextErrorMessage {
+    border: 1px solid #85463D;
+    color: #B65242;
+    border-radius: 5px;
+    background-color: #FCECEA;
+    background-repeat: no-repeat;
+    background-size: 25px 25px;
+    background-position: 10px;
+    width: 50%;
+    text-align: center;
+    font-size: 14px;
+    padding-left: 45px;
+    padding-right: 18px;
+    padding-bottom: 5px;
+  }
+
+  /* Error messgage Div in Password Recovery page*/
+  #pwdRcvryErrMsg,#plantSetupErrorMessage {
+    border: 1px solid #85463D;
+    color: #B65242;
+    border-radius: 5px;
+    background-color: #FCECEA;
+    background-repeat: no-repeat;
+    background-size: 25px 25px;
+    background-position: 10px;
+    width: 60%;
+    text-align: center;
+    font-size: 14px;
+    //float:right;
+     // margin-right:100px;
+    margin-left:25%;
+    padding-left: 45px;
+    padding-right: 18px;
+    padding-bottom: 5px;
+  }
+
+  /* Error messgage Div in licence agreemet page of Smart Install Ta*/
+  #chngPwdErrorMessageApp {
+    border: 1px solid #85463D;
+    color: #B65242;
+    border-radius: 5px;
+    background-color: #FCECEA;
+    width: 50%;
+    text-align: center;
+    font-size: 14px;
+    margin-left: 40%;
+    margin-top: 2%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  /* Error messgage Div in licence agreemet page of Smart Install Ta*/
+  #devcDtctErrMsgApp,#testConextErrorMessageApp {
+    border: 1px solid #85463D;
+    color: #B65242;
+    border-radius: 5px;
+    background-color: #FCECEA;
+    background-repeat: no-repeat;
+    background-size: 25px 25px;
+    background-position: 10px;
+    width: 50%;
+    text-align: center;
+    font-size: 14px;
+    padding-left: 45px;
+    padding-right: 18px;
+    padding-bottom: 5px;
+  }
+
+  /* Error messgage Div in Password Recovery page of Smart Install Tab*/
+  #pwdRcvryErrMsgApp {
+    border: 1px solid #85463D;
+    color: #B65242;
+    border-radius: 5px;
+    background-color: #FCECEA;
+    background-repeat: no-repeat;
+    background-size: 25px 25px;
+    background-position: 10px;
+    width: 50%;
+    text-align: center;
+    font-size: 14px;
+    padding-left: 45px;
+    padding-right: 18px;
+    padding-bottom: 5px;
+  }
+
+  /* Pop up in login Page */
+  section.hiddenPopUp, section.successPopUp, section.failurePopUp,
+  section.failurePopUpApp, section.successPopUpApp, section.pwdRecoveryPopup,
+  section.pwdRecoveryFailurePopup, section.pwdRecoveryMailSentPopup,
+  section.defaultLoginPwdPopup, section.PwdUpdatedPopup, section.PwdUpdationFailurePopup,
+  section.changePasswordHiddenPopUp, section.forgotPasswordPopup,section.defaultForgotPasswordPopup,
+  section.passwordRecoveryMailSentPopup,section.siSaveSMTPConfirmationPopup,section.invalidLogin,
+  section.siAppSaveSMTPConfirmationPopup,section.defaultSmartInstallSetupPopup{
+    display: none;
+    position: fixed;
+  }
+
+  section.smartInstallSidePaswdRecoveryImage{
+    float: left;
+    width: 25%;
+  }
+
+  section.smartInstallSidePaswdRecoveryText{
+    float: left;
+    width: 75%;
+    text-align: right;
+  }
+
+  section article.popup {
+    position: relative;
+    width: 30%;
+    height: 40%;
+    background: white;
+    color: #222;
+    border: 1px solid #333;
+    border-radius: 3px;
+    padding: 5px;
+    margin: 10px auto;
+    margin-top: 10%;
+  }
+
+  #container1 {
+    padding: 1%;
+    margin-left: 7%;
+    margin-top: 3%;
+    width: 80%;
+    height: 80%;
+  }
+
+  #includedContent img {
+    margin-top: -2%;
+    margin-left: 65%;
+  }
+
+  #includedContent button {
+    width: 8%;
+    height: 5%;
+    font-size: 15px;
+  }
+
+  /* text box highlighter */
+  input[type=text],input[type=password],input[type=number],input[type=email]{
+    outline: none;
+    border: 1px solid #C4C3C6;
+    border-radius: 5px;
+    width: 100%;
+  }
+
+  input[type=text]:focus,input[type=password]:focus,input[type=password]:focus,input[type=email]:focus{
+    outline: none;
+    box-shadow: 0px 0px 5px #2BA449;
+    border: 1px solid #2BA449;
+  }
+
+  input[type=text]:hover:not([disabled]),
+  input[type=password]:hover:not([disabled]),
+  input[type=number]:hover:not([disabled]),
+  input[type=email]:hover:not([disabled]),
+  {
+    border: 1px solid #2BA449;
+    box-shadow: 0px 0px 5px #2BA449;
+    border-radius: 5px;
+  }
+
+  /*input[type=text]:invalid,input[type=password]:invalid,input[type=number]:invalid,input[type=email]:invalid{
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px #b4665b;
+    border: 1px solid #85463D !important;
+  }*/
+
+  /* button css in login page */
+
+  button.loginButton{
+    width: 160px;
+    border: #BBB 1px solid;
+    color: #FFFFFF;
+    display: block;
+    padding: 6px 10px;
+    margin-right: 2px;
+    cursor: pointer;
+    outline:none;
+    background: #32AD4A; /* for non-css3 browsers */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#32AD4A', endColorstr='#40883F'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#32AD4A), to(#40883F)); /* for webkit browsers */
+    background: -moz-linear-gradient(top, #32AD4A, #40883F); /* for firefox 3.6+ */
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -moz-box-shadow: 0px 1px 3px #AAA;
+    -webkit-box-shadow: 0px 1px 3px #AAA;
+    box-shadow: 0px 1px 3px #AAA;
+  }
+  .usernameSelect::-ms-expand{
+    display:none;
+  }
+  .usernameSelect{
+    appearance: none;
+    background-image: url("../img/login_dropdown.png");
+  }
+  /* Dropdown css */
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -webkit-padding-end: 2px;
+    -moz-padding-end: 22px;
+    -webkit-padding-start: 2px;
+    -moz-padding-start: 2px;
+    background-color: #E2E2E4; /* fallback color if gradients are not supported */
+    background-image: -webkit-image-set(url("../img/login_dropdown.png") 1x);
+    background-size: 22px 22px;
+    background-position: center right;
+    background-origin: content-box;
+    background-repeat: no-repeat;
+    border: 1px solid #AAA;
+    border-radius: 5px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+    color: #000000;
+    font-size: inherit;
+    margin: 0;
+     /* overflow: hidden;*/
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  /* Space between tr */
+  tr.spaceUnder > td {
+    padding-bottom: 8px;
+  }
+
+  /* License Page */
+  #licenseContainer {
+    padding: 0.5%;
+    background-color: #F2F2F2;
+    margin-left: 5%;
+    width: 90%;
+    height: 300px;
+    overflow-y: auto;
+  }
+
+  label, input[type="checkbox"] {
+    line-height: 2.1ex;
+  }
+
+  input[type="checkbox"] {
+    position: absolute;
+    left: -999em;
+  }
+
+  input[type="checkbox"] + label {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  input[type="checkbox"] + label::before {
+    content: "";
+    display: inline-block;
+    vertical-align: -25%;
+    height: 1.8ex;
+    width: 1.8ex;
+    background-color: white;
+    border: 1px solid #687276;
+    border-radius: 2px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.25);
+    margin: 0.1em;
+    margin-right: 3px;
+  }
+
+  input[type="checkbox"]:checked + label::after {
+    content: '';
+    position: absolute;
+    width: 1.4ex;
+    height: 0.5ex;
+    background: rgba(0, 0, 0, 0);
+    top: 1ex;
+    left: 0.5ex;
+    border: 2px solid #15A34A;
+    border-top: none;
+    border-right: none;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+
+  button.licenseClose {
+    width: 120px;
+    height: 40px;
+    font-family: 'Nunito Regular', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    border: #BBB 1px solid;
+    color: #3F4146;
+    display: block;
+    padding: 6px 10px;
+    margin-right: 2px;
+    cursor: pointer;
+    float: right;
+    margin-right: 5%;
+    margin-top: -0.9%;
+    background: #FFF; /* for non-css3 browsers */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#DDDDDD'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#DDD)); /* for webkit browsers */
+    background: -moz-linear-gradient(top, #FFF, #DDD); /* for firefox 3.6+ */
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -moz-box-shadow: 0px 1px 3px #AAA;
+    -webkit-box-shadow: 0px 1px 3px #AAA;
+    box-shadow: 0px 1px 3px #AAA;
+  }
+
+  /* Change Password */
+
+  #changePasswordImageId {
+    margin-left: 10%;
+    margin-top: 10%;
+    float: left;
+  }
+
+  #changePasswordId {
+    width: 65%;
+    float: left;
+    margin-left: 34%;
+    margin-top: -20%;
+    padding-left: 2%;
+    font-size: 18px;
+    color: #46494A;
+  }
+
+  button.smartInstallCancel, button.smartInstallOk {
+    width: 120px;
+    height: 40px;
+    outline:none;
+    font-family: 'Nunito Regular', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    border: #BBB 1px solid;
+    color: #3F4146;
+    display: block;
+    padding: 6px 10px;
+    margin-right: 2px;
+    cursor: pointer;
+    margin-top: -0.9%;
+    background: #FFF; /* for non-css3 browsers */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#DDDDDD'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#DDD)); /* for webkit browsers */
+    background: -moz-linear-gradient(top, #FFF, #DDD); /* for firefox 3.6+ */
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -khtml-border-radius: 3px;
+    -moz-box-shadow: 0px 1px 3px #AAA;
+    -webkit-box-shadow: 0px 1px 3px #AAA;
+    box-shadow: 0px 1px 3px #AAA;
+  }
+
+  button.smartInstallSkip, button.smartInstallNext, button.changePassword, button.connectToInsight, button.detectDevices, button.stopDetectDevices, button.smartInstallApply{
+    min-width: 120px;
+    height: 40px;
+    outline:none;
+    font-family: 'Nunito Regular', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    float: right;
+    border: #BBB 1px solid;
+    color: #3F4146;
+    display: block;
+    padding: 6px 10px;
+    margin-right: 20px;
+    cursor: pointer;
+    background: #FFF; /* for non-css3 browsers */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#DDDDDD'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#DDD)); /* for webkit browsers */
+    background: -moz-linear-gradient(top, #FFF, #DDD); /* for firefox 3.6+ */
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -khtml-border-radius: 3px;
+    -moz-box-shadow: 0px 1px 3px #AAA;
+    -webkit-box-shadow: 0px 1px 3px #AAA;
+    box-shadow: 0px 1px 3px #AAA;
+  }
+
+  button:disabled{
+    opacity:0.7;
+  }
+
+  /* Smart Install */
+  #smartInstallContainerId {
+    width: 95%;
+    height: 75%;
+    margin: auto;
+    padding: 15px;
+  }
+
+  #smartInstallErrMsgContainer{
+    width: 100%;
+    height: 15%;
+    float: right;
+    vertical-align: bottom;
+    padding-right: 5%;
+  }
+
+  .smartInstallErrMsgBar {
+    width: 100%;
+    height: 75%;
+    float: right;
+    padding-right: 3%;
+    border: 1px solid #85463D;
+    color: #B65242;
+    border-radius: 5px;
+    background-color: #FCECEA;
+    background-repeat: no-repeat;
+    background-size: 25px 25px;
+    background-position: 10px;
+    width: 50%;
+    font-size: 14px;
+    margin: 10px;
+    display: none;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  #smartInstallButtonContainer {
+    width: 100%;
+    height: 20%;
+    float: right;
+    vertical-align: bottom;
+    padding-right: 3%;
+  }
+
+  button.smartInstallDetect {
+    width: 120px;
+    height: 40px;
+    font-family: 'Nunito Regular', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    border: #BBB 1px solid;
+    color: #3F4146;
+    outline:none;
+    display: block;
+    padding: 6px 10px;
+    margin-right: 2px;
+    cursor: pointer;
+    margin-left: 60%;
+    margin-top: -38px;
+    background: #FFF; /* for non-css3 browsers */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#DDDDDD'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#DDD)); /* for webkit browsers */
+    background: -moz-linear-gradient(top, #FFF, #DDD); /* for firefox 3.6+ */
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -khtml-border-radius: 3px;
+    -moz-box-shadow: 0px 1px 3px #AAA;
+    -webkit-box-shadow: 0px 1px 3px #AAA;
+    box-shadow: 0px 1px 3px #AAA;
+  }
+
+  button.smartInstallDetectApp {
+    width: 120px;
+    height: 40px;
+    font-family: 'Nunito Regular', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    border: #BBB 1px solid;
+    color: #3F4146;
+    display: block;
+    padding: 6px 10px;
+    margin-right: 2px;
+    cursor: pointer;
+    margin-left: 530px;
+    margin-top: -40px;
+    background: #FFF; /* for non-css3 browsers */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#DDDDDD'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#DDD)); /* for webkit browsers */
+    background: -moz-linear-gradient(top, #FFF, #DDD); /* for firefox 3.6+ */
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -khtml-border-radius: 3px;
+    -moz-box-shadow: 0px 1px 3px #AAA;
+    -webkit-box-shadow: 0px 1px 3px #AAA;
+    box-shadow: 0px 1px 3px #AAA;
+  }
+
+  #smartInstallEmailSpinner {
+    margin-right: 8px;
+    float: right;
+  }
+
+  #loader{
+    width:35px;
+    height:35px;
+    float:right;
+    margin-right:10px;
+    display:inline-block;
+    vertical-align:middle;
+  }
+
+  #loaderProgressStatus{
+    color: #00CC00;
+    font-weight: bold;
+    display:inline-block;
+    vertical-align:middle;
+    float:right;
+    margin-right:10px
+  }
+
+  #detectedSummaryId {
+    width: 95%;
+    margin: auto;
+  }
+
+  #detectedSummaryId thead > tr > th {
+    padding: 4px;
+    background-color: #687276;
+    color: white;
+    border-bottom: none;
+    border-right: 1px solid #F9FAFB;
+    width: 20%;
+    font-weight: normal;
+  }
+
+  #detectedSummaryId tr > td {
+    border-bottom: 2px solid #CBCBCB;
+    background-color: white;
+    padding: 3px;
+  }
+
+  #smartInstallSummaryTable tr > td:nth-of-type(2) {
+    width: 25%;
+    text-align: right;
+  }
+
+  #smartInstallChangePasswordTable {
+    float: right;
+    margin-left: 2px;
+  }
+
+  #smartInstallChangePasswordTable tr > td:nth-of-type(1) {
+    float: right;
+  }
+
+  #smartInstallChangePasswordTable tr > td:nth-of-type(2) {
+    width: 275px;
+  }
+
+  button.smartInstallTest {
+    width: 120px;
+    height: 38px;
+    font-family: 'Nunito Regular', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    outline:none;
+    border: #BBB 1px solid;
+    color: #3F4146;
+    display: block;
+    padding: 5px 10px;
+    margin-right: 2px;
+    cursor: pointer;
+    margin-top: -0.9%;
+    background: #FFF; /* for non-css3 browsers */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#DDDDDD'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#DDD)); /* for webkit browsers */
+    background: -moz-linear-gradient(top, #FFF, #DDD); /* for firefox 3.6+ */
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -khtml-border-radius: 3px;
+    -moz-box-shadow: 0px 1px 3px #AAA;
+    -webkit-box-shadow: 0px 1px 3px #AAA;
+    box-shadow: 0px 1px 3px #AAA;
+  }
+
+
+  button.smartInstallTestMail {
+    width: 160px;
+    height: 40px;
+    font-family: 'Nunito Regular', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    border: #BBB 1px solid;
+    color: #3F4146;
+    outline:none;
+    display: block;
+    padding: 6px 10px;
+    margin-right: 2px;
+    cursor: pointer;
+    margin-top: -0.9%;
+    background: #FFF; /* for non-css3 browsers */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#DDDDDD'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#DDD)); /* for webkit browsers */
+    background: -moz-linear-gradient(top, #FFF, #DDD); /* for firefox 3.6+ */
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -khtml-border-radius: 3px;
+    -moz-box-shadow: 0px 1px 3px #AAA;
+    -webkit-box-shadow: 0px 1px 3px #AAA;
+    box-shadow: 0px 1px 3px #AAA;
+  }
+
+  #smartInstallImageId {
+    margin-left: 5%;
+    margin-top: 4%;
+    /*height: 100%;*/
+    float: left;
+    width: 20%;
+  }
+
+  #smartInstallDivIdApp {
+     /* height: 100%;*/
+    float: left;
+    margin-left: 6%;
+    margin-top: -2%;
+    padding-left: 3%;
+    font-size: 18px;
+  }
+
+
+  #progress {
+    width: 300px;
+    height: 10px;
+    border: 1px solid grey;
+    z-index: 1;
+    position: relative;
+    border-radius: 5px;
+    moz-border-radius: 5px;
+  }
+
+  #progress-bar {
+    background-color: green;
+    z-index: 2;
+    height: 100%;
+    width: 0%;
+
+  }
+
+  #progress-bar-text {
+    z-index: 3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+
+  }
+
+  .skippedClass {
+    color: #808080;
+  }
+
+  .successClass {
+    color: #2BA449;
+  }
+
+  .failedClass {
+    color: #FF9900;
+  }
+
+  #disclaimerWarningId {
+    background-color: #E87020;
+    color: #000000;
+    text-align: center;
+    height: 30px;
+    margin-top: -20px;
+  }
+
+  .remoteDisclaimerDivClass, .disclaimerDivClass, .warningDivClass {
+    border: 1px solid #000000;
+    margin: 5px;
+    padding: 2px;
+  }
+
+  .remoteDisclaimerDivClass, .disclaimerDivClass, .warningDivClass >div {
+    text-align: center;
+  }
+
+  #disclaimerWarningContentId > h4 {
+    text-align: center;
+  }
+
+  #disclaimerWarningContentId > h5, .remoteDisclaimerDivClass, .disclaimerDivClass, .warningDivClass>h5 {
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: justify;
+    text-justify: inter-word;
+  }
+
+  /* Style for Login/SmartInstall pages */
+  /* Login Screen, Change Password Page*/
+  #loginDimensionDiv {
+    height: 598px;
+    width: 864px;
+    border-radius: 14px;
+    background-color: #FFFFFF;
+    /* margin-top: 35px;
+    margin-right: auto;
+    margin-left: auto;*/
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+     -moz-box-shadow: 0px 0.5px 3px 0.5px #000000;
+    -webkit-box-shadow: 0px 0.5px 3px 0.5px #000000;
+    box-shadow: 0px 0.5px 3px 0.5px #000000;
+  }
+
+  .dd .divider {
+    border-left: none;
+    border-right: none;
+    right: 24px;
+  }
+
+  .dd {
+    border: 1px solid #AAA;
+  }
+
+  .headerDiv {
+    height: 64px;
+    border-bottom: 5px solid #40883F;
+  }
+
+  #loginHeaderNew, #changePasswordHeader {
+    margin-left: 32px;
+    color: #1a6633;
+    font: arial rounded;
+    font-size: 28px;
+    padding-top: 15px;
+  }
+
+  #smartInstallHeader {
+    margin-left: 32px;
+    color: #1a6633;
+    font: arial rounded;
+    font-size: 28px;
+    padding-top: 15px;
+    margin-top: 0px;
+    float: left;
+    width:95%;
+    display:block
+  }
+
+  #smartInstallSubHeader{
+    color: #2BA449;
+    float: right;
+    text-align: right;
+    width:20%;
+  }
+
+
+  /* Disclaimer Page , Change Password Page */
+  .dimensionDiv {
+    height: 598px;
+    width: 864px;
+    border-radius: 14px;
+    background-color: #FFFFFF;
+     /* margin-right: auto;
+    margin-left: auto;
+    margin-top: 20px;*/
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    -moz-box-shadow: 0px 0.5px 3px 0.5px #000000;
+    -webkit-box-shadow: 0px 0.5px 3px 0.5px #000000;
+    box-shadow: 0px 0.5px 3px 0.5px #000000;
+  }
+
+  /* Smart Install Detect Devices Page*/
+  #smartInstallSummaryId {
+    margin-left: 5%;
+    margin-top: 3%;
+    color: #2BA449;
+  }
+
+  #detectedSummaryId > thead > tr > th, #detectedSummaryId > tbody > tr > td {
+    text-align: center;
+  }
+
+  /* Smart Install Change Password Page*/
+  #smartInstallDivImageId {
+    margin-left: 3%;
+    margin-top: 10%;
+    float: left;
+    width: 10%;
+  }
+
+  #detectedSummaryIdApp > thead > tr > th,#detectedSummaryIdApp > tbody > tr > td{
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  /*CSS Code to display red color border when any error occurs.*/
+  .borderRed {
+    box-shadow: 0px 0px 5px #b4665b;
+    border: 1px solid #85463D !important;
+  }
+
+  .borderRedLogin {
+    box-shadow: 0px 0px 5px #b4665b;
+    border: 1px solid #85463D !important;
+  }
+
+  .borderGreen{
+    border: 1px solid #2BA449;
+    background-color: #E9F5EC;
+    color: #2BA449;
+  }
+
+  #conextGatewayPartialPage {
+    height: 100%;
+    width: 100%;
+  }
+
+  .smartInstallTable {
+    height: 100%;
+    width: 100%;
+    display: table;
+  }
+
+  .smartInstallTableCell {
+    height: 100%;
+    vertical-align: middle;
+    display: table-cell;
+  }
+
+
+  .smartInstallBackground{
+    height: 638px;
+    width: 904px;
+    background-color: #FFFFFF;
+    margin: auto;
+    position: relative;
+    top: 0; left: 0; bottom: 0; right: 0;
+  }
+
+  .smartInstallDimensionDiv{
+    height: 598px;
+    width: 864px;
+    border-radius: 14px;
+    background-color: #FFFFFF;
+    margin: 20px 20px;
+    -moz-box-shadow: 0.5px 0.2px 3px #000000;
+    -webkit-box-shadow: 0.5px 0.2px 3px #000000;
+    box-shadow: 0.5px 0.5px 3px #000000;
+  }
+
+  .tableDimensionDiv{
+    border-radius: 14px;
+    background-color: #FFFFFF;
+    -moz-box-shadow: 0px 0px 1px 0.5px #000000;
+    -webkit-box-shadow: 0px 0px 1px 0.5px #000000;
+    box-shadow: 0px 0px 1px 0.5px #000000;
+  }
+  .smartInstallDetectDiv{
+    width: 100%;
+    border-radius: 14px;
+    background-color: #FFFFFF;
+    -moz-box-shadow: 0px 0px 1px 0.5px #000000;
+    -webkit-box-shadow: 0px 0px 1px 0.5px #000000;
+    box-shadow: 0px 0px 1px 0.5px #000000;
+  }
+
+  /* To display success message in Plant Setup Page */
+  .successMessagePlantSetup{
+    padding-left:10px;
+    border: 1px solid #2BA449;
+    background-size: 20px 20px;
+    background-position: center left;
+    background-origin: content-box;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    background-color: #E9F5EC;
+    color: #2BA449;
+    width: auto;
+    text-align: center;
+    font-size: 13px;
+    margin-left: 35%;
+    margin-top: -0.5%;
+    padding-top: 3px;
+    padding-bottom: 3px;
+  }
+
+  .popupBox{
+    border: 2px solid #BBD783;
+    border-radius: 15px;
+    color: #555555;
+    width: 450px;
+    background: #ffffff;
+    margin-left: 165%;
+    margin-top: 80%;
+  }
+
+  .popupBox img{
+    float: left;
+    margin: 15px 0px 0px 10px;
+  }
+
+  .popupBox .rightHeading{
+    float: right;
+    font-size: 14px;
+    font-weight: bold;
+    color: #111111;
+    margin: 15px 10px 0px 0px;
+  }
+
+  .popupBox .contentHeading{
+    display: block;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .popupBox .popupContentBox{
+    padding: 20px;
+    margin: 0 auto;
+    text-align: center;
+
+  }
+
+  .popupContent{
+    font-size: 13px;
+
+  }
+
+  .popupBox .footerText{
+    display: block;
+    margin-top: 10px;
+
+  }
+
+  .clear{
+    clear: both;
+  }
+
+  .sessionTimeoutCheckupPopup .popup{
+    border: none;
+    background: none;
+  }
+  #overlaycover{
+    position:fixed;
+    top:0;
+    left:0;
+    background:rgba(0,0,0,0);
+    z-index:0;
+    width:100%;
+    height:100%;
+    display:none;
+  }
+
+  .systemRebootCheckupPopup{
+
+    z-index: 100;
+
+  }
+}

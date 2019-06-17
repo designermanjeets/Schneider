@@ -1,0 +1,4 @@
+﻿<h2 class="device-details-page-title" ng-bind="device.NAME"></h2>
+<delete-device device-info="deviceInfo" ng-show="device.commError"></delete-device>
+<div ng-show="device && device.MODEL && device.MODEL.indexOf('PM2') > -1" ng-include="'/app/devices/details/pm2xxx_details.html'"></div>
+<div ng-show="device && device.MODEL && device.MODEL.indexOf('PM2') < 0" ng-include="'/app/devices/details/generic_meter_details.html'"></div>

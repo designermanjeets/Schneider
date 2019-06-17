@@ -1,0 +1,227 @@
+﻿<div class="for-login-or-smart-install">
+  <!-- name the form quickSetup, for consistency with the setup tab -->
+  <form name="forms.quickSetup"
+        novalidate
+        ng-submit="nextClicked()">
+    <div class="smartInstallTable" ng-cloak data-ng-controller="csbIdleTimer">
+      <div class="smartInstallTableCell">
+        <div class="smartInstallBackground">
+          <div class="smartInstallDimensionDiv">
+            <table style="width: 92%">
+              <!-- Header -->
+              <tr>
+                <td>
+                  <h3 id="smartInstallHeader"
+                    translate="smart_install.heading.heading"
+                    >
+                  </h3>
+                </td>
+                <td>
+                  <h3 id="smartInstallSubHeader">
+                    <span
+                      translate="smart_install.heading.step"
+                      translate-value-number="1"
+                      >
+                    </span>
+                  </h3>
+                </td>
+              </tr>
+            </table>
+            <hr id="smartInstallAppgreenLine">
+            <div id="smartInstallContainerId">
+              <table style="width: 100%; margin-top: 20px; margin-left: 0px">
+                <!-- Time Settings -->
+                <tr class="spaceUnder">
+                  <td colspan="2"
+                    translate="smart_install.plant.time_settings"
+                    >
+                  </td>
+                </tr>
+                <!-- Time zone select pull down list -->
+                <tr class="spaceUnder">
+                  <td style="font-size: medium; padding-left: 15px;"
+                    translate="smart_install.plant.timezone"
+                    >
+                  </td>
+                  <td style="font-size: 15px;">
+                    <select id="ddlTimeZoneSIApp"
+                            data-ng-model="plant_setup.timezone"
+                            data-ng-options="timezone.id as timezone.label for timezone in timezoneList"
+                            data-ng-disable="inputEnable"
+                            style="width: 430px; float: left;"></select>
+
+                  </td>
+                </tr>
+                <!-- Device Time -->
+                <tr class="spaceUnder">
+                  <td style="font-size: medium; padding-left: 15px;">
+                    <input type="radio"
+                           name="radioDeviceTimeNetworkTimeSIApp"
+                           data-ng-model="plant_setup.timeSource"
+                           data-ng-disable="inputEnable"
+                           ng-model-options="{ updateOn: 'default' }"
+                           value="device" />
+                    &nbsp;&nbsp;
+                      <span translate="smart_install.plant.device_time">
+                      </span>
+                  </td>
+                  <td></td>
+                </tr>
+                <tr class="spaceUnder">
+                  <td style="font-size: medium; padding-left: 30px"
+                    translate="smart_install.plant.date_time"
+                    >
+                  </td>
+                  <td>
+                    <span class="input-group">
+                      <input type="text" readonly
+                             datetime-picker="yyyy/MM/dd HH:mm:ss"
+                             today-text      = "{{text.today}}"
+                             now-text        = "{{text.now}}"
+                             date-text       = "{{text.date}}"
+                             time-text       = "{{text.time}}"
+                             close-text      = "{{text.close}}"
+
+                             data-ng-model="plant_setup.dateTime"
+                             is-open="calendar.isOpen"
+                             size="30"
+                             style="width: 200px; height: 25px; font-size: 15px;"
+                             ng-disabled="plant_setup.timeSource!=='device'"
+                             ng-required="plant_setup.timeSource==='device'" />
+                      <span data-ng-click="openCalendar($event)"
+                            data-ng-show="plant_setup.timeSource=='device'">
+                        <div class="icon-calendar setup-icon-calendar" ></div>
+                      </span>
+                    </span>
+                  </td>
+                </tr>
+                <tr class="spaceUnder">
+                  <td colspan="2" style="font-size: medium; padding-left: 15px;">
+                    <input type="radio"
+                           name="radioDeviceTimeNetworkTimeSIApp"
+                           data-ng-model="plant_setup.timeSource"
+                           data-ng-disable="inputEnable"
+                           ng-model-options="{ updateOn: 'default' }"
+                           value="sntpNetwork" />
+                    &nbsp;&nbsp;
+                    <span translate="smart_install.plant.sntp">
+                    </span>
+                  </td>
+                </tr>
+                <tr style="margin-left: 20px;"
+                    class="spaceUnder">
+                  <td style="padding-left: 30px; font-size: medium;"
+                    translate="smart_install.plant.sntp_server"
+                    >
+                  </td>
+                  <td>
+                    <input type="text"
+                           name="sntpServerName"
+                           ng-model="plant_setup.sntpServerName"
+                           ng-disabled="plant_setup.timeSource!=='sntpNetwork'"
+                           ng-required="plant_setup.timeSource==='sntpNetwork'"
+                           ng-maxlength="{{ plant_setup.timeSource==='sntpNetwork' ?  MAX_SNTP_SERVER_NAME_LEN : null }}"
+                           fqdn="{{plant_setup.timeSource==='sntpNetwork'}}"
+                           style="width: 200px; height: 25px;"
+                           size="30" />
+                  </td>
+                </tr>
+                <!--<tr style="margin-left: 20px;"
+                        class="spaceUnder">
+                  <td style="font-size: medium; padding-left: 30px;">
+                    Poll
+                    Interval:
+                  </td>
+                  <td>
+                    <input type="text"
+                           name="txtPollIntervalSIApp"
+                           data-ng-disabled="plant_setup.timeSource!='sntpNetwork'"
+                           value="24" placeholder="24"
+                           data-ng-model="txtPollIntervalSIApp"
+                           style="width: 200px; height: 25px;"
+                           size="30"/>&nbsp;&nbsp;(Hours)
+                  </td>
+                </tr>-->
+                <tr class="spaceUnder">
+                  <td colspan="2"
+                    translate="smart_install.plant.plant_settings"
+                    >
+                  </td>
+                </tr>
+
+                <tr class="spaceUnder">
+                  <td translate="smart_install.plant.ac_capacity">
+                  </td>
+                  <td>
+                    <input type="number"
+                           size="30"
+                           name="acCapacity"
+                           ng-model="plant_setup.acCapacity"
+                           pattern="\d+(\.\d{1})?"
+                           min="1"
+                           max="{{::MAX_AC_CAPACITY_KW}}"
+                           required
+                           style="width: 200px; height: 25px; font-size: 15px; font-weight: normal;"/>
+                  </td>
+                </tr>
+                <tr class="spaceUnder">
+                  <td translate="smart_install.plant.installedYear"></td>
+                  <td>
+                    <input type="number"
+                           name="installedYear"
+                           ng-model="plant_setup.installedYear"
+                           min="1900"
+                           max="{{currentYear}}"
+                           pattern="\d{4}"
+                           required
+                           style="width: 200px; height: 25px; font-size: 15px; font-weight: normal;" />
+                  </td>
+                </tr>
+                <tr class="spaceUnder">
+                  <td colspan="2" style="padding-top: 20px;">
+                    <p style="font-weight: bold; font-size: 13px;"
+                      translate="smart_install.plant.sntp_message"
+                      >
+                    </p>
+                  </td>
+                </tr>
+              </table>
+              <div id="datetimedialogSIApp" title="Date">
+                <div class="siAppPlantSetupdateTimePicker"></div>
+              </div>
+
+              <div class="psu-message" ng-show="forms.quickSetup.$submitted">
+                <date-time-errors></date-time-errors>
+              </div>
+              <div class="psu-message" ng-show="processingMessage">
+                <div class="alert alert-info">
+                  <p translate="smart_install.plant.processing_message"></p>
+                </div>
+              </div>
+              <div class="psu-message" ng-show="successMessage">
+                <div class="alert alert-success">
+                  <p translate="smart_install.plant.success_message"></p>
+                </div>
+              </div>
+              <div class="psu-message" ng-show="errorMessage">
+                <div class="alert alert-danger">
+                  <p translate="smart_install.plant.error_message"></p>
+                </div>
+              </div>
+            </div>
+
+            <div id="smartInstallButtonContainer">
+              <button type="submit" id="btnPlantSetupApplySIApp"
+                      name="btnPlantSetupApplySIApp"
+                      class="smartInstallApply"
+                      data-ng-disable="inputEnable"
+                      translate="smart_install.apply"
+                      >
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

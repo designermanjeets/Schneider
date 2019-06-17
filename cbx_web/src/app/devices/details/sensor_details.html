@@ -1,0 +1,209 @@
+﻿<h2 class="device-details-page-title" ng-bind="device.NAME"></h2>
+<delete-device device-info="deviceInfo" ng-show="device.commError"></delete-device>
+<uib-tabset>
+  <uib-tab heading="{{'devices.details.summary_view' | translate}}">
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title" translate="devices.details.device_information"></h2>
+      </div>
+
+      <!-- no panel-body class, so the table goes full width -->
+      <table class="device-details table">
+        <tr>
+          <td translate="devices.details.model_number"></td>
+          <td ng-bind="device.MODEL | replaceNull"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.serial_number"></td>
+          <td ng-bind="device.SERIAL_NUM | replaceNull"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.device_name"></td>
+          <td ng-bind="device.NAME | replaceNull"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.firmware_version"></td>
+          <td ng-bind="device.FIRMWARE_ID | replaceNull"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.last_updated"></td>
+          <td ng-bind="device.lastUpdated"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title" translate="devices.details.current_values"></h2>
+      </div>
+
+      <table class="device-details table"
+             ng-class="{'device-details--comm-error': device.commError}" ng-cloak>
+
+        <tr ng-show="device.NAME.indexOf('GH-I') !== -1">
+          <td translate="devices.details.gh_irradiance"></td>
+          <td ng-bind="details.ghiIrradiance | number: 1 | replaceNull | makeDashIf: device.commError"></td>
+        </tr>
+
+        <tr ng-show="device.NAME.indexOf('POA-I') !== -1">
+          <td translate="devices.details.poa_irradiance"></td>
+          <td ng-bind="details.poaIrradiance | number: 1 | replaceNull | makeDashIf: device.commError"></td>
+        </tr>
+
+        <tr ng-show="device.NAME.indexOf('Wind') !== -1">
+          <td translate="devices.details.wind_speed"></td>
+          <td ng-bind="details.windSpeed | number: 1 | replaceNull | makeDashIf: device.commError"></td>
+        </tr>
+
+        <tr ng-show="device.NAME.indexOf('Tamb') !== -1">
+          <td translate="devices.details.tamb_temperature" translate-value-units="{{details.temperatureUnits}}"></td>
+          <td ng-bind="details.ambientTemperature | number: 1 | replaceNull | makeDashIf: device.commError"></td>
+        </tr>
+
+        <tr ng-show="device.NAME.indexOf('Tmod') !== -1">
+          <td translate="devices.details.tmod_temperature" translate-value-units="{{details.temperatureUnits}}"></td>
+          <td ng-bind="details.moduleTemperature | number: 1 | replaceNull | makeDashIf: device.commError"></td>
+        </tr>
+
+        <tr>
+          <td translate="devices.details.operating_state"></td>
+          <td ng-bind="details.operatingState | replaceNull | makeDashIf: device.commError"></td>
+        </tr>
+        <tr>
+          <td translate="devices.details.alarm_code"></td>
+          <td ng-bind="details.alarmCode | replaceNull | makeDashIf: device.commError"></td>
+        </tr>
+
+
+      </table>
+    </div>
+  </uib-tab>
+
+  <uib-tab heading="{{'devices.details.settings' | translate}}" csb-permissions>
+    <form name="forms.sensorSettings" novalidate
+          ng-model-options="{ updateOn: 'submit' }" ng-submit="apply()">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2 class="panel-title" translate="devices.details.sensor_type"></h2>
+        </div>
+
+        <div class="panel-body">
+          <table class="settings-controls">
+            <tr>
+              <td translate="devices.details.sensor_type"></td>
+              <td>
+                <span ng-repeat="type in sensorTypes"
+                      ng-bind="type.name">
+                </span>
+              </td>
+            </tr>
+
+            <tr>
+              <td translate="devices.details.sensor_model"></td>
+              <td>
+
+                <!--<span ng-if="device.modelCanBeIdentifiedAutomatically">
+                  <span ng-repeat="model in sensorModels"
+                    ng-if="model.id == device.sensorModel"
+                    ng-bind="model.name">
+                  </span>
+                </span>
+
+                <span ng-if="!device.modelCanBeIdentifiedAutomatically">
+                  <select name="sensorModel" ng-model="device.sensorModel" required
+                    ng-disabled="device.commError"
+                    ng-options="sensorModel.id as sensorModel.name for sensorModel in sensorModels | filter: {canBeIdentifiedAutomatically: false}">
+                  </select>
+                </span>-->
+                <span ng-bind="device.MODEL | replaceNull">
+                </span>
+              </td>
+            </tr>
+
+            <tr>
+              <td translate="devices.details.measurements"
+                class="settings-control__label--for-many-controls"
+                >
+              </td>
+              <td>
+                <ul class="list-unstyled">
+                  <li>
+                    <label>
+                      <input type="checkbox" ng-model="device.measurementTypes.poa" ng-model-options="{ updateOn: 'click' }"
+                             ng-disabled="IMTSOLAR && device.measurementTypes.ghi">
+                      <span translate="devices.details.poa_i_sensor"></span>
+                    </label>
+                  </li>
+
+                  <li>
+                    <label>
+                      <input type="checkbox" ng-model="device.measurementTypes.tmod">
+                      <span translate="devices.details.tmod_sensor" translate-value-units="{{details.temperatureUnits}}"></span>
+                    </label>
+                  </li>
+
+                  <li>
+                    <label>
+                      <input type="checkbox" ng-model="device.measurementTypes.tamb">
+                      <span translate="devices.details.tamb_sensor" translate-value-units="{{details.temperatureUnits}}"></span>
+                    </label>
+                  </li>
+
+                  <li>
+                    <label>
+                      <input type="checkbox" ng-model="device.measurementTypes.wind">
+                      <span translate="devices.details.wind_sensor"></span>
+                    </label>
+                  </li>
+
+                  <li>
+                    <label>
+                      <input type="checkbox" ng-model="device.measurementTypes.ghi" ng-model-options="{ updateOn: 'click' }"
+                             ng-disabled="IMTSOLAR && device.measurementTypes.poa">
+                      <span translate="devices.details.gh_i_sensor" ></span>
+                    </label>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="panel-controls panel-footer">
+          <div class="panel-controls__message panel-controls__message--error">
+            <div ng-show="device.commError" class="alert alert-warning">
+              <p translate="devices.details.communication_error"></p>
+              <p translate="devices.details.communication_error_message"></p>
+            </div>
+
+            <div ng-show="forms.sensorSettings.$submitted">
+              <div ng-messages="forms.sensorSettings.sensorModel.$error">
+                <div ng-message="required"><span translate="devices.details.choose_sensor_model"></span></div>
+              </div>
+              <div ng-messages="forms.sensorSettings.$error">
+                <div ng-message="choose-measurement-type"><span translate="devices.details.choose_sensor_measurement"></span></div>
+              </div>
+              <div ng-messages="forms.sensorSettings.$error">
+                <div ng-message="request-failed"><span translate="devices.details.sensor_type_failure"></span></div>
+              </div>
+            </div>
+            <div class="panel-controls__message panel-controls__message--error">
+              <div class="alert alert-success" ng-show="successMessage.sensorSettings" translate="devices.details.changes_saved">
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-controls__buttons">
+            <input type="submit" class="btn btn-default" ng-disabled="device.commError"
+                   value="{{'devices.details.apply' | translate}}">
+            <input type="button" class="btn btn-default" ng-disabled="device.commError"
+                   ng-click="reset()"
+                   value="{{'devices.details.cancel' | translate}}">
+          </div>
+        </div>
+      </div>
+    </form>
+  </uib-tab>
+
+</uib-tabset>

@@ -1,0 +1,54 @@
+<table class="event_table table table-striped table-bordered">
+  <tr>
+    <th class="no-text-wrap" ng-click="sortItems('event_type')" style="width: 112px;">
+      <span translate="xanbus.evtlog.event_type"></span>
+      <span class="glyphicon" ng-class="sorting.event_type.class" style="float:right;" ng-style="!sorting.event_type.active && {'color':'#CBCBCB'}"></span>
+    </th>
+    <th class="no-text-wrap" ng-click="sortItems('timestamp')" style="width: 200px;">
+      <span translate="xanbus.evtlog.timestamp"></span>
+      <span class="glyphicon" ng-class="sorting.timestamp.class" style="float:right;" ng-style="!sorting.timestamp.active && {'color':'#CBCBCB'}"></span>
+    </th>
+    <th class="no-text-wrap" ng-click="sortItems('device_type')" style="width: 120px;">
+      <span translate="xanbus.evtlog.device_type"></span>
+      <span class="glyphicon" ng-class="sorting.device_type.class" style="float:right;" ng-style="!sorting.device_type.active && {'color':'#CBCBCB'}"></span>
+    </th>
+    <th class="no-text-wrap" ng-click="sortItems('device_id')" style="width: 120px;">
+      <span translate="xanbus.evtlog.device_id"></span>
+      <span class="glyphicon" ng-class="sorting.device_id.class" style="float:right;" ng-style="!sorting.device_id.active && {'color':'#CBCBCB'}"></span>
+    </th>
+    <th class="no-text-wrap" ng-click="sortItems('id')" style="width: 53px;">
+      <span translate="xanbus.evtlog.id"></span>
+      <span class="glyphicon" ng-class="sorting.id.class" style="float:right;" ng-style="!sorting.id.active && {'color':'#CBCBCB'}"></span>
+    </th>
+    <th class="no-text-wrap" ng-click="sortItems('name')" style="width: 125px;">
+      <span translate="xanbus.evtlog.name"></span>
+      <span class="glyphicon" ng-class="sorting.name.class" style="float:right;" ng-style="!sorting.name.active && {'color':'#CBCBCB'}"></span>
+    </th>
+    <th class="no-text-wrap" ng-click="sortItems('description')">
+      <span translate="xanbus.evtlog.description"></span>
+      <span class="glyphicon" ng-class="sorting.description.class" style="float:right;" ng-style="!sorting.description.active && {'color':'#CBCBCB'}"></span>
+    </th>
+  </tr>
+  <tr ng-repeat="evt in info.EVT_LOG">
+    <td style="width:52px;padding-left: 39px">
+      <div class="icon-warning_icon cg-icon-error" style="margin-top: -76px;" ng-show="evt.event_type == 'Warning'"></div>
+      <div class="icon-Error_icon cg-icon-error" style="margin-top: -76px;" ng-show="evt.event_type == 'Fault'"></div>
+    </td>
+    <td class="no-text-wrap">{{ time(evt.timestamp) }}</td>
+    <td>{{ evt.device_type}}</td>
+    <td>{{ evt.device_id}}</td>
+    <td>{{evt.id}}</td>
+    <td>{{evt.name}}</td>
+    <td>
+      {{evt.description | degFormatter}}
+    </td>
+  </tr>
+</table>
+<div class="event-log__controls">
+  <div class="event-log__pagination">
+    <uib-pagination total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage" max-size="maxSize" ng-change="pageChanged()" class="pagination-sm" boundary-links="true" rotate="false" ng-show="totalItems > itemsPerPage" previous-text="{{strings.previous}}"
+      next-text="{{strings.next}}" first-text="{{strings.first}}" last-text="{{strings.last}}">
+    </uib-pagination>
+  </div>
+  <csv-image class="se-clickable" ng-click="getCSV()"  ng-show="totalItems !== 0" fill="#626469" ng-hide="type === 'doughnut'" height="46.3" width="40" style="float:right; margin-top: -15px;"></csv-image>
+</div>

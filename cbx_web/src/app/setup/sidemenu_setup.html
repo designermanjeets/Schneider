@@ -1,0 +1,33 @@
+<div class="col-md-12 no-padding">
+  <!-- Left side menu -->
+  <div id="dashboardSubMenu" style="width:200px">
+    <ul class="nav nav-pills nav-stacked">
+      <li ui-sref-active="active" class="active" csb-permissions="User">
+        <a class="menuIcons onLink" ui-sref="gateway.configuration" translate="setup.side_menu.configuration">
+        </a>
+      </li>
+      <li ui-sref-active="active" class="active" csb-permissions>
+        <a class="menuIcons onLink" ui-sref="gateway.network" translate="setup.side_menu.network">
+        </a>
+      </li>
+      <li ui-sref-active="active" class="active" csb-permissions ng-show="false">
+        <a class="menuIcons onLink" ui-sref="gateway.data_export" translate="setup.side_menu.data_export">
+        </a>
+      </li>
+      <li ui-sref-active="active" class="active" csb-permissions ng-show="false">
+        <a class="menuIcons onLink" ui-sref="gateway.notifications" translate="setup.side_menu.notifications">
+        </a>
+      </li>
+      <li ui-sref-active="active" class="active" csb-permissions="User">
+        <a class="menuIcons onLink" ui-sref="gateway.manage_passwords" translate="setup.side_menu.manage_passwords">
+        </a>
+      </li>
+      <li ui-sref-active="active" class="active">
+        <a class="menuIcons onLink" ui-sref="gateway.detection" translate="setup.side_menu.detection" csb-permissions>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <!-- Partial page view -->
+  <div style="width: calc(100% - 210px); float:left; padding:5px 20px 0px 20px;" ui-view></div>
+</div>

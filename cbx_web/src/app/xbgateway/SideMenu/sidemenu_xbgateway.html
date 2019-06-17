@@ -1,0 +1,45 @@
+<div class="col-md-12 no-padding">
+  <div id="dashboardSubMenu" csb-permissions="User">
+    <ul class="nav nav-pills nav-stacked">
+
+      <!-- DEVICE STATUS -->
+      <li ui-sref-active="active">
+        <a class="menuIcons onLink" ui-sref="xbgateway.xbdevlist({type:'all'})" translate="xanbus.side_menu.device_overview">
+        </a>
+      </li>
+
+      <li ng-hide="inverters.length === 0" ng-class="{ active: $state.includes('**.inverters.**') || $state.includes('xbgateway.xbdevlist', {type:'inverter'}) }">
+        <a class="menuIcons onLink" ui-sref="xbgateway.xbdevlist({type:'inverter'})" translate="xanbus.side_menu.inverters">
+        </a>
+      </li>
+
+      <li ng-hide="inverterChargers.length === 0" ng-class="{ active: $state.includes('**.invchg.**') || $state.includes('xbgateway.xbdevlist', {type:'invchg'}) }">
+        <a class="menuIcons onLink" ui-sref="xbgateway.xbdevlist({type:'invchg'})" translate="xanbus.side_menu.inverter_chargers">
+        </a>
+      </li>
+
+      <li ng-hide="chargers.length === 0" ng-class="{ active: $state.includes('**.chg.**') || $state.includes('xbgateway.xbdevlist', {type:'chg'}) }">
+        <a class="menuIcons onLink" ui-sref="xbgateway.xbdevlist({type:'chg'})" translate="xanbus.side_menu.chargers">
+        </a>
+      </li>
+
+      <li ng-hide="otherDevices.length === 0" ng-class="{ active: $state.includes('**.oth.**') || $state.includes('xbgateway.xbdevlist', {type:'oth'}) }">
+        <a class="menuIcons onLink" ui-sref="xbgateway.xbdevlist({type:'oth'})" translate="xanbus.side_menu.other_devices">
+        </a>
+      </li>
+
+      <li ng-hide="meters.length === 0" ng-class="{ active: $state.includes('**.meters.**') || $state.includes('xbgateway.xbdevlist', {type:'meters'}) }">
+        <a class="menuIcons onLink" ui-sref="xbgateway.xbdevlist({type:'meters'})" translate="xanbus.side_menu.meters">
+        </a>
+      </li>
+
+      <li ng-hide="sensors.length === 0" ng-class="{ active: $state.includes('**.sensors.**') || $state.includes('xbgateway.xbdevlist', {type:'sensors'}) }">
+        <a class="menuIcons onLink" ui-sref="xbgateway.xbdevlist({type:'sensors'})" translate="xanbus.side_menu.sensors">
+        </a>
+      </li>
+
+  </div>
+
+  <!-- Partial page view -->
+  <div ui-view='xbgateway' style="width: calc(100% - 190px); float:left;"></div>
+</div>

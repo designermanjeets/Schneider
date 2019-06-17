@@ -1,0 +1,14 @@
+{
+  "name": "Array.prototype.findIndex",
+  "homepage": "https://github.com/jsPolyfill/Array.prototype.findIndex",
+  "_release": "f8c90ac36a",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "f8c90ac36a3830fd6dd272067dec0b7122c38472"
+  },
+  "_source": "https://github.com/jsPolyfill/Array.prototype.findIndex.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/jsPolyfill/Array.prototype.findIndex.git",
+  "_direct": true
+}

@@ -1,0 +1,31 @@
+{
+  "name": "jspdf",
+  "version": "1.2.0",
+  "homepage": "https://github.com/mrrio/jspdf",
+  "description": "PDF Document creation from JavaScript",
+  "main": "dist/jspdf.min.js",
+  "moduleType": [
+    "amd",
+    "globals"
+  ],
+  "keywords": [
+    "pdf"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "libs",
+    "doc",
+    "examples",
+    "libs",
+    "test",
+    "tools",
+
+    "CNAME",
+    "build.sh",
+    "index.html",
+    "todo.txt",
+    "Makefile",
+    "wscript.py"
+  ]
+}

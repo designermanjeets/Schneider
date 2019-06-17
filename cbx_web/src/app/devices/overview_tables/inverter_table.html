@@ -1,0 +1,17 @@
+﻿<!-- detected inverters -->
+<uib-accordion close-others="oneAtATime">
+  <uib-accordion-group is-open="status.open" panel-class='accordion-panel'>
+    <uib-accordion-heading>
+      <span translate="devices.overview_tables.inverter_panel_title"></span>
+      <span ng-if="inverters.length > 0"> - {{inverters.length}}</span>
+      <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+    </uib-accordion-heading>
+    <inverter-table-content
+      inverters="inverters"
+      has-scroll-bar="hasScrollBar"
+      units="units"
+      screen="device-table"
+      >
+    </inverter-table-content>
+  </uib-accordion-group>
+</uib-accordion>

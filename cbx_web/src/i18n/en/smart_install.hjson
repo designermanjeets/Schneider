@@ -1,0 +1,148 @@
+﻿{
+  smart_install: {
+    heading: {
+      heading: "Smart Install",
+      // Need the &nbsp; because otherwise the step number will wrap
+      // onto a second line.
+      step: "Step&nbsp;{{number}}",
+    },
+    home: {
+      plant_setup: "Plant setup",
+      detect: "Detect devices",
+      insight: "Connect to Conext Insight",
+      password: "Set up password recovery e-mail",
+    },
+    change_password: {
+      test_email_sent: "Test e-mail sent successfully",
+      test_email_failed: "Test e-mail failed to send"
+    },
+    date_time_error: {
+      ac_capacity: "Please enter installed AC capacity",
+      max_ac_capacity: "AC capacity must be between 1 and {{max}} kW.",
+      ac_capacity_number: "AC capacity must be a number, with no more than one decimal point.",
+      sntp_name: "Please enter the SNTP server name.",
+      sntp_name_invalid: "SNTP server name is not a valid.",
+      sntp_max: "SNTP server name must be {{max}} characters or shorter.",
+      sntp_interval_min_max: "The SNTP update interval must be between {{min}} and {{max}}.",
+      sntp_interval: "Please enter the SNTP update interval.",
+      sntp_interval_no_decimal: "The SNTP update interval must be a whole number (no decimal point)."
+    },
+    plant: {
+      time_settings: "a) Time settings",
+      plant_settings: "b) Plant settings",
+      timezone: "Time zone",
+      installedYear: "Installed year"
+      device_time: "Device time",
+      date_time: "Date/Time (currently)",
+      sntp: "Network time (SNTP) synchronization",
+      sntp_server: "SNTP server",
+      ac_capacity: "Installed AC capacity (kW)",
+      sntp_message: '''
+        For network time (SNTP) synchronization, ensure
+        that the Conext Gateway is connected to the Internet.
+      ''',
+      success_message: '''
+        Plant Setup data updated successfully.
+        Please wait, you will be redirected to next step...
+      ''',
+      processing_message: "Please wait while your request is processed",
+      error_message: '''
+        An error has accured,  please make sure you have enter
+        the correct data and then try again
+      ''',
+    },
+    // Device detection screen
+    devices: {
+      detect_devices: "Detect devices:",
+      to: "to",
+      summary: "Detected devices summary",
+
+      bus1: "RS-485-A",
+      bus2: "RS-485-B",
+
+      port: "Port",
+      inverters: "Inverters",
+      meters: "Meters",
+      sensors: "Sensors",
+      unknown: "Unknown",
+
+      // The classes aren't currently used. But if we ever need
+      // them later, they'll be translated and ready.
+      defaults: '''
+        <p class="{{p-class}}">
+          Below are the default Modbus address ranges for the devices. Please
+          ensure that the connected devices are assigned Modbus addresses
+          as per these definitions.
+        </p>
+        <ul class="{{list-class}">
+          <li>Inverters: 1 to 100</li>
+          <li>Energy meters: 101 to 120</li>
+          <li>Sensors: 121 to 140</li>
+        </ul>
+      ''',
+
+      message: {
+        start_range: "The start of input detection ranges from 1 to 246",
+        start_required: "The start of detection range is required",
+        end_range: "The end of input detection ranges from 2 to 247",
+        end_required: "The end of detection range is required",
+        end_gt_start: '''
+          The start of detection range ({{start}}) needs to be less
+          than the final detection range ({{end}}).
+        ''',
+      },
+    },
+    insight: {
+      test_button: "Test",
+      test: "Test connection to Conext Insight<sup>*</sup>:",
+      status: "Connection test status:",
+      na: "N/A",
+      message: {
+        dhcp: '''
+          <sup>*</sup>Ensure that the Conext Gateway
+          is connected to the Internet.
+        ''',
+        disclaimer: '''
+          <sup>*</sup>Please accept remote monitoring service clause
+          (Disclaimer Section) to enable Data Push feature.
+        ''',
+      },
+    },
+    summary: {
+      success: "Success",
+      failed: "Failed",
+      skipped: "Skipped",
+      nodevices: "None found",
+    },
+
+    // buttons (many of which are common to multiple screens).
+    next: "Next",
+    skip: "Skip",
+    apply: "Apply",
+    detect: "Detect",
+    stop: "Stop",
+    connect: "Connect",
+  },
+
+  /////////////////////////////////////////////////////////////////////////////
+  //
+  // Legacy string IDs that don't yet use the new naming scheme.
+
+  // Password recovery screen
+  "SIPWDRCRY_EMAILID": "Password recovery e-mail",
+  "SIPWDRCRY_SMTPSRVR": "SMTP server",
+  "SIPWDRCRY_SMTPPORT": "SMTP port",
+  "SIPWDRCRY_UNAME": "User name",
+  "SIPWDRCRY_PWD": "Password",
+  "SIPWDRCRY_INVALID_EMAIL_MSG": "Invalid e-mail address",
+  "SIPWDRCRY_VALID_EMAIL_REQ_MSG": "Valid e-mail address required",
+  "SIPWDRCRY_INVALID_SMTPSERVER_MSG": "Invalid SMTP Server",
+  "SIPWDRCRY_VALID_SMTPSERVER_REQ_MSG": "Valid SMTP Server required",
+  "SIPWDRCRY_INVALID_SMTPPORT_MSG": "Valid SMTP Port Range: 1-50000",
+  "SIPWDRCRY_VALID_SMTPPORT_REQ_MSG": "Valid SMTP port required",
+  "SIPWDRCRY_DATA_FAILED": "Password recovery data update failed",
+  "SIPWDRCRY_TESTMAIL_SUCCESS": "Test e-mail sent successfully",
+  "SIPWDRCRY_TESTMAIL_FAIL": "Test e-mail sent successfully",
+  "SIPWDRCRY_CNFRM_DATASV": "Do you want to save SMTP data",
+  "SIPWDRCRY_SENDMAIL": "Send test e-mail",
+}

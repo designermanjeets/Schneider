@@ -1,0 +1,90 @@
+<div class="col-md-12" style="padding-bottom: 30px;">
+  <div style="float:left; padding-right:35px;">
+    <span>{{getDeviceCount()}}</span>
+    <span>&nbsp;{{'xanbus.xbdevlist.devices' | translate}}</span>
+  </div>
+  <div style="float:left; padding-right: 20px" translate="xanbus.xbdevlist.display">
+  </div>
+  <div style="float:left;">
+    <div class="btn-group">
+      <label class="btn btn-default" ng-model="display.type" uib-btn-radio="'1'" translate='xanbus.xbdevlist.list'></label>
+      <!-- <label class="btn btn-default" ng-model="display.type" uib-btn-radio="'2'" translate='xanbus.xbdevlist.details'></label> -->
+      <label class="btn btn-default" ng-model="display.type" uib-btn-radio="'3'" translate='xanbus.xbdevlist.icons'></label>
+    </div>
+  </div>
+  <div style="float:right;">
+    <span translate="xanbus.xbdevlist.operating_state"></span>
+    <div class="btn-group" style="margin-left: 20px;">
+      <label class="btn btn-default" ng-click="setOperating()" translate='xanbus.xbdevlist.operating'></label>
+      <label class="btn btn-default" ng-click="setStandby()" translate='xanbus.xbdevlist.stand_by'></label>
+    </div>
+  </div>
+</div>
+<div class="col-md-12" ng-if="display.type === '1'">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col" style="width: 175px;">Device type</th>
+        <th scope="col" style="width: 175px;">Device Id</th>
+        <th scope="col" style="width: 175px;">Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="devlist-table-row" ng-if="(type === 'invchg' || type ==='all') && inverterCharger.attributes.opMode !== 'Removed'" ng-repeat="inverterCharger in devices.inverterChargers" ng-class="{'devlist-table-red': inverterCharger.isActive !== 'true'}" ng-click="deviceClick(inverterCharger)">
+        <th scope="row">{{inverterCharger.name}}</th>
+        <td>{{inverterCharger.instance}}</td>
+        <td ng-style="inverterCharger.isActive === 'true' && {'color':'#3DCD58'}  || inverterCharger.isActive !== 'true' && {'color':'#DC0A0A'}">{{(inverterCharger.isActive === 'true' ? 'xanbus.xbdevlist.online' : 'xanbus.xbdevlist.offline') | translate}}</td>
+        <td></td>
+      </tr>
+      <tr class="devlist-table-row" ng-if="(type === 'inverter' || type ==='all') && inverter.attributes.opMode !== 'Removed'" ng-repeat="inverter in devices.inverters" ng-class="{'devlist-table-red': inverter.isActive !== 'true'}" ng-click="deviceClick(inverter)">
+        <th scope="row">{{inverter.name}}</th>
+        <td>{{inverter.instance}}</td>
+        <td ng-style="inverter.isActive === 'true' && {'color':'#3DCD58'}  || inverter.isActive !== 'true' && {'color':'#DC0A0A'}">{{(inverter.isActive === 'true' ? 'xanbus.xbdevlist.online' : 'xanbus.xbdevlist.offline') | translate}}</td>
+        <td></td>
+      </tr>
+      <tr class="devlist-table-row" ng-if="(type === 'chg' || type ==='all') && charger.attributes.opMode !== 'Removed'" ng-repeat="charger in devices.chargers" ng-class="{'devlist-table-red': charger.isActive !== 'true'}" ng-click="deviceClick(charger)">
+        <th scope="row">{{charger.name}}</th>
+        <td>{{charger.instance}}</td>
+        <td ng-style="charger.isActive === 'true' && {'color':'#3DCD58'}  || charger.isActive !== 'true' && {'color':'#DC0A0A'}">{{(charger.isActive === 'true' ? 'xanbus.xbdevlist.online' : 'xanbus.xbdevlist.offline') | translate}}</td>
+        <td></td>
+      </tr>
+      <tr class="devlist-table-row" ng-if="(type === 'oth' || type ==='all') && device.attributes.opMode !== 'Removed'" ng-repeat="device in devices.other" ng-class="{'devlist-table-red': device.isActive !== 'true'}" ng-click="deviceClick(device)">
+        <th scope="row">{{device.name}}</th>
+        <td>{{device.instance}}</td>
+        <td ng-style="device.isActive === 'true' && {'color':'#3DCD58'}  || device.isActive !== 'true' && {'color':'#DC0A0A'}">{{(device.isActive === 'true' ? 'xanbus.xbdevlist.online' : 'xanbus.xbdevlist.offline') | translate}}</td>
+        <td></td>
+      </tr>
+      <tr class="devlist-table-row" ng-if="(type === 'meters' || type ==='all') && device.attributes.opMode !== 'Removed'" ng-repeat="device in devices.meters" ng-class="{'devlist-table-red': device.isActive !== 'true'}" ng-click="deviceClick(device)">
+        <th scope="row">{{device.name}}</th>
+        <td>{{device.instance}}</td>
+        <td ng-style="device.isActive === 'true' && {'color':'#3DCD58'}  || device.isActive !== 'true' && {'color':'#DC0A0A'}">{{(device.isActive === 'true' ? 'xanbus.xbdevlist.online' : 'xanbus.xbdevlist.offline') | translate}}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="col-md-12" ng-if="display.type === '2'">
+</div>
+<div class="container-fluid col-md-12 no-padding" ng-if="display.type === '3'">
+  <div class="row-eq">
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12" style="padding: 15px;" ng-repeat="inverterCharger in devices.inverterChargers" ng-if="(type === 'all' || type === 'invchg') && inverterCharger.attributes.opMode !== 'Removed'">
+      <inverter-charger-overview device="inverterCharger"></inverter-charger-overview>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12" style="padding: 15px;" ng-repeat="inverter in devices.inverters" ng-if="(type === 'all' || type === 'inverter') && inverter.attributes.opMode !== 'Removed'">
+      <inverter-overview device="inverter"></inverter-overview>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12" style="padding: 15px;" ng-repeat="charger in devices.chargers" ng-if="(type === 'all' || type === 'chg') && charger.attributes.opMode !== 'Removed'">
+      <charger-overview device="charger"></charger-overview>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12" style="padding: 15px;" ng-repeat="device in devices.other" ng-if="(type === 'all' || type === 'oth') && device.attributes.opMode !== 'Removed'">
+      <ags-overview device="device" ng-if="device.name === 'AGS'"></ags-overview>
+      <scp-overview device="device" ng-if="device.name === 'SCP' || device.name === 'SCP2'"></scp-overview>
+      <battmon-overview device="device" ng-if="device.name === 'BATTMON'"></battmon-overview>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12" style="padding: 15px;" ng-repeat="device in devices.meters" ng-if="(type === 'all' || type === 'meters') && device.attributes.opMode !== 'Removed'">
+      <meters-overview device="device"></meters-overview>
+    </div>
+
+  </div>
+</div>

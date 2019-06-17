@@ -1,0 +1,20 @@
+{
+    "plugins": [],
+
+
+    "attr-bans": [],
+
+    "attr-name-style": false,
+    "attr-req-value": false,
+    "attr-quote-style": "quoted",
+    "line-end-style": false,
+
+    "id-class-style": false,
+
+    "tag-bans": [],
+
+    "indent-style": "spaces",
+    "indent-width": false,
+
+    "img-req-alt": false
+}

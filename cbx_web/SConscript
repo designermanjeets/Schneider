@@ -1,0 +1,90 @@
+###############################################################################
+# SConcript file to build the Web application zip file
+###############################################################################
+
+###############################################################################
+#                           Included Modules                                  #
+###############################################################################
+Import('env')
+import inspect
+import os
+import subprocess
+from Crypto.Cipher import AES
+import glob
+import SCons
+import shutil
+
+###############################################################################
+#               Zip the results
+###############################################################################
+def ZipTheResult( target, source, env ):
+    #Change directory before zip
+    cwd=os.getcwd()
+    os.chdir(dir)
+    #zip the files
+    subprocess.check_call("7z a -r cbxweb.zip www/", shell=True)
+    os.chdir(cwd)
+
+
+
+###############################################################################
+#               Build the web app
+###############################################################################
+def GruntForce( target, source, env ):
+    subprocess.check_call("gulp default --production --cwd " + dir, shell=True)
+
+
+###############################################################################
+#                           Constant Data
+###############################################################################
+
+PROD_INFO_FILE = 'prod_info.xml'
+
+def MyGlob(pattern, ondisk=True, source=True, strings=False, recursive=False):
+    """ Recursive glob function """
+
+    dirname = os.path.dirname(pattern)
+
+    pattern = os.path.basename(pattern)
+
+    names = []
+    Files = Glob(os.path.join(dirname, pattern), ondisk, source, strings)
+
+    for entry in Files:
+        if entry.__class__ is SCons.Node.FS.File :
+            names.append( entry )
+
+    if recursive :
+            for entry in Glob(os.path.join(dirname, '*'), source=True, strings=False):
+                if entry.__class__ is SCons.Node.FS.Dir :
+                    names += MyGlob(os.path.join(str(entry), pattern), ondisk, source, strings, recursive)
+
+    return names
+
+###############################################################################
+#               The main build script starts here                             #
+###############################################################################
+
+# Get the current Sconscript directory
+dir=os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+
+# make a target list
+targ = []
+targ.append(File('www/hmi/robots.txt'))
+targ.append(File('www/hmi/index.html'))
+
+# Make a source list
+src = os.path.join(dir, 'src')
+src_pattern = os.path.join( src, '*')
+srcs = MyGlob(src_pattern, recursive=True)
+
+# build the web application
+web = env.Command( targ, srcs, GruntForce)
+www = env.Command( 'cbxweb.zip', web, ZipTheResult)
+
+# Clean up leftovers
+if env.GetOption('clean'):
+    if os.path.exists('./www/hmi'):
+        shutil.rmtree('./www/hmi')
+
+Return('www')

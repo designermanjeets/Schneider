@@ -1,0 +1,173 @@
+﻿/////////////////////////////////////////////////////////////////////
+//
+// Conext Gateway setup screens
+
+// These are the widgets at the bottom of the Conext Gateway info screen.
+// TODO: These are no longer used
+.conext_gateway-information-widget {
+  margin: 8px;
+  padding: 6px;
+  border: 1px solid $se-light-spruce-green;
+  border-radius: $border-radius-large;
+  text-align: center;
+  background-color: white;
+}
+.conext_gateway-information-widget__title {
+  color: $se-light-spruce-green;
+}
+
+.sd-card-capacity-bar {
+  max-width: 300px;
+}
+
+
+/////////////////////////////////////////////////////////////////////
+//
+// Update firmware
+
+.install-package__file-input {
+  // We want to hide the input[type=file] control, because we have a label to handle it
+  // instead. But most of the usual ways of hiding it take it out of the tab order. That's
+  // bad for accessibility. See here for the solution:
+  // http://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/
+
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+
+  & + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+  }
+}
+
+.install-package__filename {
+  //margin-right: 24px;
+  margin-bottom: $line-height / 2;
+}
+// .install-package__filename--close {
+//   margin-right: 6px;
+// }
+
+.install-package__file-status {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.install-package__file-status--uploading {
+  align-items: center;
+}
+
+
+.install-package__progress {
+  display: inline-block;
+  width: 75%;
+  max-width: 300px;
+
+  //margin: 0 8px;
+}
+
+@mixin install-package-icon {
+  font-size: 16px;
+  margin: 0 8px 0 0;
+}
+
+.install-package__cancel-icon {
+  @extend .glyphicon;
+  @extend .glyphicon-remove;
+
+  @include install-package-icon;
+
+  border: none;
+  background: none;
+}
+.install-package__ok-icon {
+  @extend .glyphicon;
+  @extend .glyphicon-ok;
+
+  @include install-package-icon;
+  color: $se-spruce-green;
+}
+.install-package__error-icon {
+  @extend .glyphicon;
+  @extend .glyphicon-exclamation-sign;
+
+  @include install-package-icon;
+  color: $alert-danger-text;
+}
+
+.install-package__spinner {
+  height: 16px;
+  margin-right: 4px;
+}
+.install-package__spinner--inline {
+  // appears inline to the right of the filename
+  margin: 0;
+  margin-left: 4px;
+}
+
+.install-package__secondary-message {
+  color: $se-dark-grey;
+  display: inline-block;
+  margin-left: 8px;
+}
+
+
+/////////////////////////////////////////////////////////////////////
+//
+// Manage password
+.password-rules {
+  padding-left: 1.5em;
+  margin-top: 4px;
+  margin-bottom: 0;
+
+  font-size: $font-size-small;
+}
+
+/////////////////////////////////////////////////////////////////////
+//
+// Set date & time
+
+
+// Hide the "Clear" button in the date/time picker.
+// If we were using version 1.2.5, we'd have an option to turn this
+// off via configuration. But with the old version we're running,
+// all we can do is hide it via CSS.
+//
+// The date/time picker combination:
+[time-picker-wrap],
+[date-picker-wrap],
+// The bootstrap-ui date picker:
+[ng-if="showButtonBar"],
+{
+  // Today button
+  button.btn-info {
+    // This is now the rightmost button, so it needs a right-side border
+    // radius.
+    border-bottom-right-radius: $btn-border-radius-base !important;
+    border-top-right-radius: $btn-border-radius-base !important;
+  }
+
+  // Cancel button
+  button.btn-danger {
+    display: none;
+  }
+}
+
+/////////////////////////////////////////////////////////////////////
+//
+// Slider Bar
+.ui-widget-content .ui-state-default {
+  background: $top-navbar-tab;
+}
+
+.ui-slider-handle.ui-state-hover {
+  background: $se-spruce-green;
+}
+
+.ui-slider-handle.ui-state-focus {
+  background: $se-spruce-green;
+}

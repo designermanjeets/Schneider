@@ -1,0 +1,69 @@
+<div ng-messages="forms.quickSetup.acCapacity.$error">
+  <p ng-message="required">
+    <span translate="smart_install.date_time_error.ac_capacity"></span>
+  </p>
+  <p ng-message-exp="['min', 'max']">
+    <span translate="smart_install.date_time_error.max_ac_capacity" translate-value-max="{{::MAX_AC_CAPACITY_KW | number }}"></span>
+  </p>
+  <p ng-message="pattern">
+    <span translate="smart_install.date_time_error.ac_capacity_number"></span>
+  </p>
+  <p ng-message="number">
+    <span translate="smart_install.date_time_error.ac_capacity_number"></span>
+  </p>
+</div>
+
+<div ng-messages="forms.quickSetup.sntpServerName.$error"
+  ng-hide="forms.quickSetup.acCapacity.$invalid"
+  >
+  <p ng-message="required">
+    <span translate="smart_install.date_time_error.sntp_name"></span>
+  </p>
+  <p ng-message="fqdn">
+    <span translate="smart_install.date_time_error.sntp_name_invalid"></span>
+  </p>
+  <p ng-message="maxlength">
+    <span translate="smart_install.date_time_error.sntp_max" translate-value-max="{{::MAX_SNTP_SERVER_NAME_LEN}}"></span>
+  </p>
+</div>
+
+<div ng-messages="forms.quickSetup.pollInterval.$error"
+     ng-hide="forms.quickSetup.acCapacity.$invalid || forms.quickSetup.sntpServerName.$invalid">
+
+  <p ng-message="required">
+    <span translate="smart_install.date_time_error.sntp_interval"></span>
+  </p>
+
+  <p ng-message-exp="['min', 'max']">
+    <span translate="smart_install.date_time_error.sntp_interval_min_max" translate-value-min="{{::MIN_SNTP_POLL_INTERVAL_HOURS}}" translate-value-max="{{::MAX_SNTP_POLL_INTERVAL_HOURS}}"></span>
+  </p>
+
+  <p ng-message="pattern">
+    <span translate="smart_install.date_time_error.sntp_interval_no_decimal"></span>
+  </p>
+
+</div>
+
+<div ng-messages="forms.quickSetup.installedYear.$error">
+
+    <p ng-message="required">
+      <span translate="setup.configuration.installed_year_required"></span>
+    </p>
+    <p ng-message="min">
+      <span translate="setup.configuration.min_installed_year"></span>
+    </p>
+    <p ng-message="max">
+      <span translate="setup.configuration.max_installed_year"></span>
+    </p>
+  <p ng-message="pattern">
+    <span translate="setup.configuration.installed_year_pattern"></span>
+  </p>
+  <p ng-message="number">
+    <span translate="setup.configuration.installed_year_pattern"></span>
+  </p>
+</div>
+
+
+<!-- With the calendar control, there isn't a way to omit the date/time,
+  so no error messages needed for that.
+ -->

@@ -1,0 +1,119 @@
+<div class="gauge-wrapper">
+  <div class="gauge-container">
+    <div class="gauge-title">PV</div>
+    <ng-gauge size="100" thick="8" min="0" max="10000" value="data.PV_PWR" cap="round" label="PV Power" foreground-color="#42B4E6" background-color="#fff" append="kW"></ng-gauge>
+    <div class="gauge-field-container">
+      <div class="gauge-field row">
+        <div class="gauge-field-description">
+          PV1 Voltage
+        </div>
+        <div class="gauge-field-value">
+          {{data.PV1_V}}V
+        </div>
+      </div>
+      <div class="gauge-field row">
+        <div class="gauge-field-description">
+          PV1 Current
+        </div>
+        <div class="gauge-field-value">
+          {{data.PV1_I}}A
+        </div>
+      </div>
+    </div>
+    <div class="gauge-field-container">
+      <div class="gauge-field row">
+        <div class="gauge-field-description">
+          PV2 Voltage
+        </div>
+        <div class="gauge-field-value">
+          {{data.PV2_V}}V
+        </div>
+      </div>
+      <div class="gauge-field row">
+        <div class="gauge-field-description">
+          PV2 Current
+        </div>
+        <div class="gauge-field-value">
+          {{data.PV2_I}}A
+        </div>
+      </div>
+    </div>
+    <div class="gauge-field-container">
+      <div class="gauge-field row">
+        <div class="gauge-field-description">
+          PV3 Voltage
+        </div>
+        <div class="gauge-field-value">
+          {{data.PV3_V}}V
+        </div>
+      </div>
+      <div class="gauge-field row">
+        <div class="gauge-field-description">
+          PV3 Current
+        </div>
+        <div class="gauge-field-value">
+          {{data.PV3_I}}A
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gauge-container">
+    <div class="gauge-title">AC</div>
+    <ng-gauge size="100" thick="8" min="0" max="15" value="data.AC_REAL_P" cap="round" label="AC Real Power" foreground-color="#42B4E6" background-color="#fff" append="kW"></ng-gauge>
+    <div class="gauge-field-container">
+      <div class="gauge-field row">
+        <div class="gauge-field-description">
+          Phase A Voltage
+        </div>
+        <div class="gauge-field-value">
+          {{data.AC_V_A}}V
+        </div>
+      </div>
+      <div class="gauge-field row">
+        <div class="gauge-field-description">
+          Phase A Current
+        </div>
+        <div class="gauge-field-value">
+          {{data.AC_I_A}}A
+        </div>
+      </div>
+    </div>
+    <div class="gauge-field-container">
+      <div class="gauge-field row">
+        <div class="gauge-field-description">
+          Phase B Voltage
+        </div>
+        <div class="gauge-field-value">
+          {{data.AC_V_B}}V
+        </div>
+      </div>
+      <div class="gauge-field row">
+        <div class="gauge-field-description">
+          Phase B Current
+        </div>
+        <div class="gauge-field-value">
+          {{data.AC_I_B}}A
+        </div>
+      </div>
+    </div>
+    <div class="gauge-field-container">
+      <div class="gauge-field row">
+        <div class="gauge-field-description">
+          Phase C Voltage
+        </div>
+        <div class="gauge-field-value">
+          {{data.AC_V_C}}V
+        </div>
+      </div>
+      <div class="gauge-field row">
+        <div class="gauge-field-description">
+          Phase C Current
+        </div>
+        <div class="gauge-field-value">
+          {{data.AC_I_C}}A
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

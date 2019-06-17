@@ -1,0 +1,22 @@
+﻿<div >
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="panel-title" translate="setup.manifest.manifest_info"></h2>
+    </div>
+    <!-- no panel-body class, so the table goes full width -->
+    <table class="manifest-details table">
+      <tr>
+        <th  translate="setup.manifest.id"></th>
+        <th  translate="setup.manifest.name"></th>
+        <th  translate="setup.manifest.date"></th>
+        <th  translate="setup.manifest.version"></th>
+      </tr>
+      <tr ng-repeat="component in manifest | orderBy: 'name'">
+          <td>{{component.id}}</td>
+          <td>{{component.name}}</td>
+          <td>{{component.date}}</td>
+          <td>{{component.version}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

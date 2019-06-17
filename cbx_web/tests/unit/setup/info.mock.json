@@ -1,0 +1,22 @@
+﻿{
+   "ETH0_MAC":"6c:ec:eb:b9:c6:aa",
+   "ETH0_TCPIP_DHCP_IP":"10.167.73.95",
+   "ETH1_MAC":"6c:ec:eb:b9:c6:ac",
+   "ETH1_TCPIP_DHCP_IP":"",
+   "HOSTNAME":"csb",
+   "TIMEZONE":"(-07:00):Central-Time_US_Canada",
+   "FRIENDLYNAME":"Conext Gateway Pro",
+   "TIME_LOCAL_ISO_STR":"2016/03/18 13 :54:36",
+   "SDCARD_SIZE":516,
+   "SDCARD_USED":238,
+   "APPLICATION_VERSION":"0",
+   "DATALOGGER_OPSTATE":3,
+   "DATALOGGER_PARAMETER_COUNT":0,
+   "DATALOGGER_LOGGING_INTERVAL":900,
+   "SDCARD_PRESENT":1,
+   "FGA":"XXX-XXXX-XX",
+   "SERIALNUM":"1234567",
+   "HW_MODEL_REVISION":0,
+   "SW_BUILD_NUMBER":"143",
+   "SW_VER":"v0.1"
+}

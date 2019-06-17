@@ -1,0 +1,87 @@
+<div class="body-container" data-ng-controller="csbIdleTimer">
+  <div class="container-fluid page-content" ng-cloak>
+    <div>
+      <div class="row no-margin">
+        <div class="col-md-12 header-margin" header-information></div>
+      </div>
+      <div class="row no-margin" id="cg-header">
+        <ul class="nav navbar-nav">
+          <!-- PERFORMANCE TAB -->
+          <li ui-sref-active="active" class="active">
+            <a style="color:white;" class="menuIcons onLink" ui-sref="dashboard" href="#" translate="layout.main_content.dashboard">
+            </a>
+          </li>
+
+          <!-- XBGATEWAY TAB -->
+          <li ui-sref-active="active" class="active" csb-permissions="User">
+            <a style="color:white;" class="menuIcons onLink" ui-sref="xbgateway" translate="layout.main_content.devices">
+              </a>
+          </li>
+
+          <!-- EVENTS TAB -->
+          <li ui-sref-active="active" class="active" csb-permissions="User">
+            <a style="color:white;" class="menuIcons onLink" ui-sref="events" translate="layout.main_content.events">
+            </a>
+          </li>
+
+          <!-- Conext Gateway TAB -->
+          <li ui-sref-active="active" class="active" csb-permissions="User">
+            <a style="color:white;" class="menuIcons onLink" ui-sref="gateway" translate="layout.main_content.setup">
+            </a>
+          </li>
+
+          <li ui-sref-active="active" class="active" >
+            <a style="color:white;" class="menuIcons onLink" ui-sref="about" translate="layout.main_content.about">
+            </a>
+          </li>
+
+          <!-- SMART INSTALL TAB -->
+          <!-- <li ui-sref-active="active" class="active" csb-permissions>
+            <a style="color:white;" class="menuIcons onLink" ui-sref="smart_install_tab" translate="layout.main_content.smart_install">
+            </a>
+          </li> -->
+        </ul>
+        <!-- <ul class="nav navbar-nav navbar-right" style="margin: 0px;">
+          <li style="float:right;">
+            <button type="button" class="btn btn-default" ng-click="toggleEmiTest()">{{testState === 0 ? 'Start Test' : 'Stop Test'}}</button>
+          </li>
+        </ul> -->
+      </div>
+    </div>
+    <div ui-view style="margin-top:15px"></div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <a target="_blank" href="http://www.schneider-electric.com" title="www.schneider-electric.com">
+      &copy; Schneider Electric
+    </a> |
+    <a href="data/SchneiderElectricDataPrivacyStatement.pdf" target="_blank" translate="layout.footer.privacy_policy">
+    </a> |
+    <a href="data/Conext_ComboxPro_End_User_License_Agreement.pdf" target="_blank" translate="layout.footer.user_agreement">
+    </a>
+  </footer>
+
+</div>
+<!-- <div class="support-bar contactSide" ng-class="{'active' : helpIsOpen }" ng-click="helpIsOpen = !helpIsOpen">
+  <label for="support-bar-toggle">
+    <span>HELP</span>
+  </label>
+  <div class="support-bar-icons">
+    <ul>
+      <li>
+        <a ng-click="loadHelp()">
+          <span class="glyphicon glyphicon-question-sign help-menu-icon"></span>
+          User Guide
+        </a>
+      </li>
+      <li>
+        <a href="https://solar.schneider-electric.com/product/conext-gateway/" target="_blank" >
+          <span class="glyphicon glyphicon-info-sign help-menu-icon" ></span>
+           Support
+         </a>
+      </li>
+    </ul>
+  </div>
+</div> -->

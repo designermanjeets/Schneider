@@ -1,0 +1,95 @@
+<!Doctype html>
+<html ng-app="conext_gateway">
+
+<head>
+  <!-- IE can be configured to run pages on a local network in compatability mode.
+       That messes up our app. X-UA-Compatible removes those problems.
+   -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="UTF-8">
+  <!--<title>Schneider Electric - HMI Application</title>-->
+  <title update-title></title>
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <link rel="stylesheet" type="text/css" href="/css/gateway.min.css" />
+  <link rel="styleSheet" href="/site/firmwareupgrade/ui-grid/ui-grid.css" />
+  <!-- inject:js -->
+  <!-- endinject -->
+  <script src="/site/firmwareupgrade/ui-grid/ui-grid.js"></script>
+  <script src="/site/filebrowser/angular-scroll/angular-scroll.min.js"></script>
+  <script src="/site/filebrowser/ngSticky/dist/sticky.min.js"></script>
+  <script src="/site/device_selection/vtortola.ng-terminal.js"></script>
+
+  <script src="/site/app.module.js"></script>
+
+  <script src="/site/filebrowser/path.filter.js"></script>
+  <script src="/site/firmwareupgrade/status.filter.js"></script>
+  <script src="/site/firmwareupgrade/msdate.filter.js"></script>
+  <script src="/site/firmwareupgrade/numberFormatter.filter.js"></script>
+
+  <script src="/site/filebrowser/directory.service.js"></script>
+  <script src="/site/firmwareupgrade/is_admin.service.js"></script>
+  <script src="/site/firmwareupgrade/deviceState.service.js"></script>
+  <script src="/site/firmwareupgrade/firmware_version.service.js"></script>
+  <script src="/site/firmwareupgrade/firmwareUpdate.service.js"></script>
+
+  <script src="/site/config_viewer/configviewer.controller.js"></script>
+
+  <script src="/site/service_app.controller.js"></script>
+  <script src="/site/device_selection/device_selection.js"></script>
+  <script src="/site/filebrowser/directory.controller.js"></script>
+  <script src="/site/firmwareupgrade/firmwareUpdate.controller.js"></script>
+</head>
+
+<body ng-controller="serviceAppCtrl">
+  <div class="row no-margin" id="cg-header-cloud">
+    <ul class="nav navbar-nav">
+
+      <li ui-sref-active="active" class="active">
+        <a style="color:white;" class="menuIcons onLink" ui-sref="deviceselect">
+          Device Selection
+        </a>
+      </li>
+
+      <li ng-class="{'active': $state.current.name !== 'deviceselect' && $state.current.name !== 'cli' && $state.current.name !== 'filebrowser' && $state.current.name !== 'firmwareupdate'}">
+        <a style="color:white;" class="menuIcons onLink" ui-sref="dashboard" ng-show="connectedDevice !== undefined">
+          Web UI
+        </a>
+      </li>
+
+      <li ui-sref-active="active" class="active">
+        <a style="color:white;" class="menuIcons onLink" ui-sref="cli" ng-show="isAdmin && connectedDevice !== undefined">
+          Command Line
+          </a>
+      </li>
+
+      <li ui-sref-active="active" class="active">
+        <a style="color:white;" class="menuIcons onLink" ui-sref="filebrowser" ng-show="isAdmin && connectedDevice !== undefined">
+          File Browser
+        </a>
+      </li>
+
+      <li ui-sref-active="active" class="active">
+        <a style="color:white;" class="menuIcons onLink" ui-sref="firmwareupdate" ng-show="isAdmin && connectedDevice !== undefined">
+          Firmware Upgrade
+        </a>
+      </li>
+
+      <li ui-sref-active="active" class="active">
+        <a style="color:white;" class="menuIcons onLink" ui-sref="configviewer">
+          Config Viewer
+        </a>
+      </li>
+
+    </ul>
+    <ul class="nav navbar-nav navbar-right" style="margin: 0px;" ng-show="connectedDevice !== undefined">
+      <li style="float:right; color:white;">
+        <span style="padding: 15px 0 2px;margin-bottom: 10px;margin-left: 50px;margin-right: 50px;border-bottom-width: 0;font-size: 18px;">
+            Connected Device: <br /> {{connectedDevice}}
+        </span>
+      </li>
+    </ul>
+  </div>
+  <div ui-view="homeview"></div>
+</body>
+
+</html>

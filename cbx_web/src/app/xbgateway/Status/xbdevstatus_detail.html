@@ -1,0 +1,50 @@
+<div ng-if="devinfo && !devinfo.DEV_ACTIVE">
+  <div class="col-md-12 devinfo-faults">
+    <div class="col-md-12" >
+      Device Offline
+    </div>
+  </div>
+</div>
+<div ng-if="devinfo.DEV_ACTIVE">
+  <div class="col-md-12 no-padding" ng-switch on="device">
+    <div ng-switch-when="GT">
+      <gt-status/>
+    </div>
+    <div ng-switch-when="XW">
+      <xw-status/>
+    </div>
+    <div ng-switch-when="CSW">
+      <csw-status/>
+    </div>
+    <div ng-switch-when="AGS">
+      <ags-status/>
+    </div>
+    <div ng-switch-when="MPPT">
+      <mppt-status/>
+    </div>
+    <div ng-switch-when="HVMPPT">
+      <mppt-status/>
+    </div>
+    <div ng-switch-when="BATTMON">
+      <batmon-status/>
+    </div>
+  </div>
+  <div class="col-md-12" ng-if="devinfo.FLT_LIST && devinfo.FLT_LIST.length > 0">
+    <div class="col-md-12 devinfo-faults">
+      <div class="col-md-12" ng-repeat="flt in devinfo.FLT_LIST">
+        {{flt.id}} - {{flt.name}}: {{flt.description}}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12" ng-if="devinfo.WRN_LIST && devinfo.WRN_LIST.length > 0">
+    <div class="col-md-12 devinfo-warnings">
+      <div class="col-md-12" ng-repeat="wrn in devinfo.WRN_LIST">
+        {{wrn.id}} - {{wrn.name}}: {{wrn.description}}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 device_list_row" ng-repeat="sysvar in statusSysvars">
+    <div class="col-md-6 device-list-description">{{sysvar.description | translate}}</div>
+    <div class="col-md-6 device-list-value">{{sysvar.value}} {{sysvar.unit}}</div>
+  </div>
+</div>

@@ -1,0 +1,4 @@
+{ "values" : [{"name" : "/BUS1_IMTSOLAR_8/IRR","value" : 50.000000,"quality" : "G"},
+{"name" : "/BUS1_IMTSOLAR_8/TEMP/CELL","value" : 15.000000,"quality" : "G"},
+{"name" : "/BUS1_IMTSOLAR_8/TEMP/EXT","value" : 12.000000,"quality" : "G"},
+{"name" : "/BUS1_IMTSOLAR_8/WIND/SPEED","value" : 25.000000,"quality" : "G"}],"count" : 4,"responseTime" : 20}

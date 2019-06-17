@@ -1,0 +1,414 @@
+﻿{
+  "devices": {
+    "performance" : {
+      "loads": "LOADS",
+      "generator": "GENERATOR",
+      "grid": "GRID",
+      "dc": "DC"
+    },
+    "delete_device": {
+      "delete_device": "Delete Device",
+      "confirmation_message": "Do you want to delete the device {{name}}?",
+      "delete": "Delete",
+      "cancel": "Cancel",
+      "communication_error": "Communication error",
+      "communication_error_message": "Cannot communicate with this device. Last communication: {{lastupdated}}",
+      "communication_error_instructions": '''
+        Check that the device is connected to a power supply, and check that the device is correctly
+        connected to the Modbus network. For more troubleshooting information, consult
+        the Conext Gateway Owners Guide.
+        ''',
+      "delete_message": "Deleted device: {{deviceName}}."
+    },
+    "counting_service": {
+      "unknown_device": '''
+        Device with modbus id {{device}} on port {{port}} does not have a model number associated with it.
+        Kindly ensure that the device modbus id falls in the correct range and then manually associate the
+        model number to the device in the Devices section.
+        '''
+    },
+    "alarms": {
+      "device_missing": "Device missing",
+      "has_alarms_warning": "Device has alarms and/or warnings",
+      "no_alarms_warnings": "No alarms or warnings",
+      "has_alarms": "Device has active alarms",
+      "no_alarms": "No alarms",
+      "has_warnings": "Device has active warnings",
+      "no_warnings": "No warnings"
+    },
+    "side_menu": {
+      "device_overview": "Devices Overview",
+      "inverters": "Inverters",
+      "meters": "Meters",
+      "sensors": "Sensors"
+    },
+    "detection": {
+      //Device Modbus ID Range Definition
+      "range_definition": "Device Modbus ID range definition",
+      "port": "Port",
+      "range": "Range",
+      "range_inverters": "Modbus ID range: Inverters",
+      "range_meters": "Modbus ID range: Meters",
+      "range_sensors": "Modbus ID range: Sensors",
+      "min_max": "Values must be between 1 and 247"
+      "bus1": "RS-485-1",
+      "bus2": "RS-485-2",
+      "to": "to",
+      "success_message": "Changes saved",
+      "required": "All fields are required",
+      "port_a_inverter_start": "Port-1 Inverter START value must be less than END value",
+      "port_a_inverter_meter_overlap": "Port-1 Inverters and Meters range are overlapping",
+      "port_a_inverter_sensor_overlap": "Port-1 Inverters and Sensors range are overlapping",
+      "port_a_meter_start": "Port-1 Meter START value must be less than END value",
+      "port_a_meter_sensor_overlap": "Port-1 Meters and Sensors range are overlapping",
+      "port_a_sensor_start": "Port-1 Sensor START value must be less than END value",
+      "port_b_inverter_start": "Port-2 Inverter START value must be less than END value",
+      "port_b_inverter_meter_overlap": "Port-2 Inverters and Meters range are overlapping",
+      "port_b_inverter_sensor_overlap": "Port-2 Inverters and Sensors range are overlapping",
+      "port_b_meter_start": "Port-2 Meter START value must be less than END value",
+      "port_b_meter_sensor_overlap": "Port-2 Meters and Sensors range are overlapping",
+      "port_b_sensor_start": "Port-2 Sensor START value must be less than END value",
+      "detect": "Detect",
+      "apply": "Apply",
+      "cancel": "Cancel",
+
+      // Detect Devices
+      "detection_pattern": "Please enter a whole number for the START and END values",
+      "port_a_detection_start": "Port-1 RS-485 START value must be less than END value",
+      "port_a_detection_start_required": "Please enter Port-1 RS-485 START value",
+      "port_a_detection_end_required": "Please enter Port-1 RS-485 END value",
+      "port_b_detection_start": "Port-2 RS-485 START value must be less than END value",
+      "port_b_detection_start_required": "Please enter Port-2 RS-485 START value",
+      "port_b_detection_end_required": "Please enter Port-2 RS-485 END value",
+      "detection_ranges_required": "Please enter RS-485 port values for detection",
+      "detect_devices": "Detect devices",
+      "view_device_list": "View device list",
+
+      //Detected Device Summary
+      "detected_device_summary": "Detected device summary",
+      "inverters": "Inverters",
+      "meters": "Meters",
+      "sensors": "Sensors",
+      "unknown": "Unknown",
+
+      //Detect Device Details
+      "detected_device_details": "Detected device details",
+      "modbus_id": "Modbus ID",
+      "device_type": "Device Type",
+      "error_message": "Error Message",
+
+      //Detection Modal
+      "device_detection": "Device detection",
+      "progress": "Progress:",
+      "detection_finished": "Detection completed successfully. Devices found:",
+      "detection_aborted": "Detection cancelled. Devices found:",
+      "port_a": "Serial Port:",
+      "stop": "Stop",
+      "close": "Close"
+
+    },
+    "overview_tables": {
+      // Inverters overview table
+      "inverter_panel_title": "Inverters",
+      "s_no": "S. No",
+      "inverter_name": "Inverter Name",
+      "fga": "FGA #",
+      "build": "Software Build A, B & C",
+      "serial": "Serial #",
+      "real_power": "Real Power ({{units}})",
+      "ac_today": "AC Energy Today ({{units}})",
+      "ac_lifetime": "AC Energy Lifetime ({{units}})",
+      "operating_hours": "Operating Hours Lifetime",
+      "operating_state": "Operating State",
+      "alarms": "Alarms",
+      "no_inverter_configured": "No inverters configured. ",
+      "no_inverter_configured_url": "Please visit the <a href='{{href}}'>Devices → Detection</a> section to detect any connected inverters.",
+
+      // Meters overview table
+      "meter_panel_title": "Meters",
+      "meter_name": "Meter Name",
+      "meter_type": "Meter Type",
+      "model_number": "Model Number",
+      "firmware_version": "Firmware Version",
+      "power_factor": "Total Power Factor",
+      "net_energy_today": "Net Energy Today ({{units}})",
+      "net_energy_lifetime": "Net Energy Lifetime ({{units}})",
+      "no_meter_configured": "No meters configured. ",
+      "no_meter_configured_url": "Please visit the <a href='{{href}}'>Devices → Detection</a> section to detect any connected meters.",
+
+      // Sensors overview table
+      "sensor_panel_title": "Sensors",
+      "sensor_name": "Sensor Name",
+      "sensor_type": "Sensor Type",
+      "unit": "Unit",
+      "value": "Current Value",
+      "no_sensor_configured": "No sensors configured. ",
+      "no_sensor_configured_url": "Please visit the <a href='{{href}}'>Devices → Detection</a> section to detect any connected sensors."
+    },
+    "details": {
+      "device_information": "Device information",
+      "delete_device": "Delete Device",
+      "current_values": "Current values",
+      "summary_view": "Summary View",
+      "settings": "Settings",
+
+
+      // Inverter > device information
+      "product_name": "Product name",
+      "rated_power": "Rated power ({{units}})",
+      "product_model_designation": "Product model designation",
+      "product_serial_number": "Product serial number",
+      "software_version_processor_a": "Software version: Processor A",
+      "software_version_processor_b": "Software version: Processor B",
+      "software_version_processor_c": "Software version: Processor C",
+      "ip_address": "IP address",
+      "last_updated": "Last updated"
+
+      // Inverter CL60
+      "output_type": "Output type",
+      "rated_ac_power": "Rated AC power ({{units}})",
+      "energy_today": "Energy Today ({{units}})",
+      "energy_produced": "Energy Produced ({{units}})",
+      "internal_temp": "Internal temperature (&deg;{{units}})",
+      "dc_voltage_1": "DC voltage 1 (V)",
+      "dc_voltage_2": "DC voltage 2 (V)",
+      "dc_voltage_3": "DC voltage 3 (V)",
+      "dc_current_1": "DC current 1 (A)",
+      "dc_current_2": "DC current 2 (A)",
+      "dc_current_3": "DC current 3 (A)",
+      "dc_power": "DC power ({{units}})",
+      "phase_a_voltage": "AC Phase A voltage (V)",
+      "phase_b_voltage": "AC Phase B voltage (V)",
+      "phase_c_voltage": "AC Phase C voltage (V)",
+      "phase_l1_current": "AC Phase L1 current (A)",
+      "phase_l2_current": "AC Phase L2 current (A)",
+      "phase_l3_current": "AC Phase L3 current (A)",
+      "ac_active_power": "AC Active power ({{units}})",
+      "operating_efficiency": "Operating efficiency (%)",
+      "fault_code": "Fault code",
+      "fault_description": "Fault description",
+      "string_current": "Current of string {{unit}} (A)",
+      "active_power_reduction": "Active power reduction function enable",
+      "active_power_reduction_setting": "Active power reduction setting",
+      "power_factor": "Power factor",
+      "reactive_conrol_enable": "Reactive Power Control Function Enable",
+      "output_type_0": "Single phase",
+      "output_type_1": "3 phase 4 wire",
+      "output_type_2": "3 phase 3 wire"
+
+      // Inverter > current values
+      "real_power": "Real power ({{units}})",
+      "reactive_power": "Reactive power ({{units}})",
+      "apparent_power": "Apparent power ({{units}})",
+      "ac_energy_today": "AC energy today ({{units}})",
+      "ac_energy_lifetime": "AC energy lifetime ({{units}})",
+      "operating_hours_lifetime": "Operating hours lifetime",
+      "pv1_voltage": "PV1 voltage (VDC)",
+      "pv1_current": "PV1 current (VDC)",
+      "pv1_power": "PV1 power ({{units}})",
+      "pv2_voltage": "PV2 voltage (VDC)",
+      "pv2_current": "PV2 current (VDC)",
+      "pv2_power": "PV2 power ({{units}})",
+      "temperature_control_board": "Temperature control board (&deg;{{units}})",
+      "temperature_boost_1_2": "Temperature of boost module 1 &amp; 2 (&deg;{{units}})",
+      "temperature_boost_3_4": "Temperature of boost module 3 &amp; 4 (&deg;{{units}})",
+      "operating_state": "Operating state",
+      "alarm_code": "Alarm code",
+      "alarm_description": "Alarm description",
+
+      // Meter > PM2XXX
+      "product_name": "Product name",
+      "manufacturer": "Manufacturer",
+      "last_restart_time": "Last restart time",
+      "system_restarts": "Number of system restarts",
+      "ctr_pwr_failures": "Number of control power failures",
+      "ctr_pwr_failure_time": "Last control power failure",
+      "ctr_pwr_failure_duration": "Last control power failure duration",
+      "reset_cause": "Last meter reset cause",
+      "active_load_timer": "Active load timer",
+      "meter_operation_timer": "Meter operation timer",
+      "cycle_count": "Cycle count",
+      "number_of_phases": "Number of phases",
+      "number_of_wires": "Number of wires",
+      "power_system_config": "Power system configuration",
+      "nominal_frequency": "Nominal frequency (Hz)",
+      "nominal_voltage": "Nominal voltage (V)",
+      "nominal_current": "Nominal current (A)",
+      "nominal_power_factor": "Nominal power factor (%)",
+      "phase_rotation": "Normal phase rotation",
+      "active_load_timer_setpoint": "Active load timer setpoint",
+      "active_energy_delivered": "Active energy delivered (kWh)",
+      "active_energy_received": "Active energy received (kWh)",
+      "active_energy_absolute": "Active absolute energy (kWh)",
+      "active_energy_net": "Active net energy (kWh)",
+      "reactive_energy_delivered": "Reactive energy delivered (kVARh)",
+      "reactive_energy_received": "Reactive energy received (kVARh)",
+      "reactive_energy_absolute": "Reactive absolute energy (kVARh)",
+      "reactive_energy_net": "Reactive net energy (kVARh)",
+      "apparent_energy_delivered": "Apparent energy delivered (kVAh)",
+      "apparent_energy_received": "Apparent energy received (kVAh)",
+      "apparent_energy_absolute": "Apparent absolute energy (kVAh)",
+      "apparent_energy_net": "Apparent net energy (kVAh)",
+      "current_a": "Phase A current (A)",
+      "current_b": "Phase B current (A)",
+      "current_c": "Phase C current (A)",
+      "current_n": "Neutral current (A)",
+      "current_g": "Ground current (A)",
+      "current_avg": "Average current (A)",
+      "current_unbalanced_a": "Phase A unbalanced current (A)",
+      "current_unbalanced_b": "Phase B unbalanced current (A)",
+      "current_unbalanced_c": "Phase C unbalanced current (A)",
+      "current_unbalanced_worst": "Worst unbalanced current (A)",
+      "voltage_line_avg": "Line to line average voltage (V)",
+      "voltage_neutral_avg": "Line to neutral average voltage (V)",
+      "voltage_an_unbalanced": "Unbalanced voltage AN (V)",
+      "voltage_bn_unbalanced": "Unbalanced voltage BN (V)",
+      "voltage_cn_unbalanced": "Unbalanced voltage CN (V)",
+      "voltage_ab_unbalanced": "Unbalanced voltage AB (V)",
+      "voltage_bc_unbalanced": "Unbalanced voltage BC (V)",
+      "voltage_ca_unbalanced": "Unbalanced voltage CA (V)",
+      "voltage_line_worst": "Worst unbalanced line to line voltage (V)",
+      "voltage_neutral_worst": "Worst unbalanced line to neutral voltage (V)",
+      "active_power_a": "Phase A active power (kW)",
+      "active_power_b": "Phase B active power (kW)",
+      "active_power_c": "Phase C active power (kW)",
+      "active_power_total": "Total active power (kW)",
+      "reactive_power_a": "Phase A reactive power (kVAR)",
+      "reactive_power_b": "Phase B reactive power (kVAR)",
+      "reactive_power_c": "Phase C reactive power (kVAR)",
+      "reactive_power_total": "Total reactive power (kVAR)",
+      "apparent_power_a": "Phase A apparent power (kVA)",
+      "apparent_power_b": "Phase B apparent power (kVA)",
+      "apparent_power_c": "Phase C apparent power (kVA)",
+      "apparent_power_total": "Total apparent power (kVA)",
+      "product_id": "Product ID",
+
+
+
+      // Meter > device information
+      "model_number": "Model number",
+      "serial_number": "Serial number",
+      "device_name": "Device name",
+      "firmware_version": "Firmware version",
+
+
+
+      // Meter > current values
+      "net_real_energy": "Net real energy, lifetime ({{ units }})",
+      "imported_real_energy": "Imported real energy, lifetime ({{units}})",
+      "exported_real_energy": "Exported real energy, lifetime ({{units}})",
+      "net_reactive_energy": "Net reactive energy, lifetime ({{units}})",
+      "imported_reactive_energy": "Imported reactive energy, lifetime ({{units}})",
+      "exported_reactive_energy": "Exported reactive energy, lifetime ({{units}})",
+      "net_apparent_energy": "Net apparent energy, lifetime ({{units}})",
+      "imported_apparent_energy": "Imported apparent energy, lifetime ({{units}})",
+      "exported_apparent_energy": "Exported apparent energy, lifetime ({{units}})",
+      "net_real_power": "Net real power ({{units}})",
+      "net_reactive_power": "Net reactive power ({{units}})",
+      "net_apparent_power": "Net apparent power ({{units}})",
+      "total_power_factor": "Total power factor (kW/kVA)",
+      "ac_frequency": "AC frequency (Hz)",
+      "meter_parameters": "Meter parameters",
+      "current_transducer": "Current transducer",
+      "input_voltage": "CT input voltage (V)",
+      "size": "CT size (A)",
+      "system_config": "System configuration",
+      "system": "System",
+      "potential_ratio": "Potential transformer ratio",
+      "system_voltage": "System voltage",
+      "line_to_line": "Nominal line-to-line voltage (V)",
+
+      "phase_a": "Phase A current (A)",
+      "phase_b": "Phase B current (A)",
+      "phase_c": "Phase C current (A)",
+
+      "voltage_an": "Voltage AN (V)",
+      "voltage_bn": "Voltage BN (V)",
+      "voltage_cn": "Voltage CN (V)",
+      "voltage_ab": "Voltage AB (V)",
+      "voltage_bc": "Voltage BC (V)",
+      "voltage_ca": "Voltage CA (V)",
+
+      "phase_a_pf": "Phase A power factor",
+      "phase_b_pf": "Phase B power factor",
+      "phase_c_pf": "Phase C power factor",
+
+      // Meter > settings
+      "meter_type": "Meter type",
+      "meter_model": "Meter model",
+
+      "changes_saved": "Changes saved",
+      "apply": "Apply",
+      "cancel": "Cancel",
+
+      "meter_errors": {
+        "comm": "<p>Communication error</p><p><small>Cannot communicate with this meter. Until communication is restored, these settings cannot be changed.</small></p>",
+        "type_required": "Choose a meter type",
+        "too_many_generation": "<p>This site already has a PV generation meter.</p><p><small>Only one meter can be configured to measure PV generation. To make this be the PV generation meter, change the type of the other one first.</small></p>",
+        "too_many_export": "<p>This site already has an export meter.</p><p><small>Only one meter can be configured to measure exported power. To make this be the export meter, change the type of the other one first.</small></p>",
+        "model_required": "Choose a meter model"
+      },
+
+      // Sensor > Device information
+      "gh_irradiance": "GH-I irradiance (W/m<sup>2</sup>)",
+      "poa_irradiance": "POA irradiance (W/m<sup>2</sup>)",
+      "wind_speed": "Wind speed (m/s)",
+      "tamb_temperature": "T<sub>amb</sub> temperature (&deg;{{units}})",
+      "tmod_temperature": "T<sub>mod</sub> temperature (&deg;{{units}})",
+
+      // Sensor > Settings
+      "sensor_type": "Sensor type",
+      "sensor_model": "Sensor Model",
+      "measurements": "Measurements",
+      "poa_i_sensor": "POA-I sensor (W/m<sup>2</sup>)",
+      "tmod_sensor": "T<sub>mod</sub> sensor (&deg;{{units}})",
+      "tamb_sensor": "T<sub>amb</sub> sensor (&deg;{{units}})",
+      "wind_sensor": "Wind sensor (m/sec)",
+      "gh_i_sensor": "GH-I sensor (W/m<sup>2</sup>)",
+      "communication_error": "Communication error",
+      "communication_error_message": "<small>Cannot communicate with this sensor. Until communication is restored, these settings cannot be changed.</small>",
+      "choose_sensor_model": "Choose a sensor model",
+      "choose_sensor_measurement": "Choose at least one measurement",
+      "sensor_type_failure": "Failed to set the sensor types.  Please allow some time for the Conext Gateway to properly configure the sensor and then try again."
+      "sensor_types": {
+        1: "Multi-sensor box",
+      },
+
+      // Unknown device > Settings
+      "sensor_models": {
+        "select": "Select",
+        "IMTSOLAR": "Si-RS485 series (IMT Solar)",
+      },
+      "unknown_device":"Device not configured",
+      "unknown_sensor":"This device has not been configured.<br /><br />Please contact your administrator and have them configure this device."
+    },
+
+    "operation_mode": {
+      "reconnecting": "Reconnecting",
+      "online": "Online",
+      "standby": "Standby",
+      "no_dc": "No DC",
+      "offline": "Offline",
+      "derating": "Derating",
+      "run": "Run",
+      "stop": "Stop",
+      "key_stop": "Key Stop",
+      "emergency_stop": "Emergency Stop",
+      "initial_standby": "Initial Standby",
+      "starting": "Starting",
+      "alarm": "Alarm",
+      "derating": "Derating",
+      "dispatch": "Dispatching",
+      "fault": "Fault"
+    },
+
+    "three_phase_loss": {
+      "a_plus_n": "Single phase: A + N",
+      "a_plus_b": "Single phase: A + B",
+      "a_plus_b_plus_n": "Single split phase: A + B + N",
+      // \u0394 = &Delta;
+      "three_phase_delta": "3 phase \u0394, A + B + C, no N",
+      "three_phase_y": "3 phase Y, A + B + C + N"
+    }
+  }
+}

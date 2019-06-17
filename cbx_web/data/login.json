@@ -1,0 +1,7 @@
+{ "values" : [{"name" : "LOGIN/ATTEMPTS","value" : 0},
+    {"name" : "TIME/LOCAL_ISO_STR","value" : "2017/12/17 19:57:59"},
+    {"name" : "SERIALNUM","value" : "SESA126462"},
+    {"name" : "FRIENDLYNAME","value" : "Trevor's Cool Combox Pro"},
+    {"name" : "AUTH/ACCTNAME0","value" : "Admin"},
+    {"name" : "AUTH/ACCTNAME1","value" : "User"},
+    {"name" : "AUTH/ACCTNAME2","value" : "Guest"}],"count" : 7,"time" : 64}

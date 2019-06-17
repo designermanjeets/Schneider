@@ -1,0 +1,522 @@
+// An ordered list of all the time zones used in the application.
+//
+// This file is derived from region_tz.cfg, which is a config file that
+// was used by the back end. It defined the time zones used by the app.
+// We wanted to use the same list of time zones (for consistency with
+// other products). But internally, we wanted the identifiers to be
+// entries from the IANA TZ database (e.g., America/Los_Angeles).
+// So we made a mapping (by hand) of time zones from region_tz.cfg
+// to the IANA identifiers. We looked them up on
+// Wikipedia: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+//
+
+// The codename and label entries come from region_tz.cfg. The labels used in the
+// HMI live in the i18n directory.
+[
+  {
+    // This is the only wiki entry for -12:00. Note that the sign in ETC is 
+    // deliberately reversed -- GMT+12 is correct to use with offset of -12:00
+    //
+    // codename: IDL
+    // label: (-12:00)International-Date-Line-West
+    "id": "Etc/GMT+12"
+  },
+  {
+    // Pacific/Midway is link to Pacific/Pago_Pago
+    // codename: SST
+    // label: (-11:00)Midway-Island    
+    "id": "Pacific/Pago_Pago"
+  },
+  {
+    // There are other time zones with -10:00 offset, so I went with Hawaii. 
+    // (US/Hawaii links to Pacific/Honolulu)    
+    // codename: HAST
+    // label: (-10:00)Hawaiian
+    "id": "Pacific/Honolulu"
+  },
+  {
+    // codename: AKST
+    // label: (-09:00)Alaska
+    "id": "America/Anchorage"
+  },
+  {
+    // codename: PST
+    // label: (-08:00)Pacific-Time_US_Canada_Tijuana
+    "id": "America/Los_Angeles"
+  },
+  {
+    // codename: MST
+    // label: (-07:00)Mountain-Time_US_Canada
+    "id": "America/Denver"
+  },
+  {
+    // codename: MST
+    // label: (-07:00)Chihuahua_Mazatlan
+    "id": "America/Chihuahua"
+  },
+  {
+    // codename: MST
+    // label: (-07:00)Arizona
+    "id": "America/Phoenix"
+  },
+  {
+    // codename: CST
+    // label: (-06:00)Central-Time_US_Canada
+    "id": "America/Chicago"
+  },
+  {
+    // codename: CST
+    // label: (-06:00)Saskatchewan
+    "id": "America/Regina"
+  },
+  {
+    // codename: CST
+    // label: (-06:00)Guadalajara_Mexico-City_Monterrey
+    "id": "America/Mexico_City"
+  },
+  {
+    // codename: CST
+    // label: (-06:00)Central_America
+    "id": "America/Belize"
+  },
+  {
+    // codename: EST
+    // label: (-05:00)Eastern-Time_US_Canada
+    "id": "America/New_York"
+  },
+  {
+    // codename: EST
+    // label: (-05:00)Indiana-East
+    // US/East-Indiana links to this
+    "id": "America/Indiana/Indianapolis"
+  },
+  {
+    // codename: COT
+    // label: (-05:00)Bogota
+    "id": "America/Bogota"
+  },
+  {
+    // codename: PET
+    // label: (-05:00)Lima
+    "id": "America/Lima"
+  },
+  {
+    // Quito is the second-most populous city in Equador, after Guayaquil.
+
+    // codename: ECT
+    // label: (-05:00)Quito
+    "id": "America/Guayaquil"
+  },
+  {
+    // codename: VET
+    // label: (-04:30)Caracas
+    "id": "America/Caracas"
+  },
+  {
+    // codename: AST
+    // label: (-04:00)Atlantic-Time_Canada
+    "id": "America/Halifax"
+  },
+  {
+    // codename: BOT
+    // label: (-04:00)LaPaz
+    "id": "America/La_Paz"
+  },
+  {
+    // codename: CLT
+    // label: (-04:00)Santiago
+    "id": "America/Santiago"
+  },
+  {
+    // codename: GYT
+    // label: (-04:00)Georgetown
+    "id": "America/Guyana"
+  },
+  {
+    // Qaanaaq is a city in northwest Greenland, formerly known as Thule.
+
+    // codename: AST
+    // label: (-04:00)Greenland-Qaanaaq
+    "id": "America/Thule"
+  },
+  {
+    // codename: NST
+    // label: (-03:30)Newfoundland_Labrador
+    "id": "America/St_Johns"
+  },
+  {
+    // Sao Paulo and Brasilia are both in the BRT time zone
+
+    // codename: BRT
+    // label: (-03:00)Brasilia
+    "id": "America/Sao_Paulo"
+  },
+  {
+    // codename: ART
+    // label: (-03:00)Buenos_Aires
+    "id": "America/Argentina/Buenos_Aires"
+  },
+  {
+    // Nuuk, formerly Godthab, is the capital of Greenland. Qaanaaq is a city in the northwest of Greenland
+
+    // codename: WGT
+    // label: (-03:00)Greenland-Nuuk    
+    "id": "America/Godthab"
+  },
+  {
+    // Atlantic/South_Georgia and America/Noronha would both work equally well. 
+    // Neither of them observe daylight savings time.
+
+    // codename: MAT
+    // label: (-02:00)Mid-Atlantic
+    "id": "Atlantic/South_Georgia"
+  },
+  {
+    // codename: AZOT
+    // label: (-01:00)Azores
+    "id": "Atlantic/Azores"
+  },
+  {
+    // codename: CVT
+    // label: (-01:00)Cape-Verde-Islands
+    "id": "Atlantic/Cape_Verde"
+  },
+  {
+    // codename: GMT
+    // label: (+00:00)Edinburgh London
+    "id": "Europe/London"
+  },
+  {
+    // codename: GMT
+    // label: (+00:00)Dublin
+    "id": "Europe/Dublin"
+  },
+  {
+    // codename: WET
+    // label: (+00:00)Lisbon
+    "id": "Europe/Lisbon"
+  },
+  {
+    // codename: GMT
+    // label: (+00:00)Casablanca_Monrovia
+    "id": "Africa/Casablanca"
+  },
+  {
+    // Many of these cities have separate entries (e.g., Europe/Prague). I'm assuming those are because 
+    // of historical differences. They're all unified into CET now.
+
+    // codename: CET
+    // label: (+01:00)Belgrade_Bratislava_Budapest_Ljubljana_Prague
+    "id": "Europe/Belgrade"
+  },
+  {
+    // codename: CET
+    // label: (+01:00)Sarajevo_Skopje_Warsaw_Zagreb
+    "id": "Europe/Warsaw"
+  },
+  {
+    // codename: CET
+    // label: (+01:00)Brussels_Copenhagen_Madrid_Paris
+    "id": "Europe/Paris"
+  },
+  {
+    // codename: CET
+    // label: (+01:00)Amsterdam_Berlin_Bern_Rome_Stockholm_Vienna
+    "id": "Europe/Amsterdam"
+  },
+  {
+    // Africa/Algiers also has the right time zone offsets; I went with Lagos because 
+    // it's actually in West Central Africa
+    // codename: WAT
+    // label: (+01:00)West-Central-Africa
+    "id": "Africa/Lagos"
+  },
+  {
+    // codename: EET
+    // label: (+02:00)Bucharest
+    "id": "Europe/Bucharest"
+  },
+  {
+    // codename: EET
+    // label: (+02:00)Cairo
+    "id": "Africa/Cairo"
+  },
+  {
+    // codename: EET
+    // label: (+02:00)Helsinki_Kiev_Riga_Sofia_Tallinn_Vilnius
+    "id": "Europe/Helsinki"
+  },
+  {
+    // codename: EET
+    // label: (+02:00)Athens_Istanbul
+    "id": "Europe/Athens"
+  },
+  {
+    // codename: IST
+    // label: (+02:00)Jerusalem
+    "id": "Asia/Jerusalem"
+  },
+  {
+    // Africa/Harare is a link to Africa/Maputo. The former is the capital of Zimbabwe, 
+    // the latter, Mozambique. Both are in Central Africa Time which, confusingly 
+    // enough, applies to southern Africa: https://en.wikipedia.org/wiki/Central_Africa_Time
+    // codename: CAT
+    // label: (+02:00)Harare
+    "id": "Africa/Maputo"
+  },
+  {
+    // Pretoria is one of the three capitals of South Africa, which is in Central Africa 
+    // Time, just like Maputo. I don't know why there are separate entries in the list
+    // for Harare and Pretoria.
+    // codename: SAST
+    // label: (+02:00)Pretoria
+    "id": "Africa/Maputo"
+  },
+  {
+    // codename: FET
+    // label: (+03:00)Minsk
+    "id": "Europe/Minsk"
+  },
+  {
+    // codename: AST
+    // label: (+03:00)Kuwait_Riyadh_Baghdad
+    "id": "Asia/Riyadh"
+  },
+  {
+    // codename: EAT
+    // label: (+03:00)Nairobi
+    "id": "Africa/Nairobi"
+  },
+  {
+    // codename: IRST
+    // label: (+03:30)Tehran
+    "id": "Asia/Tehran"
+  },
+  {
+    // codename: MSK
+    // label: (+04:00)Moscow_St.Petersburg
+    "id": "Europe/Moscow"
+  },
+  {
+    // codename: VOLT
+    // label: (+04:00)Volgograd
+    "id": "Europe/Volgograd"
+  },
+  {
+    // codename: GST
+    // label: (+04:00)Abu-Dhabi_Muscat
+    "id": "Asia/Muscat"
+  },
+  {
+    // codename: AMT
+    // label: (+04:00)Yerevan
+    "id": "Asia/Yerevan"
+  },
+  {
+    // codename: GET
+    // label: (+04:00)Tbilisi
+    "id": "Asia/Tbilisi"
+  },
+  {
+    // Azerbaijan is eliminating the use of summer time in 2016
+    // codename: AZT
+    // label: (+04:00)Baku
+    "id": "Asia/Baku"
+  },
+  {
+    // codename: AFT
+    // label: (+04:30)Kabul
+    "id": "Asia/Kabul"
+  },
+  {
+    // codename: PKT
+    // label: (+05:00)Islamabad_Karachi
+    "id": "Asia/Karachi"
+  },
+  {
+    // codename: UZT
+    // label: (+05:00)Tashkent
+    "id": "Asia/Tashkent"
+  },
+  {
+    // codename: IST
+    // label: (+05:30)Chennai_Kolkata_Mumbai_New-Delhi
+    "id": "Asia/Kolkata"
+  },
+  {
+    // Sri Jayawardenepura Kotte is the capital of Sri 
+    // Lanka; Colombo is the largest city.
+    // codename: IST
+    // label: (+05:30)Sri-Jayawardenepura
+    "id": "Asia/Colombo"
+  },
+  {
+    // codename: NPT
+    // label: (+05:45)Kathmandu
+    "id": "Asia/Kathmandu"
+  },
+  {
+    // codename: ALMT
+    // label: (+06:00)Astana_Almaty
+    "id": "Asia/Almaty"
+  },
+  {
+    // codename: BST
+    // label: (+06:00)Dhaka
+    "id": "Asia/Dhaka"
+  },
+  {
+    // codename: YEKT
+    // label: (+06:00)Yekaterinburg
+    "id": "Asia/Yekaterinburg"
+  },
+  {
+    // codename: MMT
+    // label: (+06:30)Yangon_Rangoon
+    "id": "Asia/Rangoon"
+  },
+  {
+    // codename: NOVT
+    // label: (+07:00)Novosibirsk
+    "id": "Asia/Novosibirsk"
+  },
+  {
+    // codename: ICT
+    // label: (+07:00)Bangkok_Hanoi
+    "id": "Asia/Bangkok"
+  },
+  {
+    // codename: WIB
+    // label: (+07:00)Jakarta
+    "id": "Asia/Jakarta"
+  },
+  {
+    // codename: KRAT
+    // label: (+08:00)Krasnoyarsk
+    "id": "Asia/Krasnoyarsk"
+  },
+  {
+    // codename: CST
+    // label: (+08:00)Beijing_Chongqing_Hong-Kong-SAR_Urumqi
+    "id": "Asia/Shanghai"
+  },
+  {
+    // codename: MYT
+    // label: (+08:00)Kuala-Lumpur
+    "id": "Asia/Kuala_Lumpur"
+  },
+  {
+    // codename: SGT
+    // label: (+08:00)Singapore
+    "id": "Asia/Singapore"
+  },
+  {
+    // codename: CST
+    // label: (+08:00)Taipei
+    "id": "Asia/Taipei"
+  },
+  {
+    // codename: AWST
+    // label: (+08:00)Perth
+    "id": "Australia/Perth"
+  },
+  {
+    // codename: ULAT
+    // label: (+08:00)Ulaanbaatar
+    "id": "Asia/Ulaanbaatar"
+  },
+  {
+    // codename: IRKT
+    // label: (+09:00)Irkutsk
+    "id": "Asia/Irkutsk"
+  },
+  {
+    // codename: KST
+    // label: (+09:00)Seoul
+    "id": "Asia/Seoul"
+  },
+  {
+    // codename: JST
+    // label: (+09:00)Osaka_Sapporo_Tokyo
+    "id": "Asia/Tokyo"
+  },
+  {
+    // codename: CST
+    // label: (+09:30)Adelaide
+    "id": "Australia/Adelaide"
+  },
+  {
+    // codename: CST
+    // label: (+09:30)Darwin
+    "id": "Australia/Darwin"
+  },
+  {
+    // codename: YAKT
+    // label: (+10:00)Yakutsk
+    "id": "Asia/Yakutsk"
+  },
+  {
+    // codename: EST
+    // label: (+10:00)Canberra_Melbourne_Sydney_Hobart
+    "id": "Australia/Melbourne"
+  },
+  {
+    // codename: EST
+    // label: (+10:00)Brisbane
+    "id": "Australia/Brisbane"
+  },
+  {
+    // codename: PGT
+    // label: (+10:00)Port-Moresby
+    "id": "Pacific/Port_Moresby"
+  },
+  {
+    // codename: ChST
+    // label: (+10:00)Guam
+    "id": "Pacific/Guam"
+  },
+  {
+    // codename: VLAT
+    // label: (+11:00)Vladivostok
+    "id": "Asia/Vladivostok"
+  },
+  {
+    // New Caledonia is an overseas department of France. Noumea is the largest city.
+    // codename: NCT
+    // label: (+11:00)New-Caledonia
+    "id": "Pacific/Noumea"
+  },
+  {
+    // Guadalcanal is an island in the Solomon Islands. It's the location 
+    // of the capital city, Honiara
+    // codename: SBT
+    // label: (+11:00)Solomon-Islands
+    "id": "Pacific/Guadalcanal"
+  },
+  {
+    // codename: MAGT
+    // label: (+12:00)Magadan
+    "id": "Asia/Magadan"
+  },
+  {
+    // codename: FJT
+    // label: (+12:00)Fiji-Islands
+    "id": "Pacific/Fiji"
+  },
+  {
+    // codename: PETT
+    // label: (+12:00)Kamchatka
+    "id": "Asia/Kamchatka"
+  },
+  {
+    // Majuro is the capital of the Marshall Islands
+    // codename: MHT
+    // label: (+12:00)Marshall-Islands
+    "id": "Pacific/Majuro"
+  },
+  {
+    // codename: NZST
+    // label: (+12:00)Auckland_Wellington
+    "id": "Pacific/Auckland"
+  }
+]

@@ -1,0 +1,21 @@
+﻿<div class="alert alert-warning">
+  <p translate="devices.delete_device.communication_error"></p>
+  <p>
+    <small translate="devices.delete_device.communication_error_message" translate-value-lastupdated="{{deviceInfo.lastUpdated}}"></small>
+  </p>
+  <br />
+  <p>
+    <small translate="devices.delete_device.communication_error_instructions"></small>
+  </p>
+  <div class="panel-controls">
+    <div class="panel-controls__message panel-controls__message--error">
+    </div>
+    <div class="panel-controls__buttons">
+      <input type="button" class="btn btn-danger" ng-click="deleteDevice()"
+             value="{{'devices.details.delete_device' | translate}}"
+             csb-permissions />
+    </div>
+  </div>
+
+</div>
+

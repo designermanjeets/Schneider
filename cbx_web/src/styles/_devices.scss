@@ -1,0 +1,674 @@
+/////////////////////////////////////////////////////////////////////
+//
+// Sidebar on device screen
+
+.sidebar-submenu {
+  margin: 4px 4px 15px 15px;
+  padding: 0;
+  list-style: none;
+  $li-line-height: 24px;
+  $li-padding-bottom: 6px;
+  $li-margin-bottom: 6px;
+  $li-height: $li-line-height + $li-padding-bottom;
+  // If there are more than this many items, use a scroll bar
+  max-height: $li-height * 10;
+
+  li {
+    line-height: $li-line-height;
+    /*padding-bottom: $li-padding-bottom;*/
+    margin-bottom: $li-margin-bottom;
+    display: block;
+    align-items: center;
+  }
+}
+
+.sidebar-submenu__link {
+  color: $text-color;
+  text-decoration: none;
+
+  &:focus,
+  &:hover {
+    color: $text-color;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+.sidebar-submenu__link--active {
+  font-weight: bold;
+}
+
+.sidebar-xbsubmenu__link--active {
+  font-weight: bold;
+  border: 1px solid $se-transparent-grey;
+  border-radius: 10px;
+  background: rgba(0, 195, 99, 0.05);
+}
+
+.sidebar-submenu__icon {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+}
+
+.device-detection__inputs {
+  td,
+  th {
+    padding: 4px 30px 8px 4px;
+  }
+}
+
+.device-detection__range-to {
+  // CSBQNX-262: Give a little more whitespace on the "to" in range
+  // [low] to [high]
+  margin: 0 3px;
+}
+/////////////////////////////////////////////////////////////////////
+//
+// Device tables
+// Icons in device table that shows when alarms are active
+
+.alarm-icons {
+  white-space: nowrap;
+
+  a {
+    text-decoration: none;
+  }
+
+  img {
+    margin-right: 4px;
+  }
+}
+/////////////////////////////////////////////////////////////////////
+//
+// Device-specific screens
+
+.device-details-page-title {
+  margin-top: 0;
+}
+
+.device-details {
+  td:nth-child(1) {
+    white-space: nowrap;
+    // Align with padding for the heading
+    padding-left: nth($panel-heading-padding, 2); // 2nd item = horiz padding
+    padding-right: 40px;
+  }
+
+  td:nth-child(2) {
+    // Take up as much space as we can. The nowrap on the first td
+    // will prevent that cell from getting too squashed.
+    width: 100%;
+  }
+  // Only bold the values if there is not a comm error.
+  // If there is a comm error, then we'll be showing all dashes
+  // and having them in bold is weird.
+  &:not(.device-details--comm-error) {
+    td:nth-child(2) {
+      font-weight: bold;
+    }
+  }
+}
+
+.device-details__subhead {
+  color: $se-spruce-green;
+  font-size: $font-size-h5;
+  padding-top: $line-height-computed !important;
+  padding-bottom: $line-height-computed / 2 !important;
+  padding-left: 0 !important;
+
+  tr:first-child & {
+    border-top-style: none;
+  }
+}
+
+.manifest-details {
+  td:nth-child(1) {
+    white-space: nowrap;
+    // Align with padding for the heading
+    padding-left: nth($panel-heading-padding, 2); // 2nd item = horiz padding
+    padding-right: 20px;
+  }
+
+  td:nth-child(2) {
+    // Take up as much space as we can. The nowrap on the first td
+    // will prevent that cell from getting too squashed.
+    width: 20%;
+    font-weight: bold;
+  }
+}
+
+.evtlog {
+  td:nth-child(2) {
+    white-space: nowrap;
+  }
+
+  td:nth-child(3) {
+    white-space: nowrap;
+  }
+
+  td:nth-child(4) {
+    white-space: nowrap;
+  }
+}
+
+.event_table {
+  color: $se-dark-grey;
+  th {
+    background-color: $se-super-light-grey;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.sidebar-device__box {
+  text-align: left;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.sidebar-device__box:hover {
+  border: 1px solid black;
+  border-radius: 10px;
+  background: rgba(0, 195, 99, 0.1);
+}
+
+.sidebar-device__name {
+  display: inline-block;
+}
+
+.sidebar-device__icon {
+  display: inline-block;
+  height: 40px;
+}
+
+.devinfo-device__icon {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+}
+
+.sidebar-device {
+  transform: scale(0.04);
+  margin: -577px -570px;
+  display: inline-block;
+}
+
+.sidebar-device-mppt {
+  transform: scale(0.055);
+  margin-bottom: -590px;
+}
+
+.devinfo-device__badge {
+  display: inline-block;
+  position: relative;
+  top: -30px;
+  left: -30px;
+  width: 25px;
+  height: 25px;
+}
+
+.sidebar-device__badge {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+
+.evtlog__badge {
+  width: 25px;
+  height: 25px;
+}
+
+.fault-info {
+  border: 4px solid #FF0000;
+  border-radius: 25px;
+  margin: 5px;
+  background-color: #C00F0F;
+  padding: 10px 10px 30px;
+}
+
+.warn-info {
+  border: 4px solid $se-sunflower-yellow-faded;
+  border-radius: 25px;
+  margin: 5px;
+  background-color: $se-sunflower-yellow;
+  padding: 10px 10px 30px;
+}
+
+.events-info-timestamp {
+  color: white;
+  text-align: right;
+}
+
+.events-info-id {
+  text-align: left;
+  color: white;
+  font-weight: bold;
+  font-size: 150%;
+}
+
+.events-info-name {
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: 150%;
+}
+
+.events-info-description {
+  text-align: left;
+  color: white;
+}
+
+.device-measurement {
+  border: 2px solid #009530;
+  border-radius: 25px;
+  margin: 5px;
+  padding: 10px;
+  display: inline-block;
+}
+
+.gauge-container {
+  display: inline-block;
+  margin: 2.5px;
+  background-color: $se-light-grey;
+  padding: 5px;
+}
+
+.gauge-wrapper {
+  display: inline-block;
+  padding: 2.5px;
+  background-color: $se-medium-grey;
+  font-size: 0;
+}
+
+.gauge-title {
+  font-size: 14px;
+  padding-left: 10px;
+  color: $se-sky-blue;
+  font-weight: bold;
+}
+
+.gauge-field-description {
+  font-size: 18px;
+  float: left;
+  padding-right: 20px;
+}
+
+.gauge-field-value {
+  font-size: 20px;
+  float: right;
+  min-width: 74px;
+  text-align: right;
+}
+
+.gauge-field-container {
+  display: inline-block;
+  min-height: 100px;
+  padding: 10px 15px;
+}
+
+.gauge-field {
+  border-bottom: 1px solid $se-medium-grey;
+  border-top: 1px solid $se-medium-grey;
+  font-size: 14px;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-bottom: -1px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.flex {
+  display: flex;
+}
+
+.device-status-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.device-info {
+  border: 1px solid $se-medium-grey;
+  padding: 10px 0 0;
+}
+
+dl {
+  padding: 0.5em;
+  display: inline-block;
+  vertical-align: top;
+  margin: 10px;
+}
+
+dt {
+  float: left;
+  clear: left;
+  text-align: right;
+  font-weight: bold;
+  color: #009530;
+  white-space: nowrap;
+  width: 200px;
+}
+
+dt::after {
+  content: ":";
+}
+
+dd {
+  margin: 0 0 0 110px;
+  padding: 0 0 0.5em;
+  white-space: nowrap;
+}
+
+.device-measurement-legend {
+  color: #009530;
+  font-size: 18pt;
+  font-variant: small-caps;
+  text-transform: lowercase;
+  padding: 5px;
+  margin-left: 20px;
+  margin-bottom: 0;
+  width: auto;
+  white-space: nowrap;
+  border: none;
+  border-radius: 5px;
+}
+
+.device-measurement-legend-grey {
+  color: $se-super-dark-grey;
+  font-size: 18pt;
+  font-variant: small-caps;
+  text-transform: lowercase;
+  padding: 5px;
+  margin-left: 20px;
+  width: auto;
+  white-space: nowrap;
+  border: none;
+  border-radius: 5px;
+}
+
+.xbdev-led {
+  width: 32px;
+  height: 32px;
+}
+
+.xbdev-online-container {
+  width: 75px;
+  text-align: center;
+  border-radius: 15px;
+  float: right;
+  padding: 2px;
+}
+
+.xbdev-online {
+  color: $se-spruce-green;
+  font-size: 16px;
+  padding-bottom: 50px;
+}
+
+.xbdev-offline {
+  color: $se-red;
+  font-size: 16px;
+  padding-bottom: 50px;
+}
+
+.device-family {
+  text-align: center;
+  color: $se-dark-grey;
+  font-weight: bold;
+  font-size: 12pt;
+}
+
+.device-uid {
+  text-align: center;
+  font-size: small;
+}
+
+.device-status {
+  text-align: right;
+}
+
+.device-status-table {
+  td:nth-child(1) {
+    text-align: right;
+    color: $se-spruce-green;
+    font-weight: bold;
+    font-size: 14pt;
+    white-space: nowrap;
+    vertical-align: bottom;
+  }
+  //  td:nth-child(2) {
+  // Take up as much space as we can. The nowrap on the first td
+  // will prevent that cell from getting too squashed.
+  //    width: 100%;
+  //vertical-align: bottom;
+  //  }
+}
+
+.devinfo-powerflow {
+  padding: 20px;
+  margin-top: -20px;
+  margin-right: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.devinfo-connection {
+  width: 100px;
+  height: 10px;
+  border-radius: 5px;
+  display: inline-block;
+  background: $se-sky-blue;
+}
+
+.devinfo-electron {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  bottom: 2px;
+  background: $se-sky-blue;
+  position: relative;
+  display: inline-block;
+  animation: electron 2s infinite;
+  animation-direction: normal;
+  animation-timing-function: linear;
+}
+
+.devinfo-electron2 {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: 2px;
+  background: $se-sky-blue;
+  position: relative;
+  display: inline-block;
+  animation: electron2 2s infinite;
+  animation-direction: normal;
+  animation-timing-function: linear;
+}
+
+.powerflow-device__icon {
+  display: inline-block;
+  width: 50px;
+  height: auto;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+@keyframes electron {
+  0% {
+    left: -7.5px;
+  }
+
+  100% {
+    left: 92.5px;
+  }
+}
+@keyframes electron2 {
+  0% {
+    left: -65px;
+  }
+
+  100% {
+    left: -20px;
+  }
+}
+
+.device_list_row {
+  box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e6e6e6;
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.row-eq {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.row-eq > [class*='col-'] {
+  display: flex;
+  flex-direction: row;
+}
+
+.chart-eq {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.chart-eq > [class*='col-'] {
+  display: flex;
+  flex-direction: row;
+}
+
+.device-list-value {
+  font-weight: bold;
+  text-align: right;
+  padding-right: 0;
+  padding-left: 7.5px;
+}
+
+.device-list-description {
+  padding-left: 0;
+  padding-right: 7.5px;
+}
+
+.device-status-value {
+  float: left;
+  border: 1px solid $se-medium-grey;
+  padding: 4px 10px;
+  color: #fff;
+  background-color: $se-medium-grey;
+  border-radius: 15px;
+}
+
+.devinfo-value {
+  color: $se-spruce-green;
+  text-align: right;
+}
+
+.devinfo-linebreak {
+  border-width: 0 0 1px;
+  border-style: solid;
+  border-bottom-color: $se-medium-grey;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.devinfo-faults {
+  color: #fff;
+  background-color: $se-red-faded;
+  border: 1px solid $se-red;
+  padding: 5px;
+  margin-bottom: 20px;
+}
+
+.devinfo-warnings {
+  color: #fff;
+  background-color: $se-honeysuckle-orange-faded;
+  border: 1px solid $se-honeysuckle-orange;
+  padding: 5px;
+  margin-bottom: 20px;
+}
+
+.devlist-click {
+  border: 1px solid $se-light-grey;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.devlist-offline.devlist-click {
+  background-color: $se-ultra-light-grey-1;
+}
+
+.devlist-click:hover {
+  border: 1px solid $se-sky-blue;
+  cursor: pointer;
+}
+
+.devlist-title {
+  color: $se-dark-grey;
+  font-size: 24px;
+  position: relative;
+}
+
+.devlist-description {
+  color: $se-medium-grey;
+}
+
+.devlist-row {
+  padding-top: 2.5px !important;
+  padding-bottom: 2.5px !important;
+  border-top: 1px solid $se-light-grey;
+  border-bottom: 1px solid $se-light-grey;
+  margin-bottom: -.5px;
+  margin-top: -.5px;
+}
+
+.devlist-offline .devlist-row {
+  border-top: 1px solid $se-white;
+  border-bottom: 1px solid $se-white;
+}
+
+.devlist-value {
+  color: $se-dark-grey;
+  text-align: right;
+}
+
+.devlist-header {
+  margin-bottom: 15px;
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+.devlist-table-red {
+  background-color: $se-red-faded-strong;
+}
+
+.devlist-table-row:hover {
+  cursor: pointer;
+}

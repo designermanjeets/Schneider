@@ -1,0 +1,11 @@
+#!/bin/sh
+
+IP=10.167.85.55
+
+if [ ! $1 = "" ]
+then
+  IP=$1
+fi
+
+
+scp -r  www/hmi/app/* factory@$IP:/var/www/newhmi/app/

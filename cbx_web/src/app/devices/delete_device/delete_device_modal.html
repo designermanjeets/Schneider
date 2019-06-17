@@ -1,0 +1,17 @@
+﻿<div ng-cloak>
+  <div class="modal-header">
+    <h3 class="modal-title" translate="devices.delete_device.delete_device"></h3>
+  </div>
+  <div class="modal-body">
+    <div translate="devices.delete_device.confirmation_message" translate-value-name="{{deviceName}}"></div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-danger" type="button"
+            ng-click="deleteDevice()" translate="devices.delete_device.delete">
+    </button>
+
+    <button class="btn" type="button"
+            ng-click="close()" translate="devices.delete_device.cancel">
+    </button>
+  </div>
+</div>

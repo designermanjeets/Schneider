@@ -1,0 +1,130 @@
+﻿<div class="for-login-or-smart-install">
+  <div class="smartInstallTable" ng-cloak data-ng-controller="csbIdleTimer">
+    <div class="smartInstallTableCell">
+      <div class="smartInstallBackground" >
+        <div class="smartInstallDimensionDiv">
+          <table style="width:92%">
+            <tr>
+              <td><h3 id="smartInstallHeader" translate="smart_install.heading.heading"></h3></td>
+              <td><h3 id="smartInstallSubHeader">
+                <span
+                    translate="smart_install.heading.step"
+                    translate-value-number="2"
+                    >
+                  </span>
+              </h3></td>
+            </tr>
+          </table>
+          <hr id="smartInstallAppgreenLine">
+          <div id="smartInstallContainerId">
+            <form name="deviceDetectionForm" novalidate>
+              <table style="width:100%;">
+                <tr style="height: 120px; vertical-align: top;" >
+                  <td style="width:70%;">
+                    <h3 style="display:inline; margin-right: 8px"
+                      translate="smart_install.devices.detect_devices"
+                      >
+                    </h3>
+                    <div class="form-group" ng-class="{'has-error': (deviceDetectionForm.$invalid)}" style="display:inline;" >
+                      <input type="number" id="detectionStartRange" name="detectionStartRange" class="form-control" data-ng-model="range.txtDetectionStartRange" ng-model-options="{ updateOn: 'blur' }" min="1" max="246" style="width:20%;display:inline;" multi="validateDetectionRange" required/>
+                      <h3 style="display:inline;"
+                        translate="smart_install.devices.to"
+                        >
+                      </h3>
+                      <input type="number" id="detectionEndRange" name="detectionEndRange" class="form-control" data-ng-model="range.txtDetectionEndRange" ng-model-options="{ updateOn: 'blur' }" min="2" max='247' value='25' style="width:20%;display:inline;" multi="validateDetectionRange" required />
+
+                      <span class="help-block" ng-show="(deviceDetectionForm.detectionStartRange.$error.max || deviceDetectionForm.detectionStartRange.$error.min || deviceDetectionForm.detectionStartRange.$error.number) && deviceDetectionForm.detectionStartRange.$dirty"
+                        translate="smart_install.devices.message.start_range"
+                        >
+                      </span>
+                      <span class="help-block" ng-show="deviceDetectionForm.detectionStartRange.$error.required && deviceDetectionForm.detectionStartRange.$touched"
+                        translate="smart_install.devices.message.start_required"
+                        >
+                      </span>
+                      <span class="help-block" ng-show="(deviceDetectionForm.detectionEndRange.$error.max || deviceDetectionForm.detectionEndRange.$error.min) && deviceDetectionForm.detectionEndRange.$touched"
+                        translate="smart_install.devices.message.end_range"
+                        >
+                      </span>
+                      <span class="help-block" ng-show="deviceDetectionForm.detectionEndRange.$error.required && deviceDetectionForm.detectionEndRange.$touched"
+                        translate="smart_install.devices.message.end_required"
+                        >
+                      </span>
+                      <span class="help-block"
+                        ng-show="deviceDetectionForm.detectionStartRange.$error.multi "
+                        translate="smart_install.devices.message.end_gt_start"
+                        translate-value-start="{{range.txtDetectionStartRange}}"
+                        translate-value-end="{{range.txtDetectionEndRange}}"
+                        >
+                      </span>
+
+                    </div>
+                  </td>
+                  <td>
+                    <span id="#btnHideApp" style="font-size:13px">
+                      <button type="button" id="btnSmrtDevDetectApp"
+                        name="btnSmrtDevDetectApp" class="detectDevices"
+                        ng-click="startDeviceDetection(deviceDetectionForm.$invalid)" ng-show="!performingDetection" style="margin-right: 0px"
+                        translate="smart_install.detect"
+                        >
+                      </button>
+                      <button type="button" id="btnSmrtDevDetStopApp"
+                        name="btnSmrtDevDetStopApp" class="stopDetectDevices"
+                        ng-click="stopDeviceDetection()"
+                        ng-show="performingDetection" style="margin-right: 0px"
+                        translate="smart_install.stop"
+                        >
+                      </button>
+                      <img id="loader" name="loader" src="/img/greenloader.gif" ng-show="performingDetection"/>
+                      <h4 id="loaderProgressStatus" ng-show="performingDetection">{{detectionProgressStatus}}</h4>
+                    </span>
+                  </td>
+                </tr>
+              </table>
+            </form>
+            <h4 id="smartInstallSummaryIdApp"
+              translate="smart_install.devices.summary"
+              >
+            </h4>
+            <!--remove tableDImensionDiv from css -->
+            <div class="smartInstallDetectDiv" style="margin: 20px 0;" >
+              <br>
+              <table id="detectedSummaryId" >
+                <thead>
+                  <tr>
+                    <th translate="smart_install.devices.port"></th>
+                    <th translate="smart_install.devices.inverters"></th>
+                    <th translate="smart_install.devices.meters"></th>
+                    <th translate="smart_install.devices.sensors"></th>
+                    <th translate="smart_install.devices.unknown"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td translate="smart_install.devices.bus1"></td>
+                  <td>{{InverterPortA}}</td>
+                  <td>{{MeterPortA}}</td>
+                  <td>{{SensorPortA}}</td>
+                  <td>{{UnknownPortA}}</td>
+                </tr>
+                <tr>
+                  <td translate="smart_install.devices.bus2"></td>
+                  <td>{{InverterPortB}}</td>
+                  <td>{{MeterPortB}}</td>
+                  <td>{{SensorPortB}}</td>
+                  <td>{{UnknownPortB}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div translate="smart_install.devices.defaults">
+            </div>
+          </div>
+          <div id="smartInstallButtonContainer">
+            <button type="button" id="btnSmrtDevDetNextApp" name="btnSmrtDevDetNextApp" class="smartInstallNext" ng-click="nextClicked()" translate="SI_NEXTBTN"></button>
+            <button type="button" id="btnSmrtDevDetSkipApp" name="btnSmrtDevDetSkipApp" class="smartInstallSkip" ng-click="skipClicked()" translate="SI_SKIPBTN"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,3 @@
+
+# Web interface for the Conext Gateway 
+[-optional] /var/www = ../web/www

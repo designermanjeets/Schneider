@@ -1,0 +1,678 @@
+<se-panel value="{{'setup.configuration.plant_setup' | translate}}" csb-permissions>
+  <form name="forms.plantSetup" novalidate ng-model-options="{ updateOn: 'submit' }" ng-submit="applyPlantSetup()">
+    <table class="settings-controls">
+      <tr>
+        <td translate="setup.configuration.friendly_name"></td>
+        <td>
+          <input type="text" name="friendly_name" ng-model="plantSetup.friendly_name" required />
+        </td>
+      </tr>
+      <tr>
+        <td translate="setup.configuration.ac_capacity"></td>
+        <td>
+          <input type="number" name="acCapacity" ng-model="plantSetup.acCapacity" required pattern="\d+(\.\d{1})?" min="0" max="{{::MAX_AC_CAPACITY_KW}}">
+
+          <div class="inline-validation-messages" ng-messages="forms.plantSetup.acCapacity.$error" ng-show="forms.plantSetup.$submitted">
+            <span ng-message="required">
+              <span translate="setup.configuration.required"></span>
+            </span>
+            <span ng-message="min">
+              <span translate="setup.configuration.min_capacity"></span>
+            </span>
+            <span ng-message="max">
+              <span translate="setup.configuration.max_capacity" translate-value-max="{{:: MAX_AC_CAPACITY_KW | number }}"></span>
+            </span>
+            <span ng-message="pattern">
+              <span translate="setup.configuration.capacity_pattern"></span>
+            </span>
+            <span ng-message="number">
+              <span translate="setup.configuration.capacity_pattern"></span>
+            </span>
+          </div>
+
+        </td>
+      </tr>
+      <tr>
+        <td translate="setup.configuration.installed_year"></td>
+        <td>
+          <input type="number" name="installedYear" ng-model="plantSetup.installedYear" required min="1900" max="{{plantSetup.currentYear}}" pattern="\d{4}">
+
+          <div class="inline-validation-messages" ng-messages="forms.plantSetup.installedYear.$error" ng-show="forms.plantSetup.$submitted">
+            <span ng-message="required">
+              <span translate="setup.configuration.required"></span>
+            </span>
+            <span ng-message="min">
+              <span translate="setup.configuration.min_installed_year"></span>
+            </span>
+            <span ng-message="max">
+              <span translate="setup.configuration.max_installed_year"></span>
+            </span>
+            <span ng-message="pattern">
+              <span translate="setup.configuration.installed_year_pattern"></span>
+            </span>
+            <span ng-message="number">
+              <span translate="setup.configuration.installed_year_pattern"></span>
+            </span>
+          </div>
+        </td>
+      </tr>
+      <!-- <tr>
+        <td translate="setup.configuration.inverter_type"></td>
+        <td>
+          <span ng-bind="plantSetup.inverterTypes[0]"></span>
+          <div class="inline-validation-messages"
+               ng-messages="forms.plantSetup.inverterType.$error"
+               ng-show="forms.plantSetup.$submitted">
+            <span ng-message="required">
+              <span translate="setup.configuration.required"></span>
+            </span>
+          </div>
+        </td>
+      </tr> -->
+    </table>
+
+    <div class="panel-controls">
+      <div class="panel-controls__message panel-controls__message--error">
+        <div class="alert alert-success" ng-show="successMessage.plantSetup" translate="setup.configuration.changes_saved">
+        </div>
+        <div class="alert alert-danger" ng-show="errorMessage.plantSetup" ng-bind="errorMessage.plantSetup">
+        </div>
+      </div>
+
+      <div class="panel-controls__buttons">
+        <input type="submit" class="btn btn-default" value="{{'setup.configuration.apply' | translate}}">
+        <input type="button" class="btn btn-default" value="{{'setup.configuration.cancel' | translate}}" ng-click="resetPlantSetup()">
+      </div>
+    </div>
+
+  </form>
+</se-panel>
+
+<se-panel value="{{'setup.configuration.quick_setup' | translate}}" csb-permissions>
+  <form name="forms.quickSetup" novalidate ng-submit="applyQuickSetup()">
+    <table class="settings-controls">
+      <tr>
+        <td translate="setup.configuration.time_zone"></td>
+        <td>
+          <select ng-model="quick_setup.timezone" ng-options="timezone.id as timezone.label for timezone in quick_setup.timezoneList"></select>
+        </td>
+      </tr>
+      <!-- <tr>
+        <td class="settings-control__label--for-many-controls" translate="setup.configuration.set_time"></td>
+        <td>
+          <div>
+            <label>
+              <input type="radio"
+                     ng-model="quick_setup.timeSource"
+                     value="sntpNetwork"
+                     ng-model-options="{ updateOn: 'default' }"
+                     ng-click="removeQuickSetupFormMessage()">
+              <span translate="setup.configuration.automatically"></span>
+            </label>
+          </div>
+
+          <div>
+            <label>
+              <input type="radio"
+                     ng-model="quick_setup.timeSource"
+                     value="device"
+                     ng-model-options="{ updateOn: 'default' }"
+                     ng-click="removeQuickSetupFormMessage()">
+              <span translate="setup.configuration.manually"></span>
+            </label>
+          </div>
+        </td>
+      </tr> -->
+
+      <tr ng-show="quick_setup.timeSource==='device'">
+        <td translate="setup.configuration.date_time"></td>
+        <td>
+          <span class="input-group">
+            <input type="text"
+                   readonly
+                   datetime-picker="yyyy/MM/dd HH:mm:ss"
+                   ng-model="quick_setup.dateTime"
+                   is-open="quick_setup.isCalendarOpen"
+                   ng-disabled="quick_setup.timeSource!=='device'"
+                   today-text="{{quick_setup.text.today}}"
+                   now-text="{{quick_setup.text.now}}"
+                   date-text="{{quick_setup.text.date}}"
+                   time-text="{{quick_setup.text.time}}"
+                   close-text="{{quick_setup.text.close}}" />
+                  <div class="icon-calendar setup-icon-calendar" data-ng-click="openCalendar($event)"
+                        data-ng-show="quick_setup.timeSource=='device'"></div>
+          </span>
+        </td>
+      </tr>
+
+      <!-- <tr ng-show="quick_setup.timeSource==='sntpNetwork'">
+        <td translate="setup.configuration.sntp_server"></td>
+        <td>
+          <input type="text"
+                 name="sntpServerName"
+                 ng-model="quick_setup.sntpServerName"
+                 ng-disabled="quick_setup.timeSource!=='sntpNetwork'"
+                 ng-required="quick_setup.timeSource==='sntpNetwork'"
+                 ng-maxlength="{{ quick_setup.timeSource==='sntpNetwork' ?  MAX_SNTP_SERVER_NAME_LEN : null }}"
+                 fqdn="{{quick_setup.timeSource==='sntpNetwork'}}" />
+        </td>
+      </tr> -->
+
+      <!--<tr ng-show="quick_setup.timeSource==='sntpNetwork'">
+        <td>Update interval (hours)</td>
+        <td>
+          <input type="number"
+                 name="pollInterval"
+                 min="{{::MIN_SNTP_POLL_INTERVAL_HOURS}}"
+                 max="{{::MAX_SNTP_POLL_INTERVAL_HOURS}}"
+                 pattern="\d+"
+                 required
+                 ng-disabled="quick_setup.timeSource!='sntpNetwork'"
+                 ng-model="quick_setup.sntpPollIntervalHours"/>
+        </td>
+      </tr>-->
+
+      <!-- <tr ng-show="quick_setup.timeSource==='sntpNetwork'">
+        <td></td>
+        <td translate="setup.configuration.dhcp_ensure_enabled"></td>
+      </tr> -->
+    </table>
+
+    <div class="panel-controls">
+      <div class="panel-controls__message panel-controls__message--error">
+        <div class="alert alert-success" ng-show="successMessage.quickSetup" translate="setup.configuration.changes_saved">
+        </div>
+        <div class="alert alert-danger" ng-show="errorMessage.quickSetup" ng-bind="errorMessage.quickSetup">
+        </div>
+        <div ng-show="forms.quickSetup.$submitted">
+          <date-time-errors></date-time-errors>
+        </div>
+      </div>
+      <div class="panel-controls__buttons">
+        <span ng-show="status.processingQuickSetup">
+          <img src="img/schneiderloader.gif" class="install-package__spinner">
+          <span translate="setup.network.processing"></span>
+        </span>
+        <input type="submit" class="btn btn-default" value="{{'setup.configuration.apply' | translate}}">
+        <input type="button" class="btn btn-default" value="{{'setup.configuration.cancel' | translate}}" ng-click="resetQuickSetup()">
+      </div>
+    </div>
+  </form>
+</se-panel>
+
+<se-panel value="{{'setup.configuration.import_configuration' | translate}}" csb-permissions>
+  <table class="settings-controls">
+    <tr>
+      <td>
+        <!-- Export settings -->
+        <p translate="setup.configuration.export_settings"></p>
+        <div>
+          <a href="/SB/exportUserSettings">
+            <input type="button" class="btn btn-default btn-wide" value="{{'setup.configuration.download' | translate}}">
+          </a>
+        </div>
+      </td>
+      <td>
+        <!-- Import settings -->
+        <div ng-show="configImport.state === 'ready' || configImport.state === 'error'">
+          <p ng-show="configImport.state === 'ready'" translate="setup.configuration.import_settings">
+          </p>
+
+          <div ng-show="configImport.state === 'error'">
+            <div class="install-package__file-status">
+              <span class="install-package__filename install-package__filename--close" ng-bind="configImport.filename"></span>
+            </div>
+            <p class="alert alert-danger" role="alert">
+              <span class="install-package__error-icon"></span>
+              <span ng-bind="configImport.errorMessage"></span>
+            </p>
+          </div>
+          <span>
+            <label for="configUploadInput" class="btn btn-default btn-wide" translate="setup.configuration.upload"></label>
+            <input type="file"
+                   class="install-package__file-input" id="configUploadInput"
+                   nv-file-select="" uploader="configImport.uploader"
+                   multiple />
+          </span>
+        </div>
+        <!-- Needs reboot -->
+        <div ng-show="configImport.state === 'needs-reboot'">
+          <div class="install-package__filename">
+            <span ng-bind="configImport.filename"></span>
+            <span class="install-package__ok-icon"></span>
+          </div>
+
+          <p translate="setup.configuration.restart_message"></p>
+          <p>
+            <button class="btn btn-default btn-wide" ng-click="reboot.reboot()" translate="setup.configuration.restart_now"></button>
+          </p>
+        </div>
+        <!-- Processing -->
+        <div ng-show="configImport.state === 'processing'">
+          <div class="install-package__filename">
+            <span ng-bind="configImport.filename"></span>
+            <img src="img/schneiderloader.gif" class="install-package__spinner install-package__spinner--inline">
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+</se-panel>
+
+<se-panel value="{{'setup.configuration.units' | translate}}" csb-permissions>
+  <form name="forms.units" novalidate ng-model-options="{ updateOn: 'submit' }" ng-submit="applyUnits()">
+    <table class="settings-controls">
+      <tr>
+        <td translate="setup.configuration.irradiance"></td>
+        <td>
+          <span ng-switch="units.irradiance">
+            <span ng-switch-value="W/m2">W/m<sup>2</sup></span>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td translate="setup.configuration.temperature"></td>
+        <td>
+          <select name="temperature" ng-model="units.temperature" required>
+            <option value="C">&deg;C</option>
+            <option value="F">&deg;F</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td translate="setup.configuration.wind_speed"></td>
+        <td ng-bind="units.wind"></td>
+      </tr>
+    </table>
+
+    <div class="panel-controls">
+      <div class="panel-controls__message panel-controls__message--error">
+        <div class="alert alert-success" ng-show="successMessage.units" translate="setup.configuration.changes_saved">
+        </div>
+        <div class="alert alert-danger" ng-show="errorMessage.units" ng-bind="errorMessage.units">
+        </div>
+      </div>
+
+      <div class="panel-controls__buttons">
+        <input type="submit" class="btn btn-default" value="{{'setup.configuration.apply' | translate}}">
+        <input type="button" class="btn btn-default" value="{{'setup.configuration.cancel' | translate}}" ng-click="resetUnits()">
+      </div>
+    </div>
+
+  </form>
+</se-panel>
+
+<se-panel value="{{'setup.configuration.modbus_settings' | translate}}" csb-permissions>
+  <form name="forms.modbus" novalidate ng-model-options="{ updateOn: 'submit' }" ng-submit="applyModbus()">
+    <table class="settings-controls">
+      <tr>
+        <th translate="setup.configuration.port_a"></th>
+        <th></th>
+      </tr>
+      <tr>
+        <td translate="setup.configuration.baud_rate"></td>
+        <td>
+          <select ng-options="baud for baud in modbus.baudRates" ng-model="modbus.portA.baudRate" required></select>
+        </td>
+      </tr>
+      <tr>
+        <td translate="setup.configuration.parity"></td>
+        <td>
+          <select ng-model="modbus.portA.parity" ng-options="parity for parity in modbus.parities" required></select>
+        </td>
+      </tr>
+      <tr>
+        <td translate="setup.configuration.stop_bits"></td>
+        <td>
+          <select ng-model="modbus.portA.stopBits" ng-options="stpbit for stpbit in modbus.availableStopBits" required></select>
+        </td>
+      </tr>
+    </table>
+    <table class="settings-controls">
+      <tr>
+        <th translate="setup.configuration.port_b"></th>
+        <th></th>
+      </tr>
+      <tr>
+        <td translate="setup.configuration.baud_rate"></td>
+        <td>
+          <select ng-options="baud for baud in modbus.baudRates" ng-model="modbus.portB.baudRate" required></select>
+        </td>
+      </tr>
+      <tr>
+        <td translate="setup.configuration.parity"></td>
+        <td>
+          <select ng-model="modbus.portB.parity" ng-options="parity for parity in modbus.parities" required></select>
+        </td>
+      </tr>
+      <tr>
+        <td translate="setup.configuration.stop_bits"></td>
+        <td>
+          <select ng-model="modbus.portB.stopBits" ng-options="stpbit for stpbit in modbus.availableStopBits" required></select>
+        </td>
+      </tr>
+    </table>
+
+
+    <div class="panel-controls">
+      <div class="panel-controls__message panel-controls__message--error">
+        <div class="alert alert-success" ng-show="successMessage.modbus" translate="setup.configuration.changes_saved">
+        </div>
+        <div class="alert alert-danger" ng-show="errorMessage.modbus" ng-bind="errorMessage.modbus">
+        </div>
+      </div>
+
+      <div class="panel-controls__buttons">
+        <input type="submit" class="btn btn-default" value="{{'setup.configuration.apply' | translate}}">
+        <input type="button" class="btn btn-default" value="{{'setup.configuration.cancel' | translate}}" ng-click="resetModbus()">
+      </div>
+    </div>
+
+  </form>
+</se-panel>
+
+
+
+<se-panel value="{{'setup.configuration.restart_conext_gateway' | translate}}" csb-permissions="User">
+  <table class="settings-controls">
+    <tr>
+      <td>
+        <button class="btn btn-default btn-wide" ng-click="reboot.shutdown()" translate="setup.configuration.shutdown_conext_gateway"></button>
+      </td>
+      <td></td>
+    </tr>
+  </table>
+
+  <hr>
+
+  <table class="settings-controls">
+    <tr>
+      <td>
+        <button class="btn btn-default btn-wide" ng-click="reboot.reboot()" translate="setup.configuration.restart_conext_gateway"></button>
+      </td>
+      <td></td>
+    </tr>
+  </table>
+
+  <hr csb-permissions>
+
+  <table class="settings-controls" csb-permissions>
+    <tr>
+      <td>
+        <button class="btn btn-default btn-wide" ng-click="reboot.resetConfiguration()" translate="setup.configuration.reset_configuration"></button>
+      </td>
+      <td translate="setup.configuration.reset_configuration_message"></td>
+    </tr>
+    <tr>
+      <td>
+        <button class="btn btn-default btn-wide" ng-click="reboot.resetToFactory()" translate="setup.configuration.reset_factory"></button>
+      </td>
+      <td translate="setup.configuration.reset_factory_message"></td>
+    </tr>
+  </table>
+</se-panel>
+
+<se-panel value="{{'setup.configuration.install_package' | translate}}" csb-permissions>
+  <!-- todo: learn what these are -->
+  <div class="install-package" nv-file-drop="" uploader="updateFirmware.uploader" filters="queueLimit">
+
+    <!--
+    <pre style="margin-bottom: 30px;">
+    state:    <select ng-model="updateFirmware.state"><option>ready</option><option>uploading</option><option>processing</option><option>needs-reboot</option><option>error</option></select>
+    progress: <input type=number ng-model="updateFirmware.uploader.progress" max=100>
+    filename: <input type=text ng-model="updateFirmware.filename">
+    </pre>
+    -->
+
+
+    <table class="settings-controls">
+      <tr>
+        <th class="settings-control__label--for-many-controls" translate="setup.configuration.installed_firmware"></th>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td translate="setup.configuration.version"></td>
+        <td ng-bind="updateFirmware.SW_VER"></td>
+      </tr>
+      <tr>
+        <td translate="setup.configuration.build_number"></td>
+        <td ng-bind="updateFirmware.SW_BUILD_NUMBER"></td>
+      </tr>
+    </table>
+
+    <hr>
+
+    <table class="settings-controls">
+      <tr>
+        <td class="settings-control__label--for-many-controls settings-control__label--emphasized" translate="setup.configuration.manual_update"></td>
+        <td>
+
+          <!-- this div needs to come before the div with the upload button,
+            so that this comes first when both are visible -->
+          <div ng-show="updateFirmware.state === 'error'">
+            <div class="install-package__filename" ng-bind="updateFirmware.filename">
+            </div>
+            <div class="install-package__file-status">
+              <span class="install-package__error-icon"></span>
+              <span translate="setup.configuration.upload_failed"></span>
+            </div>
+            <p class="alert alert-danger" role="alert" ng-bind="updateFirmware.errorMessage"></p>
+
+            <!-- separator between error message and upload button (below) -->
+            <hr>
+          </div>
+
+          <div ng-show="updateFirmware.state === 'ready' || updateFirmware.state === 'error'">
+            <p>
+              <span>
+                <label for="firmwareUploadInput" class="btn btn-default btn-wide" translate="setup.configuration.upload_package"></label>
+                <input type="file"
+                       class="install-package__file-input" id="firmwareUploadInput"
+                       nv-file-select="" uploader="updateFirmware.uploader"
+                       multiple />
+                <!-- "multiple" causes FileUploader to clear the file after upload,
+                so you can upload the same file twice in a row. -->
+              </span>
+              <p>
+                <p>
+                  <a href="http://solar.schneider-electric.com/product/conext-gateway/" target="_blank" translate="setup.configuration.get_package">
+              </a>
+                </p>
+          </div>
+          <div ng-show="updateFirmware.state === 'uploading'">
+            <div class="install-package__filename" ng-bind="updateFirmware.filename">
+            </div>
+            <div class="progress install-package__progress">
+              <div class="progress-bar" role="progressbar" ng-style="{ 'width': updateFirmware.uploader.progress + '%' }">
+                &#8203;
+                <!-- zero width space; needed to be able to display the .progress container as an inline-block -->
+              </div>
+            </div>
+
+            <div class="install-package__file-status">
+              <button class="btn btn-default" ng-click="updateFirmware.cancelUpload()">
+                <span class="install-package__cancel-icon"></span>
+                <span translate="setup.configuration.cancel_upload"></span>
+              </button>
+            </div>
+          </div>
+
+          <div ng-show="updateFirmware.state === 'processing'">
+            <div class="install-package__filename" ng-bind="updateFirmware.filename">
+            </div>
+
+            <div class="install-package__file-status">
+              <img src="img/schneiderloader.gif" class="install-package__spinner">
+
+              <div>
+                <span ng-bind="updateFirmware.processing_message"></span>
+                <small class="install-package__secondary-message">
+                  <span translate="setup.configuration.processing_message"></span>
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div ng-show="updateFirmware.state === 'needs-reboot'">
+            <div class="install-package__filename">
+              <span ng-bind="updateFirmware.filename"></span>
+              <span class="install-package__ok-icon"></span>
+            </div>
+
+            <div class="install-package__file-status">
+              <span ng-bind="updateFirmware.processing_message"></span>
+            </div>
+
+            <p>
+              <span translate="setup.configuration.restart_message"></span>
+              <div>
+                <button class="btn btn-default btn-wide" ng-click="reboot.reboot()" translate="setup.configuration.restart_now"></button>
+              </div>
+            </p>
+          </div>
+
+        </td>
+      </tr>
+      <tr ng-hide="updateFirmware.state === 'ready' || updateFirmware.state === 'error'">
+        <td>
+        </td>
+        <td>
+          <div class="col-md-4 devinfo-warnings" style="color: black;">
+            <div class="col-md-12">
+              {{'setup.info.disconnect_warning' | translate}}
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+</se-panel>
+
+
+<se-panel value="{{'setup.network.network_mode' | translate}}" csb-permissions>
+  <!-- todo: learn what these are -->
+  <div class="install-package" filters="queueLimit">
+    
+ 
+      <form name="forms.networkmode" novalidate ng-model-options="{ updateOn: 'submit' }" ng-submit="applyNetworkMode()">
+          <table class="settings-controls">
+            <tr>
+              <td translate="setup.network.network_mode"></td>
+              <td>
+                  <select ng-options="option.name for option in networkmode.modbusntwrks track by option.value" required ng-model="networkmode.networks" ng-click="onNetwrkChange($event)">
+                      <option value="">---Select---</option>
+                  </select>
+              </td>
+            </tr>
+          </table>
+      
+        </form>
+  </div>
+
+</se-panel>
+
+<se-panel value="Wifi station setting" csb-permissions>
+    <!-- todo: learn what these are -->
+    <div class="install-package" filters="queueLimit">
+
+        <div class="wifiSetting">
+            <div class="paneltitle">Wifi station setting</div>
+            <h6>Available network</h6>
+            <div class="connectioncontainer">
+              <div class="listconnection">Connection 1 <a href="#">Connect</a></div>
+              <div class="listconnection">Connection 1 <a href="#">Connect</a></div>
+              <div class="listconnection">Connection 1 <a href="#">Connect</a></div>
+              <div class="listconnection">Connection 1 <a href="#">Connect</a></div>
+              <div class="listconnection">Connection 1 <a href="#">Connect</a></div>
+              <div class="listconnection">Connection 1 <a href="#">Connect</a></div>
+              <div class="listconnection">Connection 1 <a href="#">Connect</a></div>
+              <div class="listconnection">Connection 1 <a href="#">Connect</a></div>
+            </div>
+            <div class="disconnectcon">
+              or  <a href="#">Disconnect</a>
+            </div>
+              <div class="manualwifi">
+            <table>
+              <tr>
+                <td>DHCP</td>
+                <td>
+                  <div class="toggle-group">
+        <input type="checkbox" name="on-off-switch" id="on-off-switch" checked="" tabindex="1">
+        <label for="on-off-switch">
+              <span class="aural">Enable:</span> 
+          </label>
+        <div class="onoffswitch pull-right" aria-hidden="true">
+          <div class="onoffswitch-label">
+            <div class="onoffswitch-inner"></div>
+            <div class="onoffswitch-switch"></div>
+          </div>
+        </div>
+      </div>
+                </td>
+              </tr>
+              <tr>
+                <td>IP address</td>
+                <td><input type="text" name=""></td>
+              </tr>
+              <tr>
+                <td>Subnet mask</td>
+                <td><input type="text" name=""></td>
+              </tr>
+              <tr>
+                <td>Gateway</td>
+                <td><input type="text" name=""></td>
+              </tr>
+              <tr>
+                <td>DNS Server</td>
+                <td><input type="text" name=""></td>
+              </tr>
+              <tr>
+                <td>Host name</td>
+                <td><input type="text" name=""></td>
+              </tr>
+              <tr>
+                <td colspan="2"><button>Apply</button></td>
+                
+              </tr>
+            </table>
+          </div>
+          <div class="selectnetwork">
+            <h3>Select network</h3>
+            <select>
+              <option>Networ 1</option>
+              <option>Networ 1</option>
+              <option>Networ 1</option>
+              <option>Networ 1</option>
+              <option>Networ 1</option>
+            </select>
+            <input type="password" placeholder="Enter password">
+            <button>Connect</button>
+            <a href="#"> Add Network manually</a>
+          </div>
+      
+   
+        <form name="forms.networkmode" novalidate ng-model-options="{ updateOn: 'submit' }" ng-submit="applyNetworkMode()">
+            <table class="settings-controls">
+              <tr>
+                <td translate="setup.network.network_mode"></td>
+                <td>
+                    <select ng-options="option.name for option in networkmode.modbusntwrks track by option.value" required ng-model="networkmode.networks" ng-click="onNetwrkChange($event)">
+                        <option value="">---Select---</option>
+                    </select>
+                </td>
+              </tr>
+            </table>
+        
+              <!-- <div class="panel-controls__buttons">
+                <input type="submit" class="btn btn-default" value="{{'setup.configuration.apply' | translate}}">
+                <input type="button" class="btn btn-default" value="{{'setup.configuration.cancel' | translate}}" ng-click="resetModbus()">
+              </div>
+            </div> -->
+        
+          </form>
+    </div>
+  
+  </se-panel>
+

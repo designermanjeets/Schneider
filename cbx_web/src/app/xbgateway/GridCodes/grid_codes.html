@@ -1,0 +1,202 @@
+<div ng-hide="verified.state">
+  <table class="settings-controls">
+    <tr>
+      <td translate="xanbus.grid_codes.password"></td>
+      <td>
+        <input type="password" ng-model="password" ng-change="passwordChange()" ng-keyup="$event.keyCode == 13 ?  submit(): null" />
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><button class="btn btn-default" translate="xanbus.grid_codes.submit" ng-click="submit()"></button></td>
+    </tr>
+  </table>
+  <div class="col-md-12 gc_error" ng-if="verified.message !== ''">
+    <div class="col-md-12">
+      {{verified.message}}
+    </div>
+  </div>
+</div>
+<div ng-show="verified.state">
+  <div class="col-md-12 bottom-border-text">
+    <div class="col-md-6" style="padding-bottom: 15px;display: flex;justify-content: center;">
+      <span style="padding-right:15px;" translate="xanbus.grid_codes.select_region">
+      </span>
+      <select ng-model='info.region.value' ng-disabled="disableAll" style="width: 155px;" ng-change="regionChange()">
+        <option value='1' translate="xanbus.grid_codes.california"></option>
+        <option value='2' translate="xanbus.grid_codes.prepa"></option>
+        <option value='4' translate="xanbus.grid_codes.ieee1547"></option>
+        <!-- <option value='255' translate="xanbus.grid_codes.custom"></option> -->
+      </select>
+    </div>
+    <div class="col-md-6" style="padding-bottom: 15px;display: flex;justify-content: center;">
+      <span style="padding-right:15px;" translate="xanbus.grid_codes.select_function">
+      </span>
+      <select ng-model='curve' ng-change="curveChange()" ng-disabled="disableAll">
+        <option value="qv" translate="xanbus.grid_codes.qv"></option>
+        <option value="pw" translate="xanbus.grid_codes.pw"></option>
+        <option value="vrt" translate="xanbus.grid_codes.vrt"></option>
+        <option value="frt" translate="xanbus.grid_codes.frt"></option>
+        <option value="pf" translate="xanbus.grid_codes.pf"></option>
+        <option value="rr" translate="xanbus.grid_codes.rr"></option>
+        <option value="ss" translate="xanbus.grid_codes.ss"></option>
+        <option value="powerfactor" translate="xanbus.grid_codes.powerfactor"></option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row no-margin" style="padding-bottom:20px;">
+    <div class="col-md-12">
+      <div ng-if='myChart'>
+        <chart value="myChart"></chart>
+      </div>
+      <div class="col-md-12 r21-button-group">
+        <button class="btn btn-default" ng-disabled="disableAll" ng-click="exportPDF()"><i class="glyphicon glyphicon-book"></i>{{'xanbus.grid_codes.pdf' | translate}}</button>
+        <input type='file' accept="json" id="upload" style="display:none;" fileread></input>
+        <button class="btn btn-default" ng-disabled="disableAll" importhelper><i class="glyphicon glyphicon-upload"></i>{{'xanbus.grid_codes.import' | translate}}</button>
+        <button class="btn btn-default" ng-disabled="disableAll" ng-click="export()"><i class="glyphicon glyphicon-download"></i>{{'xanbus.grid_codes.export' | translate}}</button>
+        <button class="btn btn-default" ng-disabled="disableAll" ng-click="defaults()"><i class="glyphicon glyphicon-backward"></i>{{'xanbus.grid_codes.defaults' | translate}}</button>
+        <button class="btn btn-default" ng-disabled="disableAll" ng-click="refresh()"><i class="glyphicon glyphicon-refresh"></i>{{'xanbus.grid_codes.refresh' | translate}}</button>
+        <button class="btn btn-default" ng-disabled="disableAll" ng-click="sequentiallySaveCurve()"><i class="glyphicon glyphicon-floppy-disk"></i>{{'xanbus.grid_codes.apply' | translate}}</button>
+      </div>
+      <div class="col-md-12" ng-class="message.class" ng-if="message">
+        <div class="col-md-12">
+          {{ message.content | translate }}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6" style="min-width: 161px; margin-top: 30px; padding: 0 60px;">
+      <div>
+        <div style="padding-bottom: 15px; text-align: center; font-weight: bold; font-size: 16px; color: #3DCD58">
+          {{getTitle(selectedCurves[0])}}
+        </div>
+        <div ng-if="curve !== 'ss' && curve !== 'rr'">
+          <div class="col-md-12 bottom-border-text" style="padding-bottom:2.5px; margin-bottom:2.5px; text-align:right;">
+            {{'xanbus.grid_codes.' + (info[selectedCurves[0]].enabled === 1 ? 'enabled' : 'disabled') | translate}}
+            <switch class="pull-right" disabled="disableAll" style="margin: 2.5px;margin-left:20px;" ng-model="info[selectedCurves[0]].enabled" ng-change="settingsChanged(info[selectedCurves[0]].enabled)" ng-true-value="1" ng-false-value="0"></switch>
+            <!-- <input type="checkbox" ng-model="info[selectedCurves[0]].enabled" ng-true-value="1" ng-false-value="0"></input> -->
+          </div>
+        </div>
+        <div ng-if="curve === 'ss' || curve === 'rr'" class="pull-right" style="padding-top: 15px; padding-bottom: 15px;">
+          <span>{{'xanbus.grid_codes.slope' | translate}}</span>
+          <input class="gcX" ng-disabled="curve === 'ss' || disableAll" min="{{info[selectedCurves[0]].slope.min}}" max="{{info[selectedCurves[0]].slope.max}}" ng-model="info[selectedCurves[0]].slope.value" style="text-align: right; width: 75px; margin-left: 15px;" ng-class="{ gcInvalid: info[selectedCurves[0]].slope.invalid}" type="number" step="{{curve === 'rr' ? 1 : .01}}" ng-change="slopeChanged()"></input>
+          <div style="width: 21px;height: 20px; overflow: hidden;padding-left: 7px; float:right;" ng-if="info.region.value !== '255' && curve === 'rr'">
+            <button style="width: 0px; height: 0px; border: 0px; padding: 0px; display:block;" tooltip-trigger="focus" uib-tooltip="{{rrInfo}}"></button>
+            <div class='icon-blue_icon information-icon' ng-click="getRRInfo($event, coordinate)">
+            </div>
+          </div>
+        </div>
+        <div ng-if="curve === 'powerfactor'" class="pull-right" style="padding-top: 15px; padding-bottom: 15px;">
+          <span>{{'xanbus.grid_codes.powerfactor' | translate}}</span>
+          <input class="gcX" ng-disabled="disableAll" ng-model="info[selectedCurves[0]].value" style="text-align: right; width: 75px; margin-left: 15px;" min="-.99" max="1" ng-class="{ gcInvalid: info[selectedCurves[0]].invalid}" type="number" step=".01" ng-change="pfChanged()"></input>
+          <div style="width: 21px;height: 20px; overflow: hidden;padding-left: 7px; float:right;margin-left: 7px;" ng-if="info.region.value !== '255'">
+            <button style="width: 0px; height: 0px; border: 0px; padding: 0px; display:block;" tooltip-trigger="focus" uib-tooltip="{{'xanbus.grid_codes.pf_info' | translate}}"></button>
+            <div class='icon-blue_icon information-icon' ng-click="getPFInfo($event)">
+            </div>
+          </div>
+          <div style="padding-top: 15px; padding-bottom: 15px; text-align:right;">
+            {{getPFType()}}
+          </div>
+        </div>
+        <div class="bottom-border-text" style="margin-bottom: 2.5px;" ng-if="curve !== 'powerfactor'">
+          <table class="event_table table table-striped table-bordered" style="margin-bottom: 0;">
+            <tr>
+              <th class="no-text-wrap"></th>
+              <th class="no-text-wrap" style="width: 50%">
+                X
+              </th>
+              <th class="no-text-wrap" style="width: 50%">
+                Y
+              </th>
+              <th class="no_padding_table">
+              </th>
+            </tr>
+            <tr ng-repeat="coordinate in info[selectedCurves[0]].data">
+              <td class="no-text-wrap">
+                {{'xanbus.grid_codes.point' | translate }} {{$index + 1}}
+              </td>
+              <td>
+                <input class="gcX" ng-class="{ gcInvalid: coordinate.xInvalid}" type="number" step="{{curve === 'ss'? 1 : .01}}" min="{{coordinate.xmin}}" max="{{coordinate.xmax}}" ng-disabled="curve === 'rr' || disableAll || (info.region.value !== '255' && coordinate.xmin !== undefined && coordinate.xmin === coordinate.xmax)"
+                  ng-model='coordinate.x' style="width: 100%;text-align: right; min-width: 50px;" ng-change="coordinatesChanged(coordinate, $index, 0)"></input>
+              </td>
+              <td>
+                <input class="gcY" ng-class="{ gcInvalid: coordinate.yInvalid}" type="number" step="{{curve === 'ss'? 1 : .01}}" min="{{coordinate.ymin}}" max="{{coordinate.ymax}}" ng-disabled="curve === 'rr' || disableAll || (info.region.value !== '255' && coordinate.ymin !== undefined && coordinate.ymin === coordinate.ymax)"
+                  ng-model='coordinate.y' style="width: 100%;text-align: right; min-width: 50px;" ng-change="coordinatesChanged(coordinate, $index, 0)"></input>
+              </td>
+              <td ng-class="{ no_padding_table: coordinate.xmax === undefined}">
+                <div style="width: 21px;height: 20px; overflow: hidden;padding-left: 7px;" ng-if="info.region.value !== '255'">
+                  <button style="width: 0px; height: 0px; border: 0px; padding: 0px; display:block;" tooltip-trigger="focus" uib-tooltip="{{pointInfo}}"></button>
+                  <div class='icon-blue_icon information-icon' ng-click="getInfo($event, coordinate)">
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <div class="row" style="padding-top:15px; padding-bottom:15px;" ng-if="info.region.value === '255'">
+            <div class="col-md-12">
+              <button class="btn btn-default" style="float:right;" ng-hide="info[selectedCurves[0]].data.length > 19" ng-disabled="disableAll" ng-click="addLine(info[selectedCurves[0]].data)">
+                <i class="glyphicon glyphicon-plus" style="padding-right:5px;color:#626469;"></i>{{'xanbus.grid_codes.add' | translate}}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6" id="gcMinMax" ng-if="selectedCurves.length > 1" style="min-width: 161px; margin-top: 30px; padding: 0 60px;">
+      <div style="padding-bottom: 15px; text-align: center; font-weight: bold; font-size: 16px; color: #42B4E6">
+        {{getTitle(selectedCurves[1])}}
+      </div>
+      <div>
+        <div class="col-md-12 bottom-border-text pull-right" style="padding-bottom:2.5px; margin-bottom:2.5px; text-align:right;">
+          {{'xanbus.grid_codes.' + (info[selectedCurves[selectedCurves.length - 1]].enabled === 1 ? 'enabled' : 'disabled') | translate}}
+          <switch disabled="disableAll" class="pull-right" style="margin: 2.5px;margin-left:20px;" ng-model="info[selectedCurves[selectedCurves.length - 1]].enabled" ng-change="settingsChanged(info[selectedCurves[selectedCurves.length - 1]].enabled)" ng-true-value="1" ng-false-value="0"></switch>
+          <!-- <input type="checkbox" ng-model="info[selectedCurves[selectedCurves.length - 1]].enabled" ng-true-value="1" ng-false-value="0"></input> -->
+        </div>
+      </div>
+      <div class="bottom-border-text" style="margin-bottom: 2.5px;">
+        <table class="event_table table table-striped table-bordered" style="margin-bottom: 0;">
+          <tr>
+            <th class="no-text-wrap">
+            </th>
+            <th class="no-text-wrap" style="width: 50%">
+              X
+            </th>
+            <th class="no-text-wrap" style="width: 50%">
+              Y
+            </th>
+            <th class="no_padding_table">
+            </th>
+          </tr>
+          <tr ng-repeat="coordinate in info[selectedCurves[1]].data">
+            <td class="no-text-wrap">
+              {{'xanbus.grid_codes.point' | translate }} {{$index + 1}}
+            </td>
+            <td>
+              <input class="gcX" ng-class="{ gcInvalid: coordinate.xInvalid}" type="number" step=".01" min="{{coordinate.xmin}}" max="{{coordinate.xmax}}" ng-disabled="disableAll || (region.value !== '255' && coordinate.xmin !== undefined && coordinate.xmin === coordinate.xmax)" ng-model='coordinate.x'
+                style="width: 100%;text-align: right;" ng-change="coordinatesChanged(coordinate, $index, 1)"></input>
+            </td>
+            <td>
+              <input class="gcY" ng-class="{ gcInvalid: coordinate.yInvalid}" type="number" step=".01" min="{{coordinate.ymin}}" max="{{coordinate.ymax}}" ng-disabled="disableAll || region.value !== '255' && coordinate.ymin !== undefined && coordinate.ymin === coordinate.ymax)" ng-model='coordinate.y'
+                style="width: 100%;text-align: right;" ng-change="coordinatesChanged(coordinate, $index, 1)"></input>
+            </td>
+            <td ng-class="{ no_padding_table: coordinate.xmax === undefined}">
+              <div style="width: 21px;height: 20px; overflow: hidden;padding-left: 7px;" ng-if="info.region.value !== '255'">
+                <button style="width: 0px; height: 0px; border: 0px; padding: 0px; display:block;" tooltip-trigger="focus" uib-tooltip="{{pointInfo}}"></button>
+                <div class='icon-blue_icon information-icon' ng-click="getInfo($event, coordinate)">
+                </div>
+              </div>
+            </td>
+            </td>
+          </tr>
+        </table>
+        <div class="row" style="padding-top:15px; padding-bottom:15px;" ng-if="info.region.value === '255'">
+          <div class="col-md-12">
+            <button class="btn btn-default" style="float:right;" ng-hide="info[selectedCurves[1]].data.length === 20" ng-disabled="disableAll" ng-click="addLine(info[selectedCurves[1]].data)">
+            <i class="glyphicon glyphicon-plus" style="padding-right:5px;color:#626469;"></i>Add
+          </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

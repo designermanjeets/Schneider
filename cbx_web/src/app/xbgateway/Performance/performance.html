@@ -1,0 +1,106 @@
+<div ng-if="devinfo && !devinfo.DEV_ACTIVE">
+  <div class="col-md-12 devinfo-faults">
+    <div class="col-md-12" >
+      Device Offline
+    </div>
+  </div>
+</div>
+<div class="col-md-12" ng-switch on="device" ng-if="devinfo.DEV_ACTIVE">
+  <div ng-switch-when="GT">
+    <gt-performance/>
+  </div>
+  <div ng-switch-when="XW">
+    <xw-performance/>
+  </div>
+  <div ng-switch-when="CSW">
+    <csw-performance/>
+  </div>
+  <div ng-switch-when="AGS">
+    <ags-performance/>
+  </div>
+  <div ng-switch-when="MPPT">
+    <mppt-performance/>
+  </div>
+  <div ng-switch-when="HVMPPT">
+    <mppt-performance/>
+  </div>
+  <div ng-switch-when="CL25">
+    <cl25-performance/>
+  </div>
+  <div ng-switch-when="CL36">
+    <cl36-performance/>
+  </div>
+  <div ng-switch-when="CL60">
+    <cl60-performance/>
+  </div>
+</div>
+<div class="col-md-12">
+  <div class="col-md-12 no-padding" style="padding-top: 20px;">
+    <div class="col-md-12 no-padding">
+      <div class="col-md-5 no-padding">
+        <div class="col-md-12 row no-padding" style="margin: 0px; padding-right: 15px;">
+          <div class="pull-left device-list-description" translate='dashboard.select_interval'>
+          </div>
+          <div class="pull-right device-list-value">
+            <div class="btn-group">
+              <label class="btn btn-default" ng-model="settings.interval" uib-btn-radio="'1'" translate='dashboard.hours'></label>
+              <label class="btn btn-default" ng-model="settings.interval" uib-btn-radio="'2'" translate='dashboard.days'></label>
+              <label class="btn btn-default" ng-model="settings.interval" uib-btn-radio="'3'" translate='dashboard.months'></label>
+              <label class="btn btn-default" ng-model="settings.interval" uib-btn-radio="'4'" translate='dashboard.years'></label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 no-padding" ng-hide="settings.interval === '4'">
+        <div class="col-md-12 no-padding" style="padding-right: 15px;">
+          <div class="col-md-5 device-list-description" translate='dashboard.select_date'>
+          </div>
+          <div class="col-md-7 device-list-value">
+            <p class="input-group battery_calender">
+              <input type="text" class="form-control settings-controls__input--no-min-width" uib-datepicker-popup="{{dates.format}}" ng-model="settings.date" is-open="dates.isOpen" ng-required="true" close-text="Close" min-date="dates.minDate" max-date="dates.maxDate"
+                datepicker-mode="dates.mode" min-mode="dates.mode" show-button-bar="false" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openCalender()"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 no-padding">
+        <div class="col-md-12 no-padding" style="padding-right: 15px;">
+          <div class="col-md-5 device-list-description" translate='dashboard.chart_type'>
+          </div>
+          <div class="col-md-7 device-list-value">
+            <select class='xb-selector' ng-model='settings.type' ng-change='changeType()'>
+            <option value='bar' translate='dashboard.bar'></option>
+            <option value='line' translate='dashboard.line'></option>
+          </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9 no-padding">
+      <div ng-show="dates.invalidDate" style="border: 2px solid #DC0A0A; background-color:rgba(220, 50, 18, .1); border-radius: 25px; padding:30px; margin: 100px auto; width: 50%">
+        <div class="icon-Error_icon cg-icon-error" style="float: left; margin-right: -50px;"></div>
+        <div translate='dashboard.battery.invalidDate' style="color:#DC0A0A; font-size: 18px;"></div>
+      </div>
+      <div class="col-md-12 no-padding" ng-if='myChart && !dates.invalidDate'>
+        <chart value="myChart"></chart>
+      </div>
+    </div>
+    <div id="legend" class="col-md-3 no-padding" style="padding-right:15px;padding-left:15px;">
+
+      <div class="col-md-12 no-padding se-legend-title">
+        <span style="font-weight: bold">{{'dashboard.battery.legend' | translate}}</span>&nbsp;
+      </div>
+      <div class="col-md-12 no-padding se-legend-enable" translate="dashboard.enable_diable"></div>
+
+      <div ng-repeat="item in myChart.data.datasets">
+        <div class="col-md-12 no-padding se-clickable" style="padding-top: 10px; padding-bottom: 10px;" ng-click="toggleHidden($index)">
+          <div ng-style="{ 'background-color': '{{item.backgroundColor}}', 'border': '1px solid {{item.backgroundColor}}'}" style="width: 60px; height:25px; float:left; margin-right: 10px;"></div>
+          <div class="device-list-description se-legend-text" ng-class="{ 'se-strikethrough' : myChart.data.datasets[$index].hidden }">{{item.label}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

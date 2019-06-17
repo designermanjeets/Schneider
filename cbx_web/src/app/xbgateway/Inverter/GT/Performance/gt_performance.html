@@ -1,0 +1,47 @@
+<div class="gauge-wrapper">
+  <div class="gauge-container">
+    <div class="gauge-title">PV</div>
+    <ng-gauge size="100" thick="8" min="0" max="10000" value="data.DC_P" cap="round" label="Power" foreground-color="#42B4E6" background-color="#fff" append="W"></ng-gauge>
+    <div class="gauge-field-container">
+      <div class="gauge-field row">
+        <div class="gauge-field-description">
+          Voltage
+        </div>
+        <div class="gauge-field-value">
+          {{data.DC_V}}V
+        </div>
+      </div>
+      <div class="gauge-field row">
+        <div class="gauge-field-description">
+          Current
+        </div>
+        <div class="gauge-field-value">
+          {{data.DC_I}}A
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gauge-container">
+    <div class="gauge-title">AC</div>
+    <ng-gauge size="100" thick="8" min="0" max="6000" value="data.AC1_P" cap="round" label="AC Out Power" foreground-color="#42B4E6" background-color="#fff" append="W"></ng-gauge>
+    <div class="gauge-field-container">
+      <div class="gauge-field row">
+        <div class="gauge-field-description">
+          AC Out Voltage
+        </div>
+        <div class="gauge-field-value">
+          {{data.AC1_V}}V
+        </div>
+      </div>
+      <div class="gauge-field row">
+        <div class="gauge-field-description">
+          AC Out Current
+        </div>
+        <div class="gauge-field-value">
+          {{data.AC1_I}}A
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

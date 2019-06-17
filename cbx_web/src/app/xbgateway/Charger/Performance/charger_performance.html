@@ -1,0 +1,65 @@
+<div class="gauge-wrapper">
+  <div class="gauge-container">
+    <div class="gauge-title">PV</div>
+    <ng-gauge size="100" thick="8" min="0" max="10000" value="data.DC_IN_P" cap="round" label="Power" foreground-color="#42B4E6" background-color="#fff" append="W"></ng-gauge>
+    <div class="gauge-field-container">
+      <div class="gauge-field row">
+        <div class="gauge-field-description">
+          Voltage
+        </div>
+        <div class="gauge-field-value">
+          {{data.DC_IN_V}}V
+        </div>
+      </div>
+      <div class="gauge-field row">
+        <div class="gauge-field-description">
+          Current
+        </div>
+        <div class="gauge-field-value">
+          {{data.DC_IN_I}}A
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gauge-container">
+    <div class="gauge-title">BATT</div>
+    <ng-gauge size="100" thick="8" min="0" max="10000" value="data.DC_OUT_P" cap="round" label="Power" foreground-color="#42B4E6" background-color="#fff" append="W"></ng-gauge>
+    <ng-gauge size="100" thick="8" min="0" max="100" value="data.DC_OUT_P_PERCENT" cap="round" label="Power %" foreground-color="#42B4E6" background-color="#fff" append="%"></ng-gauge>
+    <div style="height: 100px; width: 100px; margin-left: -25px; margin-right: -41px; overflow: hidden; display: inline-block;">
+      <thermostat-image height="100"></thermostat-image>
+    </div>
+    <div class="gauge-field-container">
+      <div class="gauge-field row" style="text-align:center; border-color: #CBCBCB;">
+        <div class="gauge-field-value" style="float:left; width: 100%; text-align: center;">
+          {{data.BATT_T}}{{data.BATT_T_UNIT}}
+        </div>
+      </div>
+      <div class="gauge-field row" style="text-align: center; border-color: #CBCBCB;">
+        <div class="gauge-field-description" style="width: 100%; padding-right: 0px;">
+          Temperature
+        </div>
+        <div class="gauge-field-value" style="min-width: 0px;">
+        </div>
+      </div>
+    </div>
+    <div class="gauge-field-container">
+      <div class="gauge-field row">
+        <div class="gauge-field-description">
+          Voltage
+        </div>
+        <div class="gauge-field-value">
+          {{data.DC_OUT_V}}V
+        </div>
+      </div>
+      <div class="gauge-field row">
+        <div class="gauge-field-description">
+          Current
+        </div>
+        <div class="gauge-field-value">
+          {{data.DC_OUT_I}}A
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

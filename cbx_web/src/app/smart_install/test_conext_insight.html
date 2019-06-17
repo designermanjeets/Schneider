@@ -1,0 +1,95 @@
+﻿<div class="for-login-or-smart-install">
+  <link rel="stylesheet" type="text/css" href="/css/loginStyles.css">
+  <div class="smartInstallTable" ng-cloak data-ng-controller="csbIdleTimer">
+    <div class="smartInstallTableCell">
+      <div class="smartInstallBackground">
+        <div class="smartInstallDimensionDiv">
+          <table style="width:92%">
+            <tr>
+              <td>
+                <h3 id="smartInstallHeader"
+                    translate="smart_install.heading.heading"></h3>
+              </td>
+              <td>
+                <h3 id="smartInstallSubHeader">
+                  <span translate="smart_install.heading.step"
+                        translate-value-number="3">
+                  </span>
+                </h3>
+              </td>
+            </tr>
+          </table>
+          <hr id="smartInstallAppgreenLine">
+          <div id="smartInstallContainerId" style="height:60%; position: relative;">
+            <table style="width:100%;">
+              <tr>
+                <td>
+                  <h3>
+                    <span translate="smart_install.insight.test"></span>
+                  </h3>
+                </td>
+                <td>
+                  <button type="button" id="btnConInsightTest" name="btnConInsightTest"
+                          class="connectToInsight" style="margin-right: 0px"
+                          ng-disabled="!settings.disclaimer"
+                          ng-click="connectToInsightClicked()"
+                          translate="smart_install.insight.test_button"></button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <br>
+                  <h3><span translate="smart_install.insight.status"></span></h3>
+                </td>
+                <td>
+                  <span id="connectionStatusIcon" style="float:right;">
+                    <h3>
+                      <span ng-show="connectionStatus === null" translate="smart_install.insight.na"></span>
+                      <span ng-show="connectionStatus === 'Processing'">
+                        <img src="img/schneiderloader.gif" class="install-package__spinner">
+                        <span translate="setup.network.processing"></span>
+                      </span>
+                      <span ng-show="connectionStatus === 'Success'">
+                        <span class="install-package__ok-icon"></span>
+                        <span translate="setup.network.success_connection"></span>
+                      </span>
+                      <span ng-show="connectionStatus === 'Fail'">
+                        <span class="install-package__error-icon"></span>
+                        <span translate="setup.network.failed_connection"></span>
+                      </span>
+                    </h3>
+                  </span>
+                </td>
+              </tr>
+            </table>
+            <div style="position: absolute; bottom: 0%;">
+              <label>
+                <b>
+                  <p id="disclaimerWarning"
+                     ng-show="showDisclaimerWarning">
+                    <span translate="smart_install.insight.message.disclaimer"></span>
+                    <a href="" ng-click="openDisclaimer()" translate="setup.network.show_agreement"></a>
+                  </p>
+                  <p translate="smart_install.insight.message.dhcp"></p>
+                </b>
+              </label>
+            </div>
+          </div>
+          <div id="smartInstallErrMsgContainer">
+            <div class="smartInstallErrMsgBar" id="smartInstallErrMsgBar">
+              <label id="lblerrormessage"><span id="conextInsightErrorApp"></span></label>
+            </div>
+          </div>
+          <div id="smartInstallButtonContainer">
+            <button type="button" id="btnConInsightNext"
+                    name="btnConInsightNext" class="smartInstallNext"
+                    ng-click="nextClicked()" translate="smart_install.next"></button>
+            <button type="button" id="btnConInsightSkip" name="btnConInsightSkip"
+                    class="smartInstallSkip" ng-click="skipClicked()"
+                    translate="smart_install.skip"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

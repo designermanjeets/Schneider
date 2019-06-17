@@ -1,0 +1,864 @@
+﻿
+"use strict";
+
+var OUTPUT_DIR = 'www/hmi';
+var OUTPUT_DIR_JS = OUTPUT_DIR + '/app';
+var OUTPUT_DIR_STYLES = OUTPUT_DIR + '/css';
+var OUTPUT_DIR_FONTS = OUTPUT_DIR + '/fonts';
+
+var SRC_HTML = 'src/**/*.html';
+var SRC_JS = 'src/app/**/*.js';
+var SRC_STYLES = 'src/styles/**/*.scss';
+var SRC_FONTS = ['node_modules/bootstrap-sass/assets/fonts/**/*', 'src/fonts/*.*'];
+var SRC_JSON = ['src/i18n/**/*.json', 'src/app/**/*.json'];
+var SRC_HJSON = ['src/i18n/**/*.hjson', 'src/app/**/*.hjson'];
+var SRC_CSS = [
+  'bower_components/ms-Dropdown/css/msdropdown/dd.css',
+  '/lib/jquery/jquery-ui.css',
+  'src/bower_components/angularjs-slider/dist/rzslider.css',
+  OUTPUT_DIR_STYLES + '/loginStyles.css',
+  OUTPUT_DIR_STYLES + '/home.css',
+  OUTPUT_DIR_STYLES + '/disclaimer.css',
+  OUTPUT_DIR_STYLES + '/xw_config.css',
+  OUTPUT_DIR_STYLES + '/dashboard.css',
+  OUTPUT_DIR_STYLES + '/app.css',
+  OUTPUT_DIR_STYLES + '/login.css',
+  OUTPUT_DIR_STYLES + '/sprite-styles.css',
+  'src/styles/sprite.css',
+  'src/lib/powerflow/powerflow.css'
+];
+var SRC_CSS_LOGIN = [
+  OUTPUT_DIR_STYLES + '/login.css',
+  OUTPUT_DIR_STYLES + '/app.css',
+  OUTPUT_DIR_STYLES + '/sprite-styles.css',
+  'src/styles/sprite.css'
+];
+// All the sources we copy over as-is
+var SRC_OTHER = [
+  'src/css/**',
+  'src/data/**',
+  'src/docs/**',
+  'src/img/sprite.png',
+  'src/img/222.png',
+  'src/img/ci2_logo.png',
+  'src/img/favicon.ico',
+  'src/img/greenloader.gif',
+  'src/img/imageloader.gif',
+  'src/img/schneiderloader.gif',
+  'src/img/ui-icons_2e83ff_256x240.png',
+  'src/img/ui-icons_222222_256x240.png',
+  'src/img/ui-icons_454545_256x240.png',
+  'src/img/ui-icons_888888_256x240.png',
+  'src/img/ui-icons_cd0a0a_256x240.png',
+  'src/img/login_dropdown.png',
+  'src/img/english_flag.png',
+  'src/img/freqwatt.jpg',
+  'src/img/svg/**',
+  'src/views/**',
+  SRC_HTML,
+  '!src/index.html', // handled by inject-html task
+  '!src/login.html', // handled by inject-html task
+  '!src/cloud/**',
+  'src/robots.txt'
+];
+
+// Add locale information to SRC_OTHER.
+var locales = [
+  // Locales we use in the app.
+  // Maintenance note: This should match the list of locales in
+  // language.service.js
+  'en', 'fr',
+
+  // Load the locale for ff, because that's the key we use for flipped text
+  'ff',
+];
+locales.forEach(function(locale) {
+  var filename = "src/bower_components/angular-i18n/angular-locale_" + locale + ".js";
+  SRC_OTHER.push(filename);
+});
+
+// Library files need to be hand-sorted to ensure that, e.g.,
+// angular.js comes before the other angular stuff.
+var SRC_LIB_AND_BOWER = [
+  "lib/powerflow/powerflow.js",
+  "bower_components/chart.js/dist/Chart.bundle.min.js",
+  "bower_components/chartjs-plugin-zoom/chartjs-plugin-zoom.min.js",
+  "bower_components/html2canvas/build/html2canvas.min.js",
+  "bower_components/jspdf/plugins/zlib.js",
+  "bower_components/jspdf/plugins/png.js",
+  "bower_components/jspdf/jspdf.js",
+  "bower_components/jspdf/plugins/split_text_to_size.js",
+  "bower_components/jspdf/plugins/standard_fonts_metrics.js",
+  "bower_components/jspdf/plugins/addhtml.js",
+  "bower_components/jspdf/plugins/addimage.js",
+  "bower_components/jspdf/plugins/png_support.js",
+  // jquery
+  "bower_components/jquery/dist/jquery.min.js",
+  "bower_components/ms-Dropdown/js/msdropdown/jquery.dd.js",
+  "lib/jquery/jquery-ui.js",
+  // angular
+  "bower_components/angular/angular.js",
+  "bower_components/angular-ui-router/release/angular-ui-router.js",
+  "lib/angular/angular-animate.js",
+  "lib/angular/angular-ui.js",
+  "lib/angular/angular-messages.js",
+  "bower_components/ng-idle/angular-idle.js",
+  "bower_components/angular-cookies/angular-cookies.js",
+  "bower_components/messageformat/messageformat.js",
+  "bower_components/angular-translate/angular-translate.js",
+  "bower_components/angular-translate-handler-log/angular-translate-handler-log.js",
+  "bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js",
+  "bower_components/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js",
+  "bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js",
+  "bower_components/angular-translate-storage-local/angular-translate-storage-local.js",
+  "bower_components/angular-dynamic-locale/dist/tmhDynamicLocale.js",
+  "bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
+  "bower_components/angularjs-slider/dist/rzslider.js",
+  "bower_components/Array.prototype.findIndex/findIndex.js",
+  "bower_components/ngstorage/ngStorage.js",
+  "lib/google/core-min.js",
+  "lib/google/enc-base64-min.js",
+  "bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js",
+  "bower_components/moment/moment.js",
+  "bower_components/moment-timezone/builds/moment-timezone-with-data.js",
+  "bower_components/angular-file-upload/dist/angular-file-upload.js",
+  "lib/jquery/jquery.cookie.js",
+  "bower_components/angular-mocks/angular-mocks.js",
+  "bower_components/angular-sanitize/angular-sanitize.js",
+  "bower_components/browser-detection/src/browser-detection.js",
+  "bower_components/comma-separated-values/csv.js",
+  "bower_components/file-saver.js/FileSaver.js",
+  "bower_components/angularjs-gauge/src/angularjs-gauge.js",
+];
+
+//Javascript dependencies for the login page.
+var SRC_LOGIN_DEPENDENCIES = [
+  "bower_components/jquery/dist/jquery.min.js",
+  "bower_components/ms-Dropdown/js/msdropdown/jquery.dd.js",
+  "bower_components/angular/angular.js",
+  "lib/angular/angular-animate.js",
+  "lib/angular/angular-ui.js",
+  "bower_components/ngstorage/ngStorage.js",
+  "bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
+  "bower_components/angular-cookies/angular-cookies.js",
+  "lib/google/core-min.js",
+  "bower_components/messageformat/messageformat.js",
+  "bower_components/angular-translate/angular-translate.js",
+  "bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js",
+  "bower_components/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js",
+  "bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js",
+  "bower_components/angular-translate-storage-local/angular-translate-storage-local.js",
+  "bower_components/angular-dynamic-locale/dist/tmhDynamicLocale.js",
+  "app/login/login.module.js",
+  "app/login/login.config.js",
+  "app/login/login.controller.js",
+  "app/login/login.service.js",
+  "app/query/query.module.js",
+  "app/query/query.service.js",
+  "app/query/query-config.service.js",
+  "app/csb/csbquery.module.js",
+  "app/csb/csbmodal.module.js",
+  "app/utilities/utilities.module.js",
+  "app/utilities/http_interceptor.service.js",
+  "app/utilities/object_formatter_service.js",
+  "app/utilities/otk.service.js",
+  "app/utilities/responseErrorChecker.service.js",
+  "app/utilities/connection_check.service.js",
+  "app/utilities/redirect.service.js",
+  "app/language/language.module.js",
+  "app/language/language.config.js",
+  "app/language/language.service.js",
+];
+
+var comboxsim = require('./comboxsim')
+var angularFilesort = require('gulp-angular-filesort');
+var autoprefixer = require('gulp-autoprefixer');
+var buffer = require('vinyl-buffer');
+var changed = require('gulp-changed');
+var concat = require('gulp-concat');
+var copy = require('gulp-copy');
+var debug = require('gulp-debug');
+var del = require('del');
+var eslint = require('gulp-eslint');
+var expect = require('gulp-expect-file');
+var fileList = require('gulp-filelist');
+var flip = require('./gulp-flip');
+var fs = require("fs");
+var gulp = require('gulp');
+var gulpIgnore = require('gulp-ignore');
+var gulpNgConfig = require('gulp-ng-config');
+var gutil = require('gulp-util');
+var Hjson = require('gulp-hjson');
+var htmllint = require('gulp-htmllint');
+var inject = require('gulp-inject');
+var jsonlint = require('gulp-jsonlint');
+var jsonminify = require('gulp-jsonminify');
+var mergeJson = require('gulp-merge-json');
+var mergeStream = require('merge-stream');
+var minifycss = require('gulp-minify-css');
+var modifyFile = require('gulp-modify-file');
+var ngHtml2Js = require("gulp-ng-html2js");
+var notify = require('gulp-notify');
+var order = require("gulp-order");
+var plumber = require('gulp-plumber');
+var protractor = require("gulp-protractor").protractor;
+var rename = require('gulp-rename');
+var runSequence = require('run-sequence');
+var sass = require('gulp-sass');
+var Server = require('karma').Server;
+var stripJsonComments = require('gulp-strip-json-comments');
+var sourcemaps = require('gulp-sourcemaps');
+var spritesmith = require('gulp.spritesmith');
+var through = require('gulp-through');
+var uglify = require('gulp-uglify');
+var wrap = require('gulp-wrap');
+var yargs = require('yargs');
+var webserver = require('gulp-webserver');
+var zipper = require('gulp-zip');
+
+var isProduction = yargs.argv.production;
+
+gulp.task('sprite', function() {
+  var spriteData = gulp.src(['src/img/*.png', 'src/img/*.gif', '!src/img/sprite.png', '!src/img/222.png', '!src/img/ci2_logo.png']).pipe(spritesmith({
+    imgName: 'sprite.png',
+    cssName: 'sprite.css',
+    imgPath: '/img/sprite.png',
+    algorithm: 'top-down',
+    padding: 2
+  }));
+
+  var imgStream = spriteData.img
+    .pipe(gulp.dest('src/img'));
+
+  var cssStream = spriteData.css
+    //.pipe(minifycss())
+    .pipe(gulp.dest('src/styles'));
+
+  return mergeStream(imgStream, cssStream);
+});
+
+gulp.task('jsonToJS', function() {
+  return gulp.src(['src/data/*.json', '!src/data/XW_device_config.json'])
+    .pipe(modifyFile(function(content, path, file) {
+      var temp = path.split('/');
+      var fileName = temp[temp.length - 1].split('.')[0];
+      var start = '{ "' + fileName + '" : ';
+      var end = '}';
+      return start + content + end;
+    }))
+    .pipe(debug({title: 'jsonToJS1'}))
+    .pipe(gulpNgConfig("conext_gateway.device_config", {
+      createModule: false
+    }))
+    .pipe(gulp.dest('src/app/device_config'));
+});
+
+gulp.task('XWJsonToJS', function() {
+  return gulp.src('src/data/XW_device_config.json')
+    .pipe(modifyFile(function(content, path, file) {
+      var temp = path.split('/');
+      var fileName = temp[temp.length - 1].split('.')[0];
+      var start = '{ "' + fileName + '" : ';
+      var end = '}';
+      var jsonContent = JSON.parse(content);
+
+      for (var index = 0; index < jsonContent.XW.R21_GridSupport.length; index++) {
+        jsonContent.XW.R21_GridSupport[index].inputType = "slider";
+        switch (jsonContent.XW.R21_GridSupport[index].name) {
+          case "/XW/AC1/CFG_AI_RECONNECT":
+            jsonContent.XW.R21_GridSupport[index].sliderStep = 1;
+            jsonContent.XW.R21_GridSupport[index].min = 10;
+            jsonContent.XW.R21_GridSupport[index].max = 600;
+            break;
+          case "/XW/AC1/CFG_AI_DISCON_SLOW_DELAY":
+            jsonContent.XW.R21_GridSupport[index].sliderStep = 0.1;
+            jsonContent.XW.R21_GridSupport[index].min = 0.2;
+            jsonContent.XW.R21_GridSupport[index].max = 10;
+            break;
+          case "/XW/AC1/CFG_AI_DISCON_OVER_FREQ":
+            jsonContent.XW.R21_GridSupport[index].sliderStep = 0.1;
+            jsonContent.XW.R21_GridSupport[index].min = 50;
+            jsonContent.XW.R21_GridSupport[index].max = 70;
+            break;
+          case "/XW/AC1/CFG_AI_DISCON_UNDER_FREQ":
+            jsonContent.XW.R21_GridSupport[index].sliderStep = 0.1;
+            jsonContent.XW.R21_GridSupport[index].min = 40;
+            jsonContent.XW.R21_GridSupport[index].max = 60;
+            break;
+          case "/XW/AC1/CFG_AI_DISCON_OV_LN_FAST":
+            jsonContent.XW.R21_GridSupport[index].sliderStep = 0.1;
+            jsonContent.XW.R21_GridSupport[index].min = 100;
+            jsonContent.XW.R21_GridSupport[index].max = 290;
+            break;
+          case "/XW/AC1/CFG_AI_DISCON_OV_LN_SLOW":
+            jsonContent.XW.R21_GridSupport[index].sliderStep = 0.1;
+            jsonContent.XW.R21_GridSupport[index].min = 100;
+            jsonContent.XW.R21_GridSupport[index].max = 290;
+            break;
+          case "/XW/AC1/CFG_AI_DISCON_OV_L1L2_FAST":
+            jsonContent.XW.R21_GridSupport[index].sliderStep = 0.1;
+            jsonContent.XW.R21_GridSupport[index].min = 100;
+            jsonContent.XW.R21_GridSupport[index].max = 290;
+            break;
+          case "/XW/AC1/CFG_AI_DISCON_OV_L1L2_SLOW":
+            jsonContent.XW.R21_GridSupport[index].sliderStep = 0.1;
+            jsonContent.XW.R21_GridSupport[index].min = 100;
+            jsonContent.XW.R21_GridSupport[index].max = 290;
+            break;
+          case "/XW/AC1/CFG_AI_DISCON_UV_LN_FAST":
+            jsonContent.XW.R21_GridSupport[index].sliderStep = 0.1;
+            jsonContent.XW.R21_GridSupport[index].min = 0;
+            jsonContent.XW.R21_GridSupport[index].max = 230;
+            break;
+          case "/XW/AC1/CFG_AI_DISCON_UV_LN_SLOW":
+            jsonContent.XW.R21_GridSupport[index].sliderStep = 0.1;
+            jsonContent.XW.R21_GridSupport[index].min = 0;
+            jsonContent.XW.R21_GridSupport[index].max = 230;
+            break;
+          case "/XW/AC1/CFG_AI_DISCON_UV_L1L2_SLOW":
+            jsonContent.XW.R21_GridSupport[index].sliderStep = 0.1;
+            jsonContent.XW.R21_GridSupport[index].min = 0;
+            jsonContent.XW.R21_GridSupport[index].max = 230;
+            break;
+          case "/XW/AC1/CFG_AI_DISCON_UV_L1L2_FAST":
+            jsonContent.XW.R21_GridSupport[index].sliderStep = 0.1;
+            jsonContent.XW.R21_GridSupport[index].min = 0;
+            jsonContent.XW.R21_GridSupport[index].max = 230;
+            break;
+        }
+      }
+
+      return start + JSON.stringify(jsonContent) + end;
+    }))
+    .pipe(gulpNgConfig("conext_gateway.device_config", {
+      createModule: false
+    }))
+    .pipe(gulp.dest('src/app/device_config'));
+});
+
+gulp.task('lint-scripts', function() {
+  return gulp.src(SRC_JS)
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+});
+
+gulp.task('lint-html', function() {
+  // Options live in .htmllintrc
+  // See this reference: https://github.com/htmllint/htmllint/wiki/Options
+  return gulp.src(SRC_HTML)
+    .pipe(htmllint({
+      failOnError: true
+    }));
+});
+
+gulp.task('lint', ['lint-scripts', 'lint-html']);
+
+gulp.task('clean', function(callback) {
+  // DO: Delete all the contents of output dir
+  // DON'T: Delete output dir itself.
+  del([OUTPUT_DIR + '/*'], {
+    dot: true,
+  }, callback);
+});
+
+// Copy over everything that we don't do preprocessing on
+gulp.task('copy', function() {
+
+  return gulp.src(SRC_OTHER, {
+      base: 'src'
+    })
+    // Only copy changed files. That way, when using WinSCP to sync
+    // we don't update every file every time. (This needs base: src to
+    // be set.)
+    .pipe(changed(OUTPUT_DIR))
+    //.pipe(debug({title: 'copy'}))
+    .pipe(gulp.dest(OUTPUT_DIR));
+
+});
+
+gulp.task('lib', function() {
+  var additionalLibs = [
+    // ms-dropdown and angular-ui are only used by login.html
+    'bower_components/ms-Dropdown/css/msdropdown/dd.css',
+    'bower_components/ms-Dropdown/images/msdropdown/skin1/title-bg.gif',
+    'bower_components/ms-Dropdown/images/msdropdown/skin1/dd_arrow.gif',
+    'bower_components/angularjs-slider/dist/rzslider.css',
+    // Not part of SRC_LIB_AND_BOWER because it's CSS
+    'lib/jquery/jquery-ui.css',
+  ];
+
+  //If it isn't a production build then it will also inclube the javascript lib and bower
+  //dependencies
+  var src = (isProduction) ? additionalLibs : SRC_LIB_AND_BOWER.concat(additionalLibs);
+
+  return gulp.src(src, {
+      base: 'src',
+      cwd: 'src'
+    })
+    .pipe(changed(OUTPUT_DIR))
+    //.pipe(debug({ title: 'lib' }))
+    .pipe(gulp.dest(OUTPUT_DIR));
+});
+
+gulp.task('fonts', function() {
+  gulp.src(SRC_FONTS)
+    .pipe(changed(OUTPUT_DIR_FONTS))
+    //.pipe(debug({title: 'fonts'}))
+    .pipe(gulp.dest(OUTPUT_DIR_FONTS));
+});
+
+function doJson(directory) {
+  var srcJson = directory + '/**/*.json';
+  var srcHjson = directory + '/**/*.hjson';
+
+  var json = gulp.src(srcJson, {
+    base: 'src'
+  });
+  var hjson = gulp.src(srcHjson, {
+      base: 'src'
+    })
+    .pipe(Hjson({
+      to: 'json'
+    }));
+
+  return mergeStream(json, hjson)
+    //.pipe(changed(OUTPUT_DIR))
+    .pipe(stripJsonComments())
+    .pipe(jsonlint())
+    // report errors once to stdout and once to the notification area
+    .pipe(jsonlint.reporter())
+    .pipe(jsonlint.reporter(
+      notify.onError("JSON error")
+    ))
+}
+
+
+gulp.task('json', function() {
+  var allJson = mergeStream();
+
+  locales.forEach(function(locale) {
+    var dirName = 'src/i18n/' + locale;
+    // filename is relative to src, so leave that part out
+    var filename = 'i18n/' + locale + '.json';
+    var languageStream = doJson(dirName)
+      .pipe(mergeJson(filename));
+    allJson.add(languageStream);
+  });
+
+
+  var appJson = doJson('src/app');
+  allJson.add(appJson);
+
+  return allJson
+    .pipe(jsonminify())
+    //.pipe(debug({title: 'json'}))
+    .pipe(gulp.dest(OUTPUT_DIR));
+});
+
+gulp.task('flip-strings', ['json'], function() {
+  var I18N_DIR = OUTPUT_DIR + '/i18n';
+  // The flipped text needs to use a real ISO language code,
+  // or the angular-translate module causes errors. So we're
+  // repurposing 'ff', the code for the Fula language. That's
+  // a micro-language indegenous to West and Central Africa.
+  // Mnemonic: ff = flip! flip!
+  //var FLIPPED_OUTPUT_DIR = I18N_DIR + '/ff';
+
+  gulp.src(I18N_DIR + '/en.json', {
+      base: I18N_DIR
+    })
+    .pipe(flip())
+    .pipe(rename('ff.json'))
+    .pipe(gulp.dest(I18N_DIR));
+});
+
+gulp.task('styles', function() {
+  return gulp.src(SRC_STYLES)
+    .pipe(plumber({
+      errorHandler: notify.onError("Error: <%= error.message %>")
+    }))
+    .pipe(sourcemaps.init())
+
+    .pipe(sass({
+      includePaths: ['node_modules/bootstrap-sass/assets/stylesheets']
+    }))
+    .pipe(autoprefixer({
+      // Browser requerements are in issue CSB-747
+      // How to configure this list: https://github.com/ai/browserslist#queries
+      browsers: [
+        'Firefox >= 38',
+        // Generate CSS for IE10, even though we officially support IE11 & up
+        'Explorer >= 10',
+        'Chrome >= 41',
+        'iOS >= 8', // safari on iOS
+        // We no longer support the built-in Android browser. But there's no harm
+        // in generating some CSS for it. (Previously, we had been spec'd to support
+        // version 4.4 KitKat and up.)
+        'Android >= 4.2', // Android WebView
+        'Safari >= 8',
+        'Edge >= 13',
+      ]
+    }))
+
+    // Piping through changed() was not reporting changed
+    // changes in SASS files that are included by other SASS files.
+    //.pipe(changed(OUTPUT_DIR_STYLES))
+
+    //.pipe(debug({title: 'styles'}))
+
+    .pipe(gulp.dest(OUTPUT_DIR_STYLES))
+    .on('end', function() {
+      gulp.src(SRC_CSS)
+        .pipe(concat('gateway.min.css'))
+        .pipe(minifycss())
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest(OUTPUT_DIR_STYLES));
+
+      gulp.src(SRC_CSS_LOGIN)
+        .pipe(concat('gateway_login.min.css'))
+        .pipe(minifycss())
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest(OUTPUT_DIR_STYLES));
+    })
+});
+
+gulp.task('scripts', function() {
+  //Checks if it is a production build.  If it isn't then it will generate
+  //individual javascript files.
+  if (!isProduction) {
+    return gulp.src(SRC_JS)
+      .pipe(plumber({
+        errorHandler: notify.onError("Error: <%= error.message %>")
+      }))
+      .pipe(sourcemaps.init())
+      .pipe(changed(OUTPUT_DIR_JS))
+      //.pipe(debug({title: 'scripts'}))
+      .pipe(wrap('(function(){\n<%= contents %>\n})();'))
+      .pipe(gulp.dest(OUTPUT_DIR_JS))
+    //.pipe(rename({ suffix: '.min' }))
+    //.pipe(uglify())
+    //.pipe(sourcemaps.write('.'))
+    //.pipe(gulp.dest(OUTPUT_DIR_JS));
+  }
+});
+
+// Return a sorted list of all the scripts used in the app
+function getScripts() {
+  var lib = gulp.src(SRC_LIB_AND_BOWER, {
+      base: 'src',
+      cwd: 'src'
+    })
+    // complain if a file is missing
+    .pipe(expect(SRC_LIB_AND_BOWER), {
+      base: 'src',
+      cwd: 'src'
+    });
+
+  // Angular files need to be sorted. But angularFilesort()
+  // chokes on one of the files in SRC_LIB_AND_BOWER, so we have to split
+  // the file list into two and merge them.
+  var angular = gulp.src(SRC_JS, {
+      base: 'src'
+    })
+    .pipe(angularFilesort());
+
+  return mergeStream(lib, angular);
+}
+
+// Inject scripts into index.html
+gulp.task('inject-html', function() {
+  var indexSources;
+  var loginSources;
+  var versionNumber = null;
+  if (isProduction) {
+    indexSources = concatJavaScript();
+    loginSources = indexSources;
+    versionNumber = '?version=' + getVersionNumber();
+  } else {
+    indexSources = getScripts();
+    loginSources = gulp.src(SRC_LOGIN_DEPENDENCIES, {
+      base: 'src',
+      cwd: 'src'
+    });
+  }
+  //.pipe(debug({title: 'inject-html'}))
+  gulp.src('src/index.html')
+    .pipe(inject(indexSources, {
+      ignorePath: ['src', 'www', 'hmi'],
+      addSuffix: versionNumber
+    }))
+    .pipe(gulp.dest(OUTPUT_DIR));
+
+  gulp.src('src/login.html')
+    .pipe(inject(loginSources, {
+      ignorePath: ['src', 'www', 'hmi'],
+      addSuffix: versionNumber
+    }))
+    .pipe(gulp.dest(OUTPUT_DIR));
+});
+
+gulp.task('default', function() {
+  runSequence('sprite', 'powerflow', 'copy', 'fonts', 'flip-strings' /* implies json */ , 'jsonToJS', 'XWJsonToJS', 'scripts', 'styles', 'lib', 'inject-html');
+});
+
+gulp.task('powerflow', function() {
+  var svg = gulp.src('powerflow/dist/power_flow.svg')
+    .pipe(gulp.dest(OUTPUT_DIR));
+
+  var script = gulp.src(['powerflow/dist/powerflow.js', 'powerflow/dist/powerflow.css'])
+    .pipe(gulp.dest('src/lib/powerflow'));
+
+  return mergeStream(svg, script);
+});
+
+gulp.task('watch', ['default'], function() {
+  gulp.watch(SRC_JS, ['scripts']);
+  gulp.watch(SRC_STYLES, ['styles']);
+  gulp.watch(SRC_OTHER, ['copy']);
+  gulp.watch(SRC_JSON, ['flip-strings']); // implies json
+  gulp.watch(SRC_HJSON, ['flip-strings']);
+  gulp.watch('src/lib/**', ['lib']);
+  gulp.watch('src/bower_components/**', ['lib']);
+  gulp.watch('src/index.html', ['inject-html']);
+  gulp.watch('src/login.html', ['inject-html']);
+});
+
+// Test harness needs a list of all the javascript files in the app.
+// Write it to a json file.
+gulp.task('pre-test', ['json'], function() {
+  return getScripts()
+    .pipe(fileList('javascript-sources.json'))
+    // At this point, stream includes the new json file
+    // AND all the sources. Remove all but the json.
+    .pipe(gulpIgnore.include('javascript-sources.json'))
+    .pipe(gulp.dest('.'));
+});
+
+function runKarma(singleRun, callback) {
+  var onComplete = function(error, result) {
+    // swallow errors
+    callback(null, result);
+  };
+
+  var browsers
+  if (yargs.argv.chrome) {
+    browsers = ['Chrome']
+  } else if (yargs.argv.ie) {
+    // Use this to ensure that we're not using JavaScript functions that
+    // IE doesn't support
+    browsers = ['IE'];
+  } else {
+    browsers = ['PhantomJS'];
+  }
+
+  return new Server({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: singleRun,
+    browsers: browsers,
+  }, onComplete).start();
+}
+
+gulp.task('test', ['pre-test'], function(callback) {
+  runKarma(true /* singleRun */ , callback);
+});
+
+gulp.task('watch-test', ['pre-test'], function(callback) {
+  runKarma(false /* singleRun */ , callback);
+});
+
+//Task to combine all the javascript files into one
+gulp.task('concat', function() {
+  return concatJavaScript();
+});
+
+gulp.task('e2e', function() {
+  var url = yargs.argv.url;
+  console.log(url);
+  gulp.src(["tests/integration/**/*.js"])
+    .pipe(protractor({
+      configFile: "protractor.conf.js",
+      args: ['--baseUrl', url]
+    }))
+    .on('error', function(e) {
+      throw e;
+    });
+});
+
+gulp.task('zip', function() {
+  return gulp.src('node_modules/**')
+    .pipe(zipper('node_modules.zip'))
+    .pipe(gulp.dest('./'));
+});
+
+gulp.task('html2js', function() {
+
+  var src = getScripts();
+  var result = src
+    .pipe(concat('combox.js'))
+    .pipe(uglify());
+  var htmljs = gulp.src('src/app/**/*.html', {
+      base: 'src'
+    })
+    .pipe(ngHtml2Js({
+      moduleName: "combox"
+    }))
+    .pipe(concat('html.js'))
+    .pipe(uglify());
+  mergeStream(result, htmljs)
+    .pipe(concat('combox.js'))
+    .pipe(gulp.dest('./dist'));
+});
+
+//Combines all the JavaScript files in one javascript file and writes
+//the file to the output dir.  Returns the stream containing the single
+//javascript file
+function concatJavaScript() {
+
+  var src = getScripts();
+  var htmlSmartbox = gulp.src('src/app/**/*.html', {
+      base: 'src'
+    })
+    .pipe(ngHtml2Js({
+      moduleName: "conext_gateway"
+    }))
+    .pipe(concat('htmlSmartbox.js'))
+    .pipe(uglify());
+
+  var htmlLogin = gulp.src(['src/app/change_password/csbForgotPasswordModal.html',
+      'src/app/csb/csbmodal.html',
+      'src/app/login/lockTimeModal.html'
+    ], {
+      base: 'src'
+    })
+    .pipe(ngHtml2Js({
+      moduleName: "LoginApp"
+    }))
+    .pipe(concat('htmlLogin.js'))
+    .pipe(uglify());
+
+  var htmljs = mergeStream(htmlSmartbox, htmlLogin)
+    .pipe(order(['htmlSmartbox.js', 'htmlLogin.js']))
+    .pipe(concat('html.js'));
+
+  var result = src
+    .pipe(concat('javascripts.js'))
+    .pipe(uglify());
+
+  return mergeStream(htmljs, result)
+    .pipe(order(['javascripts.js', 'html.js']))
+    .pipe(concat('combox.js'))
+    .pipe(gulp.dest(OUTPUT_DIR));
+}
+
+function getVersionNumber() {
+  var fileContent = fs.readFileSync("meta.py", "utf8");
+  var regex = /"version":"([^,]*)/g
+  var meta = JSON.parse('{' + fileContent.match(regex) + '}');
+
+  return encodeURIComponent(meta.version);
+};
+
+gulp.task('webserver', function() {
+  gulp.src('www/hmi')
+    .pipe(webserver({
+      livereload: true,
+      open: true,
+      middleware: [comboxsim.login, comboxsim.auth, comboxsim.vars, comboxsim.loginok, comboxsim.getdeviceoverviewitems]
+    }));
+});
+
+gulp.task('cloud', function() {
+  runSequence('sprite', 'powerflow', 'copy', 'fonts', 'flip-strings' /* implies json */ , 'jsonToJS', 'XWJsonToJS', 'styles', 'lib', 'inject-cloud-html');
+});
+
+gulp.task('inject-cloud-html', function() {
+  var indexSources;
+  var loginSources;
+  var versionNumber = null;
+
+  indexSources = cloudConcatJavaScript();
+  loginSources = indexSources;
+  versionNumber = '?version=' + getVersionNumber();
+
+  //.pipe(debug({title: 'inject-html'}))
+  gulp.src('src/cloud/index.html')
+    .pipe(inject(indexSources, {
+      ignorePath: ['src', 'www', 'hmi'],
+      addSuffix: versionNumber
+    }))
+    .pipe(gulp.dest(OUTPUT_DIR));
+
+  gulp.src('src/cloud/login.html')
+    .pipe(inject(loginSources, {
+      ignorePath: ['src', 'www', 'hmi'],
+      addSuffix: versionNumber
+    }))
+    .pipe(gulp.dest(OUTPUT_DIR + "/app"));
+});
+
+function cloudConcatJavaScript() {
+
+  var src = getCloudScripts();
+  var htmlSmartbox = gulp.src('src/app/**/*.html', {
+      base: 'src'
+    })
+    .pipe(ngHtml2Js({
+      moduleName: "conext_gateway"
+    }))
+    .pipe(concat('htmlSmartbox.js'))
+    .pipe(uglify());
+
+  var htmlLogin = gulp.src(['src/app/change_password/csbForgotPasswordModal.html',
+      'src/app/csb/csbmodal.html',
+      'src/app/login/lockTimeModal.html'
+    ], {
+      base: 'src'
+    })
+    .pipe(ngHtml2Js({
+      moduleName: "LoginApp"
+    }))
+    .pipe(concat('htmlLogin.js'))
+    .pipe(uglify());
+
+  var htmljs = mergeStream(htmlSmartbox, htmlLogin)
+    .pipe(order(['htmlSmartbox.js', 'htmlLogin.js']))
+    .pipe(concat('html.js'));
+
+  var result = src
+    .pipe(concat('javascripts.js'))
+    .pipe(uglify());
+
+  return mergeStream(htmljs, result)
+    .pipe(order(['javascripts.js', 'html.js']))
+    .pipe(concat('combox.js'))
+    .pipe(gulp.dest(OUTPUT_DIR));
+}
+
+function getCloudScripts() {
+  var lib = gulp.src(SRC_LIB_AND_BOWER, {
+      base: 'src',
+      cwd: 'src'
+    })
+    // complain if a file is missing
+    .pipe(expect(SRC_LIB_AND_BOWER), {
+      base: 'src',
+      cwd: 'src'
+    });
+
+  // Angular files need to be sorted. But angularFilesort()
+  // chokes on one of the files in SRC_LIB_AND_BOWER, so we have to split
+  // the file list into two and merge them.
+  var angular = gulp.src([
+    SRC_JS,
+    '!src/app/utilities/redirect.service.js',
+    '!src/app/app_run.config.js',
+    'src/cloud/app/utilities/redirect.service.js',
+    'src/cloud/app/app.config.js',
+    'src/cloud/app/app_run.config.js'
+  ], {
+    base: 'src'
+  }).pipe(angularFilesort());
+
+  return mergeStream(lib, angular);
+}

@@ -1,0 +1,13 @@
+<div ng-cloak>
+  <div class="modal-header">
+    <h3 class="modal-title" translate="{{shortname}}"></h3>
+  </div>
+  <div class="modal-body">
+      {{ information | translate }}
+  </div>
+  <div class="modal-footer">
+    <button class="btn" type="button"
+            ng-click="close()"
+            translate="devices.detection.close"></button>
+  </div>
+</div>

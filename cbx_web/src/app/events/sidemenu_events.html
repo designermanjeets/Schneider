@@ -1,0 +1,16 @@
+<div id="dashboardSubMenu">
+  <ul class="nav nav-pills nav-stacked">
+    <li ui-sref-active="active" class="active" csb-permissions="User">
+      <a class="menuIcons onLink" ui-sref="events.active" translate="events.side_menu.active">
+        </a>
+    </li>
+    <li ui-sref-active="active" class="active" csb-permissions="User">
+      <a class="menuIcons onLink" ui-sref="events.historical" translate="events.side_menu.historical">
+        </a>
+    </li>
+  </ul>
+</div>
+<!-- Partial page view -->
+<div class="no-padding" style="width: calc(100% - 190px); float:left;">
+  <div class="col-md-12" ui-view style="padding-top: 5px;"></div>
+</div>

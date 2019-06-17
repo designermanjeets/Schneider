@@ -1,0 +1,42 @@
+﻿{
+  login: {
+    accesscode: "Diagnostic access code"
+    diagID: "Diagnostic Id"
+    gateway_header: "Conext Gateway"
+
+    serial_number: "Serial number:"
+
+    learn_more: "Learn more about Conext Gateway"
+    locked_out_message: '''
+      You attempted to Login with wrong password 3
+      times and currently Login is disabled and this will
+      be enabled after 1 minute.
+      '''
+    language: "Language"
+    username: "User name"
+    password: "Password"
+
+    forgot_password: "Forgot password"
+
+    login: "Login"
+
+    required_fields: "All fields are required"
+
+
+    // Status messages
+    loading: "Starting Conext Gateway and loading data"
+    email:   "Sending e-mail"
+    data_load_error: "Failed to load data. Please refresh the page!"
+    invalid_password: "The password you entered is invalid. Please check and try again."
+    login_error: "Invalid user name or password"
+    email_send_error: "Password recovery e-mail sending failed, please try again"
+    smtp_disabled: "SMTP disabled, e-mail cannot be sent"
+
+    copyright: '''
+      This application is protected by copyright law
+      and international treaties.<br>
+      &copy;&nbsp;2018 Schneider Electric Industries
+      SAS. All Rights Reserved.
+    '''
+  },
+}

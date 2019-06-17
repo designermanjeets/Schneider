@@ -1,0 +1,127 @@
+{
+  "DEVLIST": [{
+    "name": "IEM32XX",
+    "isActive": "true",
+    "isUpgrading": "false",
+    "busID": 1,
+    "busAddr": 2,
+    "instance": 8,
+    "attributes": {
+      "interface": "modbus",
+      "opMode": "Operating",
+      "inBootloader": "0",
+      "warnings": "0",
+      "alarms": "0"
+    }
+  }, {
+    "name": "CL60",
+    "isActive": "true",
+    "isUpgrading": "false",
+    "busID": 1,
+    "busAddr": 13,
+    "instance": 7,
+    "attributes": {
+      "interface": "modbus",
+      "opMode": "Operating",
+      "inBootloader": "0",
+      "warnings": "0",
+      "alarms": "0"
+    }
+  }, {
+    "name": "CL36",
+    "isActive": "true",
+    "isUpgrading": "false",
+    "busID": 1,
+    "busAddr": 12,
+    "instance": 6,
+    "attributes": {
+      "interface": "modbus",
+      "opMode": "Operating",
+      "inBootloader": "0",
+      "warnings": "0",
+      "alarms": "0"
+    }
+  }, {
+    "name": "PM8XX",
+    "isActive": "false",
+    "isUpgrading": "false",
+    "busID": 1,
+    "busAddr": 1,
+    "instance": 4,
+    "attributes": {
+      "interface": "modbus",
+      "opMode": "Operating",
+      "inBootloader": "0",
+      "warnings": "0",
+      "alarms": "0"
+    }
+  }, {
+    "name": "XW",
+    "isActive": "true",
+    "isUpgrading": "false",
+    "busID": 1,
+    "busAddr": 0,
+    "instance": 1300877,
+    "attributes": {
+      "opMode": "Operating",
+      "inBootloader": "0",
+      "warnings": "1",
+      "alarms": "1",
+      "interface": "xanbus"
+    }
+  }, {
+    "name": "SCP2",
+    "isActive": "true",
+    "isUpgrading": "false",
+    "busID": 1,
+    "busAddr": 3,
+    "instance": 768638,
+    "attributes": {
+      "opMode": "Operating",
+      "inBootloader": "0",
+      "warnings": "0",
+      "alarms": "0",
+      "interface": "xanbus"
+    }
+  }],
+  "sysvars": {
+
+    "SYS_GRID_NET_P": 0,
+    "SYS_GRID_V": 0,
+    "SYS_GRID_IN_ACTIVE_LIFETIME": 866764,
+    "SYS_GRID_OUT_ACTIVE_LIFETIME": 25538,
+    "SYS_GEN_P": 0,
+    "SYS_GEN_ACTIVE_LIFETIME": 6,
+    "SYS_INV_GRID_P": 10,
+    "SYS_INVCHG_GRID_P": 0,
+    "SYS_INVCHG_BATT_P": 0,
+    "SYS_INVCHG_LOAD_P": 6,
+    "SYS_LOAD_P": 6,
+    "SYS_LOAD_ACTIVE_LIFETIME": 2560833,
+    "SYS_LOAD_P_MIN": 0,
+    "SYS_MLT_LOAD_P": 0,
+    "SYS_LSYS_MULTI_CLUSTER_MODE": 0,
+    "SYS_INV_LOAD_P": 10,
+    "SYS_BATT_P": 0,
+    "SYS_BATT1_V": 37780,
+    "SYS_BATT1_P": 0,
+    "SYS_BATT1_SOC": 0,
+    "SYS_BATT2_V": 0,
+    "SYS_BATT2_P": 0,
+    "SYS_BATT2_SOC": 0,
+    "SYS_BATT3_V": 0,
+    "SYS_BATT3_P": 0,
+    "SYS_BATT3_SOC": 0,
+    "SYS_BATT4_V": 0,
+    "SYS_BATT4_P": 0,
+    "SYS_BATT4_SOC": 0,
+    "SYS_BATT5_V": 0,
+    "SYS_BATT5_P": 0,
+    "SYS_BATT5_SOC": 0,
+    "SYS_PV_P": 0,
+    "SYS_PV_V": 0,
+    "SCB_DEVSERVER_COUNTER": 45,
+    "7_CL60_ASSOC_CFG_AC_OUTPUT": 2,
+    "6_CL36_ASSOC_CFG_AC_OUTPUT": 0
+  }
+}

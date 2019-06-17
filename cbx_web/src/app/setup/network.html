@@ -1,0 +1,618 @@
+<se-panel value="{{'setup.network.lan_settings' | translate}}">
+  <form name="forms.lan_settings" novalidate ng-model-options="{ updateOn: 'submit' }" ng-submit="applyLanSettings()">
+    <table class="settings-controls">
+      <tr>
+        <td translate="setup.network.dhcp"></td>
+        <td>
+          <label>
+            <input type="radio" name="dhcp" ng-model="lan_settings.SCB_NETWORK_DM0DHCP" ng-model-options="{ updateOn: 'click' }" ng-value="1">
+            <span translate="setup.network.enable"></span>
+          </label>
+          <label>
+            <input type="radio" name="dhcp" ng-model="lan_settings.SCB_NETWORK_DM0DHCP" ng-model-options="{ updateOn: 'click' }" ng-value="0">
+            <span translate="setup.network.disable"></span>
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td translate="setup.network.ip_address"></td>
+        <td>
+          <input type="text" name="ipAddress" ng-disabled="lan_settings.SCB_NETWORK_DM0DHCP" ng-model="lan_settings.ETH0_TCPIP_DHCP_IP" ng-required="!lan_settings.SCB_NETWORK_DM0DHCP" ng-pattern="(!lan_settings.SCB_NETWORK_DM0DHCP) ? ipRegex : ''">
+
+          <div class="inline-validation-messages" ng-messages="forms.lan_settings.ipAddress.$error" ng-show="forms.lan_settings.$submitted">
+            <span ng-message="required">
+              <span translate="setup.network.ip_required"></span>
+            </span>
+            <span ng-message="pattern">
+              <span translate="setup.network.valid_ip"></span>
+            </span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td translate="setup.network.subnet_mask"></td>
+        <td>
+          <input type="text" name="subnetMask" ng-disabled="lan_settings.SCB_NETWORK_DM0DHCP" ng-model="lan_settings.ETH0_TCPIP_DHCP_NMASK" ng-required="!lan_settings.SCB_NETWORK_DM0DHCP" ng-pattern="(!lan_settings.SCB_NETWORK_DM0DHCP) ? ipRegex : ''">
+
+          <div class="inline-validation-messages" ng-messages="forms.lan_settings.subnetMask.$error" ng-show="forms.lan_settings.$submitted">
+            <span ng-message="required">
+              <span translate="setup.network.subnet_mask_required"></span>
+            </span>
+            <span ng-message="pattern">
+              <span translate="setup.network.valid_subnet_mask"></span>
+            </span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td translate="setup.network.gateway"></td>
+        <td>
+          <input type="text" name="gateway" ng-disabled="lan_settings.SCB_NETWORK_DM0DHCP" ng-model="lan_settings.ETH0_TCPIP_DHCP_GWAY" ng-required="!lan_settings.SCB_NETWORK_DM0DHCP" ng-pattern="(!lan_settings.SCB_NETWORK_DM0DHCP) ? ipRegex : ''">
+
+          <div class="inline-validation-messages" ng-messages="forms.lan_settings.gateway.$error" ng-show="forms.lan_settings.$submitted">
+            <span ng-message="required">
+              <span translate="setup.network.gateway_required"></span>
+            </span>
+            <span ng-message="pattern">
+              <span translate="setup.network.valid_gateway"></span>
+            </span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td translate="setup.network.dns_server"></td>
+        <td>
+          <input type="text" name="dnsServer" ng-disabled="lan_settings.SCB_NETWORK_DM0DHCP" ng-model="lan_settings.ETH0_TCPIP_DHCP_DNS" ng-required="!lan_settings.SCB_NETWORK_DM0DHCP" ng-pattern="(!lan_settings.SCB_NETWORK_DM0DHCP) ? ipRegex : ''">
+          <div class="inline-validation-messages" ng-messages="forms.lan_settings.dnsServer.$error" ng-show="forms.lan_settings.$submitted">
+            <span ng-message="required">
+              <span translate="setup.network.dns_server_required"></span>
+            </span>
+            <span ng-message="pattern">
+              <span translate="setup.network.dns_server_valid"></span>
+            </span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td translate="setup.network.hostname"></td>
+        <td>
+          <input type="text" name="hostName" ng-model="lan_settings.HOSTNAME" max="32" required ng-pattern="hostNameRegex">
+
+          <div class="inline-validation-messages" ng-messages="forms.lan_settings.hostName.$error" ng-show="forms.lan_settings.$submitted">
+            <span ng-message="required">
+              <span translate="setup.network.hostname_required"></span>
+            </span>
+            <span ng-message="max">
+              <span translate="setup.network.hostname_length"></span>
+            </span>
+            <span ng-message="pattern">
+              <span translate="setup.network.hostname_valid"></span>
+            </span>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <div class="panel-controls">
+      <div class="panel-controls__message panel-controls__message--error">
+        <div class="alert alert-success" ng-show="successMessage.lan_settings" translate="setup.network.changes_saved">
+        </div>
+        <div class="alert alert-danger" ng-show="errorMessage.lan_settings" ng-bind="errorMessage.lan_settings">
+        </div>
+      </div>
+
+      <div class="panel-controls__buttons">
+        <input type="submit" class="btn btn-default" value="{{'setup.network.apply' | translate}}">
+        <input type="button" class="btn btn-default" value="{{'setup.network.cancel' | translate}}" ng-click="resetLanSettings()">
+      </div>
+    </div>
+
+  </form>
+</se-panel>
+
+<!-- TODO unhide when FTP is fixed -->
+<!-- <se-panel value="{{'setup.network.anonymous_ftp' | translate}}">
+  <form name="forms.ftp_server" novalidate ng-model-options="{ updateOn: 'submit' }" ng-submit="applyFTPServer()">
+    <table class="settings-controls">
+      <tr>
+        <td translate="setup.network.enable_ftp" class="settings-control__label--for-many-controls"></td>
+        <td>
+          <div>
+            <label>
+              <input type="radio" name="ftpserver" ng-model="ftp_server.SCB_FTP_ENABLE" ng-model-options="{ updateOn: 'click' }" ng-value="1">
+              <span translate="setup.network.enable"></span>
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="radio" name="ftpserver" ng-model="ftp_server.SCB_FTP_ENABLE" ng-model-options="{ updateOn: 'click' }" ng-value="0">
+              <span translate="setup.network.disable"></span>
+            </label>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td translate="setup.network.ftp_description"></td>
+      </tr>
+    </table>
+
+    <table class="settings-controls" ng-show="ftp_server.SCB_FTP_ENABLE == 1">
+      <tr>
+        <th translate="setup.network.ftp_settings"></th>
+        <td></td>
+      </tr>
+      <tr>
+        <td translate="setup.network.ftp_server"></td>
+        <td ng-bind="ftp_server.ip_address"></td>
+      </tr>
+      <tr>
+        <td translate="setup.network.ftp_username"></td>
+        <td>anonymous</td>
+      </tr>
+      <tr>
+        <td translate="setup.network.ftp_password"></td>
+        <td><em translate="setup.network.ftp_password_value"></em></td>
+      </tr>
+    </table>
+
+    <div class="panel-controls">
+      <div class="panel-controls__message panel-controls__message--error">
+        <div class="alert alert-success" ng-show="successMessage.ftp_server" translate="setup.network.changes_saved">
+        </div>
+        <div class="alert alert-danger" ng-show="errorMessage.ftp_server" ng-bind="errorMessage.ftp_server">
+        </div>
+      </div>
+
+      <div class="panel-controls__buttons">
+        <input type="submit" class="btn btn-default" value="{{'setup.network.apply' | translate}}">
+        <input type="button" class="btn btn-default" value="{{'setup.network.cancel' | translate}}" ng-click="resetFTPServer()">
+      </div>
+    </div>
+
+  </form>
+</se-panel> -->
+
+
+<se-panel value="{{'setup.network.remote_diagnostics' | translate}}" ng-if="cloud_settings.SCB_CNM_ENABLED">
+  <form name="forms.remote_diagnostics" novalidate ng-model-options="{ updateOn: 'submit' }" ng-submit="applyRemoteDiagnostics()">
+    <table class="settings-controls">
+
+
+      <tr>
+        <td translate="setup.network.diag_access_code"></td>
+        <td>
+          <input type="text" name="diag_access_code" ng-model="remote_diagnostics.SESSION_DIAG_ACCESS_CODE" ng-required="true" ng-disabled="remote_diagnostics.SESSION_DIAG_ACTIVE == 1" fqdn="{{remote_diagnostics.SESSION_DIAG_ACCESS_CODE}}">
+
+          <div class="inline-validation-messages" ng-messages="forms.remote_diagnostics.diag_access_code.$error" ng-show="forms.remote_diagnostics.$submitted">
+            <span ng-message="required">
+              <span translate="setup.network.diag_access_code_required"></span>
+            </span>
+            <span ng-message="fqdn">
+              <span translate="setup.network.diag_access_code_valid"></span>
+            </span>
+          </div>
+        </td>
+      </tr>
+
+
+      <tr>
+        <td translate="setup.network.diag_id"></td>
+        <td>
+          <div>
+            <p style="font-size:150%">
+              <span>{{remote_diagnostics.SESSION_DIAG_ID}}</span>
+            </p>
+          </div>
+        </td>
+      </tr>
+
+
+      <tr>
+        <td translate="setup.network.session_diag_active"></td>
+        <td>
+          <div ng-hide="remote_diagnostics.SESSION_DIAG_ACTIVE" class="icon-redled cg-led network-led"></div>
+          <div ng-show="remote_diagnostics.SESSION_DIAG_ACTIVE" class="icon-greenled cg-led network-led"></div>
+        </td>
+      </tr>
+
+
+      <tr>
+        <td translate="setup.network.session_diag_cancel"></td>
+        <td>
+          <input type="button" class="btn btn-default" value="{{'setup.network.session_diag_cancel_btn'|translate}}" ng-click="cancelSessionDiag()">
+        </td>
+      </tr>
+    </table>
+
+    <div class="panel-controls">
+      <div class="panel-controls__message panel-controls__message--error">
+        <div class="alert alert-success" ng-show="successMessage.remote_diagnostics" translate="setup.network.changes_saved">
+        </div>
+        <div class="alert alert-danger" ng-show="errorMessage.remote_diagnostics" ng-bind="errorMessage.remote_diagnostics">
+        </div>
+      </div>
+
+      <div class="panel-controls__buttons">
+        <input type="submit" class="btn btn-default" value="{{'setup.network.apply' | translate}}">
+        <input type="button" class="btn btn-default" value="{{'setup.network.cancel' | translate}}" ng-click="resetRemoteDiagnostics()">
+      </div>
+    </div>
+
+  </form>
+</se-panel>
+
+<!--
+<se-panel value="{{'setup.network.conext_insight' | translate}}">
+  <form name="forms.conext_insight" novalidate ng-model-options="{ updateOn: 'submit' }" ng-submit="applyConextInsightSettings()">
+    <table class="settings-controls">
+      <tr>
+        <td class="settings-control__label--for-many-controls"
+          translate="setup.network.enable_data_push"
+          >
+        </td>
+        <td>
+          <p>
+            <label>
+              <input type="radio" name="conext_insight" ng-model="conext_insight.WEBPORTAL_ENABLE" ng-model-options="{ updateOn: 'click' }" ng-value="1" ng-disabled="!conext_insight.ADMIN_DISCLCHECK">
+              <span translate="setup.network.enable"></span>
+            </label>
+            <br />
+            <label>
+              <input type="radio" name="conext_insight" ng-model="conext_insight.WEBPORTAL_ENABLE" ng-model-options="{ updateOn: 'click' }" ng-value="0" ng-disabled="!conext_insight.ADMIN_DISCLCHECK">
+              <span translate="setup.network.disable"></span>
+            </label>
+          </p>
+
+          <p ng-hide="conext_insight.ADMIN_DISCLCHECK">
+            <span translate="setup.network.disclaimer_message"></span>
+            <a href="" ng-click="openDisclaimer()" translate="setup.network.show_agreement"></a>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <th translate="setup.network.synchronization">
+        </th>
+        <th></th>
+      </tr>
+      <tr>
+        <td translate="setup.network.enable_sync"></td>
+        <td>
+          <label>
+            <input type="radio" name="conext_insight_sync" ng-disabled="!conext_insight.WEBPORTAL_ENABLE || !conext_insight.ADMIN_DISCLCHECK" ng-model="conext_insight.WEBPORTAL_SYNC_ENABLE" ng-model-options="{ updateOn: 'click' }" ng-value="1">
+            <span translate="setup.network.enable"></span>
+          </label>
+          <label>
+            <input type="radio" name="conext_insight_sync" ng-disabled="!conext_insight.WEBPORTAL_ENABLE || !conext_insight.ADMIN_DISCLCHECK" ng-model="conext_insight.WEBPORTAL_SYNC_ENABLE" ng-model-options="{ updateOn: 'click' }" ng-value="0">
+            <span translate="setup.network.disable"></span>
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td translate="setup.network.sync"></td>
+        <td>
+          <input type="text" name="sync_string"
+                 ng-disabled="!conext_insight.WEBPORTAL_ENABLE || !conext_insight.WEBPORTAL_SYNC_ENABLE || !conext_insight.ADMIN_DISCLCHECK"
+                 ng-model="conext_insight.WEBPORTAL_SYNC_STRING"
+                 ng-required="conext_insight.WEBPORTAL_ENABLE && conext_insight.WEBPORTAL_SYNC_ENABLE">
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <p>
+            <span translate="setup.network.sync_message"></span><a href="" ng-click="learnMore()" translate="setup.network.learn_more"></a>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <th translate="setup.network.connection"></th>
+        <th></th>
+      </tr>
+      <tr>
+        <td translate="setup.network.test_connection"></td>
+        <td>
+          <input type="button" ng-disabled="!conext_insight.WEBPORTAL_ENABLE || !conext_insight.ADMIN_DISCLCHECK" ng-click="testConnection()" class="btn btn-default" value="{{'setup.network.test' | translate}}">
+          <span ng-show="connectionStatus === 'Processing'">
+            <img src="img/schneiderloader.gif" class="install-package__spinner">
+            <span translate="setup.network.processing"></span>
+          </span>
+          <span ng-show="connectionStatus === 'Success'">
+            <span class="install-package__ok-icon"></span>
+            <span translate="setup.network.success_connection"></span>
+          </span>
+          <span ng-show="connectionStatus === 'Fail'">
+            <span class="install-package__error-icon"></span>
+            <span translate="setup.network.failed_connection"></span>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td translate="setup.network.connection_status"></td>
+        <td>{{(conext_insight.WEBPORTAL_STATUS ? 'setup.network.connected' : 'setup.network.not_connected') | translate}}</td>
+      </tr>
+      <tr>
+        <td translate="setup.network.last_successful_date"></td>
+        <td>{{conext_insight.WEBPORTAL_LAST_TRANSFER_TIME}}</td>
+      </tr>
+      <tr>
+        <td translate="setup.network.unsent_packets"></td>
+        <td>{{conext_insight.WEBPORTAL_UNSENT_PACKET_COUNT}}</td>
+      </tr>
+    </table>
+
+    <div class="panel-controls">
+      <div class="panel-controls__message panel-controls__message--error">
+        <div class="alert alert-success" ng-show="successMessage.conext_insight" translate="setup.network.changes_saved">
+        </div>
+        <div class="alert alert-danger" ng-show="errorMessage.conext_insight" ng-bind="errorMessage.conext_insight">
+        </div>
+      </div>
+
+      <div class="panel-controls__buttons">
+        <input type="submit" class="btn btn-default" value="{{'setup.network.apply' | translate}}">
+        <input type="button" class="btn btn-default" value="{{'setup.network.cancel' | translate}}" ng-click="resetConextInsightSettings()">
+      </div>
+    </div>
+
+  </form>
+</se-panel>
+
+-->
+
+<se-panel value="{{'setup.network.cloud_settings' | translate}}">
+  <form name="forms.cloud_settings" novalidate ng-model-options="{ updateOn: 'submit' }" ng-submit="applyCloudSettings()">
+    <table class="settings-controls">
+
+      <tr>
+        <td translate="setup.network.urn"></td>
+        <td>
+          <p>{{cloud_settings.SCB_LPHD_URN}}</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td translate="setup.network.cloud_enable">
+        </td>
+        <td>
+          <div>
+            <label>
+                <input type="radio" name="cloud_enable" ng-model="cloud_settings.SCB_CNM_ENABLED" ng-model-options="{ updateOn: 'click' }" ng-value="1" ng-disabled="false">
+                <span translate="setup.network.enable"></span>
+              </label>
+          </div>
+          <div>
+            <label>
+                <input type="radio" name="cloud_enable" ng-model="cloud_settings.SCB_CNM_ENABLED" ng-model-options="{ updateOn: 'click' }" ng-value="0" ng-disabled="false">
+                <span translate="setup.network.disable"></span>
+              </label>
+          </div>
+        </td>
+      </tr>
+
+      <tr ng-if="!cloud_settings.ADMIN_DISCLCHECK">
+        <td></td>
+        <td>
+          <span translate="setup.configuration.remote_disclaimer"></span><a href="" ng-click="openDisclaimer()" translate="setup.configuration.show_agreement"></a>
+        </td>
+      </tr>
+
+      <tr ng-if="cloud_settings.ADMIN_DISCLCHECK">
+        <td translate="setup.network.proxy_enable">
+        </td>
+        <td>
+          <div>
+            <label>
+                <input type="radio" name="proxy_enable" ng-model="cloud_settings.SCB_CNM_PROXY_ENABLED" ng-model-options="{ updateOn: 'click' }" ng-value="1" ng-disabled="false">
+                <span translate="setup.network.enable"></span>
+              </label>
+          </div>
+          <div>
+            <label>
+                <input type="radio" name="proxy_enable" ng-model="cloud_settings.SCB_CNM_PROXY_ENABLED" ng-model-options="{ updateOn: 'click' }" ng-value="0" ng-disabled="false">
+                <span translate="setup.network.disable"></span>
+              </label>
+          </div>
+        </td>
+      </tr>
+
+      <tr ng-if="cloud_settings.ADMIN_DISCLCHECK">
+        <td translate="setup.network.proxy_url"></td>
+        <td>
+          <input type="text" name="proxy_url" ng-disabled="!cloud_settings.SCB_CNM_PROXY_ENABLED" ng-model="cloud_settings.SCB_CNM_PROXY_URL" fqdn="{{cloud_settings.SCB_CNM_PROXY_ENABLED}}">
+
+          <div class="inline-validation-messages" ng-messages="forms.cloud_settings.proxy_url.$error" ng-show="forms.cloud_settings.$submitted">
+            <span ng-message="required">
+                <span translate="setup.network.proxy_url_required"></span>
+            </span>
+            <span ng-message="fqdn">
+                <span translate="setup.network.proxy_url_valid"></span>
+            </span>
+          </div>
+        </td>
+      </tr>
+
+      <tr ng-if="cloud_settings.ADMIN_DISCLCHECK">
+        <td translate="setup.network.proxy_port"></td>
+        <td>
+          <input type="number" name="proxyPort" ng-disabled="!cloud_settings.SCB_CNM_PROXY_ENABLED" ng-model="cloud_settings.SCB_CNM_PROXY_PORT" ng-max="cloud_settings.SCB_CNM_PROXY_ENABLED ? 10000 : false">
+
+          <div class="inline-validation-messages" ng-messages="forms.cloud_settings.proxyPort.$error" ng-show="forms.cloud_settings.$submitted">
+            <span ng-message="required">
+                <span translate="setup.network.prox_port_required"></span>
+            </span>
+            <span ng-message="min">
+                <span translate="setup.network.proxy_port_range"></span>
+            </span>
+            <span ng-message="max">
+                <span translate="setup.network.proxy_port_range"></span>
+            </span>
+            <span ng-message="number">
+                <span translate="setup.network.proxy_port_number"></span>
+            </span>
+          </div>
+        </td>
+      </tr>
+
+      <tr ng-if="cloud_settings.ADMIN_DISCLCHECK">
+        <td translate="setup.network.proxy_user"></td>
+        <td>
+          <input type="text" name="proxyUser" ng-disabled="!cloud_settings.SCB_CNM_PROXY_ENABLED" ng-model="cloud_settings.SCB_CNM_PROXY_USER">
+
+          <div class="inline-validation-messages" ng-messages="forms.cloud_settings.proxyUser.$error" ng-show="forms.cloud_settings.$submitted">
+            <span ng-message="required">
+                <span translate="setup.network.proxy_username_required"></span>
+            </span>
+          </div>
+        </td>
+      </tr>
+
+      <tr ng-if="cloud_settings.ADMIN_DISCLCHECK">
+        <td translate="setup.network.proxy_password"></td>
+        <td>
+          <input type="password" name="proxyPassword" ng-disabled="!cloud_settings.SCB_CNM_PROXY_ENABLED" ng-model="cloud_settings.SCB_CNM_PROXY_PASSWORD" autocomplete="off">
+
+          <div class="inline-validation-messages" ng-messages="forms.cloud_settings.proxyPassword.$error" ng-show="forms.cloud_settings.$submitted">
+            <span ng-message="required">
+                <span translate="setup.network.proxy_password_required"></span>
+            </span>
+          </div>
+        </td>
+      </tr>
+
+      <tr ng-if="cloud_settings.ADMIN_DISCLCHECK">
+        <td translate="setup.network.cloud_allow_upgrade">
+        </td>
+        <td>
+          <div>
+            <label>
+                <input type="radio" name="cloud_allow_upgarde" ng-model="cloud_settings.SCB_CNM_ALLOW_UPGRADE" ng-model-options="{ updateOn: 'click' }" ng-value="1" ng-disabled="false">
+                <span translate="setup.network.enable"></span>
+              </label>
+          </div>
+          <div>
+            <label>
+                <input type="radio" name="cloud_allow_upgarde" ng-model="cloud_settings.SCB_CNM_ALLOW_UPGRADE" ng-model-options="{ updateOn: 'click' }" ng-value="0" ng-disabled="false">
+                <span translate="setup.network.disable"></span>
+              </label>
+          </div>
+        </td>
+      </tr>
+
+      <tr ng-if="cloud_settings.ADMIN_DISCLCHECK">
+        <td translate="setup.network.cloud_connection_sts"></td>
+        <td>
+          <div ng-hide="cloud_settings.SCB_CNM_ISCONNECTED" class="icon-redled cg-led network-led"></div>
+          <div ng-show="cloud_settings.SCB_CNM_ISCONNECTED" class="icon-greenled cg-led network-led"></div>
+        </td>
+      </tr>
+
+      <tr ng-if="cloud_settings.ADMIN_DISCLCHECK">
+        <td translate="setup.network.tx_count"></td>
+        <td>
+          <p>{{cloud_settings.SCB_CNM_TX_COUNT}}</p>
+        </td>
+      </tr>
+
+      <tr ng-if="cloud_settings.ADMIN_DISCLCHECK">
+        <td translate="setup.network.rx_count"></td>
+        <td>
+          <p>{{cloud_settings.SCB_CNM_RX_COUNT}}</p>
+        </td>
+      </tr>
+
+      <tr ng-if="cloud_settings.ADMIN_DISCLCHECK">
+        <td translate="setup.network.tx_err_count"></td>
+        <td>
+          <p>{{cloud_settings.SCB_CNM_TX_ERR_COUNT}}</p>
+        </td>
+      </tr>
+
+      <tr ng-if="cloud_settings.ADMIN_DISCLCHECK">
+        <td translate="setup.network.last_transfer_time"></td>
+        <td>
+          <p>{{cloud_settings.SCB_CNM_LAST_TRANSFER_TIME}}</p>
+        </td>
+      </tr>
+
+      <tr ng-if="cloud_settings.ADMIN_DISCLCHECK">
+        <td translate="setup.network.cloud_disconnet"></td>
+        <td>
+          <p>{{cloud_settings.SCB_CNM_DISCONNECT_COUNT}}</p>
+        </td>
+      </tr>
+    </table>
+
+    <div class="panel-controls" ng-if="cloud_settings.ADMIN_DISCLCHECK">
+      <div class="panel-controls__message panel-controls__message--error">
+        <div class="alert alert-success" ng-show="successMessage.cloud_settings" translate="setup.network.changes_saved">
+        </div>
+        <div class="alert alert-danger" ng-show="errorMessage.cloud_settings" ng-bind="errorMessage.cloud_settings">
+        </div>
+      </div>
+
+      <div class="panel-controls__buttons">
+        <input type="submit" class="btn btn-default" value="{{'setup.network.apply' | translate}}">
+        <input type="button" class="btn btn-default" value="{{'setup.network.cancel' | translate}}" ng-click="resetCloudSettings()">
+      </div>
+    </div>
+  </form>
+</se-panel>
+
+<se-panel value="{{'setup.network.ap_title' | translate}}">
+  <form name="forms.ap_settings" novalidate ng-model-options="{ updateOn: 'submit' }" ng-submit="applyAPSettings()">
+    <table class="settings-controls">
+
+      <tr>
+        <td translate="setup.network.access_point"></td>
+        <td>
+          <label>
+            <input type="radio" name="ap" ng-model="ap_settings.SCB_AP_ENABLE" ng-model-options="{ updateOn: 'click' }" ng-value="1">
+            <span translate="setup.network.enable"></span>
+          </label>
+          <label>
+            <input type="radio" name="ap" ng-model="ap_settings.SCB_AP_ENABLE" ng-model-options="{ updateOn: 'click' }" ng-value="0">
+            <span translate="setup.network.disable"></span>
+          </label>
+        </td>
+      </tr>
+
+      <tr>
+        <td translate="setup.network.ssid"></td>
+        <td>
+          <input type="text" name="ap_ssid" ng-model="ap_settings.SCB_AP_SSID" ng-required="true" ng-disabled="!ap_settings.SCB_AP_ENABLE">
+
+          <div class="inline-validation-messages" ng-messages="forms.ap_settings.ap_ssid.$error" ng-show="forms.ap_settings.$submitted">
+            <span ng-message="required">
+              <span translate="setup.network.ssid_required"></span>
+            </span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td translate="setup.network.ssid_password"></td>
+        <td>
+          <input type="password" name="ssid_password" ng-model="ap_settings.SCB_AP_PASSWORD" ng-disabled="!ap_settings.SCB_AP_ENABLE">
+
+          <div class="inline-validation-messages" ng-messages="forms.ap_settings.ssid_password.$error" ng-show="forms.ap_settings.$submitted">
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <div class="panel-controls">
+      <div class="panel-controls__message panel-controls__message--error">
+        <div class="alert alert-success" ng-show="successMessage.ap_settings" translate="setup.network.changes_saved">
+        </div>
+        <div class="alert alert-danger" ng-show="errorMessage.ap_settings" ng-bind="errorMessage.ap_settings">
+        </div>
+      </div>
+
+      <div class="panel-controls__buttons">
+        <input type="submit" class="btn btn-default" value="{{'setup.network.apply' | translate}}">
+        <input type="button" class="btn btn-default" value="{{'setup.network.cancel' | translate}}" ng-click="resetAPSettings()">
+      </div>
+    </div>
+
+  </form>
+</se-panel>

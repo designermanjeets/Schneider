@@ -1,0 +1,34 @@
+<div class="col-md-12 no-padding" style="padding-bottom: 20px;">
+  <div class="col-md-12" style="padding-bottom: 5px;">
+    <div style="width:150px;float:left">
+      <span translate="xanbus.agsstate.agsstate"></span>
+    </div>
+    <div class="device-status-value" ng-if="ags_status && ags_status !== ''">
+      <span>{{ags_status | translate}}</span>
+    </div>
+  </div>
+  <div class="col-md-12" style="padding-bottom: 5px;">
+    <div style="width:150px;float:left">
+      <span translate="xanbus.genstate.genstate"></span>
+    </div>
+    <div class="device-status-value" ng-if="gen_status && gen_status !== ''">
+      <span>{{gen_status | translate}}</span>
+    </div>
+  </div>
+  <div ng-if="data.GEN_ON_REASON != 0" class="col-md-12" style="padding-bottom: 5px;">
+    <div style="width:150px;float:left">
+      <span translate="xanbus.gen_on_reason.gen_on_reason"></span>
+    </div>
+    <div class="device-status-value" ng-if="gen_on_reason && gen_on_reason !== ''">
+      <span>{{gen_on_reason | translate}}</span>
+    </div>
+  </div>
+  <div class="col-md-12" style="padding-bottom: 5px;">
+    <div style="width:150px;float:left">
+      <span translate="xanbus.gen_off_reason.gen_off_reason"></span>
+    </div>
+    <div class="device-status-value" ng-if="gen_off_reason && gen_off_reason !== ''">
+      <span>{{gen_off_reason | translate}}</span>
+    </div>
+  </div>
+</div>

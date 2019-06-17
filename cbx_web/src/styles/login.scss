@@ -1,0 +1,364 @@
+﻿/*=============================================================================
+
+  \file   login.css
+
+  \brief
+  Conext Gateway Server login html page style definitions
+
+  \code
+  CHANGE HISTORY
+  07-Dec-2015     Eddie Leung
+  - Refactored from loginStyle.css
+
+
+==============================================================================*/
+
+// To learn why this exists, see the comment in loginStyles.scss
+.for-login-or-smart-install {
+
+  /*==============================================================================
+    Log in page layout
+   ==============================================================================*/
+  /* Container */
+
+  .home-information-icon {
+    transform: scale(0.096);
+    margin: -100px;
+    display: inline-block;
+    margin-left: -95px;
+    margin-right: -95px;
+  }
+
+  .csb-container-fixed {
+    height: 598px;
+    width: 864px;
+    border-radius: 14px;
+    background-color: #FFFFFF;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    -moz-box-shadow: 0px 0.5px 3px 0.5px #000000;
+    -webkit-box-shadow: 0px 0.5px 3px 0.5px #000000;
+    box-shadow: 0px 0.5px 3px 0.5px #000000;
+  }
+
+  /* Header */
+  .csb-header{
+    min-height: 64px;
+    border-bottom: 5px solid #40883F;
+    vertical-align: middle;
+    padding: 15px 32px 0 32px
+  }
+
+  .csb-header > h1 {
+    color: #1a6633;
+    font-size: 28px;
+    margin : 0;
+    padding : 0;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+  /* Beta word */
+  .csb-header h4 {
+    color: #FF9900;
+    margin: 0 0 0 215px;
+    vertical-align: text-top;
+  }
+
+
+  /* Body */
+  .csb-body {
+    padding: 0 17px;
+  }
+
+  /* Top section inside body */
+  .csb-content-top {
+    height: 128px;
+    padding: 28px 15px;
+  }
+  .csb-content-top--small {
+    // for change password screen, no automatic height
+    height: auto;
+  }
+
+  /* Middle section inside body */
+  .csb-content-middle {
+    // Keep a consistent height, even as form validation messages
+    // come and go.
+    min-height: 310px;
+  }
+
+  /* Footer */
+  .csb-footer {
+    padding: 28px 17px;
+  }
+
+
+  /*==============================================================================
+    Login form elements
+   ==============================================================================*/
+
+  /* Align control label to the right */
+  .csb-control-label {
+    padding: 8px 0;
+    text-align: right;
+  }
+
+  /* Fix all control height */
+  .login-form-control {
+    height: 35px;
+    margin-bottom: 8px;
+    padding-left: 5px;
+  }
+
+
+  /*==============================================================================
+    Dropdown menu
+   ==============================================================================*/
+
+  /* All select element */
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -webkit-padding-end: 2px;
+    -moz-padding-end: 22px;
+    -webkit-padding-start: 2px;
+    -moz-padding-start: 2px;
+    background-color: #E2E2E4; /* fallback color if gradients are not supported */
+    background-size: 22px 22px;
+    background-position: center right;
+    background-origin: content-box;
+    background-repeat: no-repeat;
+    border: 1px solid #AAA;
+    border-radius: 5px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+    color: #000000;
+    font-size: inherit;
+    margin: 0;
+     /* overflow: hidden;*/
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  /* MS image dropdown */
+  .dd .divider {
+    border-left: none;
+    border-right: none;
+    right: 24px;
+  }
+
+  .dd {
+    border: 1px solid #AAA;
+  }
+
+
+  /* Add arrow on pull down menu */
+  .csb-select-arrow {
+    background-image: url("../img/login_dropdown.png");
+    padding-right: 3px;
+  }
+
+
+  /*==============================================================================
+    Password input field
+   ==============================================================================*/
+  /* text box highlighter */
+  input[type=text],input[type=password]{
+    outline: none;
+    border: 1px solid #C4C3C6;
+    border-radius: 5px;
+    width: 100%;
+  }
+
+  input[type=text]:focus,input[type=password]:focus{
+    outline: none;
+    box-shadow: 0px 0px 5px #2BA449;
+    border: 1px solid #2BA449;
+  }
+
+  input[type=text]:hover:not([disabled]),
+  input[type=password]:hover:not([disabled]) {
+    border: 1px solid #2BA449;
+    box-shadow: 0px 0px 5px #2BA449;
+    border-radius: 5px;
+  }
+
+  .borderRedLogin {
+    box-shadow: 0px 0px 5px #b4665b;
+    border: 1px solid #85463D !important;
+  }
+
+  .login-error-icon {
+    position: absolute;
+    top: -81px;
+    left: 50%;
+    transform: scale(.12);
+  }
+
+  /*==============================================================================
+    Log in Button
+   ==============================================================================*/
+  /* button css */
+  .csb-btn{
+    width: 100%;
+    border: #BBB 1px solid;
+    color: #FFFFFF;
+    display: block;
+    padding: 6px 10px;
+    margin-top: 8px;
+    cursor: pointer;
+    outline:none;
+    background: #3DCD58; 
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -moz-box-shadow: 0px 1px 3px #AAA;
+    -webkit-box-shadow: 0px 1px 3px #AAA;
+    box-shadow: 0px 1px 3px #AAA;
+    float: right;
+  }
+
+
+  /*==============================================================================
+    Copyright message
+   ==============================================================================*/
+  #copyRightsLink{
+    color: #2E9ECC;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Copyright message */
+  #copyRightsLink a {
+    text-decoration: underline;
+  }
+
+  #copyRightsMsg {
+    color: grey;
+    magin: 0;
+    padding: 0;
+  }
+
+
+  /*==============================================================================
+    Forgot password
+   ==============================================================================*/
+
+  /* Forget Password link */
+  .forgotpassword {
+    color: #1271B9;
+  }
+
+
+
+  /*==============================================================================
+    All field required
+   ==============================================================================*/
+  /* All field required text */
+  .fieldRequired {
+    color: grey;
+    font-size: 15px;
+    float: right;
+    margin-top: 8px
+  }
+
+
+  /*==============================================================================
+    Alert message
+   ==============================================================================*/
+  .alert {
+    padding: 0;
+  }
+
+  .csb-message p {
+    height: 50px;
+    padding: 5px;
+  }
+
+  .csb-img-message img {
+    width: 50px;
+    height: 50px;
+  }
+
+  p.csb-img-message {
+    height: 50px;
+    padding: 0;
+  }
+
+
+  /*==============================================================================
+    Conext Gateway Login and Smart Install page button
+   ==============================================================================*/
+
+  .csb-button-grey {
+    min-width: 120px;
+    height: 40px;
+    outline:none;
+    font-family: 'Nunito Regular', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    border: #BBB 1px solid;
+    color: #3F4146;
+    display: block;
+    cursor: pointer;
+    background: #FFF; /* for non-css3 browsers */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#DDDDDD'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#DDD)); /* for webkit browsers */
+    background: -moz-linear-gradient(top, #FFF, #DDD); /* for firefox 3.6+ */
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -khtml-border-radius: 3px;
+    -moz-box-shadow: 0px 1px 3px #AAA;
+    -webkit-box-shadow: 0px 1px 3px #AAA;
+    box-shadow: 0px 1px 3px #AAA;
+  }
+
+
+  /*==============================================================================
+    Change password page specific custom style
+   ==============================================================================*/
+   div.cpw_message {
+    height: 60px;
+    margin: 20px 0;
+    padding: 0;
+   }
+
+
+
+
+  /*==============================================================================
+    Schneider logo
+   ==============================================================================*/
+  .schneider-logo {
+    height: 52px;
+    width: 177px;
+    float: right;
+    vertical-align: bottom;
+  }
+
+  .worker-banner {
+    background: url(/img/222.png) no-repeat center;
+    background-size: cover;
+  }
+
+  .login-container {
+    font-size: 0;
+    height: 598px;
+    width: 736px;
+    background-color: #FFF;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    box-shadow: 0 0.5px 3px 0.5px #000;
+  }
+}

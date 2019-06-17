@@ -1,0 +1,72 @@
+﻿/////////////////////////////////////////////////////////////////////
+//
+// Data table
+//
+// Table for displaying non-editable data
+
+$line-height: 20px;
+$th-padding: 4px;
+$td-padding-vertical: 3px;
+$border-bottom-width: 1px;
+
+// Why the extra +1? Good question! For some reason, Chrome is adding an extra pixel (or sometimes 2) to the
+// row heights. This helps align the spacing with what Chrome actually does.
+$data-table-header-row-height: $line-height + (2 * $th-padding) + $border-bottom-width + 1;
+$data-table-body-row-height: $line-height + (2 * $td-padding-vertical) + $border-bottom-width + 1;
+
+.data-table {
+  width: 100%;
+  background: white;
+
+  border: 1px solid #cbcbcb;
+
+  tr {
+    border-bottom: $border-bottom-width solid #cbcbcb;
+  }
+
+  th {
+    &:not(:last-child) {
+      border-right: 1px ridge #919196;
+    }
+
+    background: #d3d6d7;
+    background: linear-gradient(to bottom, #E3E5E7 0%, #D3D6D7 100%);
+
+    padding: $th-padding;
+  }
+
+  th, td {
+    line-height: $line-height;
+    text-align: center;
+  }
+
+  td {
+    padding: $td-padding-vertical 0px $td-padding-vertical 5px;
+  }
+
+  label {
+    font-weight: normal;
+    margin-bottom: 0;
+  }
+}
+.data-table--equal-width {
+  table-layout: fixed;
+}
+
+// Wrappers around the table, to limit them to a certain number
+// of items. The item count is only valid on wide screens where
+// the table header fits entirely on one line of text. But
+// the worst that happens on narrow screens is that the scroll bars
+// appear with fewer items.
+.data-table-container {
+  overflow-y: auto;
+}
+.data-table-container--20-items {
+  max-height: $data-table-header-row-height + (20 * $data-table-body-row-height);
+}
+.data-table-container--10-items {
+  max-height: $data-table-header-row-height + (10 * $data-table-body-row-height);
+}
+.data-table-container--5-items {
+  max-height: $data-table-header-row-height + (5 * $data-table-body-row-height);
+}
