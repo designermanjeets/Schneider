@@ -616,3 +616,175 @@
 
   </form>
 </se-panel>
+
+
+
+<se-panel value="{{'setup.network.network_mode' | translate}}" csb-permissions>
+    <!-- todo: learn what these are -->
+    <div class="install-package" filters="queueLimit">
+      
+   
+        <form name="setup.networkmode" novalidate ng-submit="applyNetworkMode()">
+            <table class="settings-controls">
+              <tr>
+                <td style="width:30% !important" translate="setup.network.network_mode"></td>
+                <td>
+                    <form name="forms.ntwrkmode">
+                        <select name="netwrkselect" id="netwrkselect" ng-options="option.name for option in netwrkData.availableOptions"
+                            ng-model="netwrkData.selectedOption">
+                            <option value="">--Select--</option>
+                        </select>
+                    </form>
+                </td>
+              </tr>
+            </table>
+        
+          </form>
+    </div>
+  
+  </se-panel>
+  
+  <se-panel value="Wifi station setting" csb-permissions ng-if="netwrkData.selectedOption.id==1" is-open="true">
+      <!-- todo: learn what these are -->
+      <div class="install-package" filters="queueLimit">
+        
+          <div class="wifiSetting">
+              <!-- Available networks -->
+              <div class="available-networks">
+                  <h6>Available Networks</h6>
+                  <div ng-if="netwrkData.showDisconnectErr" class="alert alert-danger" role="alert">Connect Lost</div>
+                  <div class="connectioncontainer">
+                      <div class="listconnection" ng-class="{ 'active': active == $index}" ng-repeat="model in netwrkData.availableConnections track by $index">
+                          {{model.item}}
+                          <span ng-if="netwrkData.netConnected && netwrkData.connectedIndex === $index">Connected</span>
+                          <a ng-if="!netwrkData.netConnected || (netwrkData.netConnected && netwrkData.connectedIndex != $index)" 
+                          ng-click="onConnect($index)">Connect</a>
+                          <a ng-if="netwrkData.netConnected && netwrkData.connectedIndex === $index" 
+                          ng-click="onDisconnect($index)">Disconnect</a>
+                      </div>
+                  </div>
+                  <!-- <div class="disconnectcon">
+                      or <a ng-click="onDisconnect()">Disconnect</a>
+                  </div> -->
+              </div>
+              <!-- ./Available networks -->
+  
+              <!-- Network Connect -->
+              <div class="selectnetwork" ng-if="toggleNetworkScreen">
+                  <form name="setup.selectNetwrkForm" ng-submit="submitSelectNetwrk(setup.selectNetwrkForm)"
+                      novalidate>
+  
+                      <h3 ng-if="!toggleManualScreen">Select Network</h3>
+                      <h3 ng-if="toggleManualScreen">Add Network Manually</h3>
+  
+                      <div class="form-group input-group" ng-if="!toggleManualScreen">
+                          <select class="form-control" name="networkOpt" id="mySelect2" required ng-options="option.item for option in netwrkData.availableNetworks;"
+                              ng-model="netwrkData.selectNetwrkForm.selectednetwork">
+                              <option value="">--Select--</option>
+                          </select>
+                      </div>
+  
+                      <div class="form-group input-group" ng-if="toggleManualScreen">
+                          <span class="input-group-addon" id="ssid">@</span>
+                          <input name="ssid" class="form-control"  ng-model="netwrkData.selectNetwrkForm.ssid"
+                              type="text" placeholder="Enter SSID" required>
+                      </div>
+  
+                      <div class="form-group input-group">
+                          <span class="input-group-addon" id="networkpassword">@</span>
+                          <input name="networkpassword" class="form-control"  ng-model="netwrkData.selectNetwrkForm.networkpassword"
+                              type="password" placeholder="Enter password" required minlength="4">
+                      </div>
+  
+                      <button type="submit" ng-disabled="setup.selectNetwrkForm.$invalid">Connect</button>
+                      <a ng-click="selectNtwrk()" ng-if="toggleManualScreen"> Select Network</a>
+                      <a ng-click="addManully()" ng-if="!toggleManualScreen"> Add Network manually</a>
+                  </form>
+              </div>
+              <!-- ./Network Connect -->
+  
+              <!-- Manually -->
+  
+              <div class="manualwifi" ng-if="toggleManualScreen" style="display:none !important">
+  
+                  <h3>Add Network manually</h3>
+  
+                  <form class="form-horizontal" name="setup.manualForm" ng-submit="submitManualNetwrk(setup.manualForm)"
+                      novalidate>
+  
+                      <div class="form-group">
+                          <label for="ipaddress" class="col-sm-3 control-label">IP address</label>
+                          <div class="col-sm-9">
+                              <input type="text" class="form-control" id="ipaddress" placeholder="Ip Address"
+                                  name="ipaddress" ng-model="netwrkData.manualForm.ipaddress" required
+                                  ui-number-mask>
+                          </div>
+                      </div>
+  
+                      <div class="form-group">
+                          <label for="DHCP" class="col-sm-3 control-label">DHCP</label>
+                          <div class="col-sm-9">
+                              <div class="toggle-group">
+                                  <input type="checkbox" ng-model="netwrkData.manualForm.networkdhcp" name="networkdhcp"
+                                      id="networkdhcp" tabindex="1" required>
+                                  <label name="networkdhcp" for="networkdhcp">
+                                      <span class="aural">Enable:</span>
+                                  </label>
+                                  <div class="onoffswitch" aria-hidden="true">
+                                      <div class="onoffswitch-label">
+                                          <div class="onoffswitch-inner"></div>
+                                          <div class="onoffswitch-switch"></div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+  
+  
+                      <div class="form-group">
+                          <label for="subnetmask" class="col-sm-3 control-label">Subnet mask</label>
+                          <div class="col-sm-9">
+                              <input type="text" class="form-control" id="subnetmask" placeholder="Subnet mask"
+                                  name="subnetmask" ng-model="netwrkData.manualForm.subnetmask" required>
+                          </div>
+                      </div>
+  
+                      <div class="form-group">
+                          <label for="gateway" class="col-sm-3 control-label">Gateway</label>
+                          <div class="col-sm-9">
+                              <input type="text" class="form-control" id="gateway" placeholder="Gateway" name="gateway"
+                                  ng-model="netwrkData.manualForm.gateway" required>
+                          </div>
+                      </div>
+  
+                      <div class="form-group">
+                          <label for="dnserver" class="col-sm-3 control-label">DNS Server</label>
+                          <div class="col-sm-9">
+                              <input type="text" class="form-control" id="dnserver" placeholder="DNS Server"
+                                  name="dnserver" ng-model="netwrkData.manualForm.dnserver" required>
+                          </div>
+                      </div>
+  
+                      <div class="form-group">
+                          <label for="hostname" class="col-sm-3 control-label">Host name</label>
+                          <div class="col-sm-9">
+                              <input type="text" class="form-control" id="hostname" placeholder="Host name"
+                                  name="hostname" ng-model="netwrkData.manualForm.hostname" required>
+                          </div>
+                      </div>
+  
+  
+                      <div class="form-group">
+                          <div class="col-sm-offset-2 col-sm-10">
+                              <button type="submit" ng-disabled="setup.manualForm.$invalid" class="btn btn-primary">Apply</button>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+              <!-- ./Manually -->
+          </div>
+      </div>
+    
+    </se-panel>
+  
+  

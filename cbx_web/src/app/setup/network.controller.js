@@ -1,6 +1,6 @@
 "use strict";
-angular.module('conext_gateway.setup').controller("networkController", ['$scope', 'gatewayNetworkService', 'formSuccessMessageService', 'conextInsightService', 'emailTestService', '$uibModal', 'csbModal', '$filter', '$log', '$interval', 'moment',
-  function($scope, gatewayNetworkService, formSuccessMessageService, conextInsightService, emailTestService, $uibModal, csbModal, $filter, $log, $interval, moment) {
+angular.module('conext_gateway.setup').controller("networkController", ['$scope', 'gatewayNetworkService', 'formSuccessMessageService', 'conextInsightService', 'emailTestService', '$uibModal', 'csbModal', '$filter', '$log', '$interval', 'moment', "$http",
+  function($scope, gatewayNetworkService, formSuccessMessageService, conextInsightService, emailTestService, $uibModal, csbModal, $filter, $log, $interval, moment, $http) {
     $scope.forms = {};
     $scope.successMessage = {};
     $scope.ipRegex = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/;
@@ -295,5 +295,144 @@ angular.module('conext_gateway.setup').controller("networkController", ['$scope'
         dereg();
       }
     });
+
+    
+    
+    /////////////////////////////////////////////////////////////////////////////
+    //
+    // Network Mode
+    
+    $scope.netwrkData = [];
+
+      $http.get('http://localhost:3500/availableOptions')
+      .then(function successCallback(response) { 
+          $scope.netwrkData.availableOptions = response.data; 
+          // $scope.netwrkData.selectedOption = response.data[0]; //This sets the default value of the select in the ui
+      });
+ 
+      $interval(function() {
+        $http.get('http://localhost:3500/availableConnections')
+        .then(function successCallback(response) {
+            if($scope.netwrkData.netConnected) {
+                if(response.data[$scope.netwrkData.connectedIndex].item !== $scope.netwrkData.availableConnections[$scope.netwrkData.connectedIndex].item){
+                    console.log('!!Disconnected!')
+                    $scope.onDisconnect();
+                    $scope.netwrkData.showDisconnectErr = true;
+                }
+            }
+            $scope.netwrkData.availableConnections = response.data;
+        });
+    },2000);
+ 
+    $http.get('http://localhost:3500/availableNetworks')
+    .then(function successCallback(response) {
+        $scope.netwrkData.availableNetworks = response.data;
+    });
+
+    $scope.onConnect = function($index){
+      if(!$scope.netwrkData.netConnected){
+          $scope.netwrkData.connectedIndex = $index;
+          $scope.active = $scope.active == $index ? '': $index;
+      } else {
+          $scope.onDisconnect($index);
+      }
+      $scope.toggleNetworkScreen = true;
+      $scope.toggleManualScreen = false;
+  };
+
+    $scope.onDisconnect = function($index){
+        $scope.netwrkData.netConnected = false;
+        $scope.active = null;
+    };
+
+    $scope.submitSelectNetwrk = function(selectNetwrkForm){
+        $scope.netwrkData.netConnected = true;
+        if(selectNetwrkForm.$valid){
+          if(selectNetwrkForm.networkOpt){
+              var networkname = selectNetwrkForm.networkOpt.$viewValue.item;
+              var password = selectNetwrkForm.networkpassword.$viewValue;
+              $scope.netwrkData.selectNetwrkFormData = { 'networkname': networkname, 'password': password }
+          } else if(selectNetwrkForm.ssid.$viewValue) {
+              var ssid = selectNetwrkForm.ssid.$viewValue;
+              var password = selectNetwrkForm.networkpassword.$viewValue;
+              $scope.netwrkData.selectNetwrkFormData = { 'ssid': ssid, 'password': password }
+          }
+    
+            var req = { method: 'POST', url: 'http://localhost:3500/checkNetworks', headers: { 'Content-Type': 'text/json' },
+                data: $scope.netwrkData.selectNetwrkFormData
+            }
+               
+            $http(req).then(function(res){
+                console.log(res.data);
+                $scope.netwrkData.netConnected = true;
+                $scope.reset();
+                
+            }, function(){
+                
+            });
+            $scope.reset = function() {
+                $scope.netwrkData.selectNetwrkFormData = {};
+                selectNetwrkForm.$setPristine();
+                $scope.netwrkData.selectNetwrkForm = angular.copy($scope.netwrkData.selectNetwrkFormData);
+                $scope.toggleNetworkScreen = false;
+            };
+        }
+    }
+
+    // Reset selectNetwrkForm from outside function
+    /* $scope.resetSelectNetwrkForm = function() {
+        $scope.netwrkData.selectNetwrkForm = angular.copy($scope.netwrkData.selectNetwrkFormData);
+        vm.selectNetwrkForm.$setPristine();
+    } */
+
+    $scope.addManully = function() {
+        $scope.toggleManualScreen = true;;
+    }
+
+    $scope.selectNtwrk = function() {
+        $scope.toggleManualScreen = false;
+    } 
+
+    $scope.submitManualNetwrk = function(manualForm){
+        console.log(manualForm);
+        if(manualForm.$valid){
+            var ipaddress = manualForm.ipaddress.$viewValue;
+            var networkdhcp = manualForm.networkdhcp.$viewValue;
+            var subnetmask = manualForm.subnetmask.$viewValue;
+            var gateway = manualForm.gateway.$viewValue;
+            var dnserver = manualForm.dnserver.$viewValue;
+            var hostname = manualForm.hostname.$viewValue;
+            $scope.netwrkData.manualNetwrkFormData = { 
+                'ipaddress': ipaddress, 
+                'networkdhcp': networkdhcp ,
+                'subnetmask': subnetmask ,
+                'gateway': gateway ,
+                'dnserver': dnserver ,
+                'hostname': hostname ,
+            }
+    
+            var req = { method: 'POST', url: 'http://localhost:3500/checkManualNetworks', headers: { 'Content-Type': 'text/json' },
+                data: $scope.netwrkData.manualNetwrkFormData
+            }
+               
+            $http(req).then(function(res){
+                console.log(res.data);
+                $scope.reset();
+                
+            }, function(){
+                
+            });
+            
+            $scope.reset = function() {
+                $scope.netwrkData.manualNetwrkFormData = {};
+                manualForm.$setPristine();
+                $scope.netwrkData.manualForm = angular.copy($scope.netwrkData.manualNetwrkFormData);
+                // $scope.toggleNetworkScreen = false;
+              };
+
+        }
+    }
+
+
   }
 ]);

@@ -24,7 +24,6 @@ angular.module('conext_gateway.setup').controller("configurationController", ["$
       initUnits(values.configData);
       initModbus(values.configData);
       initQuickSetup(values.configData, values.timezones);
-      // initNetworkMode(values.configData);
     });
 
     $scope.errorMessage = {};
@@ -40,7 +39,6 @@ angular.module('conext_gateway.setup').controller("configurationController", ["$
     //
     // File upload
     function initUpdateFirmware(data) {
-      console.log(data)
       $scope.updateFirmware.SW_VER = data.install_package.SW_VER;
       $scope.updateFirmware.SW_BUILD_NUMBER = data.install_package.SW_BUILD_NUMBER;
       $scope.updateFirmware.REMOTEUPGRADE_ENABLE = data.install_package.REMOTEUPGRADE_ENABLE;
@@ -714,32 +712,6 @@ angular.module('conext_gateway.setup').controller("configurationController", ["$
           $scope.forms[formName].$rollbackViewValue();
           $scope.forms[formName].$setPristine();
         });
-    }
-
-    
-    /////////////////////////////////////////////////////////////////////////////
-    //
-    // Network Mode
-     
-    function initNetworkMode() { //data will be passed inside the function
-      $scope.networkmode = {
-        modbusntwrks: [
-          {'value' : 'opt1', 'name': 'LAN'},
-          {'value' : 'opt2', 'name': 'WiFi'},
-          {'value' : 'opt3', 'name': 'Auto'}],
-      }
-    }
-    initNetworkMode();
-
-    $scope.onNetwrkChange = function($event){
-      console.log($event)
-      console.log($event.target.value)
-    }
-
-    $scope.applyNetworkMode = function() {
-      if ($scope.errorMessage.networkmode) {
-        delete $scope.errorMessage.networkmode;
-      }
     }
 
 

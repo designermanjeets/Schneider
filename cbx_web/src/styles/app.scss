@@ -569,199 +569,210 @@ $page-footer-height:14px +// font size
 .no-text-wrap {
   white-space: nowrap;
 }
-
-
-
-.container{
-  max-width: 1100px; margin: auto;
-}
-.wifiSetting{
-  width: 600px;
-  border:1px solid #ccc; float: left;
+.available-networks{
+  position: relative;
 }
 .paneltitle{
   background: #ededed; padding: 10px; font-size: 16px
 }
 .connectioncontainer{
   max-height: 200px; border-radius: 3px; overflow: auto;
-  float: left; width: 60%; border: 1px solid #ccc; margin: 10px
+  max-width: 70%; border: 1px solid #ccc; margin: 10px
 }
 .listconnection{
   background: #fff; color: #000;padding: 15px;
-  margin: 5px; border-bottom: 1px solid #ededed; position: relative;
+  border-bottom: 1px solid #ededed; position: relative;
+  cursor: pointer;
 }
-.listconnection:hover{
+.listconnection:hover, .listconnection.active{
   background: #188CD3; color: #fff;
 }
-
 .listconnection a{
   display: none;
-  position: absolute;right: 20px; top: 8px;
+  position: absolute;right: 10px; top: 10px;
   background: #0FC1E4; color: #fff; padding: 5px 20px; border-radius: 3px
 }
-
-.listconnection:hover a{
+.listconnection:hover a { /*, .listconnection.active a*/
   display: block;
 }
-.disconnectcon{
-  float: right
+.disconnectcon{    /* float: right; */
+  top: 45%;
+  position: absolute;
+  right: 10px;
 }
 .disconnectcon a{
   background: #188CD3;padding: 10px 30px; display: inline-block; color: #fff; border-radius: 3px; margin: 10px
 }
-h6{ margin: 10px; font-size: 14px
+h6 { 
+  margin: 10px; font-size: 14px
 }
 .manualwifi input,.manualwifi table{
-width: 100%
+  width: 100%
 }
 .manualwifi{
-width: 100%;
-max-width: 400px;
-margin:30px 10px;
-float: left;
+  max-width: 70%;
+  margin:30px 10px;
+  padding: 15px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
 }
-
 .manualwifi button{
-background: #188CD3;
-padding: 10px 20px;
-border-radius: 3px;
-color: #fff;
-border: 0;
-display: block;
-/* width: 100%; */
-margin: 20px 0;
-float: right;
+  background: #188CD3;
+  padding: 10px 20px;
+  border-radius: 3px;
+  color: #fff;
+  border: 0;
+  display: block;
+  /* width: 100%; */
+  float: right;
 }
 .manualwifi input{
-padding: 10px
+  padding: 10px
 }
+.manualwifiTbl tr td { padding: 5px 0; }
 .onoffswitch {
-position: relative;
-width: 85px;
-display: inline-block;
-font-size: 80%;
+  position: relative;
+  width: 85px;
+  display: inline-block;
+  font-size: 80%;
+  margin: -2px 0 0 10px;
 }
 .onoffswitch .onoffswitch-label {
-display: block;
-overflow: hidden;
-cursor: pointer;
-border: 1px solid hsl(0, 0%, 90%);
--moz-border-radius: 20px;
--webkit-border-radius: 20px;
-border-radius: 20px;
-margin: 0;
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid hsl(0, 0%, 90%);
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  margin: 0;
 }
 .onoffswitch .onoffswitch-inner {
-width: 200%;
-margin-left: -100%;
--webkit-transition: margin 0.15s ease-in-out;
--o-transition: margin 0.15s ease-in-out;
--moz-transition: margin 0.15s ease-in-out;
-transition: margin 0.15s ease-in-out;
+  width: 200%;
+  margin-left: -100%;
+  -webkit-transition: margin 0.15s ease-in-out;
+  -o-transition: margin 0.15s ease-in-out;
+  -moz-transition: margin 0.15s ease-in-out;
+  transition: margin 0.15s ease-in-out;
 }
 .onoffswitch .onoffswitch-inner:before,
 .onoffswitch .onoffswitch-inner:after {
-float: left;
-width: 50%;
-height: 24px;
-padding: 0;
-line-height: 24px;
-font-size: 80%;
-color: hsl(0, 0%, 100%);
-font-weight: normal;
--moz-box-sizing: border-box;
--webkit-box-sizing: border-box;
-box-sizing: border-box;
+  float: left;
+  width: 50%;
+  height: 24px;
+  padding: 0;
+  line-height: 24px;
+  font-size: 80%;
+  color: hsl(0, 0%, 100%);
+  font-weight: normal;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .onoffswitch .onoffswitch-inner:before {
-content: "Enable";
-padding-left: 10px;
-background-color: hsl(203, 100%, 39.1569%);
-color: hsl(0, 0%, 100%);
+  content: "Enable";
+  padding-left: 10px;
+  background-color: hsl(203, 100%, 39.1569%);
+  color: hsl(0, 0%, 100%);
 }
 .onoffswitch .onoffswitch-inner:after {
-content: "Disable";
-padding-right: 10px;
-background-color: hsl(0, 0%, 98%);
-color: hsl(0, 0%, 24%);
-text-align: center;
+  content: "Disable";
+  padding-right: 10px;
+  background-color: hsl(0, 0%, 98%);
+  color: hsl(0, 0%, 24%);
+  text-align: center;
 }
 .onoffswitch .onoffswitch-switch {
-width: 22px;
-height: 22px;
-margin: 0;
-background: hsl(0, 0%, 100%);
-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
--moz-border-radius: 50%;
--webkit-border-radius: 50%;
-border-radius: 50%;
-position: absolute;
-top: 2px;
-bottom: 0;
-right: 0px;
--webkit-transition: right 0.15s ease-in-out;
--o-transition: right 0.15s ease-in-out;
--moz-transition: right 0.15s ease-in-out;
-transition: right 0.15s ease-in-out;
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  background: hsl(0, 0%, 100%);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  bottom: 0;
+  right: 0px;
+  -webkit-transition: right 0.15s ease-in-out;
+  -o-transition: right 0.15s ease-in-out;
+  -moz-transition: right 0.15s ease-in-out;
+  transition: right 0.15s ease-in-out;
 }
 .toggle-group {
-position: relative;
-height: 27px;
-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-top: 50%;
-left: 20px;
-margin-top: -13.5px;
+  position: relative;
+  height: 27px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  top: 50%;
+  left: 5px;
+  margin-top: 8px;
+  vertical-align: top;
 }
 .toggle-group input[type=checkbox] {
-position: absolute;
-left: 10px;
+  /* position: absolute; */
+  left: 10px;
+  width: auto;
+  vertical-align: top;
 }
 .toggle-group input[type=checkbox]:checked ~ .onoffswitch .onoffswitch-label .onoffswitch-inner {
-margin-left: 0;
+  margin-left: 0;
 }
 .toggle-group input[type=checkbox]:checked ~ .onoffswitch .onoffswitch-label .onoffswitch-switch {
-right: 1px;
-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  right: 1px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
 }
 .toggle-group input[type=checkbox]:focus ~ .onoffswitch {
-outline: thin dotted #333;
-outline: 0;
+  outline: thin dotted #333;
+  outline: 0;
 }
 .toggle-group label {
-position: absolute;
-cursor: pointer;
-padding-left: 65px;
-display: inline-block;
-text-align: left;
-line-height: 24px;
-width: 100%;
-z-index: 1;
-height: 24px;
-font-weight: 200;
+  position: absolute;
+  cursor: pointer;
+  padding-left: 65px;
+  display: inline-block;
+  text-align: left;
+  line-height: 24px;
+  width: 100%;
+  z-index: 1;
+  height: 24px;
+  font-weight: 200;
 }
 /* ==== Accessibility ===== */
 .aural {
-clip: rect(1px, 1px, 1px, 1px);
-height: 1px;
-overflow: hidden;
-position: absolute;
-width: 1px;
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
 }
 .aural:focus {
-clip: rect(0, 0, 0, 0);
-font-size: 1em;
-height: auto;
-outline: thin dotted;
-position: static !important;
-width: auto;
-overflow: visible;
+  clip: rect(0, 0, 0, 0);
+  font-size: 1em;
+  height: auto;
+  outline: thin dotted;
+  position: static !important;
+  width: auto;
+  overflow: visible;
 }
-.selectnetwork input,.selectnetwork select{ width: 100% ; padding: 10px; margin: 5px}
-.selectnetwork button{  background: #188CD3; padding: 10px; width: 100%; color: #fff; border: 0}
+// .selectnetwork input,.selectnetwork select{ width: 100% ; padding: 10px; margin: 5px}
+.selectnetwork button{  background: #188CD3; padding: 10px; width: 100%; color: #fff; border: 0; border-radius: 4px; }
+.selectnetwork button[disabled] { opacity: .6; }
 .selectnetwork a{ font-size: 12px; margin: 10px; color: blue; display: block; }
 .selectnetwork{
-float: left;
-width: 250px; margin: 50px;
-border: 1px solid #ccc; text-align: center;
-padding: 20px
+    border: 1px solid #ccc; 
+    text-align: center;
+    padding: 20px;
+    border-radius: 4px;
+    margin: 10px;
+    max-width: 70%;
+    margin-top: 50px;
 }
+h3 { margin-top: 0; margin-bottom: 10px; font-size: 17px; font-weight: bold; color: #555; padding-bottom: 10px; text-align: center; }
+.nav, .pagination, .carousel, .panel-title a, a { cursor: pointer; }
+.ng-animate.item:not(.left):not(.right) {
+    -webkit-transition: 0s ease-in-out left;
+    transition: 0s ease-in-out left
+  }
+.form-group { width: 100%; }
+.form-control {height: 34px; }
