@@ -13,7 +13,7 @@
     "chartjs-plugin-zoom": "^0.6.3",
     "color-convert": "^1.0.0",
     "del": "^2.2.0",
-    "eslint": "^2.1.0",
+    "eslint": "^4.18.2",
     "eslint-config-angular": "^0.5.0",
     "eslint-plugin-angular": "^1.0.0",
     "flip-text": "^1.1.0",
